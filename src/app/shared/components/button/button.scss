@@ -1,0 +1,68 @@
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Gestion de la position de l'icône avec flex-direction
+  &.icon-left {
+    flex-direction: row; // icône puis label
+  }
+
+  &.icon-right {
+    flex-direction: row-reverse; // label puis icône
+  }
+
+  &.icon-top {
+    flex-direction: column; // icône puis label
+  }
+
+  &.icon-bottom {
+    flex-direction: column-reverse; // label puis icône
+  }
+
+  // Variantes de couleur
+  &.primary:not(:disabled) {
+    background-color: #3b82f6;
+    color: white;
+
+    &:hover {
+      background-color: #2563eb;
+    }
+  }
+
+  &.secondary:not(:disabled) {
+    background-color: #6b7280;
+    color: white;
+
+    &:hover {
+      background-color: #4b5563;
+    }
+  }
+
+  &.danger:not(:disabled) {
+    background-color: #ef4444;
+    color: white;
+
+    &:hover {
+      background-color: #dc2626;
+    }
+  }
+
+  .label {
+    display: inline-flex;
+    align-items: center;
+  }
+}

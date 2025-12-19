@@ -1,0 +1,12 @@
+<button
+  [attr.type]="type()"
+  [disabled]="isDisabled()"
+  (click)="onClick()"
+  [class]="'icon-' + iconPosition()"
+>
+  @if (iconName() !== null) {
+  <app-icon [name]="iconName()!"></app-icon>
+  } @if (label() !== null) {
+  <span class="label">{{ label() }}</span>
+  }
+</button>
