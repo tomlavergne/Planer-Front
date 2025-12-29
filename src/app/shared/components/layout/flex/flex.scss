@@ -1,0 +1,57 @@
+:host {
+  display: flex;
+
+  &.direction-row {
+    flex-direction: row;
+  }
+  &.direction-column {
+    flex-direction: column;
+  }
+
+  &.alignItems-start {
+    align-items: flex-start;
+  }
+
+  &.alignItems-center {
+    align-items: center;
+  }
+
+  &.alignItems-end {
+    align-items: flex-end;
+  }
+
+  &.justifyContent-start {
+    justify-content: flex-start;
+  }
+
+  &.justifyContent-center {
+    justify-content: center;
+  }
+
+  &.justifyContent-end {
+    justify-content: flex-end;
+  }
+
+  &.justifyContent-between {
+    justify-content: space-between;
+  }
+  &.gap-xs {
+    gap: var(--spacing-xs);
+  }
+
+  &.gap-sm {
+    gap: var(--spacing-sm);
+  }
+
+  &.gap-md {
+    gap: var(--spacing-md);
+  }
+
+  &.gap-lg {
+    gap: var(--spacing-lg);
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+}

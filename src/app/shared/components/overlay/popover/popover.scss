@@ -1,0 +1,263 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* ========================================== */
+/* MIXINS */
+/* ========================================== */
+
+@mixin popover-position($position) {
+  // Extraire direction et alignement
+  $parts: str-split($position, '-');
+  $direction: nth($parts, 1);
+  $align: if(length($parts) > 1, nth($parts, 2), center);
+
+  // Positions verticales (top, bottom)
+  @if $direction == top {
+    bottom: 100%;
+    @if $align == center {
+      left: 50%;
+      transform: translateX(-50%);
+    } @else if $align == left {
+      left: 0;
+    } @else if $align == right {
+      right: 0;
+    }
+  } @else if $direction == bottom {
+    top: 100%;
+    @if $align == center {
+      left: 50%;
+      transform: translateX(-50%);
+    } @else if $align == left {
+      left: 0;
+    } @else if $align == right {
+      right: 0;
+    }
+  }
+  // Positions horizontales (left, right)
+  @else if $direction == left {
+    right: 100%;
+    @if $align == center {
+      top: 50%;
+      transform: translateY(-50%);
+    } @else if $align == top {
+      top: 0;
+    } @else if $align == bottom {
+      bottom: 0;
+    }
+  } @else if $direction == right {
+    left: 100%;
+    @if $align == center {
+      top: 50%;
+      transform: translateY(-50%);
+    } @else if $align == top {
+      top: 0;
+    } @else if $align == bottom {
+      bottom: 0;
+    }
+  }
+}
+
+// Fonction helper pour séparer une chaîne
+@function str-split($string, $separator) {
+  $index: str-index($string, $separator);
+  @if $index {
+    @return (str-slice($string, 1, $index - 1), str-slice($string, $index + 1));
+  }
+  @return ($string);
+}
+
+.popover {
+  &-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-trigger {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-content {
+    position: absolute;
+    z-index: var(--z-popover);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    // margin: var(--spacing-sm);
+    width: max-content;
+    min-width: 200px;
+    max-width: 400px;
+  }
+}
+
+/* ========================================== */
+/* ANIMATIONS */
+/* ========================================== */
+
+@keyframes popover-fade-in-top {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes popover-fade-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes popover-fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes popover-fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+@keyframes popover-fade-in-top-corner {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-fade-in-bottom-corner {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popover-fade-in-left-corner {
+  from {
+    opacity: 0;
+    transform: translateX(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popover-fade-in-right-corner {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========================================== */
+/* POSITIONS & ANIMATIONS */
+/* ========================================== */
+
+.popover-content[data-position='top'] {
+  @include popover-position('top');
+  animation: popover-fade-in-top 150ms ease-out;
+}
+
+.popover-content[data-position='bottom'] {
+  @include popover-position('bottom');
+  animation: popover-fade-in-bottom 150ms ease-out;
+}
+
+.popover-content[data-position='left'] {
+  @include popover-position('left');
+  animation: popover-fade-in-left 150ms ease-out;
+}
+
+.popover-content[data-position='right'] {
+  @include popover-position('right');
+  animation: popover-fade-in-right 150ms ease-out;
+}
+
+.popover-content[data-position='top-left'] {
+  @include popover-position('top-left');
+  animation: popover-fade-in-top-corner 150ms ease-out;
+}
+
+.popover-content[data-position='top-right'] {
+  @include popover-position('top-right');
+  animation: popover-fade-in-top-corner 150ms ease-out;
+}
+
+.popover-content[data-position='bottom-left'] {
+  @include popover-position('bottom-left');
+  animation: popover-fade-in-bottom-corner 150ms ease-out;
+}
+
+.popover-content[data-position='bottom-right'] {
+  @include popover-position('bottom-right');
+  animation: popover-fade-in-bottom-corner 150ms ease-out;
+}
+
+.popover-content[data-position='left-top'] {
+  @include popover-position('left-top');
+  animation: popover-fade-in-left-corner 150ms ease-out;
+}
+
+.popover-content[data-position='left-bottom'] {
+  @include popover-position('left-bottom');
+  animation: popover-fade-in-left-corner 150ms ease-out;
+}
+
+.popover-content[data-position='right-top'] {
+  @include popover-position('right-top');
+  animation: popover-fade-in-right-corner 150ms ease-out;
+}
+
+.popover-content[data-position='right-bottom'] {
+  @include popover-position('right-bottom');
+  animation: popover-fade-in-right-corner 150ms ease-out;
+}
+
+/* ========================================== */
+/* RESPONSIVE */
+/* ========================================== */
+
+@media (max-width: 640px) {
+  .popover-content {
+    max-width: calc(100vw - 32px);
+  }
+}

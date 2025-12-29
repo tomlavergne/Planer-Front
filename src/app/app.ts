@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { Button } from './shared/components/button/button';
-import { Icon } from './shared/components/icon/icon';
+import { RouterOutlet } from '@angular/router';
+import { Sidebar } from './core/layout/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
-  imports: [Button, Icon],
+  imports: [Sidebar, RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('planer-front');

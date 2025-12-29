@@ -1,16 +1,9 @@
-<div>
-  <!-- Icône à gauche (défaut) -->
-  <app-button label="Enregistrer" iconName="lucideSave"></app-button>
+<main>
+  <!-- Barre latérale -->
+  <app-sidebar />
 
-  <!-- Icône à droite -->
-  <app-button label="Suivant" iconName="lucideArrowRight" iconPosition="right"></app-button>
-
-  <!-- Icône en haut -->
-  <app-button label="Télécharger" iconName="lucideDownload" iconPosition="top"></app-button>
-
-  <!-- Icône en bas -->
-  <app-button label="Plus" iconName="lucidePlus" iconPosition="bottom"></app-button>
-
-  <!-- Sans label (icône seule) -->
-  <app-button iconName="lucideX"></app-button>
-</div>
+  <!-- Contenu dynamique selon la route -->
+  <div class="main-content">
+    <router-outlet />
+  </div>
+</main>

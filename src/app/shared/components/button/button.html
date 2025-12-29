@@ -1,12 +1,25 @@
-<button
-  [attr.type]="type()"
-  [disabled]="isDisabled()"
-  (click)="onClick()"
-  [class]="'icon-' + iconPosition()"
->
-  @if (iconName() !== null) {
-  <app-icon [name]="iconName()!"></app-icon>
-  } @if (label() !== null) {
-  <span class="label">{{ label() }}</span>
-  }
+<button [attr.type]="type()" [disabled]="disabled()" (click)="onClick()">
+  <app-flex direction="row" justifyContent="between" gap="sm" fullWidth>
+    <app-flex
+      [direction]="iconPosition() === 'top' || iconPosition() === 'bottom' ? 'column' : 'row'"
+      [alignItems]="'center'"
+      [justifyContent]="'center'"
+      [gap]="size() === 'sm' ? 'xs' : 'sm'"
+    >
+      <!-- Icone -->
+      @if (iconName() !== null) {
+        <app-icon [name]="iconName()!" [size]="iconSize()"></app-icon>
+      }
+
+      <!-- Label -->
+      @if (label() !== null) {
+        <span class="label">{{ label() }}</span>
+      }
+    </app-flex>
+
+    <!-- Icone Droite -->
+    @if (displayChevronRight()) {
+      <app-icon name="lucideChevronRight" [size]="iconSize()"></app-icon>
+    }
+  </app-flex>
 </button>

@@ -1,0 +1,100 @@
+<aside class="sidebar">
+  <!-- Header -->
+  <div
+    class="header"
+    (mouseenter)="isHoveringLogo.set(true)"
+    (mouseleave)="isHoveringLogo.set(false)"
+  >
+    @if (expanded() || !isHoveringLogo()) {
+      <app-flex direction="row" alignItems="center" class="logo">
+        <div class="circle"></div>
+        <h1 class="label">Planer</h1>
+      </app-flex>
+    }
+
+    @if (expanded() || isHoveringLogo()) {
+      <app-tooltip position="right">
+        <app-button
+          [iconName]="expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen'"
+          variant="ghost"
+          size="md"
+          rounded
+          (clicked)="expanded.set(!expanded())"
+        ></app-button>
+
+        <div tooltip-content>
+          <span>{{ expanded() ? 'Réduire' : 'Étendre' }}</span>
+        </div>
+      </app-tooltip>
+    }
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <app-sidebar-item
+      label="Accueil"
+      iconName="lucideHome"
+      routerLink="/home"
+      [expanded]="expanded()"
+    />
+    <app-sidebar-item
+      label="Calendrier"
+      iconName="lucideCalendar"
+      routerLink="/calendar"
+      [expanded]="expanded()"
+    />
+    <app-sidebar-item
+      label="Utilisateurs"
+      iconName="lucideUsers"
+      routerLink="/users"
+      [expanded]="expanded()"
+    />
+    <app-sidebar-item
+      label="Ressources"
+      iconName="lucideBox"
+      routerLink="/ressources"
+      [expanded]="expanded()"
+    />
+    <app-sidebar-item label="Plus" iconName="lucideEllipsis" [expanded]="expanded()" />
+  </nav>
+
+  <!-- Footer -->
+  <div class="footer">
+    <app-sidebar-item
+      [label]="'Thème ' + (currentTheme() === 'light' ? 'sombre' : 'clair')"
+      [iconName]="iconNameTheme()"
+      [expanded]="expanded()"
+      (clicked)="toggleTheme()"
+    />
+    <app-sidebar-item
+      label="Paramètres"
+      iconName="lucideSettings"
+      routerLink="/settings"
+      [expanded]="expanded()"
+    />
+
+    <!-- Utilisateur-->
+    <app-tooltip position="right" [disabled]="expanded()">
+      <app-popover position="right-bottom" [autoPosition]="false">
+        <app-flex direction="row" alignItems="center" gap="xs" class="user-avatar-button">
+          <app-avatar imageUrl="/img/profil.png" size="sm" />
+
+          @if (expanded()) {
+            <app-flex direction="row" gap="xs">
+              <span class="name">Tom Lavergne</span>
+              <app-icon name="lucideChevronsUpDown" size="20"></app-icon>
+            </app-flex>
+          }
+        </app-flex>
+
+        <div popover-content>
+          <app-user-popover-content />
+        </div>
+      </app-popover>
+
+      <div tooltip-content>
+        <span>Tom Lavergne</span>
+      </div>
+    </app-tooltip>
+  </div>
+</aside>

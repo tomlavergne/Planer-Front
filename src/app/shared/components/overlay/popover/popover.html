@@ -1,0 +1,18 @@
+<div class="popover-wrapper">
+  <!-- Trigger (slot) -->
+  <div #trigger class="popover-trigger" (click)="toggle()">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Popover -->
+  @if (isOpen() && !disabled()) {
+    <div
+      #popoverElement
+      class="popover-content"
+      [attr.data-position]="finalPosition()"
+      role="dialog"
+    >
+      <ng-content select="[popover-content]"></ng-content>
+    </div>
+  }
+</div>

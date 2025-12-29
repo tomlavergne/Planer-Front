@@ -1,0 +1,15 @@
+<app-tooltip position="right" [disabled]="expanded()">
+  <a [routerLink]="routerLink()" routerLinkActive="active" (click)="onClick()">
+    <app-flex direction="row" alignItems="center" gap="sm">
+      <app-icon [name]="iconName()!" size="20"></app-icon>
+
+      @if (expanded() == true) {
+        <span class="label">{{ label() }}</span>
+      }
+    </app-flex>
+  </a>
+
+  <div tooltip-content>
+    <span>{{ label() }}</span>
+  </div>
+</app-tooltip>

@@ -1,9 +1,9 @@
 import { Component, input } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 import * as lucideIcons from '@ng-icons/lucide';
+import { IconSize } from '../../types/common.types';
 
 /***** Déclaration de types *****/
-type IconSize = '16' | '20' | '24' | '32';
 type IconVariant = 'primary' | 'secondary' | 'danger';
 type LucideIconName = keyof typeof lucideIcons;
 
@@ -13,6 +13,13 @@ type LucideIconName = keyof typeof lucideIcons;
   template: `
     <ng-icon [name]="name()" [size]="size()" [strokeWidth]="strokeWidth()" [class]="variant()" />
   `,
+  styles: [
+    `
+      :host {
+        display: flex;
+      }
+    `,
+  ],
 })
 export class Icon {
   /** Nom de l’icône (clé ng-icons) */
