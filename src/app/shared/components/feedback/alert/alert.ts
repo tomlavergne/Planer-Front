@@ -30,8 +30,8 @@ export class Alert {
   variant = input<SemanticVariant>('info');
   title = input<string | null>(null);
   message = input<string | null>(null);
-  action = input<{
-    label: string;
+  button = input<{
+    text: string;
     icon?: LucideIconName | null;
     callback: () => void;
   } | null>(null);

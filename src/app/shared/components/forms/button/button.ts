@@ -7,8 +7,14 @@ import { Text } from '../../display/text/text';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
-import { IconSize, Size, LucideIconName, Position } from '../../../types';
-import type { Button as ButtonType, ColorVariant } from '../../../types/';
+import {
+  IconSize,
+  Size,
+  LucideIconName,
+  Position,
+  Button as ButtonType,
+  ColorVariant,
+} from '../../../types';
 
 @Component({
   selector: 'app-button',
@@ -21,7 +27,7 @@ import type { Button as ButtonType, ColorVariant } from '../../../types/';
 })
 export class Button {
   /***** Inputs *****/
-  label = input<string | null>(null);
+  text = input<string | null>(null);
   type = input<ButtonType.Type>('button');
   variant = input<ButtonType.Variant>('primary');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });

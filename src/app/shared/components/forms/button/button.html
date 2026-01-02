@@ -5,9 +5,9 @@
       <app-icon [name]="icon()!.name" [size]="iconSize()" [variant]="contentColor()"></app-icon>
     }
 
-    <!-- Label -->
-    @if (label()) {
-      <app-text class="label" [variant]="contentColor()">{{ label() }}</app-text>
+    <!-- Text -->
+    @if (text()) {
+      <app-text [variant]="contentColor()">{{ text() }}</app-text>
     }
   </app-flex>
 </button>

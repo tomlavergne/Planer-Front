@@ -2,7 +2,7 @@
   <app-flex direction="column" gap="sm">
     <h1>Playground</h1>
 
-    <app-card hoverable clickable>
+    <app-card>
       <div card-header>
         <h2>Boutons</h2>
       </div>
@@ -11,13 +11,13 @@
         <!-- Pleins -->
         <app-flex direction="row" gap="md" wrap>
           <app-button
-            label="Primary"
+            text="Primary"
             variant="primary"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
           />
           <app-button
-            label="Primary"
+            text="Primary"
             variant="primary"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
@@ -29,17 +29,17 @@
             borderRadius="full"
             [icon]="{ name: 'lucideCircle' }"
           />
-          <app-button label="Primary" variant="primary" size="sm" />
+          <app-button text="Primary" variant="primary" size="sm" />
         </app-flex>
         <app-flex direction="row" gap="md" wrap>
           <app-button
-            label="Secondary"
+            text="Secondary"
             variant="secondary"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
           />
           <app-button
-            label="Secondary"
+            text="Secondary"
             variant="secondary"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
@@ -51,17 +51,17 @@
             borderRadius="full"
             [icon]="{ name: 'lucideCircle' }"
           />
-          <app-button label="Secondary" variant="secondary" size="sm" />
+          <app-button text="Secondary" variant="secondary" size="sm" />
         </app-flex>
         <app-flex direction="row" gap="md" wrap>
           <app-button
-            label="Outline"
+            text="Outline"
             variant="outline"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
           />
           <app-button
-            label="Outline"
+            text="Outline"
             variant="outline"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
@@ -73,13 +73,13 @@
             borderRadius="full"
             [icon]="{ name: 'lucideCircle' }"
           />
-          <app-button label="Outline" variant="outline" size="sm" />
+          <app-button text="Outline" variant="outline" size="sm" />
         </app-flex>
         <app-flex direction="row" gap="md" wrap>
-          <app-button variant="ghost" label="Ghost" size="sm" [icon]="{ name: 'lucideCircle' }" />
+          <app-button variant="ghost" text="Ghost" size="sm" [icon]="{ name: 'lucideCircle' }" />
           <app-button
             variant="ghost"
-            label="Ghost"
+            text="Ghost"
             size="sm"
             [icon]="{ name: 'lucideCircle' }"
             disabled
@@ -90,7 +90,147 @@
             borderRadius="full"
             [icon]="{ name: 'lucideCircle' }"
           />
-          <app-button label="Ghost" variant="ghost" size="sm" />
+          <app-button text="Ghost" variant="ghost" size="sm" />
+        </app-flex>
+      </app-flex>
+    </app-card>
+
+    <app-card>
+      <div card-header>
+        <h2>Badges</h2>
+      </div>
+
+      <app-flex direction="column" gap="lg">
+        <!-- Default variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Default" variant="default" size="sm" />
+          <app-badge text="Default" variant="default" size="sm" [icon]="{ name: 'lucideCircle' }" />
+          <app-badge text="Default" variant="default" size="md" />
+          <app-badge text="Default" variant="default" size="md" [icon]="{ name: 'lucideCheck' }" />
+          <app-badge text="Default" variant="default" size="lg" />
+          <app-badge text="Default" variant="default" size="lg" [icon]="{ name: 'lucideInfo' }" />
+        </app-flex>
+
+        <!-- Primary variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Primary" variant="primary" size="sm" />
+          <app-badge text="Primary" variant="primary" size="sm" [icon]="{ name: 'lucideStar' }" />
+          <app-badge text="Primary" variant="primary" size="md" />
+          <app-badge text="Primary" variant="primary" size="md" [icon]="{ name: 'lucideZap' }" />
+          <app-badge text="Primary" variant="primary" size="lg" />
+          <app-badge text="Primary" variant="primary" size="lg" [icon]="{ name: 'lucideCrown' }" />
+        </app-flex>
+
+        <!-- Secondary variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Secondary" variant="secondary" size="sm" />
+          <app-badge
+            text="Secondary"
+            variant="secondary"
+            size="sm"
+            [icon]="{ name: 'lucideTag' }"
+          />
+          <app-badge text="Secondary" variant="secondary" size="md" />
+          <app-badge
+            text="Secondary"
+            variant="secondary"
+            size="md"
+            [icon]="{ name: 'lucideBookmark' }"
+          />
+          <app-badge text="Secondary" variant="secondary" size="lg" />
+          <app-badge
+            text="Secondary"
+            variant="secondary"
+            size="lg"
+            [icon]="{ name: 'lucideHash' }"
+          />
+        </app-flex>
+
+        <!-- Success variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Success" variant="success" size="sm" />
+          <app-badge text="Success" variant="success" size="sm" [icon]="{ name: 'lucideCheck' }" />
+          <app-badge text="Success" variant="success" size="md" />
+          <app-badge
+            text="Success"
+            variant="success"
+            size="md"
+            [icon]="{ name: 'lucideCheckCircle' }"
+          />
+          <app-badge text="Success" variant="success" size="lg" />
+          <app-badge
+            text="Success"
+            variant="success"
+            size="lg"
+            [icon]="{ name: 'lucideCheckCheck' }"
+          />
+        </app-flex>
+
+        <!-- Warning variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Warning" variant="warning" size="sm" />
+          <app-badge
+            text="Warning"
+            variant="warning"
+            size="sm"
+            [icon]="{ name: 'lucideAlertTriangle' }"
+          />
+          <app-badge text="Warning" variant="warning" size="md" />
+          <app-badge
+            text="Warning"
+            variant="warning"
+            size="md"
+            [icon]="{ name: 'lucideAlertCircle' }"
+          />
+          <app-badge text="Warning" variant="warning" size="lg" />
+          <app-badge text="Warning" variant="warning" size="lg" [icon]="{ name: 'lucideInfo' }" />
+        </app-flex>
+
+        <!-- Danger variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Danger" variant="danger" size="sm" />
+          <app-badge text="Danger" variant="danger" size="sm" [icon]="{ name: 'lucideX' }" />
+          <app-badge text="Danger" variant="danger" size="md" />
+          <app-badge text="Danger" variant="danger" size="md" [icon]="{ name: 'lucideXCircle' }" />
+          <app-badge text="Danger" variant="danger" size="lg" />
+          <app-badge
+            text="Danger"
+            variant="danger"
+            size="lg"
+            [icon]="{ name: 'lucideAlertOctagon' }"
+          />
+        </app-flex>
+
+        <!-- Outline variant -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="Outline" variant="outline" size="sm" />
+          <app-badge text="Outline" variant="outline" size="sm" [icon]="{ name: 'lucideCircle' }" />
+          <app-badge text="Outline" variant="outline" size="md" />
+          <app-badge
+            text="Outline"
+            variant="outline"
+            size="md"
+            [icon]="{ name: 'lucideCircleDashed' }"
+          />
+          <app-badge text="Outline" variant="outline" size="lg" />
+          <app-badge
+            text="Outline"
+            variant="outline"
+            size="lg"
+            [icon]="{ name: 'lucideCircleDot' }"
+          />
+        </app-flex>
+
+        <!-- Mixed examples with numbers and short labels -->
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          <app-badge text="New" variant="primary" size="sm" />
+          <app-badge text="Beta" variant="warning" size="sm" />
+          <app-badge text="99+" variant="danger" size="sm" [icon]="{ name: 'lucideBell' }" />
+          <app-badge text="Pro" variant="primary" size="md" [icon]="{ name: 'lucideCrown' }" />
+          <app-badge text="5" variant="success" size="sm" />
+          <app-badge text="Draft" variant="secondary" size="md" />
+          <app-badge text="Live" variant="success" size="md" [icon]="{ name: 'lucideRadio' }" />
+          <app-badge text="Archived" variant="outline" size="sm" />
         </app-flex>
       </app-flex>
     </app-card>

@@ -19,13 +19,13 @@
   </app-flex>
 
   <!-- Action button -->
-  @if (action()) {
+  @if (button()) {
     <app-button
       size="sm"
-      [label]="action()!.label"
-      [icon]="{ name: action()!.icon! }"
+      [text]="button()!.text"
+      [icon]="{ name: button()!.icon! }"
       rounded
-      (clicked)="action()!.callback()"
+      (clicked)="button()!.callback()"
     />
   }
 
