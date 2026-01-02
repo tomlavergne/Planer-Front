@@ -1,0 +1,97 @@
+:host {
+  display: inline-block;
+
+  &.full-width {
+    display: block;
+    width: 100%;
+
+    .textarea-wrapper {
+      width: 100%;
+    }
+  }
+
+  .textarea-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    .textarea-field {
+      width: 100%;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface);
+      color: var(--color-text);
+      font-family: inherit;
+      line-height: 1.5;
+      transition: all var(--transition-base);
+      resize: vertical;
+
+      &::placeholder {
+        color: var(--color-text-secondary);
+      }
+
+      &:hover:not(:disabled):not(:readonly) {
+        border-color: var(--color-border-hover);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-alpha);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      &:readonly {
+        background-color: var(--color-surface-hover);
+        cursor: default;
+      }
+    }
+
+    .textarea-footer {
+      display: flex;
+      justify-content: flex-end;
+
+      .character-count {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-secondary);
+      }
+    }
+  }
+
+  /*****************/
+  /***** SIZES *****/
+  /*****************/
+
+  &.size-sm .textarea-field {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+
+  &.size-md .textarea-field {
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+  }
+
+  &.size-lg .textarea-field {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-size-lg);
+  }
+
+  /*****************/
+  /***** ERROR *****/
+  /*****************/
+
+  &.error .textarea-field {
+    border-color: var(--color-danger);
+
+    &:focus {
+      border-color: var(--color-danger);
+      box-shadow: 0 0 0 3px var(--color-danger-alpha);
+    }
+  }
+}

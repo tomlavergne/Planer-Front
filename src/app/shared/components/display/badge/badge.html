@@ -1,0 +1,11 @@
+<app-flex direction="row" alignItems="center" justifyContent="center" gap="xs" fullWidth>
+  <!-- Icon -->
+  @if (icon()) {
+    <app-icon [name]="icon()!" size="20" />
+  }
+
+  <!-- Message -->
+  @if (text()) {
+    <app-text as="p" TextVariant="body" size="sm">{{ text() }}</app-text>
+  }
+</app-flex>

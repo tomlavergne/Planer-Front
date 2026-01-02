@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+
+  &.variant-white {
+    color: var(--color-white);
+  }
+
+  &.variant-default {
+    color: var(--color-text);
+  }
+
+  &.variant-primary {
+    color: var(--color-primary);
+  }
+
+  &.variant-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  &.variant-success {
+    color: var(--color-success);
+  }
+
+  &.variant-warning {
+    color: var(--color-warning);
+  }
+
+  &.variant-danger {
+    color: var(--color-danger);
+  }
+
+  &.variant-inverse {
+    color: var(--color-text-inverse);
+  }
+}

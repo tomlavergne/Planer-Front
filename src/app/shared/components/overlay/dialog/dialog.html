@@ -1,0 +1,30 @@
+@if (isOpen()) {
+  <div class="dialog-overlay" (click)="onBackdropClick()">
+    <div class="dialog-content" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+      <!-- Header -->
+      <div class="dialog-header">
+        @if (title()) {
+          <h2 class="dialog-title">{{ title() }}</h2>
+        } @else {
+          <ng-content select="[dialog-title]"></ng-content>
+        }
+
+        @if (showCloseButton()) {
+          <button type="button" class="dialog-close" (click)="close()" aria-label="Close">
+            <app-icon name="lucideX" size="20" />
+          </button>
+        }
+      </div>
+
+      <!-- Body -->
+      <div class="dialog-body">
+        <ng-content></ng-content>
+      </div>
+
+      <!-- Footer (optional slot) -->
+      <div class="dialog-footer">
+        <ng-content select="[dialog-footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+}

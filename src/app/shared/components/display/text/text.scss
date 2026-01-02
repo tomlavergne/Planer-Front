@@ -1,0 +1,180 @@
+:host {
+  display: inline;
+
+  /*********************/
+  /***** VARIANTS *****/
+  /*********************/
+
+  &.variant-white {
+    color: var(--color-white);
+  }
+
+  &.variant-primary {
+    color: var(--color-text-primary);
+  }
+
+  &.variant-secondary {
+    color: var(--color-text-secondary);
+  }
+
+  &.variant-inverse {
+    color: var(--color-text-inverse);
+  }
+
+  &.variant-muted {
+    color: var(--color-text-muted);
+  }
+
+  &.variant-success {
+    color: var(--color-success);
+  }
+
+  &.variant-warning {
+    color: var(--color-warning);
+  }
+
+  &.variant-danger {
+    color: var(--color-danger);
+  }
+
+  &.variant-body {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-primary);
+  }
+
+  &.variant-heading {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  &.variant-caption {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-secondary);
+  }
+
+  &.variant-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+  }
+
+  /*****************/
+  /***** SIZES *****/
+  /*****************/
+
+  &.size-xs {
+    font-size: var(--font-size-xs);
+  }
+
+  &.size-sm {
+    font-size: var(--font-size-sm);
+  }
+
+  &.size-base {
+    font-size: var(--font-size-base);
+  }
+
+  &.size-lg {
+    font-size: var(--font-size-lg);
+  }
+
+  &.size-xl {
+    font-size: var(--font-size-xl);
+  }
+
+  &.size-2xl {
+    font-size: var(--font-size-2xl);
+  }
+
+  /******************/
+  /***** WEIGHT *****/
+  /******************/
+
+  &.weight-normal {
+    font-weight: var(--font-weight-normal);
+  }
+
+  &.weight-medium {
+    font-weight: var(--font-weight-medium);
+  }
+
+  &.weight-semibold {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &.weight-bold {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /*****************/
+  /***** ALIGN *****/
+  /*****************/
+
+  &.align-left {
+    text-align: left;
+  }
+
+  &.align-center {
+    text-align: center;
+  }
+
+  &.align-right {
+    text-align: right;
+  }
+
+  &.align-justify {
+    text-align: justify;
+  }
+
+  /*******************/
+  /***** HELPERS *****/
+  /*******************/
+
+  &.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
+
+  &.italic {
+    font-style: italic;
+  }
+
+  &.underline {
+    text-decoration: underline;
+  }
+
+  /***************************/
+  /***** HTML SEMANTICS *****/
+  /***************************/
+
+  &.as-h1,
+  &.as-h2,
+  &.as-h3,
+  &.as-h4,
+  &.as-h5,
+  &.as-h6 {
+    display: block;
+    margin: 0;
+  }
+
+  &.as-p {
+    display: block;
+    margin: 0;
+  }
+
+  &.as-div {
+    display: block;
+  }
+
+  &.as-span,
+  &.as-small,
+  &.as-label {
+    display: inline;
+  }
+}

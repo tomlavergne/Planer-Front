@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Button } from '../../../../shared/components/button/button';
-import { Avatar } from '../../../../shared/components/avatar/avatar';
+import { Button } from '../../../../shared/components/forms/button/button';
+import { Avatar } from '../../../../shared/components/display/avatar/avatar';
 import { Popover } from '../../../../shared/components/overlay/popover/popover';
 
 @Component({

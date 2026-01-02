@@ -1,7 +1,16 @@
 <app-tooltip position="right" [disabled]="expanded()">
-  <a [routerLink]="routerLink()" routerLinkActive="active" (click)="onClick()">
+  <a
+    [routerLink]="routerLink()"
+    routerLinkActive="active"
+    #rla="routerLinkActive"
+    (click)="onClick()"
+  >
     <app-flex direction="row" alignItems="center" gap="sm">
-      <app-icon [name]="iconName()!" size="20"></app-icon>
+      <app-icon
+        [name]="iconName()!"
+        size="20"
+        [variant]="rla.isActive ? 'primary' : 'secondary'"
+      ></app-icon>
 
       @if (expanded() == true) {
         <span class="label">{{ label() }}</span>

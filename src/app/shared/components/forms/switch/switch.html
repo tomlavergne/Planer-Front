@@ -1,0 +1,20 @@
+<label class="switch-wrapper">
+  <div class="switch-container">
+    <input
+      type="checkbox"
+      [checked]="checked()"
+      [disabled]="disabled()"
+      (change)="toggle()"
+      class="switch-input"
+    />
+    <div class="switch-track">
+      <div class="switch-thumb"></div>
+    </div>
+  </div>
+
+  @if (label()) {
+    <span class="switch-label">{{ label() }}</span>
+  } @else {
+    <ng-content></ng-content>
+  }
+</label>

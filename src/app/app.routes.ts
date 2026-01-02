@@ -7,23 +7,27 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'playground',
+    loadComponent: () => import('./features/playground/playground').then((m) => m.Playground),
+  },
+  {
     path: 'home',
-    loadComponent: () => import('./features/home/home/home').then((m) => m.Home),
+    loadComponent: () => import('./features/home/home').then((m) => m.Home),
   },
   {
     path: 'calendar',
-    loadComponent: () => import('./features/calendar/calendar/calendar').then((m) => m.Calendar),
+    loadComponent: () => import('./features/calendar/calendar').then((m) => m.Calendar),
   },
   {
     path: 'users',
-    loadComponent: () => import('./features/users/users/users').then((m) => m.Users),
+    loadComponent: () => import('./features/users/users').then((m) => m.Users),
   },
   {
     path: 'ressources',
-    loadComponent: () => import('./features/users/users/users').then((m) => m.Users),
+    loadComponent: () => import('./features/users/users').then((m) => m.Users),
   },
   {
     path: 'settings',
-    loadComponent: () => import('./features/users/users/users').then((m) => m.Users),
+    loadComponent: () => import('./features/users/users').then((m) => m.Users),
   },
 ];

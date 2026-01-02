@@ -1,0 +1,36 @@
+<div class="tabs-container">
+  <!-- Tab List -->
+  <div class="tabs-list" role="tablist">
+    @for (tab of tabs(); track tab.id) {
+      <button
+        type="button"
+        class="tab-trigger"
+        [class.active]="isActive(tab.id)"
+        [class.disabled]="tab.disabled"
+        [disabled]="tab.disabled"
+        (click)="selectTab(tab)"
+        role="tab"
+        [attr.aria-selected]="isActive(tab.id)"
+        [attr.aria-controls]="'panel-' + tab.id"
+      >
+        {{ tab.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Tab Panels -->
+  <div class="tabs-content">
+    @for (tab of tabs(); track tab.id) {
+      @if (isActive(tab.id)) {
+        <div
+          class="tab-panel"
+          role="tabpanel"
+          [attr.id]="'panel-' + tab.id"
+          [attr.aria-labelledby]="tab.id"
+        >
+          <ng-content [select]="'[tab-panel=' + tab.id + ']'"></ng-content>
+        </div>
+      }
+    }
+  </div>
+</div>

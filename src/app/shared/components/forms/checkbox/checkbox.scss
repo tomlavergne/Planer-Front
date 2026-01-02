@@ -1,0 +1,106 @@
+:host {
+  display: inline-block;
+
+  .checkbox-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    user-select: none;
+
+    .checkbox-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkbox-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .checkbox-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background-color: var(--color-surface);
+      transition: all var(--transition-base);
+      color: white;
+
+      app-icon {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: all var(--transition-base);
+      }
+    }
+
+    .checkbox-label {
+      color: var(--color-text);
+      font-size: var(--font-size-base);
+    }
+
+    &:hover:not(.disabled) .checkbox-box {
+      border-color: var(--color-border-hover);
+      background-color: var(--color-surface-hover);
+    }
+  }
+
+  /*****************/
+  /***** SIZES *****/
+  /*****************/
+
+  &.size-sm .checkbox-box {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.size-md .checkbox-box {
+    width: 22px;
+    height: 22px;
+  }
+
+  &.size-lg .checkbox-box {
+    width: 26px;
+    height: 26px;
+  }
+
+  /******************/
+  /***** STATES *****/
+  /******************/
+
+  &.checked .checkbox-box,
+  &.indeterminate .checkbox-box {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+
+    app-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .checkbox-wrapper {
+      cursor: not-allowed;
+    }
+  }
+
+  &.error .checkbox-box {
+    border-color: var(--color-danger);
+  }
+
+  /***** Focus state *****/
+  .checkbox-input:focus + .checkbox-box {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  }
+}

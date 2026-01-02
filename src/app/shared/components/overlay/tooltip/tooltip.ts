@@ -15,7 +15,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Popover } from '../popover/popover';
 
 /***** Imports de types *****/
-import { RelativePosition } from '../../../types/common.types';
+import { Position } from '../../../types';
 
 @Component({
   selector: 'app-tooltip',
@@ -26,14 +26,14 @@ import { RelativePosition } from '../../../types/common.types';
 export class Tooltip {
   // Inputs
   text = input<string | null>(null);
-  position = input<RelativePosition>('top');
+  position = input<Position>('top');
   delay = input<number>(200);
   disabled = input<boolean>(false);
   autoPosition = input<boolean>(true); // Auto-ajustement si overflow vrai par defaut
 
   // Signals
   isVisible = signal(false);
-  finalPosition = signal<RelativePosition>(this.position());
+  finalPosition = signal<Position>(this.position());
 
   // ViewChild
   private trigger = viewChild<ElementRef>('trigger');

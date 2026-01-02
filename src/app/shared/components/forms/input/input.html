@@ -1,0 +1,29 @@
+<div class="input-wrapper">
+  @if (prefixIcon()) {
+    <div class="input-prefix">
+      <app-icon [name]="prefixIcon()!" [size]="iconSize()" />
+    </div>
+  }
+
+  <input
+    #inputElement
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [readonly]="readonly()"
+    [value]="value()"
+    (input)="onInput($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    class="input-field"
+  />
+
+  @if (suffixIcon()) {
+    <div class="input-suffix">
+      <app-icon [name]="suffixIcon()!" [size]="iconSize()" />
+    </div>
+  }
+
+  <ng-content select="[input-prefix]"></ng-content>
+  <ng-content select="[input-suffix]"></ng-content>
+</div>

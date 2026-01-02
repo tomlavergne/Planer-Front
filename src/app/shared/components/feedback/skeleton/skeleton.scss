@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  background-color: var(--color-surface);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 0%,
+    var(--color-surface-hover) 50%,
+    var(--color-surface) 100%
+  );
+  background-size: 200% 100%;
+
+  /*********************/
+  /***** VARIANTS *****/
+  /*********************/
+
+  &.variant-text {
+    height: 1em;
+    border-radius: var(--radius-sm);
+    transform: scale(1, 0.8);
+  }
+
+  &.variant-circular {
+    border-radius: var(--radius-full);
+  }
+
+  &.variant-rectangular {
+    border-radius: 0;
+  }
+
+  &.variant-rounded {
+    border-radius: var(--radius-md);
+  }
+
+  /*********************/
+  /***** ANIMATION *****/
+  /*********************/
+
+  &.animated {
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

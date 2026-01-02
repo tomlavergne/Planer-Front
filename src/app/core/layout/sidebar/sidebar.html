@@ -15,10 +15,10 @@
     @if (expanded() || isHoveringLogo()) {
       <app-tooltip position="right">
         <app-button
-          [iconName]="expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen'"
+          [icon]="{ name: expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen' }"
           variant="ghost"
-          size="md"
-          rounded
+          size="sm"
+          borderRadius="full"
           (clicked)="expanded.set(!expanded())"
         ></app-button>
 
@@ -31,6 +31,12 @@
 
   <!-- Navigation -->
   <nav class="sidebar-nav">
+    <app-sidebar-item
+      label="Playground"
+      iconName="lucideDrum"
+      routerLink="/playground"
+      [expanded]="expanded()"
+    />
     <app-sidebar-item
       label="Accueil"
       iconName="lucideHome"
@@ -82,7 +88,7 @@
           @if (expanded()) {
             <app-flex direction="row" gap="xs">
               <span class="name">Tom Lavergne</span>
-              <app-icon name="lucideChevronsUpDown" size="20"></app-icon>
+              <app-icon name="lucideChevronsUpDown" size="20" variant="secondary"></app-icon>
             </app-flex>
           }
         </app-flex>

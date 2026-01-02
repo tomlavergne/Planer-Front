@@ -1,0 +1,36 @@
+<app-flex direction="row" alignItems="center" gap="md" fullWidth>
+  <!-- Icon -->
+  @if (showIcon()) {
+    <app-icon [name]="defaultIcon()" size="24" [variant]="defaultColor()" />
+  }
+
+  <app-flex direction="column" gap="xs" fullWidth>
+    <!--  Title -->
+    @if (title()) {
+      <app-text as="h2" TextVariant="body" size="lg" [variant]="defaultColor()">{{
+        title()
+      }}</app-text>
+    }
+
+    <!-- Message -->
+    <app-text as="p" TextVariant="body" size="sm" [variant]="defaultColor()">{{
+      message()
+    }}</app-text>
+  </app-flex>
+
+  <!-- Action button -->
+  @if (action()) {
+    <app-button
+      size="sm"
+      [label]="action()!.label"
+      [icon]="{ name: action()!.icon! }"
+      rounded
+      (clicked)="action()!.callback()"
+    />
+  }
+
+  <!-- Dismiss button -->
+  @if (dismissible()) {
+    <app-button size="sm" appearance="ghost" iconName="lucideX" rounded (clicked)="onDismiss()" />
+  }
+</app-flex>

@@ -1,0 +1,138 @@
+:host {
+  display: inline-block;
+
+  .switch-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    cursor: pointer;
+    user-select: none;
+
+    .switch-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .switch-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .switch-track {
+      position: relative;
+      background-color: var(--color-border);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-base);
+      cursor: pointer;
+
+      .switch-thumb {
+        position: absolute;
+        background-color: white;
+        border-radius: var(--radius-full);
+        transition: all var(--transition-base);
+        box-shadow: var(--shadow-sm);
+      }
+    }
+
+    .switch-label {
+      color: var(--color-text);
+      font-size: var(--font-size-base);
+    }
+
+    &:hover:not(.disabled) .switch-track {
+      background-color: var(--color-border-hover);
+    }
+  }
+
+  /*****************/
+  /***** SIZES *****/
+  /*****************/
+
+  &.size-sm {
+    .switch-track {
+      width: 36px;
+      height: 20px;
+      padding: 2px;
+
+      .switch-thumb {
+        width: 16px;
+        height: 16px;
+        left: 2px;
+        top: 2px;
+      }
+    }
+  }
+
+  &.size-md {
+    .switch-track {
+      width: 44px;
+      height: 24px;
+      padding: 2px;
+
+      .switch-thumb {
+        width: 20px;
+        height: 20px;
+        left: 2px;
+        top: 2px;
+      }
+    }
+  }
+
+  &.size-lg {
+    .switch-track {
+      width: 52px;
+      height: 28px;
+      padding: 2px;
+
+      .switch-thumb {
+        width: 24px;
+        height: 24px;
+        left: 2px;
+        top: 2px;
+      }
+    }
+  }
+
+  /******************/
+  /***** STATES *****/
+  /******************/
+
+  &.checked .switch-track {
+    background-color: var(--color-primary);
+  }
+
+  &.checked.size-sm .switch-thumb {
+    transform: translateX(16px);
+  }
+
+  &.checked.size-md .switch-thumb {
+    transform: translateX(20px);
+  }
+
+  &.checked.size-lg .switch-thumb {
+    transform: translateX(24px);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .switch-wrapper {
+      cursor: not-allowed;
+    }
+
+    .switch-track {
+      cursor: not-allowed;
+    }
+  }
+
+  /***** Focus state *****/
+  .switch-input:focus + .switch-track {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary-alpha);
+  }
+}

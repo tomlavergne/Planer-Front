@@ -4,11 +4,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
 import { Tooltip } from '../../../../shared/components/overlay/tooltip/tooltip';
-import { Icon } from '../../../../shared/components/icon/icon';
+import { Icon } from '../../../../shared/components/display/icon/icon';
 import { Flex } from '../../../../shared/components/layout/flex/flex';
 
 /***** Import de types *****/
-import { LucideIconName } from '../../../../shared/types/common.types';
+import { LucideIconName } from '../../../../shared/types';
 
 @Component({
   selector: 'app-sidebar-item',

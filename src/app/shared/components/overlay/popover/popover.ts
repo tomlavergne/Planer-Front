@@ -13,7 +13,7 @@ import {
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 /***** Imports de types *****/
-import { AdvancedRelativePosition } from '../../../types/common.types';
+import { AdvancedPosition } from '../../../types';
 
 @Component({
   selector: 'app-popover',
@@ -23,14 +23,14 @@ import { AdvancedRelativePosition } from '../../../types/common.types';
 })
 export class Popover {
   // Inputs
-  position = input<AdvancedRelativePosition>('bottom');
+  position = input<AdvancedPosition>('bottom');
   disabled = input<boolean>(false);
   autoPosition = input<boolean>(true);
   closeOnClickOutside = input<boolean>(true);
 
   // Signals
   isOpen = signal(false);
-  finalPosition = signal<AdvancedRelativePosition>(this.position());
+  finalPosition = signal<AdvancedPosition>(this.position());
 
   // ViewChild
   private trigger = viewChild<ElementRef>('trigger');
@@ -104,7 +104,7 @@ export class Popover {
     const viewportHeight = window.innerHeight;
     const requestedPosition = this.position();
 
-    let newPosition: AdvancedRelativePosition = requestedPosition;
+    let newPosition: AdvancedPosition = requestedPosition;
     const margin = 8;
 
     const overflowTop = rect.top < margin;

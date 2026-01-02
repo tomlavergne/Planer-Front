@@ -1,0 +1,98 @@
+<div class="playground-container">
+  <app-flex direction="column" gap="sm">
+    <h1>Playground</h1>
+
+    <app-card hoverable clickable>
+      <div card-header>
+        <h2>Boutons</h2>
+      </div>
+
+      <app-flex direction="column" gap="lg">
+        <!-- Pleins -->
+        <app-flex direction="row" gap="md" wrap>
+          <app-button
+            label="Primary"
+            variant="primary"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button
+            label="Primary"
+            variant="primary"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+            disabled
+          />
+          <app-button
+            variant="primary"
+            size="sm"
+            borderRadius="full"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button label="Primary" variant="primary" size="sm" />
+        </app-flex>
+        <app-flex direction="row" gap="md" wrap>
+          <app-button
+            label="Secondary"
+            variant="secondary"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button
+            label="Secondary"
+            variant="secondary"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+            disabled
+          />
+          <app-button
+            variant="secondary"
+            size="sm"
+            borderRadius="full"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button label="Secondary" variant="secondary" size="sm" />
+        </app-flex>
+        <app-flex direction="row" gap="md" wrap>
+          <app-button
+            label="Outline"
+            variant="outline"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button
+            label="Outline"
+            variant="outline"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+            disabled
+          />
+          <app-button
+            variant="outline"
+            size="sm"
+            borderRadius="full"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button label="Outline" variant="outline" size="sm" />
+        </app-flex>
+        <app-flex direction="row" gap="md" wrap>
+          <app-button variant="ghost" label="Ghost" size="sm" [icon]="{ name: 'lucideCircle' }" />
+          <app-button
+            variant="ghost"
+            label="Ghost"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+            disabled
+          />
+          <app-button
+            variant="ghost"
+            size="sm"
+            borderRadius="full"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+          <app-button label="Ghost" variant="ghost" size="sm" />
+        </app-flex>
+      </app-flex>
+    </app-card>
+  </app-flex>
+</div>

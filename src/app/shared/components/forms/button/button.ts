@@ -1,0 +1,93 @@
+/***** Imports de Angular *****/
+import { Component, input, output, computed, booleanAttribute } from '@angular/core';
+
+/***** Imports de composants *****/
+import { Icon } from '../../display/icon/icon';
+import { Text } from '../../display/text/text';
+import { Flex } from '../../layout/flex/flex';
+
+/***** Imports de types *****/
+import { IconSize, Size, LucideIconName, Position } from '../../../types';
+import type { Button as ButtonType, ColorVariant } from '../../../types/';
+
+@Component({
+  selector: 'app-button',
+  imports: [Flex, Text, Icon],
+  templateUrl: './button.html',
+  styleUrl: './button.scss',
+  host: {
+    '[class]': 'hostClasses()',
+  },
+})
+export class Button {
+  /***** Inputs *****/
+  label = input<string | null>(null);
+  type = input<ButtonType.Type>('button');
+  variant = input<ButtonType.Variant>('primary');
+  disabled = input<boolean, any>(false, { transform: booleanAttribute });
+  icon = input<{
+    name: LucideIconName;
+    position?: Position;
+  } | null>(null);
+  size = input<Size>('md');
+  borderRadius = input<ButtonType.BorderRadius>('md');
+  fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
+
+  /***** Outputs *****/
+  clicked = output<void>();
+
+  // Computed pour générer les classes dynamiquement
+  hostClasses = computed(() => {
+    return [
+      `variant-${this.variant()}`,
+      `size-${this.size()}`,
+      `icon-${this.icon()?.position}`,
+      `border-radius-${this.borderRadius()}`,
+      this.fullWidth() ? 'full-width' : '',
+      this.disabled() ? 'disabled' : '',
+    ].join(' ');
+  });
+
+  // Computed pour la taille de l'icône
+  iconSize = computed(() => {
+    const sizeMap: Record<Size, IconSize> = {
+      xs: '16',
+      sm: '16',
+      md: '20',
+      lg: '24',
+    };
+    return sizeMap[this.size()];
+  });
+
+  // Computed pour la couleur du contenu (texte et icône)
+  contentColor = computed((): ColorVariant => {
+    if (this.variant() === 'primary') {
+      return 'white';
+    } else {
+      return 'secondary';
+    }
+  });
+
+  // Computed pour la direction du Flex interne en fonction de la position de l'icône
+  direction = computed(() => {
+    switch (this.icon()?.position) {
+      case 'left':
+        return 'row';
+      case 'right':
+        return 'row-reverse';
+      case 'top':
+        return 'column';
+      case 'bottom':
+        return 'column-reverse';
+      default:
+        return 'row';
+    }
+  });
+
+  /***** Méthodes *****/
+  onClick(): void {
+    if (!this.disabled()) {
+      this.clicked.emit();
+    }
+  }
+}

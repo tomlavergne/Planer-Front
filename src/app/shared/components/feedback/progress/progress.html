@@ -1,0 +1,9 @@
+<div class="progress-container">
+  <div class="progress-track">
+    <div class="progress-fill" [style.width.%]="percentage()"></div>
+  </div>
+
+  @if (showValue() && !indeterminate()) {
+    <span class="progress-value">{{ percentage() | number: '1.0-0' }}%</span>
+  }
+</div>

@@ -1,0 +1,19 @@
+<textarea
+  #textareaElement
+  [placeholder]="placeholder()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [rows]="rows()"
+  [maxLength]="maxLength() || undefined"
+  [value]="value()"
+  (input)="onInput($event)"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  class="textarea-field"
+></textarea>
+
+@if (maxLength()) {
+  <div class="textarea-footer">
+    <span class="character-count"> {{ characterCount() }} / {{ maxLength() }} </span>
+  </div>
+}

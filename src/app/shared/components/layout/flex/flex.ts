@@ -12,7 +12,7 @@ import { Component, input, computed, booleanAttribute } from '@angular/core';
 })
 export class Flex {
   /***** Inputs *****/
-  direction = input<'row' | 'column'>('row');
+  direction = input<'row' | 'column' | 'row-reverse' | 'column-reverse'>('row');
   alignItems = input<'start' | 'center' | 'end' | 'stretch' | 'baseline'>('stretch');
   justifyContent = input<'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'>('start');
   gap = input<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>('none');

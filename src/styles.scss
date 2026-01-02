@@ -2,6 +2,9 @@
    src/styles.css - Fichier principal
    ========================================== */
 
+/* Imports */
+@use './app/shared/styles/animations.scss';
+
 /* Variables globales (non-thématiques) */
 :root {
   /* Espacements */
@@ -48,20 +51,24 @@
      THÈME CLAIR (par défaut)
      ========================================== */
 
+  --color-white: #ffffff;
+
   /* Couleurs de fond */
   --color-background: #ffffff;
   --color-surface: #f9fafb;
   --color-surface-hover: #f3f4f6;
   --color-border: #e5e7eb;
+  --color-hover: rgba(0, 0, 0, 0.1);
 
   /* Couleurs de texte */
   --color-text: #111827;
   --color-text-secondary: #6b7280;
   --color-text-tertiary: #9ca3af;
+  --color-text-inverse: #ffffff;
 
   /* Couleurs primaires */
-  --color-primary: #3b82f6;
-  --color-primary-hover: #2563eb;
+  --color-primary: #004fe1;
+  --color-primary-hover: #0337a8;
   --color-primary-light: #dbeafe;
 
   /* Couleurs secondaires */
@@ -70,9 +77,9 @@
   --color-secondary-light: #f3f4f6;
 
   /* Couleurs success */
-  --color-success: #22c55e;
-  --color-success-hover: #16a34a;
-  --color-success-light: #dcfce7;
+  --color-success: #179244;
+  --color-success-hover: #117234;
+  --color-success-light: #cafddc;
 
   /* Couleurs warning */
   --color-warning: #f59e0b;
@@ -100,16 +107,18 @@
   --color-surface: #1e293b;
   --color-surface-hover: #334155;
   --color-border: #334155;
+  --color-hover: rgba(255, 255, 255, 0.1);
 
   /* Couleurs de texte */
   --color-text: #f1f5f9;
   --color-text-secondary: #cbd5e1;
   --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #000000;
 
   /* Couleurs primaires */
-  --color-primary: #99c5f8;
-  --color-primary-hover: #3b82f6;
-  --color-primary-light: #2a375a;
+  --color-primary: #2f7cd5;
+  --color-primary-hover: #3a74d2;
+  --color-primary-light: #0e162c;
 
   /* Couleurs secondaires */
   --color-secondary: #9ca3af;
@@ -117,19 +126,19 @@
   --color-secondary-light: #374151;
 
   /* Couleurs success */
-  --color-success: #4ade80;
-  --color-success-hover: #22c55e;
-  --color-success-light: #14532d;
+  --color-success: #6ff4a0;
+  --color-success-hover: #50d782;
+  --color-success-light: #0f2c1b;
 
   /* Couleurs warning */
   --color-warning: #fbbf24;
-  --color-warning-hover: #f59e0b;
-  --color-warning-light: #78350f;
+  --color-warning-hover: #d8a523;
+  --color-warning-light: #311b0e;
 
   /* Couleurs danger */
-  --color-danger: #f87171;
-  --color-danger-hover: #ef4444;
-  --color-danger-light: #7f1d1d;
+  --color-danger: #ffa8a8;
+  --color-danger-hover: #e37b7b;
+  --color-danger-light: #381111;
 
   /* Ombres */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
@@ -143,6 +152,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -156,71 +167,3 @@ body {
     background-color var(--transition-base),
     color var(--transition-base);
 }
-
-/* ==========================================
-   EXEMPLE : button.css (dans le composant)
-   ========================================== */
-
-/*
-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: all var(--transition-base);
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-button.primary {
-  background-color: var(--color-primary);
-  color: white;
-}
-
-button.primary:hover:not(:disabled) {
-  background-color: var(--color-primary-hover);
-}
-
-button.secondary {
-  background-color: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-
-button.secondary:hover:not(:disabled) {
-  background-color: var(--color-surface-hover);
-}
-
-button.danger {
-  background-color: var(--color-danger);
-  color: white;
-}
-
-button.danger:hover:not(:disabled) {
-  background-color: var(--color-danger-hover);
-}
-
-/* CSS Nesting natif (supporté par tous les navigateurs modernes) 
-button {
-  & .icon {
-    margin-right: var(--spacing-sm);
-  }
-  
-  &.icon-left {
-    flex-direction: row;
-  }
-  
-  &.icon-right {
-    flex-direction: row-reverse;
-  }
-}
-*/

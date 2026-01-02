@@ -1,12 +1,26 @@
 :host {
   display: flex;
 
+  /*********************/
+  /***** Directions *****/
+  /*********************/
+
   &.direction-row {
     flex-direction: row;
   }
   &.direction-column {
     flex-direction: column;
   }
+  &.direction-row-reverse {
+    flex-direction: row-reverse;
+  }
+  &.direction-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  /************************/
+  /***** ALIGNMENTS *****/
+  /************************/
 
   &.alignItems-start {
     align-items: flex-start;
@@ -19,6 +33,10 @@
   &.alignItems-end {
     align-items: flex-end;
   }
+
+  /*************************/
+  /******** JUSTIFY ********/
+  /*************************/
 
   &.justifyContent-start {
     justify-content: flex-start;
@@ -35,6 +53,15 @@
   &.justifyContent-between {
     justify-content: space-between;
   }
+
+  &.justifyContent-around {
+    justify-content: space-around;
+  }
+
+  /***********************/
+  /********* GAP *********/
+  /***********************/
+
   &.gap-xs {
     gap: var(--spacing-xs);
   }
@@ -49,6 +76,10 @@
 
   &.gap-lg {
     gap: var(--spacing-lg);
+  }
+
+  &.gap-xl {
+    gap: var(--spacing-xl);
   }
 
   &.full-width {

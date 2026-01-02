@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border: 1px solid;
+  border-radius: var(--radius-md);
+  animation: slideDown 0.2s ease-out;
+
+  /*********************/
+  /***** VARIANTS *****/
+  /*********************/
+
+  &.variant-info {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &.variant-success {
+    background-color: var(--color-success-light);
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+
+  &.variant-warning {
+    background-color: var(--color-warning-light);
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+  }
+
+  &.variant-danger {
+    background-color: var(--color-danger-light);
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+  }
+}
