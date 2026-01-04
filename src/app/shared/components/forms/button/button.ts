@@ -5,6 +5,7 @@ import { Component, input, output, computed, booleanAttribute } from '@angular/c
 import { Icon } from '../../display/icon/icon';
 import { Text } from '../../display/text/text';
 import { Flex } from '../../layout/flex/flex';
+import { Ripple } from '../../design/ripple/ripple';
 
 /***** Imports de types *****/
 import {
@@ -13,12 +14,12 @@ import {
   LucideIconName,
   Position,
   Button as ButtonType,
-  ColorVariant,
+  Color,
 } from '../../../types';
 
 @Component({
   selector: 'app-button',
-  imports: [Flex, Text, Icon],
+  imports: [Flex, Text, Icon, Ripple],
   templateUrl: './button.html',
   styleUrl: './button.scss',
   host: {
@@ -29,7 +30,8 @@ export class Button {
   /***** Inputs *****/
   text = input<string | null>(null);
   type = input<ButtonType.Type>('button');
-  variant = input<ButtonType.Variant>('primary');
+  variant = input<ButtonType.Variant>('solid');
+  color = input<Color | null>('blue');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
   icon = input<{
     name: LucideIconName;
@@ -46,6 +48,7 @@ export class Button {
   hostClasses = computed(() => {
     return [
       `variant-${this.variant()}`,
+      `color-${this.color()}`,
       `size-${this.size()}`,
       `icon-${this.icon()?.position}`,
       `border-radius-${this.borderRadius()}`,
@@ -66,12 +69,8 @@ export class Button {
   });
 
   // Computed pour la couleur du contenu (texte et icône)
-  contentColor = computed((): ColorVariant => {
-    if (this.variant() === 'primary') {
-      return 'white';
-    } else {
-      return 'secondary';
-    }
+  contentColor = computed((): Color => {
+    return this.variant() === 'solid' ? 'white' : this.color() || 'gray';
   });
 
   // Computed pour la direction du Flex interne en fonction de la position de l'icône

@@ -1,0 +1,52 @@
+// ==========================================
+// MIXINS PARTAGÉS POUR LES COMPOSANTS
+// ==========================================
+
+// Dégradé vertical avec couleur principale
+@mixin gradient-solid($color, $lighten: 12%) {
+  background: linear-gradient(180deg, color-mix(in srgb, $color 100%, white $lighten), $color);
+}
+
+// Dégradé subtle pour hover/active
+@mixin gradient-subtle($color, $start: 8%, $end: 12%) {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, $color $start, transparent),
+    color-mix(in srgb, $color $end, transparent)
+  );
+}
+
+// Ombres par défaut
+@mixin shadow-base {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+// Ombres hover
+@mixin shadow-hover($color) {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 1px 2px color-mix(in srgb, $color 15%, transparent);
+}
+
+// État hover pour variants light (soft, outline, ghost)
+@mixin hover-light($color) {
+  @include gradient-subtle($color, 8%, 12%);
+  border-color: color-mix(in srgb, $color 30%, transparent);
+  @include shadow-hover($color);
+  transform: translateY(-0.5px);
+}
+
+// État active pour variants light (soft, outline, ghost)
+@mixin active-light($color) {
+  @include gradient-subtle($color, 12%, 16%);
+  border-color: color-mix(in srgb, $color 40%, transparent);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.1) inset,
+    0 1px 2px rgba(0, 0, 0, 0.1) inset,
+    0 1px 2px color-mix(in srgb, $color 20%, transparent);
+  transform: translateY(0.5px);
+}

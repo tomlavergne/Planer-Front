@@ -1,7 +1,8 @@
 /***** Imports de Angular *****/
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, booleanAttribute } from '@angular/core';
 
-import type { Text as TextTypes, ColorVariant } from '../../../types/';
+/***** Import de types *****/
+import type { Text as TextTypes, Color } from '../../../types/';
 
 @Component({
   selector: 'app-text',
@@ -15,18 +16,19 @@ import type { Text as TextTypes, ColorVariant } from '../../../types/';
 export class Text {
   /***** Inputs *****/
   as = input<TextTypes.As>('p');
-  variant = input<any>('body'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
+  color = input<Color | 'text'>('blue'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
   size = input<TextTypes.Size | null>(null);
   weight = input<TextTypes.Weight | null>(null);
   align = input<TextTypes.Align>('left');
   truncate = input<boolean>(false);
   italic = input<boolean>(false);
   underline = input<boolean>(false);
+  wrap = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Computed *****/
   hostClasses = computed(() => {
     return [
-      `variant-${this.variant()}`,
+      `color-${this.color()}`,
       `size-${this.size()}`,
       `weight-${this.weight()}`,
       `align-${this.align()}`,
@@ -34,6 +36,7 @@ export class Text {
       `italic-${this.italic()}`,
       `underline-${this.underline()}`,
       `as-${this.as()}`,
+      this.wrap() ? 'wrap' : 'no-wrap',
     ].join(' ');
   });
 }

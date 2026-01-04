@@ -3,17 +3,31 @@ import { Component, signal, computed } from '@angular/core';
 
 /***** Imports de composants *****/
 import { Button } from '../../../shared/components/forms/button/button';
-import { Tooltip } from '../../../shared/components/overlay/tooltip/tooltip';
 import { Popover } from '../../../shared/components/overlay/popover/popover';
 import { SidebarItem } from './sidebar-item/sidebar-item';
 import { Avatar } from '../../../shared/components/display/avatar/avatar';
 import { Icon } from '../../../shared/components/display/icon/icon';
 import { UserPopoverContent } from './user-popover-content/user-popover-content';
 import { Flex } from '../../../shared/components/layout/flex/flex';
+import { Text } from '../../../shared/components';
+
+/***** Imports de directives *****/
+import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [Button, SidebarItem, Tooltip, Popover, Avatar, Icon, UserPopoverContent, Flex],
+  imports: [
+    Button,
+    Text,
+    SidebarItem,
+    Popover,
+    Avatar,
+    Icon,
+    UserPopoverContent,
+    Flex,
+    TooltipDirective,
+    Text,
+  ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
   host: {

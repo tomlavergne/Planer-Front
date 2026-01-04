@@ -1,12 +1,16 @@
 /***** Imports de Angular *****/
 import { Component, input, output, computed, booleanAttribute, model } from '@angular/core';
 
+/***** Imports de composants *****/
+import { Flex } from '../../layout/flex/flex';
+import { Text } from '../../display/text/text';
+
 /***** Imports de types *****/
 import { Size } from '../../../types';
 
 @Component({
   selector: 'app-switch',
-  imports: [],
+  imports: [Flex, Text],
   templateUrl: './switch.html',
   styleUrl: './switch.scss',
   host: {

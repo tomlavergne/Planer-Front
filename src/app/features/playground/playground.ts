@@ -23,8 +23,19 @@ import {
   Flex,
   ContextMenu,
   Icon,
+  Text,
 } from '../../shared/components';
-import type { SelectOption, RadioOption, TabItem, ContextMenuItem } from '../../shared/components';
+
+/***** Imports de directives *****/
+import { TooltipDirective } from '../../shared/directives/tooltip/tooltip';
+
+/***** Imports de types *****/
+import type {
+  Color,
+  Alert as AlertType,
+  Button as ButtonType,
+  Badge as BadgeType,
+} from '../../shared/types';
 
 @Component({
   selector: 'app-playground',
@@ -50,6 +61,8 @@ import type { SelectOption, RadioOption, TabItem, ContextMenuItem } from '../../
     Flex,
     ContextMenu,
     Icon,
+    Text,
+    TooltipDirective,
   ],
   templateUrl: './playground.html',
   styleUrl: './playground.scss',
@@ -67,74 +80,33 @@ export class Playground {
   language = signal<string | null>('fr');
   size = signal<string | null>('md');
 
-  /***** Options pour Select *****/
-  languageOptions: SelectOption[] = [
-    { value: 'fr', label: 'Français' },
-    { value: 'en', label: 'English' },
-    { value: 'es', label: 'Español' },
-    { value: 'de', label: 'Deutsch' },
-  ];
-
-  /***** Options pour Radio Group *****/
-  sizeOptions: RadioOption[] = [
-    { value: 'sm', label: 'Petit' },
-    { value: 'md', label: 'Moyen' },
-    { value: 'lg', label: 'Grand' },
-  ];
-
-  /***** Tabs *****/
-  tabs: TabItem[] = [
-    { id: 'overview', label: "Vue d'ensemble" },
-    { id: 'forms', label: 'Formulaires' },
-    { id: 'feedback', label: 'Feedback' },
+  colors: Color[] = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'teal',
+    'blue',
+    'indigo',
+    'purple',
+    'pink',
+    'gray',
   ];
 
   /***** Progress *****/
   progress = signal(65);
 
-  /***** Alert visible *****/
+  /***** Button *****/
+  buttonVariants: ButtonType.Variant[] = ['solid', 'soft', 'outline', 'ghost'];
+
+  /***** Badge *****/
+  badgeVariants: BadgeType.Variant[] = ['solid', 'soft', 'outline'];
+
+  /***** Alert  *****/
   showAlert = signal(true);
 
-  /***** Context Menu Items *****/
-  contextMenuItems: ContextMenuItem[] = [
-    { id: 'copy', label: 'Copier', icon: 'lucideCopy' },
-    { id: 'cut', label: 'Couper', icon: 'lucideScissors' },
-    { id: 'paste', label: 'Coller', icon: 'lucideClipboard' },
-    { id: 'separator1', label: '', separator: true },
-    { id: 'delete', label: 'Supprimer', icon: 'lucideTrash', disabled: false },
-    { id: 'separator2', label: '', separator: true },
-    {
-      id: 'share',
-      label: 'Partager',
-      icon: 'lucideShare2',
-      submenu: [
-        { id: 'email', label: 'Par email', icon: 'lucideMail' },
-        { id: 'link', label: 'Copier le lien', icon: 'lucideLink' },
-        {
-          id: 'social',
-          label: 'Réseaux sociaux',
-          icon: 'lucideShare',
-          submenu: [
-            { id: 'facebook', label: 'Facebook', icon: 'lucideShare2' },
-            { id: 'twitter', label: 'Twitter', icon: 'lucideShare2' },
-            { id: 'linkedin', label: 'LinkedIn', icon: 'lucideShare2' },
-            { id: 'separator-social', label: '', separator: true },
-            {
-              id: 'more-platforms',
-              label: 'Plus de plateformes',
-              icon: 'lucideMoreHorizontal',
-              submenu: [
-                { id: 'instagram', label: 'Instagram', icon: 'lucideShare2' },
-                { id: 'tiktok', label: 'TikTok', icon: 'lucideShare2' },
-                { id: 'youtube', label: 'YouTube', icon: 'lucideShare2' },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-    { id: 'properties', label: 'Propriétés', icon: 'lucideInfo' },
-  ];
+  isChecked = signal(false);
+  alertVariants: AlertType.Variant[] = ['solid', 'soft', 'outline'];
 
   /***** Méthodes *****/
   openDialog(): void {

@@ -1,190 +1,130 @@
+@use '../../../styles/mixins.scss' as *;
+
 :host {
-  // Styles de base du bouton
-  button {
+  & button {
     cursor: pointer;
-    transition: all var(--transition-base);
-    line-height: 1;
-
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
   }
 
-  /*****************/
-  /***** SIZES *****/
-  /*****************/
-
-  &.size-xs button {
-    padding: var(--spacing-xs);
+  &.disabled button {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
-  &.size-sm button {
-    padding: var(--spacing-sm);
-  }
+  // ==========================================
+  // GÉNÉRATION DES VARIANTS
+  // ==========================================
 
-  &.size-md button {
-    padding: var(--spacing-md);
-  }
+  // Liste des noms de couleurs
+  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
+  $variants: ('solid', 'soft', 'outline', 'ghost');
 
-  &.size-lg button {
-    padding: var(--spacing-lg);
-  }
+  @each $variant-name in $variants {
+    @each $color-name in $colors {
+      $color: var(--color-#{$color-name});
+      $color-dark: var(--color-#{$color-name}-dark);
+      $color-light: var(--color-#{$color-name}-light);
 
-  /******************/
-  /***** COLORS *****/
-  /******************/
+      &.variant-#{$variant-name}.color-#{$color-name} button {
+        // ==========================================
+        // SOLID - Bouton plein avec dégradé
+        // ==========================================
+        @if $variant-name == 'solid' {
+          @include gradient-solid($color, 12%);
+          color: white;
+          border: 1px solid color-mix(in srgb, $color 100%, black 20%);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+            0 1px 2px rgba(0, 0, 0, 0.12),
+            0 1px 3px rgba(0, 0, 0, 0.08);
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 
-  &.variant-primary button {
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-primary) 100%, white 10%),
-      var(--color-primary)
-    );
-    border: 1px solid color-mix(in srgb, var(--color-primary) 100%, black 20%);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.3) inset,
-      0 1px 2px rgba(0, 0, 0, 0.1),
-      0 1px 3px rgba(0, 0, 0, 0.05);
+          &:hover:not(:disabled) {
+            @include gradient-solid($color-dark, 10%);
+            border-color: color-mix(in srgb, $color-dark 100%, black 20%);
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+              0 2px 4px rgba(0, 0, 0, 0.12),
+              0 2px 6px rgba(0, 0, 0, 0.08);
+            transform: translateY(-0.5px);
+          }
 
-    &:hover:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-primary-hover) 100%, white 10%),
-        var(--color-primary-hover)
-      );
-      border-color: color-mix(in srgb, var(--color-primary-hover) 100%, black 20%);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.3) inset,
-        0 2px 4px rgba(0, 0, 0, 0.12),
-        0 2px 6px rgba(0, 0, 0, 0.08);
-      transform: translateY(-0.5px);
-    }
+          &:active:not(:disabled) {
+            background: linear-gradient(180deg, $color, color-mix(in srgb, $color 100%, black 10%));
+            border-color: color-mix(in srgb, $color 100%, black 25%);
+            box-shadow:
+              0 0 0 1px rgba(0, 0, 0, 0.1) inset,
+              0 1px 2px rgba(0, 0, 0, 0.15) inset,
+              0 1px 2px rgba(0, 0, 0, 0.05);
+            transform: translateY(0.5px);
+          }
+        }
 
-    &:active:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        var(--color-primary),
-        color-mix(in srgb, var(--color-primary) 100%, black 10%)
-      );
-      border-color: color-mix(in srgb, var(--color-primary) 100%, black 25%);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.1) inset,
-        0 1px 2px rgba(0, 0, 0, 0.15) inset,
-        0 1px 2px rgba(0, 0, 0, 0.05);
-      transform: translateY(0.5px);
-    }
-  }
+        // ==========================================
+        // SOFT - Fond coloré léger
+        // ==========================================
+        @else if $variant-name == 'soft' {
+          background-color: $color-light;
+          border: 1px solid transparent;
+          color: $color;
+          @include shadow-base;
 
-  &.variant-secondary button {
-    background: linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-secondary-light) 100%, white 5%),
-      var(--color-secondary-light)
-    );
-    border: 1px solid var(--color-border);
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.5) inset,
-      0 1px 2px rgba(0, 0, 0, 0.08),
-      0 1px 3px rgba(0, 0, 0, 0.04);
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
 
-    &:hover:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-secondary-light) 100%, white 15%),
-        var(--color-secondary-light)
-      );
-      border-color: color-mix(in srgb, var(--color-border) 100%, black 15%);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.5) inset,
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 2px 6px rgba(0, 0, 0, 0.06);
-      transform: translateY(-0.5px);
-    }
+          &:active:not(:disabled) {
+            @include active-light($color);
+          }
+        }
 
-    &:active:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-secondary-light) 100%, black 5%),
-        color-mix(in srgb, var(--color-secondary-light) 100%, black 10%)
-      );
-      border-color: color-mix(in srgb, var(--color-border) 100%, black 25%);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.08) inset,
-        0 1px 2px rgba(0, 0, 0, 0.12) inset,
-        0 1px 2px rgba(0, 0, 0, 0.04);
-      transform: translateY(0.5px);
-    }
-  }
+        // ==========================================
+        // OUTLINE - Bordure colorée
+        // ==========================================
+        @else if $variant-name == 'outline' {
+          background-color: transparent;
+          border: 1px solid $color;
+          //   color: $color;
+          box-shadow:
+            0 0 0 1px color-mix(in srgb, $color 20%, transparent) inset,
+            0 1px 2px rgba(0, 0, 0, 0.08),
+            0 1px 3px rgba(0, 0, 0, 0.04);
 
-  &.variant-outline button {
-    background: var(--color-background);
-    border: 1px solid var(--color-secondary);
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--color-secondary) 20%, transparent) inset,
-      0 1px 2px rgba(0, 0, 0, 0.08),
-      0 1px 3px rgba(0, 0, 0, 0.04);
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
 
-    &:hover:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-secondary) 5%, var(--color-background)),
-        var(--color-background)
-      );
-      border-color: var(--color-secondary);
-      box-shadow:
-        0 0 0 1px color-mix(in srgb, var(--color-secondary) 30%, transparent) inset,
-        0 2px 4px rgba(0, 0, 0, 0.1),
-        0 2px 6px rgba(0, 0, 0, 0.06);
-      transform: translateY(-0.5px);
-    }
+          &:active:not(:disabled) {
+            @include active-light($color);
+          }
+        }
 
-    &:active:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        var(--color-background),
-        color-mix(in srgb, var(--color-background) 95%, black)
-      );
-      border-color: color-mix(in srgb, var(--color-secondary) 100%, black 15%);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.08) inset,
-        0 1px 2px rgba(0, 0, 0, 0.12) inset,
-        0 1px 2px rgba(0, 0, 0, 0.04);
-      transform: translateY(0.5px);
-    }
-  }
+        // ==========================================
+        // GHOST - Transparent
+        // ==========================================
+        @else if $variant-name == 'ghost' {
+          background-color: transparent;
+          border: 1px solid transparent;
+          //   color: $color;
 
-  &.variant-ghost button {
-    background: transparent;
-    border: 1px solid transparent;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
 
-    &:hover:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-secondary) 8%, transparent),
-        color-mix(in srgb, var(--color-secondary) 12%, transparent)
-      );
-      border-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-        0 2px 4px rgba(0, 0, 0, 0.06),
-        0 1px 2px color-mix(in srgb, var(--color-secondary) 15%, transparent);
-      transform: translateY(-0.5px);
-    }
+          &:active:not(:disabled) {
+            @include active-light($color);
+            transform: translateY(0.5px);
+          }
+        }
 
-    &:active:not(:disabled) {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-secondary) 15%, transparent),
-        color-mix(in srgb, var(--color-secondary) 18%, transparent)
-      );
-      border-color: color-mix(in srgb, var(--color-secondary) 40%, transparent);
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.05) inset,
-        0 1px 2px rgba(0, 0, 0, 0.08) inset,
-        0 1px 1px rgba(0, 0, 0, 0.02);
-      transform: translateY(0.5px);
+        &:hover:not(:disabled) {
+          transform: translateY(-0.5px);
+        }
+
+        // Active state
+        &:active:not(:disabled) {
+          transform: translateY(0.5px);
+        }
+      }
     }
   }
 
@@ -207,6 +147,30 @@
   &.border-radius-full button {
     border-radius: var(--radius-full);
   }
+
+  // ==========================================
+  // BORDER RADIUS
+  // ==========================================
+
+  &.border-radius-sm button {
+    border-radius: var(--radius-sm);
+  }
+
+  &.border-radius-md button {
+    border-radius: var(--radius-md);
+  }
+
+  &.border-radius-lg button {
+    border-radius: var(--radius-lg);
+  }
+
+  &.border-radius-full button {
+    border-radius: var(--radius-full);
+  }
+
+  // ==========================================
+  // FULL WIDTH
+  // ==========================================
 
   &.full-width button {
     width: 100%;

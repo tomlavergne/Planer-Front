@@ -4,9 +4,8 @@
  */
 
 import type {
-  ColorVariant,
-  SemanticVariant,
-  Appearance,
+  Color,
+  Variant as UIVariant,
   Position as UIPosition,
   AdvancedPosition,
   Size as UISize,
@@ -14,7 +13,7 @@ import type {
 
 /***** Composants de formulaire *****/
 export namespace Button {
-  export type Variant = 'primary' | 'secondary' | 'outline' | 'ghost';
+  export type Variant = 'solid' | 'soft' | 'outline' | 'ghost';
   export type IconPosition = UIPosition;
   export type Type = 'button' | 'submit' | 'reset';
   export type BorderRadius = 'none' | 'sm' | 'md' | 'lg' | 'full';
@@ -67,7 +66,7 @@ export namespace Text {
 }
 
 export namespace Badge {
-  export type Variant = SemanticVariant | 'outline';
+  export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
 }
 
 export namespace Avatar {
@@ -76,7 +75,7 @@ export namespace Avatar {
 }
 
 export namespace Icon {
-  export type Size = '16' | '20' | '24' | '32' | '40' | '48';
+  export type Size = '16' | '20' | '24' | '32';
 }
 
 export namespace Separator {
@@ -85,11 +84,11 @@ export namespace Separator {
 
 /***** Composants de feedback *****/
 export namespace Alert {
-  export type Variant = Extract<SemanticVariant, 'info' | 'success' | 'warning' | 'danger'>;
+  export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
 }
 
 export namespace Progress {
-  export type Variant = SemanticVariant;
+  export type Variant = UIVariant;
   export type Size = Extract<UISize, 'sm' | 'md' | 'lg'>;
 }
 

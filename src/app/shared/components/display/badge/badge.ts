@@ -7,16 +7,9 @@ import { Text } from '../text/text';
 import { Icon } from '../icon/icon';
 
 /***** Imports de types *****/
-import { Size, LucideIconName, Position, ColorVariant } from '../../../types';
+import { Size, LucideIconName, Position, Color, Icon as IconType } from '../../../types';
 
-type BadgeVariant =
-  | 'default'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'outline';
+type BadgeVariant = 'solid' | 'soft' | 'outline';
 
 @Component({
   selector: 'app-badge',
@@ -30,7 +23,8 @@ type BadgeVariant =
 export class Badge {
   /***** Inputs *****/
   text = input<string>('');
-  variant = input<BadgeVariant>('default');
+  variant = input<BadgeVariant>('solid');
+  color = input<Color | null>('blue');
   icon = input<{
     name: LucideIconName;
     position?: Position;
@@ -40,15 +34,37 @@ export class Badge {
 
   // Computed pour les classes
   hostClasses = computed(() => {
-    return [`variant-${this.variant()}`, `size-${this.size()}`].join(' ');
+    const classes = [`variant-${this.variant()}`, `size-${this.size()}`];
+    if (this.color()) {
+      classes.push(`color-${this.color()}`);
+    }
+    return classes.join(' ');
   });
 
   // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): ColorVariant => {
-    if (['primary', 'success', 'warning', 'danger'].includes(this.variant())) {
+  contentColor = computed((): Color => {
+    if (this.variant() === 'solid') {
       return 'white';
     } else {
-      return 'secondary';
+      return this.color() || 'blue';
+    }
+  });
+
+  iconSize = computed(() => {
+    const sizeMap: Record<Size, IconType.Size> = {
+      xs: '16',
+      sm: '16',
+      md: '20',
+      lg: '24',
+    };
+    return sizeMap[this.size()];
+  });
+
+  gapSize = computed((): Size => {
+    if (this.size() === 'xs' || this.size() === 'sm') {
+      return 'xs';
+    } else {
+      return 'sm';
     }
   });
 }

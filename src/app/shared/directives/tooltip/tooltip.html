@@ -1,0 +1,7 @@
+<div class="tooltip-content">
+  @if (text()) {
+    {{ text() }}
+  } @else if (template()) {
+    <ng-container *ngTemplateOutlet="template()!" />
+  }
+</div>

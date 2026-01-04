@@ -1,65 +1,28 @@
 :host {
   display: inline;
 
-  /*********************/
-  /***** VARIANTS *****/
-  /*********************/
+  /*******************/
+  /***** COLORS *****/
+  /*******************/
 
-  &.variant-white {
-    color: var(--color-white);
+  $colors: ('blue', 'green', 'red', 'orange', 'purple', 'pink', 'yellow', 'teal', 'indigo', 'gray');
+
+  @each $color in $colors {
+    &.color-#{$color} {
+      color: var(--color-#{$color}-dark);
+    }
   }
 
-  &.variant-primary {
-    color: var(--color-text-primary);
+  &.color-white {
+    color: white;
   }
 
-  &.variant-secondary {
-    color: var(--color-text-secondary);
+  &.color-black {
+    color: black;
   }
 
-  &.variant-inverse {
-    color: var(--color-text-inverse);
-  }
-
-  &.variant-muted {
-    color: var(--color-text-muted);
-  }
-
-  &.variant-success {
-    color: var(--color-success);
-  }
-
-  &.variant-warning {
-    color: var(--color-warning);
-  }
-
-  &.variant-danger {
-    color: var(--color-danger);
-  }
-
-  &.variant-body {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
-    color: var(--text-primary);
-  }
-
-  &.variant-heading {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    line-height: 1.2;
-  }
-
-  &.variant-caption {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-normal);
-    color: var(--text-secondary);
-  }
-
-  &.variant-label {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    color: var(--text-primary);
+  &.color-text {
+    color: var(--color-text);
   }
 
   /*****************/
@@ -176,5 +139,13 @@
   &.as-small,
   &.as-label {
     display: inline;
+  }
+
+  &.wrap {
+    white-space: normal;
+  }
+
+  &.no-wrap {
+    white-space: nowrap;
   }
 }

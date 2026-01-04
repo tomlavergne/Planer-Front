@@ -3,16 +3,19 @@ import { Component, input, output, booleanAttribute } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
-import { Tooltip } from '../../../../shared/components/overlay/tooltip/tooltip';
-import { Icon } from '../../../../shared/components/display/icon/icon';
 import { Flex } from '../../../../shared/components/layout/flex/flex';
+import { Icon } from '../../../../shared/components/display/icon/icon';
+import { Text } from '../../../../shared/components';
+
+/***** Imports de directives *****/
+import { TooltipDirective } from '../../../../shared/directives/tooltip/tooltip';
 
 /***** Import de types *****/
 import { LucideIconName } from '../../../../shared/types';
 
 @Component({
   selector: 'app-sidebar-item',
-  imports: [Tooltip, Icon, Flex, RouterLink, RouterLinkActive],
+  imports: [Flex, Icon, Text, RouterLink, RouterLinkActive, TooltipDirective],
   templateUrl: './sidebar-item.html',
   styleUrl: './sidebar-item.scss',
 })

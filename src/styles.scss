@@ -66,30 +66,62 @@
   --color-text-tertiary: #9ca3af;
   --color-text-inverse: #ffffff;
 
-  /* Couleurs primaires */
-  --color-primary: #004fe1;
-  --color-primary-hover: #0337a8;
-  --color-primary-light: #dbeafe;
+  /* Couleurs - Red */
+  --color-red: #ef4444;
+  --color-red-light: #fee2e2;
+  --color-red-dark: #dc2626;
 
-  /* Couleurs secondaires */
-  --color-secondary: #6b7280;
-  --color-secondary-hover: #d1d5db;
-  --color-secondary-light: #f3f4f6;
+  /* Couleurs - Orange */
+  --color-orange: #f59e0b;
+  --color-orange-light: #fef3c7;
+  --color-orange-dark: #d97706;
 
-  /* Couleurs success */
-  --color-success: #179244;
-  --color-success-hover: #117234;
-  --color-success-light: #cafddc;
+  /* Couleurs - Yellow */
+  --color-yellow: #eab308;
+  --color-yellow-light: #fef9c3;
+  --color-yellow-dark: #ca8a04;
 
-  /* Couleurs warning */
-  --color-warning: #f59e0b;
-  --color-warning-hover: #d97706;
-  --color-warning-light: #fef3c7;
+  /* Couleurs - Green */
+  --color-green: #179244;
+  --color-green-light: #cafddc;
+  --color-green-dark: #117234;
 
-  /* Couleurs danger */
-  --color-danger: #ef4444;
-  --color-danger-hover: #dc2626;
-  --color-danger-light: #fee2e2;
+  /* Couleurs - Teal */
+  --color-teal: #14b8a6;
+  --color-teal-light: #ccfbf1;
+  --color-teal-dark: #0d9488;
+
+  /* Couleurs - Blue */
+  --color-blue: #004fe1;
+  --color-blue-light: #dbeafe;
+  --color-blue-dark: #0337a8;
+
+  /* Couleurs - Indigo */
+  --color-indigo: #6366f1;
+  --color-indigo-light: #e0e7ff;
+  --color-indigo-dark: #4f46e5;
+
+  /* Couleurs - Purple */
+  --color-purple: #8b5cf6;
+  --color-purple-light: #ede9fe;
+  --color-purple-dark: #7c3aed;
+
+  /* Couleurs - Pink */
+  --color-pink: #ec4899;
+  --color-pink-light: #fce7f3;
+  --color-pink-dark: #db2777;
+
+  /* Couleurs - Gray */
+  --color-gray: #6b7280;
+  --color-gray-light: #f3f4f6;
+  --color-gray-dark: #4b5563;
+
+  /* Aliases pour compatibilité */
+  --color-primary: var(--color-blue);
+  --color-secondary: var(--color-gray);
+  --color-success: var(--color-green);
+  --color-danger: var(--color-red);
+  --color-warning: var(--color-orange);
 
   /* Ombres */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -103,42 +135,74 @@
 
 [data-theme='dark'] {
   /* Couleurs de fond */
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
+  --color-background: #17181c;
+  --color-surface: #191919;
   --color-surface-hover: #334155;
   --color-border: #334155;
   --color-hover: rgba(255, 255, 255, 0.1);
 
   /* Couleurs de texte */
-  --color-text: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-text-tertiary: #94a3b8;
+  --color-text: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
   --color-text-inverse: #000000;
 
-  /* Couleurs primaires */
-  --color-primary: #2f7cd5;
-  --color-primary-hover: #3a74d2;
-  --color-primary-light: #0e162c;
+  /* Couleurs - Red */
+  --color-red: #dc2626;
+  --color-red-light: #1a0606;
+  --color-red-dark: #ef4444;
 
-  /* Couleurs secondaires */
-  --color-secondary: #9ca3af;
-  --color-secondary-hover: #d1d5db;
-  --color-secondary-light: #374151;
+  /* Couleurs - Orange */
+  --color-orange: #ea580c;
+  --color-orange-light: #1a0d05;
+  --color-orange-dark: #f97316;
 
-  /* Couleurs success */
-  --color-success: #6ff4a0;
-  --color-success-hover: #50d782;
-  --color-success-light: #0f2c1b;
+  /* Couleurs - Yellow */
+  --color-yellow: #ca8a04;
+  --color-yellow-light: #1a1606;
+  --color-yellow-dark: #eab308;
 
-  /* Couleurs warning */
-  --color-warning: #fbbf24;
-  --color-warning-hover: #d8a523;
-  --color-warning-light: #311b0e;
+  /* Couleurs - Green */
+  --color-green: #16a34a;
+  --color-green-light: #061a0d;
+  --color-green-dark: #22c55e;
 
-  /* Couleurs danger */
-  --color-danger: #ffa8a8;
-  --color-danger-hover: #e37b7b;
-  --color-danger-light: #381111;
+  /* Couleurs - Teal */
+  --color-teal: #0d9488;
+  --color-teal-light: #061815;
+  --color-teal-dark: #14b8a6;
+
+  /* Couleurs - Blue */
+  --color-blue: #2563eb;
+  --color-blue-light: #060d1a;
+  --color-blue-dark: #3b82f6;
+
+  /* Couleurs - Indigo */
+  --color-indigo: #4f46e5;
+  --color-indigo-light: #0d0d1a;
+  --color-indigo-dark: #6366f1;
+
+  /* Couleurs - Purple */
+  --color-purple: #7c3aed;
+  --color-purple-light: #0f0d1a;
+  --color-purple-dark: #8b5cf6;
+
+  /* Couleurs - Pink */
+  --color-pink: #db2777;
+  --color-pink-light: #1a0d15;
+  --color-pink-dark: #ec4899;
+
+  /* Couleurs - Gray */
+  --color-gray: #6b7280;
+  --color-gray-light: #0f1419;
+  --color-gray-dark: #9ca3af;
+
+  /* Aliases pour compatibilité */
+  --color-primary: var(--color-blue);
+  --color-success: var(--color-green);
+  --color-danger: var(--color-red);
+  --color-warning: var(--color-orange);
+  --color-secondary: var(--color-gray);
 
   /* Ombres */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);

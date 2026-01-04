@@ -1,39 +1,50 @@
-<aside class="sidebar">
+<app-flex direction="column" gap="lg" fullHeight>
   <!-- Header -->
-  <div
-    class="header"
+  <app-flex
+    direction="row"
+    alignItems="center"
+    justifyContent="center"
+    gap="md"
+    class="sidebar-header"
     (mouseenter)="isHoveringLogo.set(true)"
     (mouseleave)="isHoveringLogo.set(false)"
+    [class.expanded]="expanded()"
   >
     @if (expanded() || !isHoveringLogo()) {
-      <app-flex direction="row" alignItems="center" class="logo">
+      <app-flex
+        direction="row"
+        alignItems="center"
+        [padding]="expanded() ? 'sm' : 'none'"
+        [fullWidth]="expanded()"
+        gap="sm"
+      >
         <div class="circle"></div>
-        <h1 class="label">Planer</h1>
+        @if (expanded()) {
+          <h1 class="label">Planer</h1>
+        }
       </app-flex>
     }
 
     @if (expanded() || isHoveringLogo()) {
-      <app-tooltip position="right">
-        <app-button
-          [icon]="{ name: expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen' }"
-          variant="ghost"
-          size="sm"
-          borderRadius="full"
-          (clicked)="expanded.set(!expanded())"
-        ></app-button>
-
-        <div tooltip-content>
-          <span>{{ expanded() ? 'Réduire' : 'Étendre' }}</span>
-        </div>
-      </app-tooltip>
+      <app-button
+        [icon]="{ name: expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen' }"
+        variant="ghost"
+        color="gray"
+        size="md"
+        [tooltip]="{
+          content: expanded() ? 'Réduire la barre latérale' : 'Développer la barre latérale',
+          position: 'right',
+        }"
+        (clicked)="expanded.set(!expanded())"
+      ></app-button>
     }
-  </div>
+  </app-flex>
 
-  <!-- Navigation -->
-  <nav class="sidebar-nav">
+  <!-- Navigation principale -->
+  <app-flex direction="column" gap="xs" fullWidth fullHeight>
     <app-sidebar-item
       label="Playground"
-      iconName="lucideDrum"
+      iconName="lucidePlay"
       routerLink="/playground"
       [expanded]="expanded()"
     />
@@ -62,10 +73,10 @@
       [expanded]="expanded()"
     />
     <app-sidebar-item label="Plus" iconName="lucideEllipsis" [expanded]="expanded()" />
-  </nav>
+  </app-flex>
 
   <!-- Footer -->
-  <div class="footer">
+  <app-flex direction="column" gap="xs" fullWidth>
     <app-sidebar-item
       [label]="'Thème ' + (currentTheme() === 'light' ? 'sombre' : 'clair')"
       [iconName]="iconNameTheme()"
@@ -80,27 +91,27 @@
     />
 
     <!-- Utilisateur-->
-    <app-tooltip position="right" [disabled]="expanded()">
-      <app-popover position="right-bottom" [autoPosition]="false">
-        <app-flex direction="row" alignItems="center" gap="xs" class="user-avatar-button">
-          <app-avatar imageUrl="/img/profil.png" size="sm" />
-
-          @if (expanded()) {
-            <app-flex direction="row" gap="xs">
-              <span class="name">Tom Lavergne</span>
-              <app-icon name="lucideChevronsUpDown" size="20" variant="secondary"></app-icon>
-            </app-flex>
-          }
-        </app-flex>
-
-        <div popover-content>
-          <app-user-popover-content />
-        </div>
-      </app-popover>
-
-      <div tooltip-content>
-        <span>Tom Lavergne</span>
-      </div>
-    </app-tooltip>
-  </div>
-</aside>
+    <app-flex
+      direction="row"
+      alignItems="center"
+      [justifyContent]="expanded() ? 'between' : 'center'"
+      gap="xs"
+      class="user-avatar-button"
+      [tooltip]="{
+        content: 'Tom Lavergne',
+        disabled: expanded(),
+        position: 'right',
+      }"
+    >
+      <app-flex direction="row" alignItems="center" gap="xs">
+        <app-avatar imageUrl="/img/profil.png" size="sm" />
+        @if (expanded()) {
+          <app-text color="text">Tom Lavergne</app-text>
+        }
+      </app-flex>
+      @if (expanded()) {
+        <app-icon name="lucideChevronsUpDown" size="20" color="text"></app-icon>
+      }
+    </app-flex>
+  </app-flex>
+</app-flex>

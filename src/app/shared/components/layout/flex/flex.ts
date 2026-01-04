@@ -16,7 +16,9 @@ export class Flex {
   alignItems = input<'start' | 'center' | 'end' | 'stretch' | 'baseline'>('stretch');
   justifyContent = input<'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'>('start');
   gap = input<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>('none');
+  padding = input<'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>('none');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
+  fullHeight = input<boolean, any>(false, { transform: booleanAttribute });
 
   // Computed signal pour générer les classes dynamiquement
   flexClasses = computed(() => {
@@ -24,8 +26,10 @@ export class Flex {
       `direction-${this.direction()}`,
       `alignItems-${this.alignItems()}`,
       `justifyContent-${this.justifyContent()}`,
+      `padding-${this.padding()}`,
       this.gap() !== 'none' ? `gap-${this.gap()}` : '',
       this.fullWidth() ? 'full-width' : '',
+      this.fullHeight() ? 'full-height' : '',
     ].join(' ');
   });
 }

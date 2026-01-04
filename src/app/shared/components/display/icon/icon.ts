@@ -1,10 +1,9 @@
+/***** Imports de Angular *****/
 import { Component, input, computed } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
-import * as lucideIcons from '@ng-icons/lucide';
-import type { IconSize, ColorVariant } from '../../../types';
 
-/***** Déclaration de types *****/
-type LucideIconName = keyof typeof lucideIcons;
+/***** Import de types *****/
+import type { IconSize, Color, LucideIconName } from '../../../types';
 
 @Component({
   selector: 'app-icon',
@@ -20,10 +19,10 @@ export class Icon {
   name = input.required<LucideIconName>();
   size = input<IconSize>('24');
   strokeWidth = input<number>(2);
-  variant = input<ColorVariant>('primary');
+  color = input<Color | 'text'>('blue');
 
   /***** Computeds *****/
   hostClasses = computed(() => {
-    return [`variant-${this.variant()}`].join(' ');
+    return [`color-${this.color()}`].join(' ');
   });
 }

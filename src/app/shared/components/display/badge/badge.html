@@ -1,11 +1,11 @@
-<app-flex direction="row" alignItems="center" justifyContent="center" gap="xs" fullWidth>
+<app-flex direction="row" alignItems="center" justifyContent="center" [gap]="gapSize()" fullWidth>
   <!-- Icon -->
   @if (icon()?.name) {
-    <app-icon [variant]="contentColor()" [name]="icon()!.name" size="20" />
+    <app-icon [color]="contentColor()" [name]="icon()!.name" [size]="iconSize()" />
   }
 
   <!-- Message -->
   @if (text()) {
-    <app-text as="p" [variant]="contentColor()" size="sm">{{ text() }}</app-text>
+    <app-text as="p" [color]="contentColor()" size="sm">{{ text() }}</app-text>
   }
 </app-flex>

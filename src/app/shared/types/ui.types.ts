@@ -7,21 +7,6 @@
 export type Size = 'xs' | 'sm' | 'md' | 'lg';
 export type IconSize = '16' | '20' | '24' | '32';
 
-/***** Variantes de couleur *****/
-export type ColorVariant =
-  | 'primary' // Bleu principal
-  | 'secondary' // Gris secondaire
-  | 'success' // Vert pour succès
-  | 'warning' // Orange pour avertissement
-  | 'danger' // Rouge pour danger
-  | 'disabled' // Gris clair pour éléments désactivés
-  | 'inverse' // Couleur inverse (ex. blanc sur fond sombre)
-  | 'white'; // Blanc pur
-export type SemanticVariant = 'default' | 'info' | 'success' | 'warning' | 'danger';
-
-/***** Apparences visuelles *****/
-export type Appearance = 'filled' | 'outline' | 'ghost' | 'link';
-
 /***** Positions *****/
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 export type AdvancedPosition =
@@ -49,3 +34,21 @@ export type TextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 /***** États *****/
 export type InputState = 'default' | 'focus' | 'error' | 'disabled' | 'readonly';
 export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
+
+/***** Couleurs *****/
+export type Color =
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'teal'
+  | 'blue'
+  | 'indigo'
+  | 'purple'
+  | 'pink'
+  | 'white'
+  | 'gray'
+  | 'black';
+
+/***** Variantes de couleur *****/
+export type Variant = 'solid' | 'soft' | 'outline' | 'ghost';

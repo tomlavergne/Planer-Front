@@ -1,36 +1,136 @@
+@use '../../../styles/mixins.scss' as *;
+
 :host {
+  position: relative;
   display: flex;
   gap: var(--spacing-md);
-  padding: var(--spacing-xs) var(--spacing-lg);
-  border: 1px solid;
+  padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-md);
   animation: slideDown 0.2s ease-out;
+  transition: all var(--transition-base);
 
   /*********************/
   /***** VARIANTS *****/
   /*********************/
 
-  &.variant-info {
-    background-color: var(--color-primary-light);
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
+  $variants: ('solid', 'soft', 'outline');
+
+  @each $variant-name in $variants {
+    @each $color-name in $colors {
+      $color: var(--color-#{$color-name});
+      $color-dark: var(--color-#{$color-name}-dark);
+      $color-light: var(--color-#{$color-name}-light);
+
+      &.variant-#{$variant-name}.color-#{$color-name} {
+        // ==========================================
+        // SOLID - Bouton plein avec dégradé
+        // ==========================================
+        @if $variant-name == 'solid' {
+          @include gradient-solid($color, 12%);
+          border: 1px solid color-mix(in srgb, $color 100%, black 20%);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+            0 1px 2px rgba(0, 0, 0, 0.12),
+            0 1px 3px rgba(0, 0, 0, 0.08);
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+          //   &:hover:not(:disabled) {
+          //     @include gradient-solid($color-dark, 10%);
+          //     border-color: color-mix(in srgb, $color-dark 100%, black 20%);
+          //     box-shadow:
+          //       0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+          //       0 2px 4px rgba(0, 0, 0, 0.12),
+          //       0 2px 6px rgba(0, 0, 0, 0.08);
+          //     transform: translateY(-0.5px);
+          //   }
+
+          //   &:active:not(:disabled) {
+          //     background: linear-gradient(180deg, $color, color-mix(in srgb, $color 100%, black 10%));
+          //     border-color: color-mix(in srgb, $color 100%, black 25%);
+          //     box-shadow:
+          //       0 0 0 1px rgba(0, 0, 0, 0.1) inset,
+          //       0 1px 2px rgba(0, 0, 0, 0.15) inset,
+          //       0 1px 2px rgba(0, 0, 0, 0.05);
+          //     transform: translateY(0.5px);
+          //   }
+        }
+
+        // ==========================================
+        // SOFT - Fond coloré léger
+        // ==========================================
+        @else if $variant-name == 'soft' {
+          background-color: $color-light;
+          border: 1px solid transparent;
+          @include shadow-base;
+
+          //   &:hover:not(:disabled) {
+          //     @include hover-light($color);
+          //   }
+
+          //   &:active:not(:disabled) {
+          //     @include active-light($color);
+          //   }
+        }
+
+        // ==========================================
+        // OUTLINE - Bordure colorée
+        // ==========================================
+        @else if $variant-name == 'outline' {
+          background-color: transparent;
+          border: 1px solid $color;
+          box-shadow:
+            0 0 0 1px color-mix(in srgb, $color 20%, transparent) inset,
+            0 1px 2px rgba(0, 0, 0, 0.08),
+            0 1px 3px rgba(0, 0, 0, 0.04);
+
+          //   &:hover:not(:disabled) {
+          //     @include hover-light($color);
+          //   }
+
+          //   &:active:not(:disabled) {
+          //     @include active-light($color);
+          //   }
+        }
+
+        // ==========================================
+        // GHOST - Transparent
+        // ==========================================
+        @else if $variant-name == 'ghost' {
+          background-color: transparent;
+          border: 1px solid transparent;
+          //   color: $color;
+
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
+
+          &:active:not(:disabled) {
+            @include active-light($color);
+            transform: translateY(0.5px);
+          }
+        }
+      }
+    }
   }
 
-  &.variant-success {
-    background-color: var(--color-success-light);
-    border-color: var(--color-success);
-    color: var(--color-success);
+  /***********************/
+  /***** RADIUS *****/
+  /***********************/
+
+  &.border-radius-sm {
+    border-radius: var(--radius-sm);
   }
 
-  &.variant-warning {
-    background-color: var(--color-warning-light);
-    border-color: var(--color-warning);
-    color: var(--color-warning);
+  &.border-radius-md {
+    border-radius: var(--radius-md);
   }
 
-  &.variant-danger {
-    background-color: var(--color-danger-light);
-    border-color: var(--color-danger);
-    color: var(--color-danger);
+  &.border-radius-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  &.border-radius-full {
+    border-radius: var(--radius-full);
   }
 }

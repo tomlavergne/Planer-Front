@@ -1,24 +1,21 @@
-<app-tooltip position="right" [disabled]="expanded()">
-  <a
-    [routerLink]="routerLink()"
-    routerLinkActive="active"
-    #rla="routerLinkActive"
-    (click)="onClick()"
-  >
-    <app-flex direction="row" alignItems="center" gap="sm">
-      <app-icon
-        [name]="iconName()!"
-        size="20"
-        [variant]="rla.isActive ? 'primary' : 'secondary'"
-      ></app-icon>
+<a
+  [routerLink]="routerLink()"
+  routerLinkActive="active"
+  #rla="routerLinkActive"
+  (click)="onClick()"
+  [tooltip]="{
+    content: label(),
+    position: 'right',
+    disabled: expanded(),
+  }"
+>
+  <app-flex direction="row" alignItems="center" gap="sm">
+    <app-icon [name]="iconName()!" size="20" [color]="rla.isActive ? 'text' : 'gray'"></app-icon>
 
-      @if (expanded() == true) {
-        <span class="label">{{ label() }}</span>
-      }
-    </app-flex>
-  </a>
-
-  <div tooltip-content>
-    <span>{{ label() }}</span>
-  </div>
-</app-tooltip>
+    @if (expanded() == true) {
+      <app-text size="md" [color]="rla.isActive ? 'text' : 'gray'" class="label">{{
+        label()
+      }}</app-text>
+    }
+  </app-flex>
+</a>

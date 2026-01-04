@@ -22,7 +22,6 @@ export { RadioGroup, type RadioOption } from './forms/radio-group/radio-group';
 
 /***** Overlay Components *****/
 export { Popover } from './overlay/popover/popover';
-export { Tooltip } from './overlay/tooltip/tooltip';
 export { Dialog } from './overlay/dialog/dialog';
 export { ContextMenu, type ContextMenuItem } from './overlay/context-menu/context-menu';
 

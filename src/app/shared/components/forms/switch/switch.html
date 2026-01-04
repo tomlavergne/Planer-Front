@@ -1,5 +1,5 @@
-<label class="switch-wrapper">
-  <div class="switch-container">
+<label>
+  <app-flex direction="column">
     <input
       type="checkbox"
       [checked]="checked()"
@@ -10,11 +10,5 @@
     <div class="switch-track">
       <div class="switch-thumb"></div>
     </div>
-  </div>
-
-  @if (label()) {
-    <span class="switch-label">{{ label() }}</span>
-  } @else {
-    <ng-content></ng-content>
-  }
+  </app-flex>
 </label>

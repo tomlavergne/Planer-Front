@@ -1,0 +1,13 @@
+<ng-content></ng-content>
+
+@for (ripple of ripples; track ripple) {
+  <span
+    class="ripple-circle"
+    [style.left.px]="ripple.x"
+    [style.top.px]="ripple.y"
+    [style.width.px]="ripple.size"
+    [style.height.px]="ripple.size"
+    [style.background-color]="color()"
+    [style.animation-duration.ms]="duration()"
+  ></span>
+}
