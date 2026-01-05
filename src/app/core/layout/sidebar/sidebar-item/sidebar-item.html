@@ -9,11 +9,11 @@
     disabled: expanded(),
   }"
 >
-  <app-flex direction="row" alignItems="center" gap="sm">
-    <app-icon [name]="iconName()!" size="20" [color]="rla.isActive ? 'text' : 'gray'"></app-icon>
+  <app-flex direction="row" alignItems="center" gap="xs">
+    <app-icon [name]="iconName()!" size="xs" [color]="rla.isActive ? 'green' : 'gray'"></app-icon>
 
     @if (expanded() == true) {
-      <app-text size="md" [color]="rla.isActive ? 'text' : 'gray'" class="label">{{
+      <app-text [color]="rla.isActive ? 'green' : 'gray'" size="xs" class="label">{{
         label()
       }}</app-text>
     }

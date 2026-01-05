@@ -14,7 +14,7 @@
       <app-flex
         direction="row"
         alignItems="center"
-        [padding]="expanded() ? 'sm' : 'none'"
+        [padding]="expanded() ? 'xs' : 'none'"
         [fullWidth]="expanded()"
         gap="sm"
       >
@@ -30,7 +30,7 @@
         [icon]="{ name: expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen' }"
         variant="ghost"
         color="gray"
-        size="md"
+        size="xs"
         [tooltip]="{
           content: expanded() ? 'Réduire la barre latérale' : 'Développer la barre latérale',
           position: 'right',
@@ -41,7 +41,7 @@
   </app-flex>
 
   <!-- Navigation principale -->
-  <app-flex direction="column" gap="xs" fullWidth fullHeight>
+  <app-flex direction="column" gap="2xs" fullWidth>
     <app-sidebar-item
       label="Playground"
       iconName="lucidePlay"
@@ -72,16 +72,61 @@
       routerLink="/ressources"
       [expanded]="expanded()"
     />
-    <app-sidebar-item label="Plus" iconName="lucideEllipsis" [expanded]="expanded()" />
+
+    @if (expanded()) {
+      <app-accordion
+        title="Plus"
+        variant="ghost"
+        size="xs"
+        iconLeftName="lucideEllipsis"
+        [contentPadding]="false"
+        startOpen
+      >
+        <app-flex
+          direction="column"
+          alignItems="center"
+          gap="2xs"
+          class="accordion-header"
+          fullWidth
+        >
+          <app-sidebar-item
+            label="Projet A"
+            iconName="lucideFolder"
+            routerLink="/projects/a"
+            [expanded]="expanded()"
+          />
+          <app-sidebar-item
+            label="Projet B"
+            iconName="lucideFolder"
+            routerLink="/projects/b"
+            [expanded]="expanded()"
+          />
+          <app-sidebar-item
+            label="Projet C"
+            iconName="lucideFolder"
+            routerLink="/projects/c"
+            [expanded]="expanded()"
+          />
+        </app-flex>
+      </app-accordion>
+    }
   </app-flex>
 
+  <app-spacer fullHeight (clicked)="expanded.set(true)" />
+
   <!-- Footer -->
-  <app-flex direction="column" gap="xs" fullWidth>
-    <app-sidebar-item
-      [label]="'Thème ' + (currentTheme() === 'light' ? 'sombre' : 'clair')"
-      [iconName]="iconNameTheme()"
-      [expanded]="expanded()"
+  <app-flex direction="column" gap="2xs" fullWidth>
+    <app-button
+      [text]="expanded() ? 'Thème ' + (currentTheme() === 'light' ? 'sombre' : 'clair') : ''"
+      variant="ghost"
+      color="gray"
+      size="xs"
+      [icon]="{
+        name: iconNameTheme(),
+        position: 'left',
+      }"
       (clicked)="toggleTheme()"
+      fullWidth
     />
     <app-sidebar-item
       label="Paramètres"
@@ -104,13 +149,13 @@
       }"
     >
       <app-flex direction="row" alignItems="center" gap="xs">
-        <app-avatar imageUrl="/img/profil.png" size="sm" />
+        <app-avatar imageUrl="/img/profil.png" size="xs" />
         @if (expanded()) {
-          <app-text color="text">Tom Lavergne</app-text>
+          <app-text color="text" size="sm">Tom Lavergne</app-text>
         }
       </app-flex>
       @if (expanded()) {
-        <app-icon name="lucideChevronsUpDown" size="20" color="text"></app-icon>
+        <app-icon name="lucideChevronsUpDown" size="xs" color="text"></app-icon>
       }
     </app-flex>
   </app-flex>

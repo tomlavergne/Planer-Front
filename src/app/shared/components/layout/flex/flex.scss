@@ -56,6 +56,12 @@
   /********* GAP *********/
   /***********************/
 
+  &.gap-none {
+    gap: none;
+  }
+  &.gap-2xs {
+    gap: var(--spacing-2xs);
+  }
   &.gap-xs {
     gap: var(--spacing-xs);
   }
@@ -76,6 +82,12 @@
   /******* PADDING *******/
   /************************/
 
+  &.padding-none {
+    padding: none;
+  }
+  &.padding-2xs {
+    padding: var(--spacing-2xs);
+  }
   &.padding-xs {
     padding: var(--spacing-xs);
   }

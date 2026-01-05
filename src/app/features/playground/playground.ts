@@ -24,6 +24,7 @@ import {
   ContextMenu,
   Icon,
   Text,
+  Accordion,
 } from '../../shared/components';
 
 /***** Imports de directives *****/
@@ -41,6 +42,7 @@ import type {
   selector: 'app-playground',
   imports: [
     CommonModule,
+    Accordion,
     Button,
     Input,
     Textarea,

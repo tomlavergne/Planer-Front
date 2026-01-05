@@ -1,20 +1,42 @@
 @use '../../../styles/mixins.scss' as *;
 
 :host {
-  & button {
+  button {
     cursor: pointer;
+    @include focus-accessible(var(--color-primary), 0px);
   }
 
+  // Disabled state
   &.disabled button {
     cursor: not-allowed;
     opacity: 0.5;
   }
 
-  // ==========================================
-  // GÉNÉRATION DES VARIANTS
-  // ==========================================
+  // Hover state
+  &:hover:not(:disabled) {
+    transform: translateY(-0.5px);
+  }
 
-  // Liste des noms de couleurs
+  // Active state
+  &:active:not(:disabled) {
+    transform: translateY(0.5px);
+  }
+
+  // Border radius avec boucle
+  $radiusList: ('sm', 'md', 'lg', 'full');
+
+  @each $radius in $radiusList {
+    &.border-radius-#{$radius} button {
+      border-radius: var(--radius-#{$radius});
+    }
+  }
+
+  // Full width
+  &.full-width button {
+    width: 100%;
+  }
+
+  // Génération des variants
   $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
   $variants: ('solid', 'soft', 'outline', 'ghost');
 
@@ -30,7 +52,6 @@
         // ==========================================
         @if $variant-name == 'solid' {
           @include gradient-solid($color, 12%);
-          color: white;
           border: 1px solid color-mix(in srgb, $color 100%, black 20%);
           box-shadow:
             0 0 0 1px rgba(255, 255, 255, 0.25) inset,
@@ -45,7 +66,7 @@
               0 0 0 1px rgba(255, 255, 255, 0.3) inset,
               0 2px 4px rgba(0, 0, 0, 0.12),
               0 2px 6px rgba(0, 0, 0, 0.08);
-            transform: translateY(-0.5px);
+            // transform: translateY(-0.5px);
           }
 
           &:active:not(:disabled) {
@@ -55,7 +76,7 @@
               0 0 0 1px rgba(0, 0, 0, 0.1) inset,
               0 1px 2px rgba(0, 0, 0, 0.15) inset,
               0 1px 2px rgba(0, 0, 0, 0.05);
-            transform: translateY(0.5px);
+            // transform: translateY(0.5px);
           }
         }
 
@@ -65,7 +86,6 @@
         @else if $variant-name == 'soft' {
           background-color: $color-light;
           border: 1px solid transparent;
-          color: $color;
           @include shadow-base;
 
           &:hover:not(:disabled) {
@@ -83,7 +103,6 @@
         @else if $variant-name == 'outline' {
           background-color: transparent;
           border: 1px solid $color;
-          //   color: $color;
           box-shadow:
             0 0 0 1px color-mix(in srgb, $color 20%, transparent) inset,
             0 1px 2px rgba(0, 0, 0, 0.08),
@@ -104,7 +123,6 @@
         @else if $variant-name == 'ghost' {
           background-color: transparent;
           border: 1px solid transparent;
-          //   color: $color;
 
           &:hover:not(:disabled) {
             @include hover-light($color);
@@ -112,67 +130,9 @@
 
           &:active:not(:disabled) {
             @include active-light($color);
-            transform: translateY(0.5px);
           }
-        }
-
-        &:hover:not(:disabled) {
-          transform: translateY(-0.5px);
-        }
-
-        // Active state
-        &:active:not(:disabled) {
-          transform: translateY(0.5px);
         }
       }
     }
-  }
-
-  /************************
-  /***** BORDER RADIUS *****
-  /************************/
-
-  &.border-radius-sm button {
-    border-radius: var(--radius-sm);
-  }
-
-  &.border-radius-md button {
-    border-radius: var(--radius-md);
-  }
-
-  &.border-radius-lg button {
-    border-radius: var(--radius-lg);
-  }
-
-  &.border-radius-full button {
-    border-radius: var(--radius-full);
-  }
-
-  // ==========================================
-  // BORDER RADIUS
-  // ==========================================
-
-  &.border-radius-sm button {
-    border-radius: var(--radius-sm);
-  }
-
-  &.border-radius-md button {
-    border-radius: var(--radius-md);
-  }
-
-  &.border-radius-lg button {
-    border-radius: var(--radius-lg);
-  }
-
-  &.border-radius-full button {
-    border-radius: var(--radius-full);
-  }
-
-  // ==========================================
-  // FULL WIDTH
-  // ==========================================
-
-  &.full-width button {
-    width: 100%;
   }
 }

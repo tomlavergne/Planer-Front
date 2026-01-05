@@ -5,21 +5,13 @@ import { Component, input, output, computed, booleanAttribute } from '@angular/c
 import { Icon } from '../../display/icon/icon';
 import { Text } from '../../display/text/text';
 import { Flex } from '../../layout/flex/flex';
-import { Ripple } from '../../design/ripple/ripple';
 
 /***** Imports de types *****/
-import {
-  IconSize,
-  Size,
-  LucideIconName,
-  Position,
-  Button as ButtonType,
-  Color,
-} from '../../../types';
+import { Button as ButtonType, LucideIconName, IconSize, Position, Color } from '../../../types';
 
 @Component({
   selector: 'app-button',
-  imports: [Flex, Text, Icon, Ripple],
+  imports: [Flex, Text, Icon],
   templateUrl: './button.html',
   styleUrl: './button.scss',
   host: {
@@ -37,7 +29,7 @@ export class Button {
     name: LucideIconName;
     position?: Position;
   } | null>(null);
-  size = input<Size>('md');
+  size = input<ButtonType.Size>('md');
   borderRadius = input<ButtonType.BorderRadius>('md');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
@@ -58,12 +50,13 @@ export class Button {
   });
 
   // Computed pour la taille de l'icône
-  iconSize = computed(() => {
-    const sizeMap: Record<Size, IconSize> = {
+  iconSize = computed((): IconSize => {
+    const sizeMap: Record<ButtonType.Size, IconSize> = {
       xs: '16',
       sm: '16',
       md: '20',
       lg: '24',
+      xl: '32',
     };
     return sizeMap[this.size()];
   });

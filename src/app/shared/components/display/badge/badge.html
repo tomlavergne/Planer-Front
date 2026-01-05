@@ -1,7 +1,7 @@
 <app-flex direction="row" alignItems="center" justifyContent="center" [gap]="gapSize()" fullWidth>
   <!-- Icon -->
   @if (icon()?.name) {
-    <app-icon [color]="contentColor()" [name]="icon()!.name" [size]="iconSize()" />
+    <app-icon [color]="contentColor()" [name]="icon()!.name" [size]="size()" />
   }
 
   <!-- Message -->

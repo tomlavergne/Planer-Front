@@ -16,9 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { Icon } from '../../display/icon/icon';
 
 /***** Imports de types *****/
-import { Size, LucideIconName } from '../../../types';
-
-type InputVariant = 'default' | 'filled' | 'outline';
+import { Input as InputType, LucideIconName } from '../../../types';
 
 @Component({
   selector: 'app-input',
@@ -31,10 +29,10 @@ type InputVariant = 'default' | 'filled' | 'outline';
 })
 export class Input {
   /***** Inputs *****/
-  type = input<'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search'>('text');
+  type = input<InputType.Type>('text');
   placeholder = input<string>('');
-  size = input<Size>('md');
-  variant = input<InputVariant>('default');
+  size = input<InputType.Size>('md');
+  variant = input<InputType.Variant>('default');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
   readonly = input<boolean, any>(false, { transform: booleanAttribute });
   error = input<boolean, any>(false, { transform: booleanAttribute });
@@ -68,8 +66,7 @@ export class Input {
 
   // Computed pour la taille de l'icône
   iconSize = computed(() => {
-    const sizeMap: Record<Size, '16' | '20' | '24'> = {
-      xs: '16',
+    const sizeMap: Record<InputType.Size, '16' | '20' | '24'> = {
       sm: '16',
       md: '20',
       lg: '24',

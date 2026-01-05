@@ -2,12 +2,8 @@
   <app-flex direction="column" gap="lg">
     <h1>Playground</h1>
 
-    <!-- Boutons -->
-    <app-card>
-      <div card-header>
-        <h2>Boutons</h2>
-      </div>
-
+    <!-- Buttons -->
+    <app-accordion title="Boutons" variant="ghost" size="sm" iconLeftName="lucideSquareArrowDown">
       <app-flex direction="column" gap="lg">
         @for (variant of buttonVariants; track $index) {
           <app-flex direction="column" gap="sm" wrap>
@@ -112,13 +108,10 @@
           </app-flex>
         </app-flex>
       </app-flex>
-    </app-card>
+    </app-accordion>
 
-    <app-card>
-      <div card-header>
-        <h2>Switchs</h2>
-      </div>
-
+    <!-- Switchs -->
+    <app-accordion title="Switchs" variant="ghost" size="sm" iconLeftName="lucideToggleRight">
       <app-flex direction="column" gap="md">
         <app-switch
           label="Default Switch"
@@ -135,13 +128,10 @@
           <app-text>The switch is OFF</app-text>
         }
       </app-flex>
-    </app-card>
+    </app-accordion>
 
-    <app-card>
-      <div card-header>
-        <h2>Tooltips</h2>
-      </div>
-
+    <!-- Tooltips -->
+    <app-accordion title="Tooltips" variant="ghost" size="sm" iconLeftName="lucideMessageSquare">
       <app-flex direction="column" gap="lg">
         <!-- Texte simple -->
         <app-flex direction="column" gap="sm">
@@ -207,7 +197,7 @@
           </app-flex>
         </app-flex>
       </app-flex>
-    </app-card>
+    </app-accordion>
 
     <ng-template #customTooltip>
       <div style="padding: 0.5rem">
@@ -218,11 +208,7 @@
     </ng-template>
 
     <!-- Badges -->
-    <app-card>
-      <div card-header>
-        <h2>Badges</h2>
-      </div>
-
+    <app-accordion title="Badges" variant="ghost" size="sm" iconLeftName="lucideTag">
       <app-flex direction="column" gap="lg">
         @for (variant of badgeVariants; track $index) {
           <app-flex direction="column" gap="sm" wrap>
@@ -294,15 +280,11 @@
           </app-flex>
         </app-flex>
       </app-flex>
-    </app-card>
+    </app-accordion>
 
     <!-- Alertes -->
-    <app-card>
-      <div card-header>
-        <h2>Alerts</h2>
-      </div>
-
-      <app-flex direction="column" gap="lg">
+    <app-accordion title="Alertes" variant="ghost" size="sm" iconLeftName="lucideTriangleAlert">
+      <app-flex direction="column" gap="lg" fullWidth>
         @for (variant of alertVariants; track $index) {
           <app-flex direction="column" gap="md">
             <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
@@ -324,6 +306,6 @@
           </app-flex>
         }
       </app-flex>
-    </app-card>
+    </app-accordion>
   </app-flex>
 </div>

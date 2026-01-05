@@ -1,10 +1,10 @@
 .tooltip-content {
-  padding: 0.5em 0.75em;
+  padding: var(--spacing-2xs) var(--spacing-xs);
   background-color: var(--color-text);
   color: var(--color-background);
-  font-size: var(--font-size-sm);
-  line-height: 1.4;
-  border-radius: var(--radius-xl);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+  border-radius: var(--radius-lg);
   max-width: 300px;
   box-shadow: var(--shadow-lg);
   animation: tooltip-fade-in 150ms ease-out;

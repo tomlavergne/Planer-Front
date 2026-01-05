@@ -12,8 +12,15 @@ import { Size } from '../../../types/';
   imports: [Icon],
   templateUrl: './avatar.html',
   styleUrl: './avatar.scss',
+  host: {
+    '[class]': 'hostClasses()',
+  },
 })
 export class Avatar {
   size = input<Size>('md');
   imageUrl = input<string | null>(null);
+
+  hostClasses(): string {
+    return `size-${this.size()}`;
+  }
 }

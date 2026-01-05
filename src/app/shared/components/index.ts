@@ -3,6 +3,7 @@ export { Flex } from './layout/flex/flex';
 export { Spacer } from './layout/spacer/spacer/spacer';
 
 /***** Display Components *****/
+export { Accordion } from './display/accordion/accordion';
 export { Avatar } from './display/avatar/avatar';
 export { Badge } from './display/badge/badge';
 export { Card } from './display/card/card';

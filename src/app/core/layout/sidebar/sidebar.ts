@@ -2,14 +2,18 @@
 import { Component, signal, computed } from '@angular/core';
 
 /***** Imports de composants *****/
-import { Button } from '../../../shared/components/forms/button/button';
-import { Popover } from '../../../shared/components/overlay/popover/popover';
+import {
+  Button,
+  Accordion,
+  Popover,
+  Flex,
+  Avatar,
+  Icon,
+  Spacer,
+  Text,
+} from '../../../shared/components';
 import { SidebarItem } from './sidebar-item/sidebar-item';
-import { Avatar } from '../../../shared/components/display/avatar/avatar';
-import { Icon } from '../../../shared/components/display/icon/icon';
 import { UserPopoverContent } from './user-popover-content/user-popover-content';
-import { Flex } from '../../../shared/components/layout/flex/flex';
-import { Text } from '../../../shared/components';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
@@ -17,6 +21,7 @@ import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
 @Component({
   selector: 'app-sidebar',
   imports: [
+    Accordion,
     Button,
     Text,
     SidebarItem,
@@ -26,7 +31,7 @@ import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
     UserPopoverContent,
     Flex,
     TooltipDirective,
-    Text,
+    Spacer,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
@@ -54,5 +59,11 @@ export class Sidebar {
     const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
     this.currentTheme.set(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
+  }
+
+  notify() {
+    console.log('Spacer clicked!');
+    // Ou utilisez votre système de notification
+    // this.toaster.show('Spacer cliqué', 'info');
   }
 }

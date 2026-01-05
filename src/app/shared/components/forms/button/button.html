@@ -4,18 +4,18 @@
     class="button-content"
     [direction]="direction()"
     alignItems="center"
-    justifyContent="center"
+    justifyContent="start"
     [padding]="size()"
     [gap]="size()"
   >
     <!-- Icone -->
     @if (icon()) {
-      <app-icon [name]="icon()!.name" [size]="iconSize()" [color]="contentColor()"></app-icon>
+      <app-icon [name]="icon()!.name" [size]="size()" [color]="contentColor()"></app-icon>
     }
 
     <!-- Text -->
     @if (text()) {
-      <app-text [color]="contentColor()">{{ text() }}</app-text>
+      <app-text [color]="contentColor()" [size]="size()"> {{ text() }}</app-text>
     }
   </app-flex>
   <!-- </app-ripple> -->

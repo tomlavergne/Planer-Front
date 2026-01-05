@@ -3,6 +3,7 @@
  * Organisés par namespace pour éviter les conflits
  */
 
+import { Accordion } from '../components';
 import type {
   Color,
   Variant as UIVariant,
@@ -13,6 +14,7 @@ import type {
 
 /***** Composants de formulaire *****/
 export namespace Button {
+  export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   export type Variant = 'solid' | 'soft' | 'outline' | 'ghost';
   export type IconPosition = UIPosition;
   export type Type = 'button' | 'submit' | 'reset';
@@ -20,6 +22,7 @@ export namespace Button {
 }
 
 export namespace Input {
+  export type Size = Extract<UISize, 'sm' | 'md' | 'lg'>;
   export type Variant = 'default' | 'filled' | 'outline';
   export type Type = 'text' | 'email' | 'password' | 'number' | 'tel' | 'url' | 'search';
 }
@@ -65,7 +68,13 @@ export namespace Text {
     | 'small';
 }
 
+export namespace Accordion {
+  export type Variant = Extract<UIVariant, 'soft' | 'ghost'>;
+  export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
+}
+
 export namespace Badge {
+  export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg'>;
   export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
 }
 
@@ -75,7 +84,7 @@ export namespace Avatar {
 }
 
 export namespace Icon {
-  export type Size = '16' | '20' | '24' | '32';
+  export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>;
 }
 
 export namespace Separator {
@@ -133,7 +142,8 @@ export namespace Flex {
   export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
   export type Align = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   export type Justify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
-  export type Gap = UISize | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12;
+  export type Gap = Extract<UISize, '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'> | 'none';
+  export type Padding = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> | 'none';
 }
 
 export namespace Spacer {

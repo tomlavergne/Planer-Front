@@ -3,28 +3,30 @@
 :host {
   display: block;
   user-select: none;
+  width: 100%;
   cursor: pointer;
 
   a {
     display: block;
-    padding: var(--spacing-md);
+    padding: var(--spacing-xs);
     border-radius: var(--radius-md);
     text-decoration: none;
     background-color: transparent;
     border: 1px solid transparent;
-    transition: all var(--transition-base);
+
+    @include focus-accessible(var(--color-primary), 0px);
 
     &:hover {
       @include hover-light(var(--color-gray));
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(.active) {
       @include active-light(var(--color-gray));
       transform: translateY(0.5px);
     }
 
     &.active {
-      @include hover-light(var(--color-gray));
+      @include hover-light(var(--color-green));
     }
   }
 }

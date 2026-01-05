@@ -1,0 +1,39 @@
+<app-flex direction="column">
+  <app-flex
+    direction="row"
+    justifyContent="between"
+    alignItems="center"
+    gap="xs"
+    class="header"
+    fullWidth
+    (click)="toggle()"
+  >
+    <!-- Header -->
+    <app-flex direction="row" alignItems="center" [gap]="size()">
+      @if (iconLeftName()) {
+        <app-icon [name]="iconLeftName()!" [size]="size()" [color]="contentColor()"></app-icon>
+      }
+
+      <app-text [size]="size()" [color]="contentColor()">{{ title() }}</app-text>
+    </app-flex>
+
+    <app-icon
+      [size]="size()"
+      [color]="contentColor()"
+      [name]="isOpen() ? 'lucideChevronUp' : 'lucideChevronDown'"
+    />
+  </app-flex>
+
+  <!-- Body -->
+  @if (isOpen()) {
+    <app-flex
+      class="content"
+      [padding]="contentPadding() ? size() : 'none'"
+      direction="column"
+      gap="md"
+      fullWidth
+    >
+      <ng-content></ng-content>
+    </app-flex>
+  }
+</app-flex>

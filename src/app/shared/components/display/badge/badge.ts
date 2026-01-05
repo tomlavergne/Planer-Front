@@ -7,7 +7,13 @@ import { Text } from '../text/text';
 import { Icon } from '../icon/icon';
 
 /***** Imports de types *****/
-import { Size, LucideIconName, Position, Color, Icon as IconType } from '../../../types';
+import {
+  Badge as BadgeType,
+  LucideIconName,
+  Position,
+  Color,
+  Icon as IconType,
+} from '../../../types';
 
 type BadgeVariant = 'solid' | 'soft' | 'outline';
 
@@ -30,7 +36,7 @@ export class Badge {
     position?: Position;
   } | null>(null);
 
-  size = input<Size>('md');
+  size = input<BadgeType.Size>('md');
 
   // Computed pour les classes
   hostClasses = computed(() => {
@@ -50,17 +56,7 @@ export class Badge {
     }
   });
 
-  iconSize = computed(() => {
-    const sizeMap: Record<Size, IconType.Size> = {
-      xs: '16',
-      sm: '16',
-      md: '20',
-      lg: '24',
-    };
-    return sizeMap[this.size()];
-  });
-
-  gapSize = computed((): Size => {
+  gapSize = computed((): BadgeType.Size => {
     if (this.size() === 'xs' || this.size() === 'sm') {
       return 'xs';
     } else {

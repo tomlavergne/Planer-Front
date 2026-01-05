@@ -1,9 +1,7 @@
-<div [class]="'avatar-container ' + size()">
-  @if (imageUrl()) {
-    <img class="avatar-img" src="{{ imageUrl() }}" alt="User Avatar" />
-  } @else {
-    <div [class]="'avatar-placeholder ' + size()">
-      <app-icon [name]="'lucideUserCircle'" size="24"></app-icon>
-    </div>
-  }
-</div>
+@if (imageUrl()) {
+  <img class="avatar-img" src="{{ imageUrl() }}" alt="User Avatar" />
+} @else {
+  <div [class]="'avatar-placeholder ' + size()">
+    <app-icon [name]="'lucideUserCircle'" size="sm"></app-icon>
+  </div>
+}

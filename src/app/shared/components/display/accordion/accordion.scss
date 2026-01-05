@@ -1,0 +1,75 @@
+@use '../../../styles/mixins.scss' as *;
+
+:host {
+  .header {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  @include focus-accessible();
+
+  // Sizes avec boucle
+  $sizes: ('xs', 'sm', 'md', 'lg', 'xl');
+
+  @each $size-name in $sizes {
+    &.size-#{$size-name} {
+      border-radius: var(--radius-md);
+
+      .header {
+        padding: var(--spacing-#{$size-name});
+        font-size: var(--font-size-#{$size-name});
+      }
+    }
+  }
+
+  // Génération des variants
+  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
+  $variants: ('soft', 'ghost');
+
+  @each $variant-name in $variants {
+    @each $color-name in $colors {
+      $color: var(--color-#{$color-name});
+
+      &.variant-#{$variant-name}.color-#{$color-name} {
+        // Soft variant
+        @if $variant-name == 'soft' {
+          border-radius: var(--radius-md);
+          border: 1px solid color-mix(in srgb, $color 20%, transparent);
+          @include hover-light($color);
+
+          .content {
+            border-top: 1px solid color-mix(in srgb, $color 20%, transparent);
+          }
+
+          &:has(.header:hover:not(:disabled)) {
+            @include hover-light($color);
+          }
+
+          &:has(.header:active:not(:disabled)) {
+            @include active-light($color);
+          }
+        }
+
+        // Ghost variant
+        @else if $variant-name == 'ghost' {
+          background-color: transparent;
+
+          .header {
+            border: 1px solid transparent;
+            border-radius: var(--radius-md);
+
+            &:hover:not(:disabled) {
+              @include hover-light($color);
+              transform: translateY(0.5px);
+            }
+
+            &:active:not(:disabled) {
+              @include active-light($color);
+              transform: translateY(1px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
