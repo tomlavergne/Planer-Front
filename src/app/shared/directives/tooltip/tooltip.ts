@@ -1,3 +1,4 @@
+/***** Import Angular *****/
 import {
   Directive,
   input,
@@ -15,6 +16,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
+
+/***** Import de types *****/
 import { Position } from '../../types';
 
 // Composant interne pour afficher le contenu du tooltip
@@ -136,7 +139,7 @@ export class TooltipDirective implements OnDestroy {
 
     // Créer le portal avec le contenu
     const tooltipValue = this.tooltip()?.content;
-    const portal = new ComponentPortal(TooltipContentComponent);
+    const portal = new ComponentPortal(TooltipContentComponent, this.viewContainerRef);
     this.componentRef = this.overlayRef.attach(portal);
 
     if (typeof tooltipValue === 'string') {

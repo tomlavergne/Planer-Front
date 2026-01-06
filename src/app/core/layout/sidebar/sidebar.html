@@ -1,4 +1,4 @@
-<app-flex direction="column" gap="lg" fullHeight>
+<app-flex direction="column" gap="2xs" fullHeight>
   <!-- Header -->
   <app-flex
     direction="row"
@@ -11,13 +11,7 @@
     [class.expanded]="expanded()"
   >
     @if (expanded() || !isHoveringLogo()) {
-      <app-flex
-        direction="row"
-        alignItems="center"
-        [padding]="expanded() ? 'xs' : 'none'"
-        [fullWidth]="expanded()"
-        gap="sm"
-      >
+      <app-flex direction="row" alignItems="center" [fullWidth]="expanded()" gap="sm">
         <div class="circle"></div>
         @if (expanded()) {
           <h1 class="label">Planer</h1>
@@ -39,6 +33,8 @@
       ></app-button>
     }
   </app-flex>
+
+  <app-separator />
 
   <!-- Navigation principale -->
   <app-flex direction="column" gap="2xs" fullWidth>
@@ -109,6 +105,22 @@
           />
         </app-flex>
       </app-accordion>
+      <app-button
+        [text]="'Plus'"
+        variant="ghost"
+        color="gray"
+        size="sm"
+        [icon]="{
+          name: 'lucideEllipsis',
+          position: 'left',
+        }"
+        [popover]="{
+          content: 'Test simple popover',
+          title: 'Mon compte',
+          position: 'bottom-left',
+        }"
+        fullWidth
+      />
     }
   </app-flex>
 
@@ -135,27 +147,35 @@
       [expanded]="expanded()"
     />
 
+    <app-separator />
+
     <!-- Utilisateur-->
     <app-flex
       direction="row"
       alignItems="center"
       [justifyContent]="expanded() ? 'between' : 'center'"
       gap="xs"
+      [padding]="expanded() ? '2xs' : '3xs'"
       class="user-avatar-button"
-      [tooltip]="{
-        content: 'Tom Lavergne',
-        disabled: expanded(),
-        position: 'right',
+      [popover]="{
+        content: 'Test simple popover',
+        title: 'Mon compte',
+        position: 'right-top',
       }"
     >
-      <app-flex direction="row" alignItems="center" gap="xs" padding="3xs">
-        <app-avatar imageUrl="/img/profil.png" size="xs" />
+      <app-flex direction="row" alignItems="center" gap="2xs">
+        <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
+
         @if (expanded()) {
-          <app-text color="text" size="xs">Tom Lavergne</app-text>
+          <app-flex direction="column" gap="4xs">
+            <app-text color="gray" size="xs" weight="medium">Tom Lavergne</app-text>
+            <!-- <app-text color="gray  " size="2xs">tom.lavergn@gmail.com</app-text> -->
+          </app-flex>
         }
       </app-flex>
+
       @if (expanded()) {
-        <app-icon name="lucideChevronsUpDown" size="xs" color="text"></app-icon>
+        <app-icon name="lucideChevronsUpDown" size="xs" color="gray"></app-icon>
       }
     </app-flex>
   </app-flex>

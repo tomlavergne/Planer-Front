@@ -7,7 +7,7 @@ export namespace Text {
     '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   >;
   export type Color = ColorType;
-  export type Weight = 'normal' | 'medium' | 'semibold' | 'bold';
+  export type Weight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   export type Align = 'left' | 'center' | 'right' | 'justify';
   export type As =
     | 'p'

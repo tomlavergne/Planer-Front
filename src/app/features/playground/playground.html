@@ -2,6 +2,29 @@
   <app-flex direction="column" gap="lg">
     <h1>Playground</h1>
 
+    <!-- Texts -->
+    <app-accordion title="Textes" variant="ghost" size="sm" iconLeftName="lucideType">
+      <app-flex direction="column" gap="lg" wrap fullWidth>
+        <app-flex direction="column" gap="sm" wrap>
+          <h3>Sizes</h3>
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            @for (size of textSizes; track $index) {
+              <app-text [size]="size" color="text">{{ size }}</app-text>
+            }
+          </app-flex>
+        </app-flex>
+
+        <app-flex direction="column" gap="sm" wrap>
+          <h3>Weights</h3>
+          <app-flex direction="row" gap="sm" alignItems="end" wrap>
+            @for (weight of textWeights; track $index) {
+              <app-text [weight]="weight" color="text">{{ weight }}</app-text>
+            }
+          </app-flex>
+        </app-flex>
+      </app-flex>
+    </app-accordion>
+
     <!-- Buttons -->
     <app-accordion title="Boutons" variant="ghost" size="sm" iconLeftName="lucideSquareArrowDown">
       <app-flex direction="column" gap="lg" wrap fullWidth>
@@ -91,7 +114,7 @@
         <app-flex direction="column" gap="md" wrap>
           <h3>Tailles</h3>
 
-          <app-flex direction="row" gap="sm" wrap>
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
             @for (size of buttonSizes; track $index) {
               <app-button
                 [text]="size"
@@ -104,7 +127,7 @@
             }
           </app-flex>
 
-          <app-flex direction="row" gap="sm" wrap>
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
             @for (size of buttonSizes; track $index) {
               <app-button
                 variant="solid"
@@ -116,7 +139,7 @@
             }
           </app-flex>
 
-          <app-flex direction="row" gap="sm" wrap>
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
             @for (size of buttonSizes; track $index) {
               <app-button
                 [text]="'Texte ' + size"
@@ -160,11 +183,11 @@
           </app-flex>
         }
         <!-- Different Sizes -->
-        @for (variant of switchVariants; track $index) {
-          <app-flex direction="column" gap="sm">
-            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-            <app-flex direction="row" gap="md" alignItems="center" wrap>
-              @for (size of switchSizes; track $index) {
+        <app-flex direction="column" gap="sm">
+          <h3>Sizes</h3>
+          <app-flex direction="row" gap="md" alignItems="center" wrap>
+            @for (size of switchSizes; track $index) {
+              @for (variant of switchVariants; track $index) {
                 <app-toggle
                   [variant]="variant"
                   color="blue"
@@ -176,9 +199,9 @@
                   }"
                 />
               }
-            </app-flex>
+            }
           </app-flex>
-        }
+        </app-flex>
       </app-flex>
     </app-accordion>
 
@@ -192,9 +215,9 @@
             @for (position of tooltipPositions; track $index) {
               <app-button
                 [text]="position.charAt(0).toUpperCase() + position.slice(1)"
-                variant="soft"
+                variant="solid"
                 color="blue"
-                size="xs"
+                size="sm"
                 [tooltip]="{
                   content: 'Tooltip ' + position,
                   position: position,
@@ -210,9 +233,9 @@
           <app-flex direction="row" gap="md" wrap>
             <app-button
               text="Template"
-              variant="soft"
+              variant="solid"
               color="blue"
-              size="xs"
+              size="sm"
               [tooltip]="{
                 content: customTooltip,
                 position: 'top',
@@ -231,6 +254,48 @@
       </div>
     </ng-template>
 
+    <!-- Popover -->
+    <app-accordion title="Popovers" variant="ghost" size="sm" iconLeftName="lucideSquaresUnite">
+      <app-flex direction="column" gap="lg">
+        <!-- Texte simple -->
+        <app-flex direction="column" gap="sm">
+          <h3>Positions</h3>
+          <app-flex direction="row" gap="md" wrap>
+            @for (position of popoverPositions; track $index) {
+              <app-button
+                [text]="position"
+                variant="solid"
+                color="blue"
+                size="sm"
+                [popover]="{
+                  title: position,
+                  content: 'popover ' + position,
+                  position: position,
+                }"
+              />
+            }
+          </app-flex>
+        </app-flex>
+
+        <!-- Contenu personnalisé -->
+        <app-flex direction="column" gap="sm">
+          <h3>Contenu personnalisé</h3>
+          <app-flex direction="row" gap="md" wrap>
+            <app-button
+              text="Template"
+              variant="solid"
+              color="blue"
+              size="sm"
+              [tooltip]="{
+                content: customTooltip,
+                position: 'top',
+              }"
+            />
+          </app-flex>
+        </app-flex>
+      </app-flex>
+    </app-accordion>
+
     <!-- Badges -->
     <app-accordion title="Badges" variant="ghost" size="sm" iconLeftName="lucideTag">
       <app-flex direction="column" gap="lg">
@@ -246,6 +311,7 @@
                   [variant]="variant"
                   [color]="color"
                   size="sm"
+                  [icon]="{ name: 'lucideCircle' }"
                 />
               }
             </app-flex>

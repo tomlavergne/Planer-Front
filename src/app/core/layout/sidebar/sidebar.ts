@@ -1,5 +1,5 @@
 /***** Imports de Angular *****/
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, ViewChild, TemplateRef } from '@angular/core';
 
 /***** Imports de composants *****/
 import {
@@ -11,12 +11,14 @@ import {
   Icon,
   Spacer,
   Text,
+  Separator,
 } from '../../../shared/components';
 import { SidebarItem } from './sidebar-item/sidebar-item';
 import { UserPopoverContent } from './user-popover-content/user-popover-content';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
+import { PopoverDirective } from '../../../shared/directives/popover/popover';
 
 @Component({
   selector: 'app-sidebar',
@@ -31,7 +33,9 @@ import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
     UserPopoverContent,
     Flex,
     TooltipDirective,
+    PopoverDirective,
     Spacer,
+    Separator,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
@@ -40,6 +44,9 @@ import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
   },
 })
 export class Sidebar {
+  /***** ViewChild *****/
+  @ViewChild('userMenuTemplate', { static: false }) userMenuTemplate?: TemplateRef<any>;
+
   /***** Signals *****/
   expanded = signal<boolean>(true);
   isHoveringLogo = signal<boolean>(false);
@@ -65,5 +72,9 @@ export class Sidebar {
     console.log('Spacer clicked!');
     // Ou utilisez votre système de notification
     // this.toaster.show('Spacer cliqué', 'info');
+  }
+
+  constructor() {
+    console.log('Sidebar initialized with PopoverDirective');
   }
 }

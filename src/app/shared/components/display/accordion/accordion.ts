@@ -46,12 +46,9 @@ export class Accordion {
   isOpen = signal<boolean>(false);
 
   constructor() {
-    effect(
-      () => {
-        this.isOpen.set(this.startOpen());
-      },
-      { allowSignalWrites: true },
-    );
+    effect(() => {
+      this.isOpen.set(this.startOpen());
+    });
   }
 
   /*********************/
