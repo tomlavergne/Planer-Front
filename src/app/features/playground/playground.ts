@@ -2,30 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /***** Imports des composants *****/
-import {
-  Button,
-  Input,
-  Textarea,
-  Label,
-  Checkbox,
-  Toggle,
-  Select,
-  RadioGroup,
-  Badge,
-  Card,
-  Separator,
-  Avatar,
-  Dialog,
-  Tabs,
-  Progress,
-  Alert,
-  Skeleton,
-  Flex,
-  ContextMenu,
-  Icon,
-  Text,
-  Accordion,
-} from '../../shared/components';
+import { Button, Toggle, Badge, Alert, Flex, Text, Accordion } from '../../shared/components';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../shared/directives/tooltip/tooltip';
@@ -45,25 +22,10 @@ import type { Text as TextType } from '../../shared/components/display/text/text
     CommonModule,
     Accordion,
     Button,
-    Input,
-    Textarea,
-    Label,
-    Checkbox,
     Toggle,
-    Select,
-    RadioGroup,
     Badge,
-    Card,
-    Separator,
-    Avatar,
-    Dialog,
-    Tabs,
-    Progress,
     Alert,
-    Skeleton,
     Flex,
-    ContextMenu,
-    Icon,
     Text,
     TooltipDirective,
     PopoverDirective,

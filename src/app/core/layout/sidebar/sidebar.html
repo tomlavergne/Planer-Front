@@ -149,34 +149,38 @@
 
     <app-separator />
 
-    <!-- Utilisateur-->
-    <app-flex
-      direction="row"
-      alignItems="center"
-      [justifyContent]="expanded() ? 'between' : 'center'"
-      gap="xs"
-      [padding]="expanded() ? '2xs' : '3xs'"
-      class="user-avatar-button"
+    <app-button
+      variant="ghost"
+      color="gray"
+      [size]="expanded() ? 'sm' : 'xs'"
       [popover]="{
         content: 'Test simple popover',
         title: 'Mon compte',
         position: 'right-top',
       }"
+      fullWidth
     >
-      <app-flex direction="row" alignItems="center" gap="2xs">
-        <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
+      <app-flex
+        direction="row"
+        alignItems="center"
+        [justifyContent]="expanded() ? 'between' : 'center'"
+        gap="xs"
+        fullWidth
+      >
+        <app-flex direction="row" alignItems="center" gap="2xs">
+          <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
+
+          @if (expanded()) {
+            <app-flex direction="column" gap="4xs">
+              <app-text color="gray" size="sm" weight="medium">Tom Lavergne</app-text>
+            </app-flex>
+          }
+        </app-flex>
 
         @if (expanded()) {
-          <app-flex direction="column" gap="4xs">
-            <app-text color="gray" size="xs" weight="medium">Tom Lavergne</app-text>
-            <!-- <app-text color="gray  " size="2xs">tom.lavergn@gmail.com</app-text> -->
-          </app-flex>
+          <app-icon name="lucideChevronsUpDown" size="xs" color="gray" />
         }
       </app-flex>
-
-      @if (expanded()) {
-        <app-icon name="lucideChevronsUpDown" size="xs" color="gray"></app-icon>
-      }
-    </app-flex>
+    </app-button>
   </app-flex>
 </app-flex>

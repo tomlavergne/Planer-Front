@@ -1,7 +1,8 @@
-<div class="tooltip-content">
+<div class="tooltip-content" [attr.data-position]="position()">
   @if (text()) {
-    {{ text() }}
-  } @else if (template()) {
-    <ng-container *ngTemplateOutlet="template()!" />
+    <p>{{ text() }}</p>
+  }
+  @if (template()) {
+    <ng-container *ngTemplateOutlet="template()!"></ng-container>
   }
 </div>

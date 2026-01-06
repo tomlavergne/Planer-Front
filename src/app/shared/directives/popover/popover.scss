@@ -5,51 +5,6 @@
   display: block;
 }
 
-// // Animations temporaires
-// @keyframes slideInUp {
-//   from {
-//     opacity: 0;
-//     transform: translateY(8px);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
-
-// @keyframes slideInDown {
-//   from {
-//     opacity: 0;
-//     transform: translateY(-8px);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateY(0);
-//   }
-// }
-
-// @keyframes slideInLeft {
-//   from {
-//     opacity: 0;
-//     transform: translateX(8px);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-// }
-
-// @keyframes slideInRight {
-//   from {
-//     opacity: 0;
-//     transform: translateX(-8px);
-//   }
-//   to {
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-// }
-
 .popover-container {
   position: relative;
   z-index: 9999; // Changer le z-index à une valeur élevée
@@ -58,11 +13,11 @@
   background: var(--color-background);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  @include shadow-base;
+  box-shadow: 0 0 var(--spacing-sm) rgba(0, 0, 0, 0.1);
   overflow: hidden;
 
   // Animation par défaut
-  animation: slideInUp 200ms ease;
+  animation: fadeInUp 200ms ease;
 
   // Animations selon la position
   &[data-position='top'],
@@ -126,10 +81,6 @@
     background: var(--color-hover);
     color: var(--color-text);
   }
-
-  &:focus-visible {
-    // @include focus-ring;
-  }
 }
 
 .popover-content {
@@ -142,17 +93,3 @@
     margin: 0;
   }
 }
-
-// Supprimer ou commenter l'animation @keyframes
-/*
-@keyframes popover-appear {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-*/

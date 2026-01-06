@@ -14,7 +14,6 @@ import {
   Separator,
 } from '../../../shared/components';
 import { SidebarItem } from './sidebar-item/sidebar-item';
-import { UserPopoverContent } from './user-popover-content/user-popover-content';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
@@ -27,10 +26,8 @@ import { PopoverDirective } from '../../../shared/directives/popover/popover';
     Button,
     Text,
     SidebarItem,
-    Popover,
     Avatar,
     Icon,
-    UserPopoverContent,
     Flex,
     TooltipDirective,
     PopoverDirective,

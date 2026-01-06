@@ -32,6 +32,7 @@ import { Position } from '../../types';
 class TooltipContentComponent {
   text = signal<string | null>(null);
   template = signal<TemplateRef<any> | null>(null);
+  position = signal<Position>('top');
 }
 
 @Directive({
@@ -139,8 +140,12 @@ export class TooltipDirective implements OnDestroy {
 
     // Créer le portal avec le contenu
     const tooltipValue = this.tooltip()?.content;
+    const tooltipPosition = this.tooltip()?.position ?? 'top';
     const portal = new ComponentPortal(TooltipContentComponent, this.viewContainerRef);
     this.componentRef = this.overlayRef.attach(portal);
+
+    // Mettre à jour la position
+    this.componentRef.instance.position.set(tooltipPosition);
 
     if (typeof tooltipValue === 'string') {
       this.componentRef.instance.text.set(tooltipValue);

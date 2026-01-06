@@ -7,6 +7,9 @@
     [padding]="currentConfig().padding"
     [gap]="currentConfig().gap"
   >
+    <!-- Contenu personnalisé -->
+    <ng-content></ng-content>
+
     <!-- Icone -->
     @if (icon()) {
       <app-icon
