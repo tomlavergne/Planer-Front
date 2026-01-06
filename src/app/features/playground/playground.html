@@ -4,7 +4,7 @@
 
     <!-- Buttons -->
     <app-accordion title="Boutons" variant="ghost" size="sm" iconLeftName="lucideSquareArrowDown">
-      <app-flex direction="column" gap="lg">
+      <app-flex direction="column" gap="lg" wrap fullWidth>
         @for (variant of buttonVariants; track $index) {
           <app-flex direction="column" gap="sm" wrap>
             <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
@@ -72,60 +72,112 @@
         <!-- Disabled States -->
         <app-flex direction="column" gap="md" wrap>
           <h3>Désactivés</h3>
-          <app-flex direction="row" gap="md" wrap>
-            <app-button
-              text="Solid"
-              variant="solid"
-              color="blue"
-              size="sm"
-              borderRadius="full"
-              disabled
-            />
-            <app-button
-              text="Soft"
-              variant="soft"
-              color="green"
-              size="sm"
-              borderRadius="full"
-              disabled
-            />
-            <app-button
-              text="Outline"
-              variant="outline"
-              color="red"
-              size="sm"
-              borderRadius="full"
-              disabled
-            />
-            <app-button
-              text="Ghost"
-              variant="ghost"
-              color="orange"
-              size="sm"
-              borderRadius="full"
-              disabled
-            />
+
+          <app-flex direction="row" gap="sm" wrap>
+            @for (variant of buttonVariants; track $index) {
+              <app-button
+                text="Disabled"
+                [variant]="variant"
+                color="blue"
+                size="sm"
+                borderRadius="full"
+                disabled
+              />
+            }
+          </app-flex>
+        </app-flex>
+
+        <!-- Sizes -->
+        <app-flex direction="column" gap="md" wrap>
+          <h3>Tailles</h3>
+
+          <app-flex direction="row" gap="sm" wrap>
+            @for (size of buttonSizes; track $index) {
+              <app-button
+                [text]="size"
+                variant="solid"
+                color="blue"
+                [size]="size"
+                borderRadius="full"
+                [icon]="{ name: 'lucidePlus' }"
+              />
+            }
+          </app-flex>
+
+          <app-flex direction="row" gap="sm" wrap>
+            @for (size of buttonSizes; track $index) {
+              <app-button
+                variant="solid"
+                color="blue"
+                [size]="size"
+                borderRadius="full"
+                [icon]="{ name: 'lucidePlus' }"
+              />
+            }
+          </app-flex>
+
+          <app-flex direction="row" gap="sm" wrap>
+            @for (size of buttonSizes; track $index) {
+              <app-button
+                [text]="'Texte ' + size"
+                variant="solid"
+                color="blue"
+                [size]="size"
+                borderRadius="full"
+              />
+            }
           </app-flex>
         </app-flex>
       </app-flex>
     </app-accordion>
 
-    <!-- Switchs -->
-    <app-accordion title="Switchs" variant="ghost" size="sm" iconLeftName="lucideToggleRight">
+    <!-- Toggles -->
+    <app-accordion
+      title="Toggles"
+      variant="ghost"
+      size="sm"
+      iconLeftName="lucideToggleRight"
+      startOpen
+    >
       <app-flex direction="column" gap="md">
-        <app-switch
-          label="Default Switch"
-          [(checked)]="isChecked"
-          [tooltip]="{
-            content: isChecked() ? 'Désactiver' : 'Activer',
-            position: 'right',
-          }"
-        />
-
-        @if (isChecked()) {
-          <app-text>The switch is ON</app-text>
-        } @else {
-          <app-text>The switch is OFF</app-text>
+        @for (variant of switchVariants; track $index) {
+          <app-flex direction="column" gap="sm">
+            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+            <app-flex direction="row" gap="md" wrap>
+              @for (color of colors; track $index) {
+                <app-toggle
+                  [variant]="variant"
+                  [color]="color"
+                  size="lg"
+                  [(checked)]="isChecked"
+                  [tooltip]="{
+                    content: isChecked() ? 'Désactiver' : 'Activer',
+                    position: 'top',
+                  }"
+                />
+              }
+            </app-flex>
+          </app-flex>
+        }
+        <!-- Different Sizes -->
+        @for (variant of switchVariants; track $index) {
+          <app-flex direction="column" gap="sm">
+            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+            <app-flex direction="row" gap="md" alignItems="center" wrap>
+              @for (size of switchSizes; track $index) {
+                <app-toggle
+                  [variant]="variant"
+                  color="blue"
+                  [size]="size"
+                  [(checked)]="isChecked"
+                  [tooltip]="{
+                    content: size,
+                    position: 'top',
+                  }"
+                />
+              }
+            </app-flex>
+          </app-flex>
         }
       </app-flex>
     </app-accordion>
@@ -137,46 +189,18 @@
         <app-flex direction="column" gap="sm">
           <h3>Texte simple</h3>
           <app-flex direction="row" gap="md" wrap>
-            <app-button
-              text="Top"
-              variant="solid"
-              color="blue"
-              size="sm"
-              [tooltip]="{
-                content: 'Tooltip en haut',
-                position: 'top',
-              }"
-            />
-            <app-button
-              text="Bottom"
-              variant="solid"
-              color="green"
-              size="sm"
-              [tooltip]="{
-                content: 'Tooltip en bas',
-                position: 'bottom',
-              }"
-            />
-            <app-button
-              text="Left"
-              variant="solid"
-              color="orange"
-              size="sm"
-              [tooltip]="{
-                content: 'Tooltip à gauche',
-                position: 'left',
-              }"
-            />
-            <app-button
-              text="Right"
-              variant="solid"
-              color="purple"
-              size="sm"
-              [tooltip]="{
-                content: 'Tooltip à droite',
-                position: 'right',
-              }"
-            />
+            @for (position of tooltipPositions; track $index) {
+              <app-button
+                [text]="position.charAt(0).toUpperCase() + position.slice(1)"
+                variant="soft"
+                color="blue"
+                size="xs"
+                [tooltip]="{
+                  content: 'Tooltip ' + position,
+                  position: position,
+                }"
+              />
+            }
           </app-flex>
         </app-flex>
 
@@ -186,9 +210,9 @@
           <app-flex direction="row" gap="md" wrap>
             <app-button
               text="Template"
-              variant="outline"
+              variant="soft"
               color="blue"
-              size="sm"
+              size="xs"
               [tooltip]="{
                 content: customTooltip,
                 position: 'top',
@@ -274,9 +298,15 @@
         <app-flex direction="column" gap="md" wrap>
           <h3>Tailles</h3>
           <app-flex direction="row" gap="md" wrap alignItems="center">
-            <app-badge text="Small" variant="solid" color="blue" size="sm" />
-            <app-badge text="Medium" variant="solid" color="blue" size="md" />
-            <app-badge text="Large" variant="solid" color="blue" size="lg" />
+            @for (size of badgeSizes; track $index) {
+              <app-badge
+                text="{{ size.charAt(0).toUpperCase() + size.slice(1) }}"
+                variant="solid"
+                color="blue"
+                [size]="size"
+                [icon]="{ name: 'lucideCircle' }"
+              />
+            }
           </app-flex>
         </app-flex>
       </app-flex>
@@ -286,24 +316,29 @@
     <app-accordion title="Alertes" variant="ghost" size="sm" iconLeftName="lucideTriangleAlert">
       <app-flex direction="column" gap="lg" fullWidth>
         @for (variant of alertVariants; track $index) {
-          <app-flex direction="column" gap="md">
-            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-            @for (color of colors; track $index) {
-              <app-alert
-                [variant]="variant"
-                [color]="color"
-                icon="lucideCheckCircle"
-                title="Success Alert"
-                message="This is a success alert message."
-                [button]="{
-                  text: 'Take Action',
-                  icon: { name: 'lucideArrowRight', position: 'right' },
-                  callback: dismissAlert,
-                }"
-                dismissible
-              />
-            }
-          </app-flex>
+          <app-accordion
+            [title]="variant.charAt(0).toUpperCase() + variant.slice(1)"
+            variant="ghost"
+            size="sm"
+          >
+            <app-flex direction="column" gap="md" fullWidth>
+              @for (color of colors; track $index) {
+                <app-alert
+                  [variant]="variant"
+                  [color]="color"
+                  icon="lucideCheckCircle"
+                  title="Success Alert"
+                  message="This is a success alert message."
+                  [button]="{
+                    text: 'Take Action',
+                    icon: { name: 'lucideArrowRight', position: 'right' },
+                    callback: dismissAlert,
+                  }"
+                  dismissible
+                />
+              }
+            </app-flex>
+          </app-accordion>
         }
       </app-flex>
     </app-accordion>

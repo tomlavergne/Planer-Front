@@ -10,9 +10,9 @@
     />
     <div class="checkbox-box">
       @if (indeterminate()) {
-        <app-icon name="lucideMinus" [size]="size() === 'sm' ? '16' : '20'" />
+        <app-icon name="lucideMinus" size="sm" />
       } @else if (checked()) {
-        <app-icon name="lucideCheck" [size]="size() === 'sm' ? '16' : '20'" />
+        <app-icon name="lucideCheck" size="sm" />
       }
     </div>
   </div>

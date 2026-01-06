@@ -8,13 +8,9 @@ import { Button } from '../../forms/button/button';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
-import type {
-  Alert as AlertType,
-  Button as ButtonType,
-  Color,
-  LucideIconName,
-  Position,
-} from '../../../types';
+import type { Alert as AlertType } from './alert.type';
+import type { Icon as Toggle } from '../../display/icon/icon.type';
+import type { Button as ButtonType } from '../../forms/button/button.type';
 
 @Component({
   selector: 'app-alert',
@@ -27,25 +23,35 @@ import type {
   },
 })
 export class Alert {
+  /******************/
   /***** Inputs *****/
+  /******************/
+
   variant = input<AlertType.Variant>('solid');
-  color = input<Color | null>(null);
-  icon = input<LucideIconName | null>(null);
+  color = input<AlertType.Color | null>(null);
+  icon = input<Toggle.Name | null>(null);
   title = input<string | null>(null);
   message = input<string | null>(null);
   button = input<{
     text: string;
     icon?: {
-      name: LucideIconName;
-      position?: Position;
+      name: Toggle.Name;
+      position?: ButtonType.IconPosition;
     } | null;
     callback: () => void;
   } | null>(null);
   borderRadius = input<ButtonType.BorderRadius>('md');
   dismissible = input<boolean, any>(false, { transform: booleanAttribute });
 
+  /*******************/
   /***** Outputs *****/
+  /*******************/
+
   dismissed = output<void>();
+
+  /*********************/
+  /***** Computeds *****/
+  /*********************/
 
   // Computed pour les classes
   hostClasses = computed(() => {
@@ -56,20 +62,8 @@ export class Alert {
     ].join(' ');
   });
 
-  // Computed pour l'icône par défaut selon la variante
-  //   defaultIcon = computed((): LucideIconName => {
-  //     const iconMap: Record<SemanticVariant, LucideIconName> = {
-  //       info: 'lucideInfo',
-  //       success: 'lucideCircleCheck',
-  //       warning: 'lucideShieldAlert',
-  //       danger: 'lucideOctagonAlert',
-  //       default: 'lucideInfo',
-  //     };
-  //     return iconMap[this.variant()];
-  //   });
-
-  //   Computed pour la couleur par défaut selon la variante
-  contentColor = computed((): Color => {
+  // Computed pour la couleur du contenu (icone + texte)
+  contentColor = computed((): AlertType.IconColor => {
     if (this.variant() === 'solid') {
       return 'white';
     } else {
@@ -85,6 +79,10 @@ export class Alert {
       return 'ghost';
     }
   });
+
+  /*******************/
+  /***** Methods *****/
+  /*******************/
 
   onDismiss(): void {
     this.dismissed.emit();

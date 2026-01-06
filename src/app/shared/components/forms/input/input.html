@@ -1,7 +1,7 @@
 <div class="input-wrapper">
   @if (prefixIcon()) {
     <div class="input-prefix">
-      <app-icon [name]="prefixIcon()!" [size]="iconSize()" />
+      <app-icon [name]="prefixIcon()!" [size]="size()" />
     </div>
   }
 
@@ -20,7 +20,7 @@
 
   @if (suffixIcon()) {
     <div class="input-suffix">
-      <app-icon [name]="suffixIcon()!" [size]="iconSize()" />
+      <app-icon [name]="suffixIcon()!" [size]="size()" />
     </div>
   }
 

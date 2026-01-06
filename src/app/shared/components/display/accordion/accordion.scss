@@ -1,4 +1,5 @@
 @use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables.scss' as *;
 
 :host {
   .header {
@@ -8,18 +9,10 @@
 
   @include focus-accessible();
 
-  // Sizes avec boucle
-  $sizes: ('xs', 'sm', 'md', 'lg', 'xl');
-
-  @each $size-name in $sizes {
-    &.size-#{$size-name} {
-      border-radius: var(--radius-md);
-
-      .header {
-        padding: var(--spacing-#{$size-name});
-        font-size: var(--font-size-#{$size-name});
-      }
-    }
+  .content {
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    animation: slideDown 0.2s ease-out;
   }
 
   // Génération des variants

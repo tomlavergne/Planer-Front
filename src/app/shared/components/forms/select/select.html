@@ -4,12 +4,7 @@
     <span class="select-value">
       {{ selectedOption()?.label || placeholder() }}
     </span>
-    <app-icon
-      name="lucideChevronDown"
-      [size]="size() === 'sm' ? '16' : '20'"
-      class="select-icon"
-      [class.open]="isOpen()"
-    />
+    <app-icon name="lucideChevronDown" size="sm" class="select-icon" [class.open]="isOpen()" />
   </button>
 
   <!-- Dropdown -->
@@ -28,7 +23,7 @@
         >
           <span>{{ option.label }}</span>
           @if (value() === option.value) {
-            <app-icon name="lucideCheck" size="16" />
+            <app-icon name="lucideCheck" size="sm" />
           }
         </button>
       }

@@ -1,9 +1,10 @@
 @use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables.scss' as *;
 
 :host {
   button {
     cursor: pointer;
-    @include focus-accessible(var(--color-primary), 0px);
+    @include focus-accessible($selector: 'button');
   }
 
   // Disabled state
@@ -13,19 +14,19 @@
   }
 
   // Hover state
-  &:hover:not(:disabled) {
+  &:hover:not(:disabled):not(.disabled) {
     transform: translateY(-0.5px);
   }
 
   // Active state
-  &:active:not(:disabled) {
+  &:active:not(:disabled):not(.disabled) {
     transform: translateY(0.5px);
   }
 
-  // Border radius avec boucle
-  $radiusList: ('sm', 'md', 'lg', 'full');
+  // Border radius variants
+  $radii: ('sm', 'md', 'lg', 'full');
 
-  @each $radius in $radiusList {
+  @each $radius in $radii {
     &.border-radius-#{$radius} button {
       border-radius: var(--radius-#{$radius});
     }

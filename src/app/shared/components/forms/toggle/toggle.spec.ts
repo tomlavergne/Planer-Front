@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Switch } from './switch';
+import { Toggle } from './toggle';
 
-describe('Switch', () => {
-  let component: Switch;
-  let fixture: ComponentFixture<Switch>;
+describe('Toggle', () => {
+  let component: Toggle;
+  let fixture: ComponentFixture<Toggle>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Switch],
+      imports: [Toggle],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Switch);
+    fixture = TestBed.createComponent(Toggle);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

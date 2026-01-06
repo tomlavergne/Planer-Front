@@ -9,9 +9,6 @@ export * from './ui.types';
 // Types spécifiques aux composants
 export * from './component.types';
 
-// Types d'icônes
-export * from './icon.types';
-
 // Types de thème
 export * from './theme.types';
 

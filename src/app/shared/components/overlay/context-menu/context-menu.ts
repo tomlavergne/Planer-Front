@@ -16,12 +16,12 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Icon } from '../../display/icon/icon';
 
 /***** Imports de types *****/
-import { LucideIconName } from '../../../types';
+import type { Icon as IconType } from '../../display/icon/icon.type';
 
 export interface ContextMenuItem {
   id: string;
   label: string;
-  icon?: LucideIconName;
+  icon?: IconType.Name;
   disabled?: boolean;
   separator?: boolean;
   submenu?: ContextMenuItem[];

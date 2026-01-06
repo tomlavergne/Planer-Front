@@ -1,36 +1,41 @@
 <app-flex direction="column">
+  <!-- Header -->
   <app-flex
     direction="row"
     justifyContent="between"
     alignItems="center"
-    gap="xs"
+    [gap]="currentConfig().header.gap"
+    [padding]="currentConfig().header.padding"
     class="header"
     fullWidth
     (click)="toggle()"
   >
-    <!-- Header -->
-    <app-flex direction="row" alignItems="center" [gap]="size()">
+    <app-flex direction="row" alignItems="center" [gap]="currentConfig().header.gap">
       @if (iconLeftName()) {
-        <app-icon [name]="iconLeftName()!" [size]="size()" [color]="contentColor()"></app-icon>
+        <app-icon
+          [name]="iconLeftName()!"
+          [size]="currentConfig().header.iconSize"
+          [color]="contentColor()"
+        ></app-icon>
       }
 
-      <app-text [size]="size()" [color]="contentColor()">{{ title() }}</app-text>
+      <app-text [size]="currentConfig().header.fontSize" [color]="contentColor()">{{
+        title()
+      }}</app-text>
     </app-flex>
 
     <app-icon
-      [size]="size()"
+      [size]="currentConfig().header.iconSize"
       [color]="contentColor()"
       [name]="isOpen() ? 'lucideChevronUp' : 'lucideChevronDown'"
     />
   </app-flex>
 
-  <!-- Body -->
+  <!-- Content -->
   @if (isOpen()) {
     <app-flex
       class="content"
-      [padding]="contentPadding() ? size() : 'none'"
-      direction="column"
-      gap="md"
+      [padding]="contentPadding() ? currentConfig().content.padding : 'none'"
       fullWidth
     >
       <ng-content></ng-content>

@@ -2,7 +2,7 @@
 import { Component, input, computed, booleanAttribute } from '@angular/core';
 
 /***** Imports de types *****/
-import { Flex as FlexType } from '../../../../shared/types/';
+import { Flex as FlexType } from './flex.type';
 
 @Component({
   selector: 'app-flex',
@@ -23,6 +23,7 @@ export class Flex {
   padding = input<FlexType.Padding>('none');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
   fullHeight = input<boolean, any>(false, { transform: booleanAttribute });
+  wrap = input<boolean, any>(false, { transform: booleanAttribute });
 
   // Computed signal pour générer les classes dynamiquement
   hostClasses = computed(() => {
@@ -34,6 +35,7 @@ export class Flex {
       this.gap() !== 'none' ? `gap-${this.gap()}` : '',
       this.fullWidth() ? 'full-width' : '',
       this.fullHeight() ? 'full-height' : '',
+      this.wrap() ? 'wrap' : '',
     ].join(' ');
   });
 }

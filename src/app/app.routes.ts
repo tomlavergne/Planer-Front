@@ -8,7 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'playground',
-    loadComponent: () => import('./features/playground/playground').then((m) => m.Playground),
+    loadComponent: () => import('./features/playground/playground').then((p) => p.Playground),
   },
   {
     path: 'home',

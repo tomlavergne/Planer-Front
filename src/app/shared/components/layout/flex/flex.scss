@@ -1,3 +1,5 @@
+@use '../../../styles/mixins.scss' as *;
+
 :host {
   display: flex;
 
@@ -52,57 +54,9 @@
     justify-content: space-around;
   }
 
-  /***********************/
-  /********* GAP *********/
-  /***********************/
-
-  &.gap-none {
-    gap: none;
-  }
-  &.gap-2xs {
-    gap: var(--spacing-2xs);
-  }
-  &.gap-xs {
-    gap: var(--spacing-xs);
-  }
-  &.gap-sm {
-    gap: var(--spacing-sm);
-  }
-  &.gap-md {
-    gap: var(--spacing-md);
-  }
-  &.gap-lg {
-    gap: var(--spacing-lg);
-  }
-  &.gap-xl {
-    gap: var(--spacing-xl);
-  }
-
-  /************************/
-  /******* PADDING *******/
-  /************************/
-
-  &.padding-none {
-    padding: none;
-  }
-  &.padding-2xs {
-    padding: var(--spacing-2xs);
-  }
-  &.padding-xs {
-    padding: var(--spacing-xs);
-  }
-  &.padding-sm {
-    padding: var(--spacing-sm);
-  }
-  &.padding-md {
-    padding: var(--spacing-md);
-  }
-  &.padding-lg {
-    padding: var(--spacing-lg);
-  }
-  &.padding-xl {
-    padding: var(--spacing-xl);
-  }
+  @include gaps();
+  @include paddings();
+  @include margins();
 
   /*********************/
   /******* SIZES *******/
@@ -113,5 +67,12 @@
   }
   &.full-height {
     height: 100%;
+  }
+
+  /*********************/
+  /******* WRAP ********/
+  /*********************/
+  &.wrap {
+    flex-wrap: wrap;
   }
 }

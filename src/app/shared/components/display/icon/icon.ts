@@ -3,7 +3,7 @@ import { Component, input, computed } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 /***** Import de types *****/
-import type { Icon as IconType, Color, LucideIconName } from '../../../types';
+import type { Icon as IconType } from '../icon/icon.type';
 
 @Component({
   selector: 'app-icon',
@@ -16,10 +16,10 @@ import type { Icon as IconType, Color, LucideIconName } from '../../../types';
 })
 export class Icon {
   /***** Inputs *****/
-  name = input.required<LucideIconName>();
+  name = input.required<IconType.Name>();
   size = input<IconType.Size>('sm');
   strokeWidth = input<number>(2);
-  color = input<Color | 'text'>('blue');
+  color = input<IconType.Color | 'text'>('blue');
 
   /***** Computeds *****/
   hostClasses = computed(() => {
@@ -28,6 +28,8 @@ export class Icon {
 
   IconSize = computed((): string => {
     const sizeMap: Record<IconType.Size, string> = {
+      '3xs': '12',
+      '2xs': '14',
       xs: '16',
       sm: '20',
       md: '24',

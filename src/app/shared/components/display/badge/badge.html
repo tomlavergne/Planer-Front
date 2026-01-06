@@ -1,11 +1,20 @@
-<app-flex direction="row" alignItems="center" justifyContent="center" [gap]="gapSize()" fullWidth>
+<app-flex
+  direction="row"
+  alignItems="center"
+  justifyContent="center"
+  [gap]="currentConfig().gap"
+  [padding]="currentConfig().padding"
+  fullWidth
+>
   <!-- Icon -->
   @if (icon()?.name) {
-    <app-icon [color]="contentColor()" [name]="icon()!.name" [size]="size()" />
+    <app-icon [color]="contentColor()" [name]="icon()!.name" [size]="currentConfig().iconSize" />
   }
 
   <!-- Message -->
   @if (text()) {
-    <app-text as="p" [color]="contentColor()" size="sm">{{ text() }}</app-text>
+    <app-text as="p" [color]="contentColor()" [size]="currentConfig().fontSize">{{
+      text()
+    }}</app-text>
   }
 </app-flex>

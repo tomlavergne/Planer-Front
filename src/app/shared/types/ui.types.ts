@@ -5,6 +5,7 @@
 
 /***** Tailles *****/
 export type Size =
+  | 'none'
   | '6xs'
   | '5xs'
   | '4xs'
@@ -19,7 +20,8 @@ export type Size =
   | '3xl'
   | '4xl'
   | '5xl'
-  | '6xl';
+  | '6xl'
+  | 'full';
 export type IconSize = '16' | '20' | '24' | '32';
 
 /***** Positions *****/
@@ -36,6 +38,8 @@ export type AdvancedPosition =
   | 'right-bottom';
 
 export type Orientation = 'horizontal' | 'vertical';
+
+export type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
 /***** Alignements *****/
 export type Align = 'start' | 'center' | 'end' | 'stretch';

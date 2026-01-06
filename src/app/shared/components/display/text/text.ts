@@ -2,7 +2,7 @@
 import { Component, input, computed, booleanAttribute } from '@angular/core';
 
 /***** Import de types *****/
-import type { Text as TextTypes, Color } from '../../../types/';
+import type { Text as TextTypes } from './text.type';
 
 @Component({
   selector: 'app-text',
@@ -16,7 +16,7 @@ import type { Text as TextTypes, Color } from '../../../types/';
 export class Text {
   /***** Inputs *****/
   as = input<TextTypes.As>('p');
-  color = input<Color | 'text'>('blue'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
+  color = input<TextTypes.Color | 'text'>('blue'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
   size = input<TextTypes.Size | null>(null);
   weight = input<TextTypes.Weight | null>(null);
   align = input<TextTypes.Align>('left');
@@ -29,7 +29,7 @@ export class Text {
   hostClasses = computed(() => {
     return [
       `color-${this.color()}`,
-      `size-${this.size()}`,
+      `font-size-${this.size()}`,
       `weight-${this.weight()}`,
       `align-${this.align()}`,
       `truncate-${this.truncate()}`,

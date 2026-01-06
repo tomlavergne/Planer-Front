@@ -7,15 +7,11 @@ import { Text } from '../text/text';
 import { Icon } from '../icon/icon';
 
 /***** Imports de types *****/
-import {
-  Badge as BadgeType,
-  LucideIconName,
-  Position,
-  Color,
-  Icon as IconType,
-} from '../../../types';
+import type { Badge as BadgeType } from './badge.type';
+import type { Icon as IconType } from '../icon/icon.type';
 
-type BadgeVariant = 'solid' | 'soft' | 'outline';
+/***** Import de configuration *****/
+import { BADGE_SIZES_CONFIG } from './badge.config';
 
 @Component({
   selector: 'app-badge',
@@ -27,16 +23,23 @@ type BadgeVariant = 'solid' | 'soft' | 'outline';
   },
 })
 export class Badge {
+  /******************/
   /***** Inputs *****/
+  /******************/
+
   text = input<string>('');
-  variant = input<BadgeVariant>('solid');
-  color = input<Color | null>('blue');
+  variant = input<BadgeType.Variant>('solid');
+  color = input<BadgeType.Color | null>('blue');
   icon = input<{
-    name: LucideIconName;
-    position?: Position;
+    name: IconType.Name;
+    position?: BadgeType.IconPosition;
   } | null>(null);
 
   size = input<BadgeType.Size>('md');
+
+  /*********************/
+  /***** Computeds *****/
+  /*********************/
 
   // Computed pour les classes
   hostClasses = computed(() => {
@@ -48,13 +51,16 @@ export class Badge {
   });
 
   // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): Color => {
+  contentColor = computed((): BadgeType.Color => {
     if (this.variant() === 'solid') {
       return 'white';
     } else {
       return this.color() || 'blue';
     }
   });
+
+  // Computed pour la configuration actuelle selon la taille
+  currentConfig = computed(() => BADGE_SIZES_CONFIG[this.size()]);
 
   gapSize = computed((): BadgeType.Size => {
     if (this.size() === 'xs' || this.size() === 'sm') {

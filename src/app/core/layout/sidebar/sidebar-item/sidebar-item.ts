@@ -11,7 +11,7 @@ import { Text } from '../../../../shared/components';
 import { TooltipDirective } from '../../../../shared/directives/tooltip/tooltip';
 
 /***** Import de types *****/
-import { LucideIconName } from '../../../../shared/types';
+import type { Icon as IconType } from '../../../../shared/components/display/icon/icon.type';
 
 @Component({
   selector: 'app-sidebar-item',
@@ -20,14 +20,24 @@ import { LucideIconName } from '../../../../shared/types';
   styleUrl: './sidebar-item.scss',
 })
 export class SidebarItem {
+  /******************/
   /***** Inputs *****/
+  /******************/
+
   label = input<string>('');
-  iconName = input<LucideIconName | null>(null);
+  iconName = input<IconType.Name | null>(null);
   expanded = input<boolean, any>(true, { transform: booleanAttribute });
   routerLink = input<string | null>(null);
 
+  /*******************/
   /***** Outputs *****/
+  /*******************/
+
   clicked = output<void>();
+
+  /*******************/
+  /***** Methods *****/
+  /*******************/
 
   onClick(): void {
     this.clicked.emit();

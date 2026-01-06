@@ -50,13 +50,58 @@
 }
 
 // Focus accessible (visible uniquement au clavier)
-@mixin focus-accessible($color: var(--color-primary), $offset: 0px, $width: 2px) {
-  &:focus {
-    outline: none;
-  }
+@mixin focus-accessible($color: var(--color-primary), $offset: 0px, $width: 2px, $selector: null) {
+  @if $selector {
+    &:focus #{$selector} {
+      outline: none;
+    }
 
-  &:focus-visible {
-    box-shadow: 0 0 0 #{$width} #{$color};
-    outline: none;
+    &:focus-visible #{$selector} {
+      box-shadow: 0 0 0 #{$width} #{$color};
+      outline: none;
+    }
+  } @else {
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 #{$width} #{$color};
+      outline: none;
+    }
+  }
+}
+
+$sizes: ('none', '6xs', '5xs', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl');
+
+@mixin fontSizes {
+  @each $size-name in $sizes {
+    &.font-size-#{$size-name} {
+      font-size: var(--font-size-#{$size-name});
+    }
+  }
+}
+
+@mixin paddings {
+  @each $size-name in $sizes {
+    &.padding-#{$size-name} {
+      padding: var(--spacing-#{$size-name});
+    }
+  }
+}
+
+@mixin margins {
+  @each $size-name in $sizes {
+    &.margin-#{$size-name} {
+      margin: var(--spacing-#{$size-name});
+    }
+  }
+}
+
+@mixin gaps {
+  @each $size-name in $sizes {
+    &.gap-#{$size-name} {
+      gap: var(--spacing-#{$size-name});
+    }
   }
 }

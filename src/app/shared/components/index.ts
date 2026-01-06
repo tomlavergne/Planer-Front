@@ -17,7 +17,7 @@ export { Input } from './forms/input/input';
 export { Textarea } from './forms/textarea/textarea';
 export { Label } from './forms/label/label';
 export { Checkbox } from './forms/checkbox/checkbox';
-export { Switch } from './forms/switch/switch';
+export { Toggle } from './forms/toggle/toggle';
 export { Select, type SelectOption } from './forms/select/select';
 export { RadioGroup, type RadioOption } from './forms/radio-group/radio-group';
 

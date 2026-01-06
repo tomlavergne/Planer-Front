@@ -1,3 +1,5 @@
+@use '../../../styles/mixins.scss' as *;
+
 :host {
   display: inline;
 
@@ -5,7 +7,7 @@
   /***** COLORS *****/
   /*******************/
 
-  $colors: ('blue', 'green', 'red', 'orange', 'purple', 'pink', 'yellow', 'teal', 'indigo', 'gray');
+  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
 
   @each $color in $colors {
     &.color-#{$color} {
@@ -29,28 +31,12 @@
   /***** SIZES *****/
   /*****************/
 
-  &.size-xs {
-    font-size: var(--font-size-xs);
-  }
+  $sizes: ('none', '6xs', '5xs', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl');
 
-  &.size-sm {
-    font-size: var(--font-size-sm);
-  }
-
-  &.size-base {
-    font-size: var(--font-size-base);
-  }
-
-  &.size-lg {
-    font-size: var(--font-size-lg);
-  }
-
-  &.size-xl {
-    font-size: var(--font-size-xl);
-  }
-
-  &.size-2xl {
-    font-size: var(--font-size-2xl);
+  @each $size-name in $sizes {
+    &.font-size-#{$size-name} {
+      font-size: var(--font-size-#{$size-name});
+    }
   }
 
   /******************/

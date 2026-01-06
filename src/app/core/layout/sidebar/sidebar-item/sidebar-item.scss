@@ -8,13 +8,12 @@
 
   a {
     display: block;
-    padding: var(--spacing-xs);
     border-radius: var(--radius-md);
     text-decoration: none;
     background-color: transparent;
     border: 1px solid transparent;
 
-    @include focus-accessible(var(--color-primary), 0px);
+    @include focus-accessible();
 
     &:hover {
       @include hover-light(var(--color-gray));

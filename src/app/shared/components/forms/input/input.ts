@@ -13,10 +13,11 @@ import {
 import { FormsModule } from '@angular/forms';
 
 /***** Imports de composants *****/
+import { Input as InputType } from './input.type';
 import { Icon } from '../../display/icon/icon';
 
 /***** Imports de types *****/
-import { Input as InputType, LucideIconName } from '../../../types';
+import type { Icon as IconType } from '../../display/icon/icon.type';
 
 @Component({
   selector: 'app-input',
@@ -28,7 +29,10 @@ import { Input as InputType, LucideIconName } from '../../../types';
   },
 })
 export class Input {
+  /******************/
   /***** Inputs *****/
+  /******************/
+
   type = input<InputType.Type>('text');
   placeholder = input<string>('');
   size = input<InputType.Size>('md');
@@ -37,19 +41,29 @@ export class Input {
   readonly = input<boolean, any>(false, { transform: booleanAttribute });
   error = input<boolean, any>(false, { transform: booleanAttribute });
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
-  prefixIcon = input<LucideIconName | null>(null);
-  suffixIcon = input<LucideIconName | null>(null);
+  prefixIcon = input<IconType.Name | null>(null);
+  suffixIcon = input<IconType.Name | null>(null);
 
-  /***** Model (two-way binding) *****/
+  /*****************/
+  /***** Model *****/
+  /*****************/
+
   value = model<string>('');
 
+  /*******************/
   /***** Outputs *****/
+  /*******************/
+
   valueChange = output<string>();
   focused = output<void>();
   blurred = output<void>();
 
   /***** ViewChild *****/
   inputElement = viewChild<ElementRef<HTMLInputElement>>('inputElement');
+
+  /*********************/
+  /***** Computeds *****/
+  /*********************/
 
   // Computed pour les classes
   hostClasses = computed(() => {
@@ -64,15 +78,9 @@ export class Input {
     ].join(' ');
   });
 
-  // Computed pour la taille de l'icône
-  iconSize = computed(() => {
-    const sizeMap: Record<InputType.Size, '16' | '20' | '24'> = {
-      sm: '16',
-      md: '20',
-      lg: '24',
-    };
-    return sizeMap[this.size()];
-  });
+  /*******************/
+  /***** Methods *****/
+  /*******************/
 
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;

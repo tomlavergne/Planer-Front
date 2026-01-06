@@ -10,6 +10,7 @@ import {
   signal,
   Component,
   ChangeDetectionStrategy,
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
@@ -53,6 +54,33 @@ export class TooltipDirective implements OnDestroy {
   private viewContainerRef = inject(ViewContainerRef);
   private overlayRef?: OverlayRef;
   private timeoutId?: number;
+  private componentRef?: any;
+
+  constructor() {
+    // Surveiller les changements de contenu
+    effect(() => {
+      const tooltipValue = this.tooltip()?.content;
+      // Si le tooltip est ouvert, mettre à jour son contenu
+      if (this.overlayRef?.hasAttached() && this.componentRef) {
+        if (typeof tooltipValue === 'string') {
+          this.componentRef.instance.text.set(tooltipValue);
+          this.componentRef.instance.template.set(null);
+        } else if (tooltipValue) {
+          this.componentRef.instance.template.set(tooltipValue);
+          this.componentRef.instance.text.set(null);
+        }
+      }
+    });
+
+    // Surveiller les changements de position du tooltip
+    effect(() => {
+      const position = this.tooltip()?.position;
+      // Si la position change et que le tooltip est ouvert, le fermer
+      if (this.overlayRef?.hasAttached() && position) {
+        this.close();
+      }
+    });
+  }
 
   ngOnDestroy(): void {
     this.clearTimer();
@@ -108,23 +136,20 @@ export class TooltipDirective implements OnDestroy {
 
     // Créer le portal avec le contenu
     const tooltipValue = this.tooltip()?.content;
+    const portal = new ComponentPortal(TooltipContentComponent);
+    this.componentRef = this.overlayRef.attach(portal);
 
     if (typeof tooltipValue === 'string') {
-      // Texte simple
-      const portal = new ComponentPortal(TooltipContentComponent);
-      const componentRef = this.overlayRef.attach(portal);
-      componentRef.instance.text.set(tooltipValue);
+      this.componentRef.instance.text.set(tooltipValue);
     } else if (tooltipValue) {
-      // Template personnalisé
-      const portal = new ComponentPortal(TooltipContentComponent);
-      const componentRef = this.overlayRef.attach(portal);
-      componentRef.instance.template.set(tooltipValue);
+      this.componentRef.instance.template.set(tooltipValue);
     }
   }
 
   private close(): void {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef.detach();
+      this.componentRef = undefined;
     }
   }
 
@@ -180,9 +205,9 @@ export class TooltipDirective implements OnDestroy {
         {
           originX: 'end',
           originY: 'center',
-          overlayX: 'start',
+          overlayX: 'end',
           overlayY: 'center',
-          offsetX: 8,
+          offsetX: -8,
         },
       ],
       right: [
@@ -194,7 +219,7 @@ export class TooltipDirective implements OnDestroy {
           offsetX: 8,
         },
         {
-          originX: 'start',
+          originX: 'end',
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',

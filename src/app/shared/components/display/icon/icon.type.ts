@@ -1,10 +1,11 @@
-/**
- * Types pour les icônes Lucide
- */
-
 import * as lucideIcons from '@ng-icons/lucide';
+import type { Size as UISize, Color as UIColor } from '../../../types/ui.types';
 
-export type LucideIconName = keyof typeof lucideIcons;
+export namespace Icon {
+  export type Name = keyof typeof lucideIcons;
+  export type Size = Extract<UISize, '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'>;
+  export type Color = UIColor;
+}
 
 /**
  * Catégories d'icônes communes pour faciliter la recherche

@@ -3,16 +3,20 @@ import { Component, input, computed, signal, booleanAttribute, effect } from '@a
 
 /***** Import de composants *****/
 import { Flex } from '../../layout/flex/flex';
-import { Button } from '../../forms/button/button';
 import { Icon } from '../icon/icon';
 import { Text } from '../text/text';
 
 /***** Imports de types *****/
-import { Color, Accordion as AccordionType, LucideIconName } from '../../../types/';
+import { Color } from '../../../types/';
+import type { Icon as IconType } from '../icon/icon.type';
+import type { Accordion as AccordionType } from './accordion.type';
+
+/***** Import de configuration *****/
+import { ACCORDION_SIZES_CONFIG } from './accordion.config';
 
 @Component({
   selector: 'app-accordion',
-  imports: [Flex, Button, Icon, Text],
+  imports: [Flex, Icon, Text],
   templateUrl: './accordion.html',
   styleUrl: './accordion.scss',
   host: {
@@ -23,16 +27,22 @@ import { Color, Accordion as AccordionType, LucideIconName } from '../../../type
   },
 })
 export class Accordion {
+  /******************/
   /***** Inputs *****/
+  /******************/
+
   title = input<string>('Accordion Title');
   variant = input<AccordionType.Variant>('soft');
   color = input<Color>('gray');
   size = input<AccordionType.Size>('md');
-  iconLeftName = input<LucideIconName | null>(null);
+  iconLeftName = input<IconType.Name | null>(null);
   startOpen = input<boolean, any>(false, { transform: booleanAttribute });
   contentPadding = input<boolean, any>(true, { transform: booleanAttribute });
 
+  /*******************/
   /***** Signals *****/
+  /*******************/
+
   isOpen = signal<boolean>(false);
 
   constructor() {
@@ -44,9 +54,9 @@ export class Accordion {
     );
   }
 
-  toggle(): void {
-    this.isOpen.set(!this.isOpen());
-  }
+  /*********************/
+  /***** Computeds *****/
+  /*********************/
 
   // Computed pour générer les classes dynamiquement
   hostClasses = computed(() => {
@@ -59,7 +69,19 @@ export class Accordion {
     ].join(' ');
   });
 
+  // Computed pour la couleur du contenu (icone + texte)
   contentColor = computed((): Color => {
     return this.color() || 'gray';
   });
+
+  // Computed pour la configuration actuelle en fonction de la taille
+  currentConfig = computed(() => ACCORDION_SIZES_CONFIG[this.size()]);
+
+  /*******************/
+  /***** Methods *****/
+  /*******************/
+
+  toggle(): void {
+    this.isOpen.set(!this.isOpen());
+  }
 }

@@ -16,11 +16,11 @@
           role="menuitem"
         >
           @if (item.icon) {
-            <app-icon [name]="item.icon" size="16" />
+            <app-icon [name]="item.icon" size="sm" />
           }
           <span class="context-menu-label">{{ item.label }}</span>
           @if (item.submenu) {
-            <app-icon name="lucideChevronRight" size="16" class="context-menu-arrow" />
+            <app-icon name="lucideChevronRight" size="sm" class="context-menu-arrow" />
           }
         </button>
 
