@@ -9,6 +9,7 @@ export namespace Text {
   export type Color = ColorType;
   export type Weight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   export type Align = 'left' | 'center' | 'right' | 'justify';
+  export type Decoration = 'none' | 'underline' | 'line-through' | 'overline';
   export type As =
     | 'p'
     | 'span'

@@ -20,10 +20,12 @@ export class Text {
   size = input<TextTypes.Size | null>(null);
   weight = input<TextTypes.Weight | null>(null);
   align = input<TextTypes.Align>('left');
+  decoration = input<TextTypes.Decoration | null>(null);
   truncate = input<boolean>(false);
   italic = input<boolean>(false);
   underline = input<boolean>(false);
   wrap = input<boolean, any>(false, { transform: booleanAttribute });
+  fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Computed *****/
   hostClasses = computed(() => {
@@ -34,9 +36,11 @@ export class Text {
       `align-${this.align()}`,
       `truncate-${this.truncate()}`,
       `italic-${this.italic()}`,
+      `decoration-${this.decoration()}`,
       `underline-${this.underline()}`,
       `as-${this.as()}`,
       this.wrap() ? 'wrap' : 'no-wrap',
+      this.fullWidth() ? 'full-width' : '',
     ].join(' ');
   });
 }

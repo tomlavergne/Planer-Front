@@ -1,43 +1,54 @@
-<app-flex direction="column" gap="2xs" fullHeight>
+<app-flex direction="column" gap="2xs" padding="sm" fullHeight class="flexy">
+  <!-- Resize handle -->
+  <div
+    class="resize-handle"
+    [class.collapsed]="!expanded()"
+    [class.resizing]="isResizing()"
+    [tooltip]="{
+      content: resizeHandleTooltip(),
+      position: 'right',
+      delay: 500,
+      followMouse: true,
+    }"
+    (mousedown)="onResizeStart($event)"
+  ></div>
+
   <!-- Header -->
-  <app-flex
-    direction="row"
-    alignItems="center"
-    justifyContent="center"
-    gap="md"
-    class="sidebar-header"
-    (mouseenter)="isHoveringLogo.set(true)"
-    (mouseleave)="isHoveringLogo.set(false)"
-    [class.expanded]="expanded()"
-  >
-    @if (expanded() || !isHoveringLogo()) {
-      <app-flex direction="row" alignItems="center" [fullWidth]="expanded()" gap="sm">
+  <app-flex alignItems="center" justifyContent="between" gap="sm">
+    <!-- Planer Button -->
+    <app-button
+      variant="ghost"
+      color="gray"
+      size="xs"
+      [tooltip]="
+        expanded()
+          ? null
+          : {
+              content: 'Accueil',
+              position: 'right',
+              delay: 500,
+            }
+      "
+    >
+      <app-flex alignItems="center" gap="2xs">
+        <!-- Logo Icon -->
         <div class="circle"></div>
+
         @if (expanded()) {
-          <h1 class="label">Planer</h1>
+          <!-- Logo Text -->
+          <app-text size="lg" weight="medium" color="text">Planer</app-text>
+
+          <!-- Chevron Icon -->
+          <app-icon name="lucideChevronDown" size="xs" color="text" class="home-icon" />
         }
       </app-flex>
-    }
-
-    @if (expanded() || isHoveringLogo()) {
-      <app-button
-        [icon]="{ name: expanded() ? 'lucidePanelLeftClose' : 'lucidePanelLeftOpen' }"
-        variant="ghost"
-        color="gray"
-        size="sm"
-        [tooltip]="{
-          content: expanded() ? 'Réduire la barre latérale' : 'Développer la barre latérale',
-          position: 'right',
-        }"
-        (clicked)="expanded.set(!expanded())"
-      ></app-button>
-    }
+    </app-button>
   </app-flex>
 
   <app-separator />
 
   <!-- Navigation principale -->
-  <app-flex direction="column" gap="2xs" fullWidth>
+  <app-flex direction="column" gap="2xs" fullWidth fullHeight>
     <app-sidebar-item
       label="Playground"
       iconName="lucidePlay"
@@ -105,26 +116,17 @@
           />
         </app-flex>
       </app-accordion>
+
       <app-button
         [text]="'Plus'"
         variant="ghost"
         color="gray"
         size="sm"
-        [icon]="{
-          name: 'lucideEllipsis',
-          position: 'left',
-        }"
-        [popover]="{
-          content: 'Test simple popover',
-          title: 'Mon compte',
-          position: 'bottom-left',
-        }"
+        iconLeft="lucideEllipsis"
         fullWidth
       />
     }
   </app-flex>
-
-  <app-spacer fullHeight (clicked)="expanded.set(true)" />
 
   <!-- Footer -->
   <app-flex direction="column" gap="2xs" fullWidth>
@@ -133,11 +135,14 @@
       variant="ghost"
       color="gray"
       size="sm"
-      [icon]="{
-        name: iconNameTheme(),
-        position: 'left',
-      }"
+      [iconLeft]="iconNameTheme()"
       (clicked)="toggleTheme()"
+      [tooltip]="{
+        content: 'Thème ' + (currentTheme() === 'light' ? 'sombre' : 'clair'),
+        position: 'right',
+        delay: 500,
+        disabled: expanded(),
+      }"
       fullWidth
     />
     <app-sidebar-item
@@ -149,17 +154,7 @@
 
     <app-separator />
 
-    <app-button
-      variant="ghost"
-      color="gray"
-      [size]="expanded() ? 'sm' : 'xs'"
-      [popover]="{
-        content: 'Test simple popover',
-        title: 'Mon compte',
-        position: 'right-top',
-      }"
-      fullWidth
-    >
+    <app-button variant="ghost" color="gray" [size]="expanded() ? 'sm' : 'xs'" fullWidth>
       <app-flex
         direction="row"
         alignItems="center"

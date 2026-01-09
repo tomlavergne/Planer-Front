@@ -2,6 +2,8 @@
 @use '../../../styles/variables.scss' as *;
 
 :host {
+  user-select: none;
+
   button {
     cursor: pointer;
     @include focus-accessible($selector: 'button');
@@ -86,7 +88,7 @@
         // ==========================================
         @else if $variant-name == 'soft' {
           background-color: $color-light;
-          border: 1px solid transparent;
+          border: 1px solid color-mix(in srgb, $color 30%, transparent);
           @include shadow-base;
 
           &:hover:not(:disabled) {

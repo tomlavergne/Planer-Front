@@ -2,6 +2,8 @@
 @use '../../../styles/variables.scss' as *;
 
 :host {
+  width: 100%;
+
   .header {
     cursor: pointer;
     user-select: none;
@@ -17,50 +19,58 @@
 
   // Génération des variants
   $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
-  $variants: ('soft', 'ghost');
 
-  @each $variant-name in $variants {
-    @each $color-name in $colors {
-      $color: var(--color-#{$color-name});
+  // Soft variant
+  @each $color-name in $colors {
+    $color: var(--color-#{$color-name});
 
-      &.variant-#{$variant-name}.color-#{$color-name} {
-        // Soft variant
-        @if $variant-name == 'soft' {
-          border-radius: var(--radius-md);
-          border: 1px solid color-mix(in srgb, $color 20%, transparent);
+    &.variant-soft.color-#{$color-name} {
+      border-radius: var(--radius-md);
+      border: 1px solid color-mix(in srgb, $color 20%, transparent);
+
+      .header {
+        // Désactiver explicitement tous les effets hover/active
+        background: none;
+        border: none;
+        box-shadow: none;
+        transform: none;
+
+        &:hover:not(:disabled),
+        &:active:not(:disabled) {
+          background: none !important;
+          border: none !important;
+          border-color: transparent !important;
+          box-shadow: none !important;
+          transform: none !important;
+        }
+      }
+
+      .content {
+        border-top: 1px solid color-mix(in srgb, $color 20%, transparent);
+      }
+    }
+  }
+
+  // Ghost variant
+  @each $color-name in $colors {
+    $color: var(--color-#{$color-name});
+
+    &.variant-ghost.color-#{$color-name} {
+      background-color: transparent;
+
+      .header {
+        border: 1px solid transparent;
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+
+        &:hover:not(:disabled) {
           @include hover-light($color);
-
-          .content {
-            border-top: 1px solid color-mix(in srgb, $color 20%, transparent);
-          }
-
-          &:has(.header:hover:not(:disabled)) {
-            @include hover-light($color);
-          }
-
-          &:has(.header:active:not(:disabled)) {
-            @include active-light($color);
-          }
+          transform: translateY(0.5px);
         }
 
-        // Ghost variant
-        @else if $variant-name == 'ghost' {
-          background-color: transparent;
-
-          .header {
-            border: 1px solid transparent;
-            border-radius: var(--radius-md);
-
-            &:hover:not(:disabled) {
-              @include hover-light($color);
-              transform: translateY(0.5px);
-            }
-
-            &:active:not(:disabled) {
-              @include active-light($color);
-              transform: translateY(1px);
-            }
-          }
+        &:active:not(:disabled) {
+          @include active-light($color);
+          transform: translateY(1px);
         }
       }
     }

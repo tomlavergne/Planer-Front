@@ -4,32 +4,9 @@
   [attr.aria-label]="title()"
   [attr.data-position]="position()"
 >
-  <div class="popover-header" *ngIf="title() || showCloseButton()">
-    <!-- Titre -->
-    @if (title()) {
-      <app-text variant="h3" color="text">{{ title() }}</app-text>
-    }
-
-    <!-- Bouton fermer -->
-    @if (showCloseButton()) {
-      <app-button
-        variant="ghost"
-        color="gray"
-        size="xs"
-        [icon]="{
-          name: 'lucideX',
-        }"
-        (clicked)="onClose()"
-      />
-    }
-  </div>
-
-  <div class="popover-content">
-    @if (text()) {
-      <p *ngIf="text()">{{ text() }}</p>
-    }
-    <ng-container *ngIf="template()">
-      <ng-container *ngTemplateOutlet="template()!"></ng-container>
-    </ng-container>
-  </div>
+  @if (template()) {
+    <ng-container *ngTemplateOutlet="template()!; context: templateContext()"></ng-container>
+  } @else if (text()) {
+    <p>{{ text() }}</p>
+  }
 </div>

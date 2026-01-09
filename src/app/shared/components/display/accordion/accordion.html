@@ -1,4 +1,4 @@
-<app-flex direction="column">
+<app-flex direction="column" fullWidth>
   <!-- Header -->
   <app-flex
     direction="row"
@@ -10,7 +10,9 @@
     fullWidth
     (click)="toggle()"
   >
+    <!-- Left part -->
     <app-flex direction="row" alignItems="center" [gap]="currentConfig().header.gap">
+      <!-- Icon -->
       @if (iconLeftName()) {
         <app-icon
           [name]="iconLeftName()!"
@@ -19,11 +21,13 @@
         ></app-icon>
       }
 
-      <app-text [size]="currentConfig().header.fontSize" [color]="contentColor()">{{
-        title()
-      }}</app-text>
+      <!-- Text -->
+      <app-text [size]="currentConfig().header.fontSize" [color]="contentColor()">
+        {{ title() }}
+      </app-text>
     </app-flex>
 
+    <!-- Chevron -->
     <app-icon
       [size]="currentConfig().header.iconSize"
       [color]="contentColor()"

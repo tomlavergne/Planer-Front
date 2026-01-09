@@ -1,49 +1,49 @@
 @use '../../../shared/styles/mixins.scss' as *;
 
 :host {
-  padding: var(--spacing-sm);
-  border-right: 1px solid var(--color-border);
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0; // Prevent flex from shrinking the sidebar
+  flex-grow: 0; // Prevent flex from growing the sidebar
 
-  &.expanded {
-    width: 250px;
-  }
-
-  .sidebar-header {
-    height: 80px;
-  }
-
+  // TODO : Replace by final app icon
   .circle {
-    width: 32px;
-    height: 32px;
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
     border-radius: var(--radius-full);
     background: var(--color-text);
   }
 
-  .label {
-    color: var(--color-text);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-normal);
-  }
+  /*************************/
+  /***** Resize Handle *****/
+  /*************************/
 
-  .user-avatar-button {
-    border-radius: var(--radius-md);
-    background-color: transparent;
-    border: 1px solid transparent;
-    transition: all var(--transition-base);
-    cursor: pointer;
-    user-select: none;
+  $resizeHandleWidth: 2px;
 
-    &:hover {
-      @include hover-light(var(--color-gray));
+  .resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $resizeHandleWidth;
+    height: 100%;
+    cursor: ew-resize;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &.resizing {
+      background-color: var(--color-primary);
     }
 
-    &:active:not(:disabled) {
-      @include active-light(var(--color-gray));
-      transform: translateY(0.5px);
-    }
+    $additionalClickableWidth: 8px; // +4px from each side
 
-    &.active {
-      @include hover-light(var(--color-gray));
+    // Invisible element to increase the clickable area
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -($additionalClickableWidth / 2) - $resizeHandleWidth;
+      width: $resizeHandleWidth + $additionalClickableWidth;
+      height: 100%;
     }
   }
 }

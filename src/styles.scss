@@ -62,9 +62,9 @@
 
   /* Couleurs de fond */
   --color-background: #ffffff;
-  --color-surface: #f9fafb;
+  --color-surface: #f5f6f5;
   --color-surface-hover: #f3f4f6;
-  --color-border: #e5e7eb;
+  --color-border: #cfcfcf;
   --color-hover: rgba(0, 0, 0, 0.1);
 
   /* Couleurs de texte */
@@ -225,6 +225,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 body {
@@ -237,4 +238,5 @@ body {
   transition:
     background-color var(--transition-base),
     color var(--transition-base);
+  background-color: var(--color-surface);
 }

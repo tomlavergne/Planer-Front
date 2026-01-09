@@ -134,4 +134,25 @@
   &.no-wrap {
     white-space: nowrap;
   }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  /**********************/
+  /***** DECORATION *****/
+  /**********************/
+
+  &.decoration-none {
+    text-decoration: none;
+  }
+  &.decoration-underline {
+    text-decoration: underline;
+  }
+  &.decoration-line-through {
+    text-decoration: line-through;
+  }
+  &.decoration-overline {
+    text-decoration: overline;
+  }
 }

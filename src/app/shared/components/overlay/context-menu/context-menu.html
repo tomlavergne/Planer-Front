@@ -1,35 +1,32 @@
-<ng-container *ngTemplateOutlet="menuItems; context: { $implicit: items() }" />
-
-<ng-template #menuItems let-items>
-  @for (item of items; track item.id) {
-    @if (item.separator) {
-      <div class="context-menu-separator"></div>
-    } @else {
-      <div class="context-menu-item-wrapper">
-        <button
-          type="button"
-          class="context-menu-item"
-          [class.disabled]="item.disabled"
-          [class.has-submenu]="item.submenu"
-          [disabled]="item.disabled"
-          (click)="onItemClick(item)"
-          role="menuitem"
-        >
-          @if (item.icon) {
-            <app-icon [name]="item.icon" size="sm" />
-          }
-          <span class="context-menu-label">{{ item.label }}</span>
-          @if (item.submenu) {
-            <app-icon name="lucideChevronRight" size="sm" class="context-menu-arrow" />
-          }
-        </button>
-
-        @if (item.submenu) {
-          <div class="context-menu-submenu">
-            <ng-container *ngTemplateOutlet="menuItems; context: { $implicit: item.submenu }" />
-          </div>
-        }
-      </div>
-    }
+<app-flex direction="column" padding="2xs" class="context-menu">
+  @for (item of items(); track $index) {
+    <div class="context-menu-item-wrapper">
+      <app-button
+        [text]="item.label"
+        [variant]="'ghost'"
+        [color]="item.color ?? 'gray'"
+        size="sm"
+        [iconLeft]="item.icon!"
+        [iconRight]="item.subItems ? 'lucideChevronRight' : null"
+        fullWidth
+        (clicked)="onItemClick(item)"
+        [popover]="
+          item.subItems && submenuTemplate
+            ? {
+                content: submenuTemplate!,
+                contentContext: { $implicit: item.subItems },
+                trigger: 'hover',
+                position: 'right-top',
+                closeOnClickOutside: false,
+                showCloseButton: false,
+              }
+            : null
+        "
+      />
+    </div>
   }
+</app-flex>
+
+<ng-template #submenuTemplate let-subItems>
+  <app-context-menu [items]="subItems" (itemClicked)="itemClicked.emit($event)" />
 </ng-template>

@@ -1,5 +1,7 @@
+<!--  Content in which the circles are displayed -->
 <ng-content></ng-content>
 
+<!-- Circles -->
 @for (ripple of ripples; track ripple) {
   <span
     class="ripple-circle"
@@ -7,7 +9,7 @@
     [style.top.px]="ripple.y"
     [style.width.px]="ripple.size"
     [style.height.px]="ripple.size"
-    [style.background-color]="color()"
+    [style.background-color]="getColor()"
     [style.animation-duration.ms]="duration()"
   ></span>
 }

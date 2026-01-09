@@ -7,7 +7,7 @@ import { Text } from '../../display/text/text';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
-import { Position, Color, Direction } from '../../../types';
+import { Color } from '../../../types';
 import type { Button as ButtonType } from './button.type';
 import type { Icon as IconType } from '../../display/icon/icon.type';
 
@@ -35,10 +35,8 @@ export class Button {
   variant = input<ButtonType.Variant>('solid');
   color = input<Color | null>('blue');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
-  icon = input<{
-    name: IconType.Name;
-    position?: Position;
-  } | null>(null);
+  iconLeft = input<IconType.Name | null>(null);
+  iconRight = input<IconType.Name | null>(null);
   size = input<ButtonType.Size>('md');
   borderRadius = input<ButtonType.BorderRadius>('md');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
@@ -47,7 +45,7 @@ export class Button {
   /***** Outputs *****/
   /*******************/
 
-  clicked = output<void>();
+  clicked = output<MouseEvent>();
 
   /*********************/
   /***** Computeds *****/
@@ -59,7 +57,6 @@ export class Button {
       `variant-${this.variant()}`,
       `color-${this.color()}`,
       `size-${this.size()}`,
-      `icon-${this.icon()?.position}`,
       `border-radius-${this.borderRadius()}`,
       this.fullWidth() ? 'full-width' : '',
       this.disabled() ? 'disabled' : '',
@@ -74,30 +71,20 @@ export class Button {
     return this.variant() === 'solid' ? 'white' : this.color() || 'gray';
   });
 
-  // Computed pour la direction du Flex interne en fonction de la position de l'icône
-  direction = computed((): Direction => {
-    switch (this.icon()?.position) {
-      case 'left':
-        return 'row';
-      case 'right':
-        return 'row-reverse';
-      case 'top':
-        return 'column';
-      case 'bottom':
-        return 'column-reverse';
-      default:
-        return 'row';
-    }
-  });
+  /*************************/
+  /***** Content Child *****/
+  /*************************/
+
+  constructor() {}
 
   /********************/
   /***** Méthodes *****/
   /********************/
 
   // Gestion du clic
-  onClick(): void {
+  onClick(event: MouseEvent): void {
     if (!this.disabled()) {
-      this.clicked.emit();
+      this.clicked.emit(event);
     }
   }
 }

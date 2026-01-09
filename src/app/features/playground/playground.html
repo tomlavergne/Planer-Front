@@ -2,411 +2,521 @@
   <app-flex direction="column" gap="lg">
     <h1>Playground</h1>
 
-    <!-- Texts -->
-    <app-accordion title="Textes" variant="ghost" size="sm" iconLeftName="lucideType">
-      <app-flex direction="column" gap="lg" wrap fullWidth>
-        <app-flex direction="column" gap="sm" wrap>
-          <h3>Sizes</h3>
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of textSizes; track $index) {
-              <app-text [size]="size" color="text">{{ size }}</app-text>
-            }
+    <!-- Design -->
+    <app-accordion title="Design" variant="ghost" size="sm" iconLeftName="lucidePaintbrush">
+      <!-- Ripple -->
+      <app-accordion title="Ripple" variant="ghost" size="sm" iconLeftName="lucideWaves">
+        <app-ripple color="green">
+          <app-flex
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            padding="lg"
+            class="ripple-demo-area"
+          >
+            <app-text color="text">Cliquez ou appuyez ici pour voir l'effet Ripple</app-text>
           </app-flex>
-        </app-flex>
-
-        <app-flex direction="column" gap="sm" wrap>
-          <h3>Weights</h3>
-          <app-flex direction="row" gap="sm" alignItems="end" wrap>
-            @for (weight of textWeights; track $index) {
-              <app-text [weight]="weight" color="text">{{ weight }}</app-text>
-            }
-          </app-flex>
-        </app-flex>
-      </app-flex>
+        </app-ripple>
+      </app-accordion>
     </app-accordion>
 
-    <!-- Buttons -->
-    <app-accordion title="Boutons" variant="ghost" size="sm" iconLeftName="lucideSquareArrowDown">
-      <app-flex direction="column" gap="lg" wrap fullWidth>
-        @for (variant of buttonVariants; track $index) {
-          <app-flex direction="column" gap="sm" wrap>
-            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-            <app-flex direction="row" gap="sm" wrap>
-              @for (color of colors; track $index) {
-                <app-button
-                  [text]="
-                    `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-                  "
-                  [variant]="variant"
-                  [color]="color"
-                  size="sm"
-                  borderRadius="full"
-                />
-              }
-            </app-flex>
-          </app-flex>
-        }
-
-        <!-- With Icons -->
-        <app-flex direction="column" gap="md" wrap>
-          <h3>Avec Icônes</h3>
-          <app-flex direction="row" gap="md" wrap>
-            <app-button
-              text="Enregistrer"
-              variant="solid"
-              color="green"
-              size="sm"
-              borderRadius="full"
-              [icon]="{ name: 'lucideSave', position: 'left' }"
-            />
-            <app-button
-              text="Supprimer"
-              variant="outline"
-              color="red"
-              size="sm"
-              borderRadius="full"
-              [icon]="{ name: 'lucideTrash2', position: 'left' }"
-            />
-            <app-button
-              text="Options"
-              variant="outline"
-              color="gray"
-              size="sm"
-              borderRadius="full"
-              [icon]="{ name: 'lucideChevronDown', position: 'right' }"
-            />
-            <app-button
-              variant="ghost"
-              color="gray"
-              size="sm"
-              borderRadius="full"
-              [icon]="{ name: 'lucideStar' }"
-            />
-            <app-button
-              variant="soft"
-              color="blue"
-              size="sm"
-              borderRadius="full"
-              [icon]="{ name: 'lucidePlus' }"
-            />
-          </app-flex>
-        </app-flex>
-
-        <!-- Disabled States -->
-        <app-flex direction="column" gap="md" wrap>
-          <h3>Désactivés</h3>
-
-          <app-flex direction="row" gap="sm" wrap>
-            @for (variant of buttonVariants; track $index) {
-              <app-button
-                text="Disabled"
-                [variant]="variant"
-                color="blue"
-                size="sm"
-                borderRadius="full"
-                disabled
-              />
-            }
-          </app-flex>
-        </app-flex>
-
-        <!-- Sizes -->
-        <app-flex direction="column" gap="md" wrap>
-          <h3>Tailles</h3>
-
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of buttonSizes; track $index) {
-              <app-button
-                [text]="size"
-                variant="solid"
-                color="blue"
-                [size]="size"
-                borderRadius="full"
-                [icon]="{ name: 'lucidePlus' }"
-              />
-            }
-          </app-flex>
-
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of buttonSizes; track $index) {
-              <app-button
-                variant="solid"
-                color="blue"
-                [size]="size"
-                borderRadius="full"
-                [icon]="{ name: 'lucidePlus' }"
-              />
-            }
-          </app-flex>
-
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of buttonSizes; track $index) {
-              <app-button
-                [text]="'Texte ' + size"
-                variant="solid"
-                color="blue"
-                [size]="size"
-                borderRadius="full"
-              />
-            }
-          </app-flex>
-        </app-flex>
-      </app-flex>
-    </app-accordion>
-
-    <!-- Toggles -->
+    <!-- Display -->
     <app-accordion
-      title="Toggles"
+      title="Display"
       variant="ghost"
       size="sm"
-      iconLeftName="lucideToggleRight"
+      iconLeftName="lucideAtom"
+      fullWidth
       startOpen
     >
-      <app-flex direction="column" gap="md">
-        @for (variant of switchVariants; track $index) {
-          <app-flex direction="column" gap="sm">
-            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-            <app-flex direction="row" gap="md" wrap>
-              @for (color of colors; track $index) {
-                <app-toggle
-                  [variant]="variant"
-                  [color]="color"
-                  size="lg"
-                  [(checked)]="isChecked"
-                  [tooltip]="{
-                    content: isChecked() ? 'Désactiver' : 'Activer',
-                    position: 'top',
-                  }"
-                />
+      <app-flex direction="column" gap="sm" fullWidth>
+        <!-- Accordions -->
+        <app-accordion
+          title="Accordéons"
+          variant="ghost"
+          size="sm"
+          iconLeftName="lucideListChevronsUpDown"
+          fullWidth
+          startOpen
+        >
+          <app-flex direction="column" gap="sm" fullWidth>
+            <app-text color="text" weight="medium" size="md">Variants disponibles :</app-text>
+
+            <app-flex direction="column" gap="sm" alignItems="center" fullWidth>
+              @for (variant of accordionVariants; track $index) {
+                <app-accordion [variant]="variant" [title]="variant" fullWidth>
+                  Contenu de l'accordéon en variant "{{ variant }}"
+                </app-accordion>
               }
             </app-flex>
           </app-flex>
-        }
-        <!-- Different Sizes -->
-        <app-flex direction="column" gap="sm">
-          <h3>Sizes</h3>
-          <app-flex direction="row" gap="md" alignItems="center" wrap>
-            @for (size of switchSizes; track $index) {
-              @for (variant of switchVariants; track $index) {
-                <app-toggle
-                  [variant]="variant"
-                  color="blue"
-                  [size]="size"
-                  [(checked)]="isChecked"
-                  [tooltip]="{
-                    content: size,
-                    position: 'top',
-                  }"
-                />
-              }
+        </app-accordion>
+
+        <!-- Avatars -->
+        <app-accordion
+          title="Avatar"
+          variant="ghost"
+          size="sm"
+          iconLeftName="lucideUserCircle"
+          fullWidth
+        >
+        </app-accordion>
+
+        <!-- Badges -->
+        <app-accordion title="Badges" variant="ghost" size="sm" iconLeftName="lucideTag">
+          <app-flex direction="column" gap="lg">
+            <!-- Variants and colors -->
+            @for (variant of badgeVariants; track $index) {
+              <app-flex direction="column" gap="sm" wrap>
+                <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+                <app-flex direction="row" gap="sm" wrap>
+                  @for (color of colors; track $index) {
+                    <app-badge
+                      [text]="
+                        `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+                      "
+                      [variant]="variant"
+                      [color]="color"
+                      size="sm"
+                      [icon]="{ name: 'lucideCircle' }"
+                    />
+                  }
+                </app-flex>
+              </app-flex>
             }
-          </app-flex>
-        </app-flex>
-      </app-flex>
-    </app-accordion>
 
-    <!-- Tooltips -->
-    <app-accordion title="Tooltips" variant="ghost" size="sm" iconLeftName="lucideMessageSquare">
-      <app-flex direction="column" gap="lg">
-        <!-- Texte simple -->
-        <app-flex direction="column" gap="sm">
-          <h3>Texte simple</h3>
-          <app-flex direction="row" gap="md" wrap>
-            @for (position of tooltipPositions; track $index) {
-              <app-button
-                [text]="position.charAt(0).toUpperCase() + position.slice(1)"
-                variant="solid"
-                color="blue"
-                size="sm"
-                [tooltip]="{
-                  content: 'Tooltip ' + position,
-                  position: position,
-                }"
-              />
-            }
-          </app-flex>
-        </app-flex>
-
-        <!-- Contenu personnalisé -->
-        <app-flex direction="column" gap="sm">
-          <h3>Contenu personnalisé</h3>
-          <app-flex direction="row" gap="md" wrap>
-            <app-button
-              text="Template"
-              variant="solid"
-              color="blue"
-              size="sm"
-              [tooltip]="{
-                content: customTooltip,
-                position: 'top',
-              }"
-            />
-          </app-flex>
-        </app-flex>
-      </app-flex>
-    </app-accordion>
-
-    <ng-template #customTooltip>
-      <div style="padding: 0.5rem">
-        <strong>Contenu riche</strong>
-        <p style="margin: 0.25rem 0">Vous pouvez mettre du HTML personnalisé ici</p>
-        <small style="color: var(--color-text-secondary)">Avec des styles, des icônes, etc.</small>
-      </div>
-    </ng-template>
-
-    <!-- Popover -->
-    <app-accordion title="Popovers" variant="ghost" size="sm" iconLeftName="lucideSquaresUnite">
-      <app-flex direction="column" gap="lg">
-        <!-- Texte simple -->
-        <app-flex direction="column" gap="sm">
-          <h3>Positions</h3>
-          <app-flex direction="row" gap="md" wrap>
-            @for (position of popoverPositions; track $index) {
-              <app-button
-                [text]="position"
-                variant="solid"
-                color="blue"
-                size="sm"
-                [popover]="{
-                  title: position,
-                  content: 'popover ' + position,
-                  position: position,
-                }"
-              />
-            }
-          </app-flex>
-        </app-flex>
-
-        <!-- Contenu personnalisé -->
-        <app-flex direction="column" gap="sm">
-          <h3>Contenu personnalisé</h3>
-          <app-flex direction="row" gap="md" wrap>
-            <app-button
-              text="Template"
-              variant="solid"
-              color="blue"
-              size="sm"
-              [tooltip]="{
-                content: customTooltip,
-                position: 'top',
-              }"
-            />
-          </app-flex>
-        </app-flex>
-      </app-flex>
-    </app-accordion>
-
-    <!-- Badges -->
-    <app-accordion title="Badges" variant="ghost" size="sm" iconLeftName="lucideTag">
-      <app-flex direction="column" gap="lg">
-        @for (variant of badgeVariants; track $index) {
-          <app-flex direction="column" gap="sm" wrap>
-            <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-            <app-flex direction="row" gap="sm" wrap>
-              @for (color of colors; track $index) {
+            <!-- With Icons -->
+            <app-flex direction="column" gap="md" wrap>
+              <h3>Avec Icônes</h3>
+              <app-flex direction="row" gap="md" wrap alignItems="center">
                 <app-badge
-                  [text]="
-                    `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-                  "
-                  [variant]="variant"
-                  [color]="color"
+                  text="Success"
+                  variant="solid"
+                  color="green"
                   size="sm"
-                  [icon]="{ name: 'lucideCircle' }"
+                  [icon]="{ name: 'lucideCheck' }"
                 />
-              }
+                <app-badge
+                  text="Warning"
+                  variant="solid"
+                  color="orange"
+                  size="sm"
+                  [icon]="{ name: 'lucideAlertTriangle' }"
+                />
+                <app-badge
+                  text="Error"
+                  variant="solid"
+                  color="red"
+                  size="sm"
+                  [icon]="{ name: 'lucideX' }"
+                />
+                <app-badge
+                  text="Info"
+                  variant="soft"
+                  color="blue"
+                  size="sm"
+                  [icon]="{ name: 'lucideInfo' }"
+                />
+                <app-badge
+                  text="New"
+                  variant="outline"
+                  color="purple"
+                  size="sm"
+                  [icon]="{ name: 'lucideSparkles' }"
+                />
+              </app-flex>
+            </app-flex>
+
+            <!-- Different Sizes -->
+            <app-flex direction="column" gap="md" wrap>
+              <h3>Tailles</h3>
+              <app-flex direction="row" gap="md" wrap alignItems="center">
+                @for (size of badgeSizes; track $index) {
+                  <app-badge
+                    text="{{ size.charAt(0).toUpperCase() + size.slice(1) }}"
+                    variant="solid"
+                    color="blue"
+                    [size]="size"
+                    [icon]="{ name: 'lucideCircle' }"
+                  />
+                }
+              </app-flex>
             </app-flex>
           </app-flex>
-        }
+        </app-accordion>
 
-        <!-- With Icons -->
-        <app-flex direction="column" gap="md" wrap>
-          <h3>Avec Icônes</h3>
-          <app-flex direction="row" gap="md" wrap alignItems="center">
-            <app-badge
-              text="Success"
-              variant="solid"
-              color="green"
-              size="sm"
-              [icon]="{ name: 'lucideCheck' }"
-            />
-            <app-badge
-              text="Warning"
-              variant="solid"
-              color="orange"
-              size="sm"
-              [icon]="{ name: 'lucideAlertTriangle' }"
-            />
-            <app-badge
-              text="Error"
-              variant="solid"
-              color="red"
-              size="sm"
-              [icon]="{ name: 'lucideX' }"
-            />
-            <app-badge
-              text="Info"
-              variant="soft"
-              color="blue"
-              size="sm"
-              [icon]="{ name: 'lucideInfo' }"
-            />
-            <app-badge
-              text="New"
-              variant="outline"
-              color="purple"
-              size="sm"
-              [icon]="{ name: 'lucideSparkles' }"
-            />
+        <!-- Texts -->
+        <app-accordion title="Textes" variant="ghost" size="sm" iconLeftName="lucideType">
+          <app-flex direction="column" gap="lg" wrap fullWidth>
+            <app-flex direction="column" gap="sm" wrap>
+              <h3>Sizes</h3>
+              <app-flex direction="row" gap="sm" alignItems="center" wrap>
+                @for (size of textSizes; track $index) {
+                  <app-text [size]="size" color="text">{{ size }}</app-text>
+                }
+              </app-flex>
+            </app-flex>
+
+            <app-flex direction="column" gap="sm" wrap>
+              <h3>Weights</h3>
+              <app-flex direction="row" gap="sm" alignItems="end" wrap>
+                @for (weight of textWeights; track $index) {
+                  <app-text [weight]="weight" color="text">{{ weight }}</app-text>
+                }
+              </app-flex>
+            </app-flex>
           </app-flex>
+        </app-accordion>
+
+        <!-- Buttons -->
+      </app-flex>
+    </app-accordion>
+
+    <app-accordion
+      title="Forms"
+      variant="ghost"
+      size="sm"
+      iconLeftName="lucideClipboard"
+      fullWidth
+      startOpen
+    >
+      <app-flex direction="column" gap="sm" fullWidth>
+        <!-- Buttons -->
+        <app-accordion
+          title="Boutons"
+          variant="ghost"
+          size="sm"
+          iconLeftName="lucideSquareArrowDown"
+        >
+          <app-flex direction="column" gap="lg" wrap fullWidth>
+            @for (variant of buttonVariants; track $index) {
+              <app-flex direction="column" gap="sm" wrap>
+                <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+                <app-flex direction="row" gap="sm" wrap>
+                  @for (color of colors; track $index) {
+                    <app-button
+                      [text]="
+                        `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+                      "
+                      [variant]="variant"
+                      [color]="color"
+                      size="sm"
+                      borderRadius="full"
+                    />
+                  }
+                </app-flex>
+              </app-flex>
+            }
+
+            <!-- With Icons -->
+            <app-flex direction="column" gap="md" wrap>
+              <h3>Avec Icônes</h3>
+              <app-flex direction="row" gap="md" wrap>
+                <app-button
+                  text="Enregistrer"
+                  variant="solid"
+                  color="green"
+                  size="sm"
+                  borderRadius="full"
+                  iconLeft="lucideSave"
+                />
+                <app-button
+                  text="Supprimer"
+                  variant="outline"
+                  color="red"
+                  size="sm"
+                  borderRadius="full"
+                  iconLeft="lucideTrash2"
+                />
+                <app-button
+                  text="Options"
+                  variant="outline"
+                  color="gray"
+                  size="sm"
+                  borderRadius="full"
+                  iconLeft="lucideChevronDown"
+                />
+                <app-button
+                  variant="ghost"
+                  color="gray"
+                  size="sm"
+                  borderRadius="full"
+                  iconLeft="lucideStar"
+                />
+                <app-button
+                  variant="soft"
+                  color="blue"
+                  size="sm"
+                  borderRadius="full"
+                  iconLeft="lucidePlus"
+                />
+              </app-flex>
+            </app-flex>
+
+            <!-- Disabled States -->
+            <app-flex direction="column" gap="md" wrap>
+              <h3>Désactivés</h3>
+
+              <app-flex direction="row" gap="sm" wrap>
+                @for (variant of buttonVariants; track $index) {
+                  <app-button
+                    text="Disabled"
+                    [variant]="variant"
+                    color="blue"
+                    size="sm"
+                    borderRadius="full"
+                    disabled
+                  />
+                }
+              </app-flex>
+            </app-flex>
+
+            <!-- Sizes -->
+            <app-flex direction="column" gap="md" wrap>
+              <h3>Tailles</h3>
+
+              <app-flex direction="row" gap="sm" alignItems="center" wrap>
+                @for (size of buttonSizes; track $index) {
+                  <app-button
+                    [text]="size"
+                    variant="solid"
+                    color="blue"
+                    [size]="size"
+                    borderRadius="full"
+                    iconLeft="lucidePlus"
+                  />
+                }
+              </app-flex>
+
+              <app-flex direction="row" gap="sm" alignItems="center" wrap>
+                @for (size of buttonSizes; track $index) {
+                  <app-button
+                    variant="solid"
+                    color="blue"
+                    [size]="size"
+                    borderRadius="full"
+                    iconLeft="lucidePlus"
+                  />
+                }
+              </app-flex>
+
+              <app-flex direction="row" gap="sm" alignItems="center" wrap>
+                @for (size of buttonSizes; track $index) {
+                  <app-button
+                    [text]="'Texte ' + size"
+                    variant="solid"
+                    color="blue"
+                    [size]="size"
+                    borderRadius="full"
+                  />
+                }
+              </app-flex>
+            </app-flex>
+          </app-flex>
+        </app-accordion>
+
+        <!-- Toggles -->
+        <app-accordion title="Toggles" variant="ghost" size="sm" iconLeftName="lucideToggleRight">
+          <app-flex direction="column" gap="md">
+            @for (variant of switchVariants; track $index) {
+              <app-flex direction="column" gap="sm">
+                <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+                <app-flex direction="row" gap="md" wrap>
+                  @for (color of colors; track $index) {
+                    <app-toggle
+                      [variant]="variant"
+                      [color]="color"
+                      size="lg"
+                      [(checked)]="isChecked"
+                      [tooltip]="{
+                        content: isChecked() ? 'Désactiver' : 'Activer',
+                        position: 'top',
+                      }"
+                    />
+                  }
+                </app-flex>
+              </app-flex>
+            }
+            <!-- Different Sizes -->
+            <app-flex direction="column" gap="sm">
+              <h3>Sizes</h3>
+              <app-flex direction="row" gap="md" alignItems="center" wrap>
+                @for (size of switchSizes; track $index) {
+                  @for (variant of switchVariants; track $index) {
+                    <app-toggle
+                      [variant]="variant"
+                      color="blue"
+                      [size]="size"
+                      [(checked)]="isChecked"
+                      [tooltip]="{
+                        content: size,
+                        position: 'top',
+                      }"
+                    />
+                  }
+                }
+              </app-flex>
+            </app-flex>
+          </app-flex>
+        </app-accordion>
+
+        <!-- Tooltips -->
+        <app-accordion
+          title="Tooltips"
+          variant="ghost"
+          size="sm"
+          iconLeftName="lucideMessageSquare"
+        >
+          <app-flex direction="column" gap="lg">
+            <!-- Texte simple -->
+            <app-flex direction="column" gap="sm">
+              <h3>Texte simple</h3>
+              <app-flex direction="row" gap="md" wrap>
+                @for (position of tooltipPositions; track $index) {
+                  <app-button
+                    [text]="position.charAt(0).toUpperCase() + position.slice(1)"
+                    variant="solid"
+                    color="blue"
+                    size="sm"
+                    [tooltip]="{
+                      content: 'Tooltip ' + position,
+                      position: position,
+                    }"
+                  />
+                }
+              </app-flex>
+            </app-flex>
+
+            <!-- Contenu personnalisé -->
+            <app-flex direction="column" gap="sm">
+              <h3>Contenu personnalisé</h3>
+              <app-flex direction="row" gap="md" wrap>
+                <app-button
+                  text="Template"
+                  variant="solid"
+                  color="blue"
+                  size="sm"
+                  [tooltip]="{
+                    content: customTooltip,
+                    position: 'top',
+                  }"
+                />
+              </app-flex>
+            </app-flex>
+          </app-flex>
+        </app-accordion>
+
+        <ng-template #customTooltip>
+          <div style="padding: 0.5rem">
+            <strong>Contenu riche</strong>
+            <p style="margin: 0.25rem 0">Vous pouvez mettre du HTML personnalisé ici</p>
+            <small style="color: var(--color-text-secondary)"
+              >Avec des styles, des icônes, etc.</small
+            >
+          </div>
+        </ng-template>
+
+        <!-- Popover -->
+        <app-accordion title="Popovers" variant="ghost" size="sm" iconLeftName="lucideSquaresUnite">
+          <app-flex direction="column" gap="lg">
+            <!-- Texte simple -->
+            <app-flex direction="column" gap="sm">
+              <h3>Positions</h3>
+              <app-flex direction="row" gap="md" wrap>
+                @for (position of popoverPositions; track $index) {
+                  <app-button
+                    [text]="position"
+                    variant="solid"
+                    color="blue"
+                    size="sm"
+                    [popover]="{
+                      content: customTooltip,
+                      position: position,
+                    }"
+                  />
+                }
+              </app-flex>
+            </app-flex>
+          </app-flex>
+        </app-accordion>
+
+        <!-- Contextual Menu -->
+        <!-- <app-accordion
+      title="Contextual Menu"
+      variant="ghost"
+      size="sm"
+      iconLeftName="lucideSquareMenu"
+      startOpen
+    >
+      <app-flex direction="column" gap="lg">
+        <app-flex direction="column" gap="sm">
+          <h3>Bouton avec menu contextuel</h3>
+          <app-button
+            text="Ouvrir le menu"
+            variant="outline"
+            color="gray"
+            size="sm"
+            iconLeft="lucideEllipsis"
+          />
         </app-flex>
 
-        <!-- Different Sizes -->
-        <app-flex direction="column" gap="md" wrap>
-          <h3>Tailles</h3>
-          <app-flex direction="row" gap="md" wrap alignItems="center">
-            @for (size of badgeSizes; track $index) {
-              <app-badge
-                text="{{ size.charAt(0).toUpperCase() + size.slice(1) }}"
-                variant="solid"
-                color="blue"
-                [size]="size"
-                [icon]="{ name: 'lucideCircle' }"
-              />
+        <app-flex direction="column" gap="sm">
+          <h3>Clic droit (Context Menu classique)</h3>
+          <div class="demo-area" (contextmenu)="onContextMenu($event)">
+            Clic droit ici pour ouvrir le menu contextuel
+          </div>
+        </app-flex>
+
+        @if (contextMenuVisible()) {
+          <div
+            class="context-menu-overlay"
+            [style.left.px]="contextMenuPosition().x"
+            [style.top.px]="contextMenuPosition().y"
+            (clickOutside)="contextMenuVisible.set(false)"
+          >
+            <app-context-menu
+              [items]="contextMenuItems()"
+              (itemClicked)="onMenuItemClick($event)"
+            />
+          </div>
+        }
+      </app-flex>
+    </app-accordion> -->
+
+        <!-- <ng-template #contextMenuTemplate>
+      <app-context-menu [items]="contextMenuItems()" (itemClicked)="onMenuItemClick($event)" />
+    </ng-template> -->
+
+        <!-- Alertes -->
+        <app-accordion title="Alertes" variant="ghost" size="sm" iconLeftName="lucideTriangleAlert">
+          <app-flex direction="column" gap="lg" fullWidth>
+            @for (variant of alertVariants; track $index) {
+              <app-accordion
+                [title]="variant.charAt(0).toUpperCase() + variant.slice(1)"
+                variant="ghost"
+                size="sm"
+              >
+                <app-flex direction="column" gap="md" fullWidth>
+                  @for (color of colors; track $index) {
+                    <app-alert
+                      [variant]="variant"
+                      [color]="color"
+                      icon="lucideCheckCircle"
+                      title="Success Alert"
+                      message="This is a success alert message."
+                      [button]="{
+                        text: 'Take Action',
+                        icon: { name: 'lucideArrowRight', position: 'right' },
+                        callback: dismissAlert,
+                      }"
+                      dismissible
+                    />
+                  }
+                </app-flex>
+              </app-accordion>
             }
           </app-flex>
-        </app-flex>
-      </app-flex>
-    </app-accordion>
-
-    <!-- Alertes -->
-    <app-accordion title="Alertes" variant="ghost" size="sm" iconLeftName="lucideTriangleAlert">
-      <app-flex direction="column" gap="lg" fullWidth>
-        @for (variant of alertVariants; track $index) {
-          <app-accordion
-            [title]="variant.charAt(0).toUpperCase() + variant.slice(1)"
-            variant="ghost"
-            size="sm"
-          >
-            <app-flex direction="column" gap="md" fullWidth>
-              @for (color of colors; track $index) {
-                <app-alert
-                  [variant]="variant"
-                  [color]="color"
-                  icon="lucideCheckCircle"
-                  title="Success Alert"
-                  message="This is a success alert message."
-                  [button]="{
-                    text: 'Take Action',
-                    icon: { name: 'lucideArrowRight', position: 'right' },
-                    callback: dismissAlert,
-                  }"
-                  dismissible
-                />
-              }
-            </app-flex>
-          </app-accordion>
-        }
-      </app-flex>
-    </app-accordion>
-  </app-flex>
+        </app-accordion>
+      </app-flex> </app-accordion
+  ></app-flex>
 </div>

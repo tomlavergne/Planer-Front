@@ -1,7 +1,7 @@
-<button [attr.type]="type()" [disabled]="disabled()" (click)="onClick()">
+<button [attr.type]="type()" [disabled]="disabled()" (click)="onClick($event)">
   <app-flex
     class="button-content"
-    [direction]="direction()"
+    direction="row"
     alignItems="center"
     justifyContent="start"
     [padding]="currentConfig().padding"
@@ -10,10 +10,10 @@
     <!-- Contenu personnalisé -->
     <ng-content></ng-content>
 
-    <!-- Icone -->
-    @if (icon()) {
+    <!-- Left Icon -->
+    @if (iconLeft()) {
       <app-icon
-        [name]="icon()!.name"
+        [name]="iconLeft()!"
         [size]="currentConfig().iconSize"
         [color]="contentColor()"
       ></app-icon>
@@ -22,6 +22,15 @@
     <!-- Text -->
     @if (text()) {
       <app-text [color]="contentColor()" [size]="currentConfig().fontSize"> {{ text() }}</app-text>
+    }
+
+    <!-- Right Icon -->
+    @if (iconRight()) {
+      <app-icon
+        [name]="iconRight()!"
+        [size]="currentConfig().iconSize"
+        [color]="contentColor()"
+      ></app-icon>
     }
   </app-flex>
 </button>

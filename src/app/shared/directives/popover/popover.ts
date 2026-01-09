@@ -37,6 +37,7 @@ class PopoverContentComponent {
   title = signal<string | null>(null);
   text = signal<string | null>(null);
   template = signal<TemplateRef<any> | null>(null);
+  templateContext = signal<any>({});
   showCloseButton = signal<boolean>(true);
   position = signal<AdvancedPosition>('bottom');
 
@@ -55,6 +56,7 @@ export class PopoverDirective implements OnDestroy {
   // Inputs
   popover = input<{
     content: string | TemplateRef<any> | null;
+    contentContext?: any;
     title?: string;
     position?: AdvancedPosition;
     trigger?: 'click' | 'hover';
@@ -104,7 +106,11 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('click', ['$event'])
   onClick(event: Event): void {
     const config = this.popover();
-    const trigger = config?.trigger ?? 'click'; // ← Appliquer la valeur par défaut ici
+    
+    // Si pas de config ou config null, ne rien faire
+    if (!config) return;
+    
+    const trigger = config?.trigger ?? 'click';
     const disabled = config?.disabled ?? false;
 
     console.log('Click event detected!', {
@@ -122,6 +128,10 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('mouseenter')
   onMouseEnter(): void {
     const config = this.popover();
+    
+    // Si pas de config ou config null, ne rien faire
+    if (!config) return;
+    
     const trigger = config?.trigger ?? 'click';
     const disabled = config?.disabled ?? false;
 
@@ -133,6 +143,10 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('mouseleave')
   onMouseLeave(): void {
     const config = this.popover();
+    
+    // Si pas de config ou config null, ne rien faire
+    if (!config) return;
+    
     const trigger = config?.trigger ?? 'click';
 
     if (trigger === 'hover') {
@@ -234,6 +248,7 @@ export class PopoverDirective implements OnDestroy {
       this.componentRef.instance.template.set(null);
     } else if (config.content) {
       this.componentRef.instance.template.set(config.content);
+      this.componentRef.instance.templateContext.set(config.contentContext || {});
       this.componentRef.instance.text.set(null);
     }
   }

@@ -46,11 +46,13 @@ export class TooltipDirective implements OnDestroy {
     position?: Position;
     delay?: number;
     disabled?: boolean;
+    followMouse?: boolean;
   } | null>({
     content: null,
     position: 'top',
     delay: 200,
     disabled: false,
+    followMouse: false,
   });
 
   private elementRef = inject(ElementRef);
@@ -59,6 +61,8 @@ export class TooltipDirective implements OnDestroy {
   private overlayRef?: OverlayRef;
   private timeoutId?: number;
   private componentRef?: any;
+  private mouseX = 0;
+  private mouseY = 0;
 
   constructor() {
     // Surveiller les changements de contenu
@@ -79,9 +83,23 @@ export class TooltipDirective implements OnDestroy {
     // Surveiller les changements de position du tooltip
     effect(() => {
       const position = this.tooltip()?.position;
-      // Si la position change et que le tooltip est ouvert, le fermer
+      // Si la position change et que le tooltip est ouvert, mettre à jour sa position
       if (this.overlayRef?.hasAttached() && position) {
+        // Mettre à jour la stratégie de position
         this.close();
+        const positionStrategy = this.overlay
+          .position()
+          .flexibleConnectedTo(this.elementRef)
+          .withPositions(this.getPositions())
+          .withPush(true)
+          .withViewportMargin(8);
+
+        this.overlayRef.updatePositionStrategy(positionStrategy);
+
+        // Mettre à jour le signal de position du composant
+        if (this.componentRef) {
+          this.componentRef.instance.position.set(position);
+        }
       }
     });
   }
@@ -99,6 +117,19 @@ export class TooltipDirective implements OnDestroy {
     this.timeoutId = window.setTimeout(() => {
       this.open();
     }, this.tooltip()?.delay);
+  }
+
+  @HostListener('mousemove', ['$event'])
+  onMouseMove(event: MouseEvent): void {
+    if (this.tooltip()?.followMouse) {
+      this.mouseX = event.clientX;
+      this.mouseY = event.clientY;
+      
+      // Si le tooltip est ouvert, mettre à jour sa position
+      if (this.overlayRef?.hasAttached()) {
+        this.updateMousePosition();
+      }
+    }
   }
 
   @HostListener('mouseleave')
@@ -125,12 +156,14 @@ export class TooltipDirective implements OnDestroy {
 
     // Créer l'overlay si nécessaire
     if (!this.overlayRef) {
-      const positionStrategy = this.overlay
-        .position()
-        .flexibleConnectedTo(this.elementRef)
-        .withPositions(this.getPositions())
-        .withPush(true)
-        .withViewportMargin(8);
+      const positionStrategy = this.tooltip()?.followMouse
+        ? this.overlay.position().global()
+        : this.overlay
+            .position()
+            .flexibleConnectedTo(this.elementRef)
+            .withPositions(this.getPositions())
+            .withPush(true)
+            .withViewportMargin(8);
 
       this.overlayRef = this.overlay.create({
         positionStrategy,
@@ -152,6 +185,11 @@ export class TooltipDirective implements OnDestroy {
     } else if (tooltipValue) {
       this.componentRef.instance.template.set(tooltipValue);
     }
+
+    // Si followMouse est activé, mettre à jour la position immédiatement
+    if (this.tooltip()?.followMouse) {
+      this.updateMousePosition();
+    }
   }
 
   private close(): void {
@@ -166,6 +204,19 @@ export class TooltipDirective implements OnDestroy {
       clearTimeout(this.timeoutId);
       this.timeoutId = undefined;
     }
+  }
+
+  private updateMousePosition(): void {
+    if (!this.overlayRef || !this.tooltip()?.followMouse) return;
+
+    const offset = 12; // Décalage par rapport au curseur
+    const positionStrategy = this.overlay
+      .position()
+      .global()
+      .left(`${this.mouseX + offset}px`)
+      .top(`${this.mouseY + offset}px`);
+
+    this.overlayRef.updatePositionStrategy(positionStrategy);
   }
 
   private getPositions(): ConnectedPosition[] {
