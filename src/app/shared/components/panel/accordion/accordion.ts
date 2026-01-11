@@ -3,12 +3,12 @@ import { Component, input, computed, signal, booleanAttribute, effect } from '@a
 
 /***** Import de composants *****/
 import { Flex } from '../../layout/flex/flex';
-import { Icon } from '../icon/icon';
-import { Text } from '../text/text';
+import { Icon } from '../../display/icon/icon';
+import { Text } from '../../display/text/text';
 
 /***** Imports de types *****/
 import { Color } from '../../../types/';
-import type { Icon as IconType } from '../icon/icon.type';
+import type { Icon as IconType } from '../../display/icon/icon.type';
 import type { Accordion as AccordionType } from './accordion.type';
 
 /***** Import de configuration *****/

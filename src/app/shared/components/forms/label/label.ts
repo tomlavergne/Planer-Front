@@ -22,7 +22,7 @@ import { Component, input } from '@angular/core';
         display: inline-block;
         font-size: var(--font-size-sm);
         font-weight: var(--font-weight-medium);
-        color: var(--color-text);
+        color: var(--color-text-primary);
         margin-bottom: var(--spacing-xs);
         cursor: pointer;
 

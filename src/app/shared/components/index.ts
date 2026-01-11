@@ -3,16 +3,19 @@ export { Ripple } from './design/ripple/ripple';
 
 /***** Layout Components *****/
 export { Flex } from './layout/flex/flex';
+export { Grid } from './layout/grid/grid';
 export { Spacer } from './layout/spacer/spacer/spacer';
 
 /***** Display Components *****/
-export { Accordion } from './display/accordion/accordion';
 export { Avatar } from './display/avatar/avatar';
 export { Badge } from './display/badge/badge';
-export { Card } from './display/card/card';
 export { Separator } from './display/separator/separator';
 export { Icon } from './display/icon/icon';
 export { Text } from './display/text/text';
+
+/***** Panel Components *****/
+export { Accordion } from './panel/accordion/accordion';
+export { Card } from './panel/card/card';
 
 /***** Form Components *****/
 export { Button } from './forms/button/button';

@@ -107,18 +107,16 @@ export class Sidebar {
   onMouseUp(): void {
     if (this.isResizing()) {
       this.isResizing.set(false);
-    }
-  }
 
-  toggleExpanded(): void {
-    // Ne toggle que si on n'a pas drag
-    if (this.hasDragged) return;
+      // If the user just clicked without dragging, toggle expanded/collapsed
+      if (!this.hasDragged) {
+        this.expanded.set(!this.expanded());
 
-    console.log('#####Toggle sidebar expanded');
-    this.expanded.set(!this.expanded());
-    // Si on passe en expanded, s'assurer que la largeur est au moins le minimum
-    if (this.expanded() && this.sidebarWidth() < this.EXPANDED_MIN_WIDTH) {
-      this.sidebarWidth.set(this.EXPANDED_MIN_WIDTH);
+        // Adjust width if expanding
+        if (this.expanded() && this.sidebarWidth() < this.EXPANDED_MIN_WIDTH) {
+          this.sidebarWidth.set(this.EXPANDED_MIN_WIDTH);
+        }
+      }
     }
   }
 

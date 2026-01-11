@@ -22,7 +22,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { Text, Button } from '../../components';
 
 /***** Import de types *****/
-import { AdvancedPosition } from '../../types';
+import { Popover as PopoverType } from './popover.type';
 
 // Composant interne pour afficher le contenu du popover
 @Component({
@@ -39,7 +39,7 @@ class PopoverContentComponent {
   template = signal<TemplateRef<any> | null>(null);
   templateContext = signal<any>({});
   showCloseButton = signal<boolean>(true);
-  position = signal<AdvancedPosition>('bottom');
+  position = signal<PopoverType.Position>('bottom');
 
   closeRequested = output<void>();
 
@@ -58,7 +58,7 @@ export class PopoverDirective implements OnDestroy {
     content: string | TemplateRef<any> | null;
     contentContext?: any;
     title?: string;
-    position?: AdvancedPosition;
+    position?: PopoverType.Position;
     trigger?: 'click' | 'hover';
     closeOnClickOutside?: boolean;
     showCloseButton?: boolean;
@@ -106,10 +106,10 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('click', ['$event'])
   onClick(event: Event): void {
     const config = this.popover();
-    
+
     // Si pas de config ou config null, ne rien faire
     if (!config) return;
-    
+
     const trigger = config?.trigger ?? 'click';
     const disabled = config?.disabled ?? false;
 
@@ -128,10 +128,10 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('mouseenter')
   onMouseEnter(): void {
     const config = this.popover();
-    
+
     // Si pas de config ou config null, ne rien faire
     if (!config) return;
-    
+
     const trigger = config?.trigger ?? 'click';
     const disabled = config?.disabled ?? false;
 
@@ -143,10 +143,10 @@ export class PopoverDirective implements OnDestroy {
   @HostListener('mouseleave')
   onMouseLeave(): void {
     const config = this.popover();
-    
+
     // Si pas de config ou config null, ne rien faire
     if (!config) return;
-    
+
     const trigger = config?.trigger ?? 'click';
 
     if (trigger === 'hover') {
@@ -278,7 +278,7 @@ export class PopoverDirective implements OnDestroy {
     const config = this.popover();
     const position = config?.position ?? 'bottom';
 
-    const positions: Record<AdvancedPosition, ConnectedPosition[]> = {
+    const positions: Record<PopoverType.Position, ConnectedPosition[]> = {
       // Positions simples
       top: [
         {

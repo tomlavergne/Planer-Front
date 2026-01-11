@@ -34,7 +34,7 @@
       margin: 0;
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semibold);
-      color: var(--color-text);
+      color: var(--color-text-primary);
     }
 
     .dialog-close {
@@ -51,7 +51,7 @@
 
       &:hover {
         background-color: var(--color-surface-hover);
-        color: var(--color-text);
+        color: var(--color-text-primary);
       }
 
       &:focus {

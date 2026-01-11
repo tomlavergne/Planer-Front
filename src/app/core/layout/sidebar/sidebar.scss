@@ -5,13 +5,14 @@
   box-sizing: border-box;
   flex-shrink: 0; // Prevent flex from shrinking the sidebar
   flex-grow: 0; // Prevent flex from growing the sidebar
+  border-right: 1px solid var(--color-border);
 
   // TODO : Replace by final app icon
   .circle {
     width: var(--spacing-xl);
     height: var(--spacing-xl);
     border-radius: var(--radius-full);
-    background: var(--color-text);
+    background: var(--color-text-primary);
   }
 
   /*************************/

@@ -1,5 +1,5 @@
 /***** Imports de Angular *****/
-import { Component, input, computed, booleanAttribute } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-card',

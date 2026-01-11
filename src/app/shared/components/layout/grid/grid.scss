@@ -1,0 +1,222 @@
+@use '../../../styles/mixins.scss' as *;
+
+:host {
+  display: grid;
+
+  /*********************/
+  /***** COLUMNS *****/
+  /*********************/
+
+  &.columns-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  &.columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &.columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &.columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &.columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  &.columns-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  &.columns-7 {
+    grid-template-columns: repeat(7, 1fr);
+  }
+  &.columns-8 {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  &.columns-9 {
+    grid-template-columns: repeat(9, 1fr);
+  }
+  &.columns-10 {
+    grid-template-columns: repeat(10, 1fr);
+  }
+  &.columns-11 {
+    grid-template-columns: repeat(11, 1fr);
+  }
+  &.columns-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  /******************/
+  /***** ROWS *****/
+  /******************/
+
+  &.rows-1 {
+    grid-template-rows: repeat(1, 1fr);
+  }
+  &.rows-2 {
+    grid-template-rows: repeat(2, 1fr);
+  }
+  &.rows-3 {
+    grid-template-rows: repeat(3, 1fr);
+  }
+  &.rows-4 {
+    grid-template-rows: repeat(4, 1fr);
+  }
+  &.rows-5 {
+    grid-template-rows: repeat(5, 1fr);
+  }
+  &.rows-6 {
+    grid-template-rows: repeat(6, 1fr);
+  }
+  &.rows-7 {
+    grid-template-rows: repeat(7, 1fr);
+  }
+  &.rows-8 {
+    grid-template-rows: repeat(8, 1fr);
+  }
+  &.rows-9 {
+    grid-template-rows: repeat(9, 1fr);
+  }
+  &.rows-10 {
+    grid-template-rows: repeat(10, 1fr);
+  }
+  &.rows-11 {
+    grid-template-rows: repeat(11, 1fr);
+  }
+  &.rows-12 {
+    grid-template-rows: repeat(12, 1fr);
+  }
+
+  /*************************/
+  /***** ALIGN ITEMS *****/
+  /*************************/
+
+  &.alignItems-start {
+    align-items: start;
+  }
+  &.alignItems-center {
+    align-items: center;
+  }
+  &.alignItems-end {
+    align-items: end;
+  }
+  &.alignItems-stretch {
+    align-items: stretch;
+  }
+  &.alignItems-baseline {
+    align-items: baseline;
+  }
+
+  /**************************/
+  /***** JUSTIFY ITEMS *****/
+  /**************************/
+
+  &.justifyItems-start {
+    justify-items: start;
+  }
+  &.justifyItems-center {
+    justify-items: center;
+  }
+  &.justifyItems-end {
+    justify-items: end;
+  }
+  &.justifyItems-stretch {
+    justify-items: stretch;
+  }
+
+  /***************************/
+  /***** ALIGN CONTENT *****/
+  /***************************/
+
+  &.alignContent-start {
+    align-content: start;
+  }
+  &.alignContent-center {
+    align-content: center;
+  }
+  &.alignContent-end {
+    align-content: end;
+  }
+  &.alignContent-stretch {
+    align-content: stretch;
+  }
+  &.alignContent-between {
+    align-content: space-between;
+  }
+  &.alignContent-around {
+    align-content: space-around;
+  }
+  &.alignContent-evenly {
+    align-content: space-evenly;
+  }
+
+  /****************************/
+  /***** JUSTIFY CONTENT *****/
+  /****************************/
+
+  &.justifyContent-start {
+    justify-content: start;
+  }
+  &.justifyContent-center {
+    justify-content: center;
+  }
+  &.justifyContent-end {
+    justify-content: end;
+  }
+  &.justifyContent-stretch {
+    justify-content: stretch;
+  }
+  &.justifyContent-between {
+    justify-content: space-between;
+  }
+  &.justifyContent-around {
+    justify-content: space-around;
+  }
+  &.justifyContent-evenly {
+    justify-content: space-evenly;
+  }
+
+  /********************/
+  /***** AUTO FLOW *****/
+  /********************/
+
+  &.autoFlow-row {
+    grid-auto-flow: row;
+  }
+  &.autoFlow-column {
+    grid-auto-flow: column;
+  }
+  &.autoFlow-row-dense {
+    grid-auto-flow: row dense;
+  }
+  &.autoFlow-column-dense {
+    grid-auto-flow: column dense;
+  }
+
+  @include gaps();
+  @include paddings();
+  @include margins();
+
+  // Row gap spécifique
+  @each $size-name in ('none', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl') {
+    &.row-gap-#{$size-name} {
+      row-gap: var(--spacing-#{$size-name});
+    }
+  }
+
+  // Column gap spécifique
+  @each $size-name in ('none', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl') {
+    &.column-gap-#{$size-name} {
+      column-gap: var(--spacing-#{$size-name});
+    }
+  }
+
+  /*********************/
+  /******* SIZES *******/
+  /*********************/
+
+  &.full-width {
+    width: 100%;
+  }
+  &.full-height {
+    height: 100%;
+  }
+}

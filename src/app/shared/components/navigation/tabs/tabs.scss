@@ -24,7 +24,7 @@
     border-bottom: 2px solid transparent;
 
     &:hover:not(:disabled) {
-      color: var(--color-text);
+      color: var(--color-text-primary);
       background-color: var(--color-surface-hover);
     }
 

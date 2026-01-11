@@ -18,7 +18,7 @@ import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 
 /***** Import de types *****/
-import { Position } from '../../types';
+import { Tooltip as TooltipType } from './tooltip.type';
 
 // Composant interne pour afficher le contenu du tooltip
 @Component({
@@ -32,7 +32,7 @@ import { Position } from '../../types';
 class TooltipContentComponent {
   text = signal<string | null>(null);
   template = signal<TemplateRef<any> | null>(null);
-  position = signal<Position>('top');
+  position = signal<TooltipType.Position>('top');
 }
 
 @Directive({
@@ -43,7 +43,7 @@ export class TooltipDirective implements OnDestroy {
   // Inputs
   tooltip = input<{
     content: string | TemplateRef<any> | null;
-    position?: Position;
+    position?: TooltipType.Position;
     delay?: number;
     disabled?: boolean;
     followMouse?: boolean;
@@ -124,7 +124,7 @@ export class TooltipDirective implements OnDestroy {
     if (this.tooltip()?.followMouse) {
       this.mouseX = event.clientX;
       this.mouseY = event.clientY;
-      
+
       // Si le tooltip est ouvert, mettre à jour sa position
       if (this.overlayRef?.hasAttached()) {
         this.updateMousePosition();
@@ -220,7 +220,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   private getPositions(): ConnectedPosition[] {
-    const positions: Record<Position, ConnectedPosition[]> = {
+    const positions: Record<TooltipType.Position, ConnectedPosition[]> = {
       top: [
         {
           originX: 'center',

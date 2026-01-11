@@ -23,15 +23,39 @@
     color: black;
   }
 
-  &.color-text {
-    color: var(--color-text);
+  &.color-primary {
+    color: var(--color-text-primary);
+  }
+  &.color-secondary {
+    color: var(--color-text-secondary);
+  }
+  &.color-primary-inverse {
+    color: var(--color-text-primary-inverse);
+  }
+  &.color-secondary-inverse {
+    color: var(--color-text-secondary-inverse);
   }
 
   /*****************/
   /***** SIZES *****/
   /*****************/
 
-  $sizes: ('none', '6xs', '5xs', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl');
+  $sizes: (
+    'none',
+    '6xs',
+    '5xs',
+    '4xs',
+    '3xs',
+    '2xs',
+    'xs',
+    'sm',
+    'md',
+    'lg',
+    'xl',
+    '2xl',
+    '3xl',
+    '4xl'
+  );
 
   @each $size-name in $sizes {
     &.font-size-#{$size-name} {

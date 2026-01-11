@@ -1,0 +1,34 @@
+<app-documentation-template title="Buttons">
+  <div examples>
+    <app-flex direction="row" gap="md" wrap>
+      @for (position of positions; track $index) {
+        <app-button
+          [text]="position"
+          variant="solid"
+          color="blue"
+          size="sm"
+          [popover]="{
+            content: customTooltip,
+            position: position,
+          }"
+        />
+      }
+    </app-flex>
+
+    <ng-template #customTooltip>
+      <div style="padding: 0.5rem">
+        <strong>Contenu riche</strong>
+        <p style="margin: 0.25rem 0">Vous pouvez mettre du HTML personnalisé ici</p>
+        <small style="color: var(--color-text-secondary)">Avec des styles, des icônes, etc.</small>
+      </div>
+    </ng-template>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

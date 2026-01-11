@@ -1,0 +1,38 @@
+<app-documentation-template title="Alert">
+  <div examples>
+    <app-flex direction="column" gap="lg" fullWidth>
+      @for (variant of variants; track $index) {
+        <app-flex direction="column" gap="md" wrap>
+          <app-text color="text" weight="medium" size="md">{{
+            variant.charAt(0).toUpperCase() + variant.slice(1)
+          }}</app-text>
+          <app-flex direction="column" gap="md" fullWidth>
+            @for (color of colors; track $index) {
+              <app-alert
+                [variant]="variant"
+                [color]="color"
+                icon="lucideCheckCircle"
+                title="Success Alert"
+                message="This is a success alert message."
+                [button]="{
+                  text: 'Take Action',
+                  icon: { name: 'lucideArrowRight', position: 'right' },
+                  callback: dismissAlert,
+                }"
+                dismissible
+              />
+            }
+          </app-flex>
+        </app-flex>
+      }
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

@@ -1,0 +1,36 @@
+<app-documentation-template title="Flex">
+  <div examples>
+    <app-flex direction="column" gap="lg" fullWidth>
+      <app-flex direction="column" gap="md" wrap>
+        @for (item of items; track $index) {
+          <app-flex alignItems="center" justifyContent="center" padding="sm" class="item">
+            <app-text color="primary-inverse">Div {{ $index + 1 }}</app-text>
+          </app-flex>
+        }
+      </app-flex>
+
+      <app-flex direction="row" gap="md">
+        @for (item of items; track $index) {
+          <app-flex
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            padding="sm"
+            class="item"
+            fullWidth
+          >
+            <app-text color="primary-inverse">Div {{ $index + 1 }}</app-text>
+          </app-flex>
+        }
+      </app-flex>
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

@@ -1,7 +1,3 @@
-.playground-container {
-  padding: var(--spacing-2xl);
-}
-
 .ripple-demo-area {
   width: 100%;
   height: 100px;
@@ -32,9 +28,4 @@
     border-color: var(--color-gray-400);
     background-color: var(--color-gray-50);
   }
-}
-
-.context-menu-overlay {
-  position: fixed;
-  z-index: 9999;
 }

@@ -1,0 +1,21 @@
+<app-flex direction="column" gap="2xl" wrap fullWidth>
+  <app-text size="3xl" color="text" weight="bold">{{ title() }}</app-text>
+
+  <app-flex direction="column" gap="sm" wrap>
+    <app-text size="xl" color="text" weight="semibold">Exemples :</app-text>
+
+    <ng-content></ng-content>
+  </app-flex>
+
+  <app-flex direction="column" gap="sm" wrap>
+    <app-text size="xl" color="text" weight="semibold">Propriétés :</app-text>
+
+    <ng-content select="[properties]"></ng-content>
+  </app-flex>
+
+  <app-flex direction="column" gap="sm" wrap>
+    <app-text size="xl" color="text" weight="semibold">Utilisation :</app-text>
+
+    <ng-content select="[usage]"></ng-content>
+  </app-flex>
+</app-flex>

@@ -21,7 +21,7 @@ export class Text {
   weight = input<TextTypes.Weight | null>(null);
   align = input<TextTypes.Align>('left');
   decoration = input<TextTypes.Decoration | null>(null);
-  truncate = input<boolean>(false);
+  truncate = input<boolean, any>(false, { transform: booleanAttribute });
   italic = input<boolean>(false);
   underline = input<boolean>(false);
   wrap = input<boolean, any>(false, { transform: booleanAttribute });

@@ -43,18 +43,21 @@
         }
       </app-flex>
     </app-button>
+
+    @if (expanded()) {
+      <app-sidebar-item
+        label="Documentation"
+        iconName="lucideFileText"
+        routerLink="/documentation"
+        [expanded]="false"
+      />
+    }
   </app-flex>
 
   <app-separator />
 
   <!-- Navigation principale -->
   <app-flex direction="column" gap="2xs" fullWidth fullHeight>
-    <app-sidebar-item
-      label="Playground"
-      iconName="lucidePlay"
-      routerLink="/playground"
-      [expanded]="expanded()"
-    />
     <app-sidebar-item
       label="Accueil"
       iconName="lucideHome"
@@ -154,7 +157,7 @@
 
     <app-separator />
 
-    <app-button variant="ghost" color="gray" [size]="expanded() ? 'sm' : 'xs'" fullWidth>
+    <app-button variant="ghost" color="gray" size="xs" fullWidth>
       <app-flex
         direction="row"
         alignItems="center"
