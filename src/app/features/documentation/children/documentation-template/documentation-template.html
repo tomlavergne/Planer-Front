@@ -1,5 +1,7 @@
 <app-flex direction="column" gap="3xl" padding="3xl" wrap fullWidth>
+  <!-- En tête -->
   <app-flex direction="column" gap="xl" fullWidth>
+    <!-- Première ligne -->
     <app-flex direction="row" gap="sm" justifyContent="between" alignItems="center" fullWidth>
       <app-text size="3xl" color="text" weight="semibold">{{ title() }}</app-text>
 
@@ -16,6 +18,7 @@
           }"
           (clicked)="goToPrevious()"
         />
+
         <app-button
           variant="soft"
           color="gray"
@@ -32,10 +35,12 @@
 
     <!-- Introduction -->
     @if (introduction()) {
-      <app-text size="md" color="secondary" weight="regular">{{ introduction() }}</app-text>
+      <app-text size="md" color="secondary" weight="regular">
+        {{ introduction() }}
+      </app-text>
     }
 
-    <!-- Actions -->
+    <!-- Liens rapides -->
     <app-flex direction="row" gap="sm" wrap>
       <app-button
         text="Code d'exemple"
@@ -72,7 +77,7 @@
     <app-text size="xl" color="text" weight="semibold">API :</app-text>
 
     <!-- Inputs -->
-    @if (inputs()!.length > 0) {
+    @if (inputs()) {
       <app-flex direction="column" gap="sm" fullWidth>
         <app-text size="lg" color="text" weight="semibold">Inputs :</app-text>
 
@@ -85,7 +90,7 @@
       </app-flex>
     }
 
-    @if (outputs()!.length > 0) {
+    @if (outputs()) {
       <!-- Outputs -->
       <app-flex direction="column" gap="sm" fullWidth>
         <app-text size="lg" color="text" weight="semibold">Outputs :</app-text>

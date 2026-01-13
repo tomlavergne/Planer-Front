@@ -15,6 +15,9 @@ export * from './theme.types';
 // Types de données métier
 export * from './data.types';
 
+// Types utilitaires
+export * from './utils.types';
+
 /**
  * Exemples d'utilisation :
  *

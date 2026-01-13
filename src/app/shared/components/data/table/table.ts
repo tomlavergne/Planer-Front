@@ -1,5 +1,13 @@
 /***** Imports Angular *****/
-import { Component, input, output, computed, signal, effect } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  computed,
+  signal,
+  effect,
+  booleanAttribute,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 /***** Imports de composants *****/
@@ -22,11 +30,11 @@ export class Table<T = any> {
   /***** Inputs *****/
   columns = input.required<TableType.Column<T>[]>();
   data = input.required<T[]>();
-  striped = input<boolean>(false);
-  hoverable = input<boolean>(true);
-  sortable = input<boolean>(true);
-  resizable = input<boolean>(true);
-  selectable = input<boolean>(false);
+  striped = input<boolean, any>(false, { transform: booleanAttribute });
+  hoverable = input<boolean, any>(true, { transform: booleanAttribute });
+  sortable = input<boolean, any>(true, { transform: booleanAttribute });
+  resizable = input<boolean, any>(true, { transform: booleanAttribute });
+  selectable = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Outputs *****/
   rowClick = output<TableType.RowClickEvent<T>>();

@@ -7,9 +7,9 @@ import { Text } from '../../display/text/text';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
+import { Button as ButtonType } from './button.type';
+import { Icon as IconType } from '../../display/icon/icon.type';
 import { Color } from '../../../types';
-import type { Button as ButtonType } from './button.type';
-import type { Icon as IconType } from '../../display/icon/icon.type';
 
 /***** Import de configuration *****/
 import { BUTTON_SIZES_CONFIG } from './button.config';
@@ -26,8 +26,6 @@ import { BUTTON_SIZES_CONFIG } from './button.config';
   },
 })
 export class Button {
-  // Inputs //
-
   /** Texte affiché dans le bouton */
   text = input<string | null>(null);
 
@@ -61,11 +59,11 @@ export class Button {
   /** Active le style popo */
   popo = input<boolean, any>(false, { transform: booleanAttribute });
 
-  /** Émis lors du clic sur le bouton */
-  clicked = output<MouseEvent>();
+  /******************/
+  /***** OUTPUTS *****/
+  /******************/
 
-  /** Test */
-  testOutput = output<void>();
+  clicked = output<MouseEvent>();
 
   /*********************/
   /***** Computeds *****/
@@ -84,7 +82,9 @@ export class Button {
   });
 
   // Computed pour la configuration actuelle en fonction de la taille
-  currentConfig = computed(() => BUTTON_SIZES_CONFIG[this.size()]);
+  currentConfig = computed(
+    () => BUTTON_SIZES_CONFIG[this.size() as keyof typeof BUTTON_SIZES_CONFIG],
+  );
 
   // Computed pour la couleur du contenu (texte et icône)
   contentColor = computed((): Color => {

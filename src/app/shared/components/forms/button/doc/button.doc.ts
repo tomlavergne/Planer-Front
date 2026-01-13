@@ -3,17 +3,17 @@ import { Component } from '@angular/core';
 
 /***** Imports de composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { Flex, Button, Text, Table } from '../../../';
+import { Flex, Button } from '../../../';
 
 /***** Import de types *****/
-import { Button as ButtonType } from '../button.type';
+import type { Button as ButtonType } from '../button.type';
 import type { Table as TableType } from '../../../data/table/table.type';
-
-import { COMPONENT_INPUTS_METADATA, COMPONENT_OUTPUTS_METADATA } from './button.inputs';
+import type { Icon as IconType } from '../../../display/icon/icon.type';
+import type { InputConfig, OutputConfig } from '../../../../types/utils.types';
 
 @Component({
   selector: 'app-button-documentation',
-  imports: [DocumentationTemplate, Flex, Button, Text, Table],
+  imports: [DocumentationTemplate, Flex, Button],
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {
@@ -32,23 +32,74 @@ export class ButtonDoc {
   buttonVariants: ButtonType.Variant[] = ['solid', 'soft', 'outline', 'ghost'];
   buttonSizes: ButtonType.Size[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl'];
 
-  // Propriétés du composant Button
-  buttonPropertiesColumns: TableType.Column<any>[] = [
-    { id: 'name', header: 'Propriété', accessor: 'name', sortable: true, width: 150 },
-    { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
-    { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
-    { id: 'description', header: 'Description', accessor: 'description', sortable: false },
+  buttonInputsMetadata: InputConfig[] = [
+    {
+      name: 'text',
+      default: null as string | null,
+      type: 'string | null',
+      description: 'Texte affiché dans le bouton',
+    },
+    {
+      name: 'type',
+      default: 'button' as ButtonType.Type,
+      type: '"button" | "submit" | "reset"',
+      description: 'Type HTML du bouton',
+    },
+    {
+      name: 'variant',
+      default: 'solid' as ButtonType.Variant,
+      type: '"solid" | "outline" | "ghost" | "link"',
+      description: 'Variant visuel du bouton',
+    },
+    {
+      name: 'color',
+      default: 'blue' as ButtonType.Color | null,
+      type: 'Color | null',
+      description: 'Couleur du bouton',
+    },
+    {
+      name: 'disabled',
+      default: false,
+      type: 'boolean',
+      description: 'Désactive le bouton',
+    },
+    {
+      name: 'iconLeft',
+      default: null as IconType.Name | null,
+      type: 'IconType.Name | null',
+      description: 'Icône à gauche du texte',
+    },
+    {
+      name: 'iconRight',
+      default: null as IconType.Name | null,
+      type: 'IconType.Name | null',
+      description: 'Icône à droite du texte',
+    },
+    {
+      name: 'size',
+      default: 'md' as ButtonType.Size,
+      type: '"xs" | "sm" | "md" | "lg" | "xl"',
+      description: 'Taille du bouton',
+    },
+    {
+      name: 'borderRadius',
+      default: 'md' as ButtonType.BorderRadius,
+      type: '"sm" | "md" | "lg" | "full"',
+      description: 'Rayon des bordures',
+    },
+    {
+      name: 'fullWidth',
+      default: false,
+      type: 'boolean',
+      description: 'Bouton prend toute la largeur',
+    },
   ];
 
-  buttonOutputsColumns: TableType.Column<any>[] = [
-    { id: 'name', header: 'Propriété', accessor: 'name', sortable: true, width: 150 },
-    { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
-    { id: 'description', header: 'Description', accessor: 'description', sortable: false },
+  buttonOutputsMetadata: OutputConfig[] = [
+    {
+      name: 'clicked',
+      type: 'MouseEvent',
+      description: 'Événement émis lors du clic sur le bouton',
+    },
   ];
-
-  // Auto-généré depuis button.ts via scripts/generate-inputs-docs.ts
-  buttonInputsData = [...COMPONENT_INPUTS_METADATA];
-
-  // Auto-généré depuis button.ts via scripts/generate-outputs-docs.ts
-  buttonOutputsData = [...COMPONENT_OUTPUTS_METADATA];
 }

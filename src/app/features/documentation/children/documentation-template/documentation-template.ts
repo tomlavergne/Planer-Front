@@ -16,20 +16,7 @@ import {
 
 /***** Import de types *****/
 import type { Table as TableType } from '../../../../shared/components/data/table/table.type';
-
-/***** Interfaces pour la documentation *****/
-interface InputMetadata {
-  name: string;
-  type: string;
-  default: string;
-  description: string;
-}
-
-interface OutputMetadata {
-  name: string;
-  type: string;
-  description: string;
-}
+import { InputConfig, OutputConfig } from '../../../../shared/types';
 
 @Component({
   selector: 'app-documentation-template',
@@ -40,17 +27,17 @@ interface OutputMetadata {
 export class DocumentationTemplate {
   title = input.required<string>();
   introduction = input<string>();
-  inputs = input<InputMetadata[]>();
-  outputs = input<OutputMetadata[]>();
+  inputs = input<InputConfig[]>();
+  outputs = input<OutputConfig[]>();
 
-  inputsColumns: TableType.Column<InputMetadata>[] = [
+  inputsColumns: TableType.Column<InputConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
     { id: 'description', header: 'Description', accessor: 'description', sortable: false },
   ];
 
-  outputsColumns: TableType.Column<OutputMetadata>[] = [
+  outputsColumns: TableType.Column<OutputConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'description', header: 'Description', accessor: 'description', sortable: false },
