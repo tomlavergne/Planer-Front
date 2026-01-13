@@ -1,0 +1,48 @@
+<app-documentation-template title="Icons">
+  <div overview>
+    <app-flex direction="column" gap="lg" wrap fullWidth>
+      <app-text size="md" color="text" weight="medium">
+        Toutes les icônes Lucide ({{ iconNames.length }} icônes)
+      </app-text>
+
+      <app-grid columns="5" gap="md">
+        @for (iconName of iconNames; track iconName) {
+          <app-button
+            variant="ghost"
+            color="gray"
+            fullWidth
+            (clicked)="copyIconName(iconName)"
+            [tooltip]="{ content: 'Copier le nom de l\'icone' }"
+          >
+            <app-flex
+              direction="column"
+              gap="2xs"
+              alignItems="center"
+              justifyContent="center"
+              fullWidth
+            >
+              <app-icon [name]="iconName" size="md" color="text" />
+
+              <app-text
+                size="sm"
+                color="secondary"
+                style="word-break: break-all; text-align: center"
+                truncate
+              >
+                {{ iconName }}
+              </app-text>
+            </app-flex>
+          </app-button>
+        }
+      </app-grid>
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

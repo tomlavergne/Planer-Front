@@ -1,0 +1,33 @@
+<div class="code-container">
+  @if (title() || showLanguage() || showCopy()) {
+    <div class="code-header">
+      <app-flex gap="sm" alignItems="center" justifyContent="between">
+        <app-flex gap="sm" alignItems="center">
+          @if (title()) {
+            <span class="code-title">{{ title() }}</span>
+          }
+          @if (showLanguage()) {
+            <span class="code-language">{{ getLanguageLabel() }}</span>
+          }
+        </app-flex>
+
+        @if (showCopy()) {
+          <app-button
+            [variant]="'ghost'"
+            [color]="'gray'"
+            [size]="'xs'"
+            [iconLeft]="copied() ? 'lucideCheck' : 'lucideCopy'"
+            [tooltip]="{
+              content: copied() ? 'Copié' : 'Copier',
+            }"
+            (clicked)="copyCode()"
+          />
+        }
+      </app-flex>
+    </div>
+  }
+
+  <div class="code-content">
+    <pre><code #codeBlock [attr.data-language]="language()"></code></pre>
+  </div>
+</div>

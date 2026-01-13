@@ -12,6 +12,10 @@ export { Badge } from './display/badge/badge';
 export { Separator } from './display/separator/separator';
 export { Icon } from './display/icon/icon';
 export { Text } from './display/text/text';
+export { Code } from './display/code/code';
+
+/***** Data Components *****/
+export { Table } from './data/table/table';
 
 /***** Panel Components *****/
 export { Accordion } from './panel/accordion/accordion';

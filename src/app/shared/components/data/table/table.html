@@ -1,0 +1,48 @@
+<div class="table-wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        @for (column of displayedColumns(); track column.id) {
+          <th
+            class="table-header"
+            [class.sortable]="sortable() && column.sortable !== false"
+            [class.resizing]="resizingColumn() === column.id"
+            [style.width]="getColumnWidth(column.id)"
+            [style.text-align]="column.align || 'left'"
+            (click)="onSort(column.id)"
+          >
+            <div class="header-content">
+              <span class="header-text">{{ column.header }}</span>
+
+              @if (sortable() && column.sortable !== false && getSortIcon(column.id)) {
+                <app-icon [name]="getSortIcon(column.id)!" size="xs" class="sort-icon" />
+              }
+            </div>
+
+            @if (resizable() && column.resizable !== false) {
+              <div class="resize-handle" (mousedown)="startResize($event, column.id)"></div>
+            }
+          </th>
+        }
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of sortedData(); track $index) {
+        <tr class="table-row" [class.clickable]="selectable()" (click)="onRowClick(row, $index)">
+          @for (column of displayedColumns(); track column.id) {
+            <td class="table-cell" [style.text-align]="column.align || 'left'">
+              {{ getCellValue(row, column) }}
+            </td>
+          }
+        </tr>
+      } @empty {
+        <tr>
+          <td [attr.colspan]="displayedColumns().length" class="empty-state">
+            Aucune donnée disponible
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

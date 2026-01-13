@@ -35,6 +35,7 @@ export class Accordion {
   variant = input<AccordionType.Variant>('soft');
   color = input<Color>('gray');
   size = input<AccordionType.Size>('md');
+  titleWeight = input<AccordionType.TitleWeight>('regular');
   iconLeftName = input<IconType.Name | null>(null);
   startOpen = input<boolean, any>(false, { transform: booleanAttribute });
   contentPadding = input<boolean, any>(true, { transform: booleanAttribute });

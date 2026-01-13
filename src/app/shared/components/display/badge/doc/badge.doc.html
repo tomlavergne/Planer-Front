@@ -1,0 +1,89 @@
+<app-documentation-template
+  title="Badge"
+  introduction="Déclencher une action ou un événement en un clic, comme la soumission d'un formulaire ou l'affichage d'une boîte de dialogue.
+  Les boutons contiennent généralement du texte qui indique l'action qu'ils effectuent."
+  codeExample="const hello = 'world';"
+  [inputs]="[]"
+  [outputs]="[]"
+>
+  <div overview>
+    @for (variant of badgeVariants; track $index) {
+      <app-flex direction="column" gap="sm" wrap>
+        <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+        <app-flex direction="row" gap="sm" wrap>
+          @for (color of colors; track $index) {
+            <app-badge
+              [text]="
+                `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
+              "
+              [variant]="variant"
+              [color]="color"
+              size="sm"
+              [icon]="{ name: 'lucideCircle' }"
+            />
+          }
+        </app-flex>
+      </app-flex>
+    }
+
+    <app-flex direction="column" gap="md" wrap>
+      <h3>Avec Icônes</h3>
+      <app-flex direction="row" gap="md" wrap alignItems="center">
+        <app-badge
+          text="Success"
+          variant="solid"
+          color="green"
+          size="sm"
+          [icon]="{ name: 'lucideCheck' }"
+        />
+        <app-badge
+          text="Warning"
+          variant="solid"
+          color="orange"
+          size="sm"
+          [icon]="{ name: 'lucideAlertTriangle' }"
+        />
+        <app-badge
+          text="Error"
+          variant="solid"
+          color="red"
+          size="sm"
+          [icon]="{ name: 'lucideX' }"
+        />
+        <app-badge
+          text="Info"
+          variant="soft"
+          color="blue"
+          size="sm"
+          [icon]="{ name: 'lucideInfo' }"
+        />
+        <app-badge
+          text="New"
+          variant="outline"
+          color="purple"
+          size="sm"
+          [icon]="{ name: 'lucideSparkles' }"
+        />
+      </app-flex>
+    </app-flex>
+
+    <app-flex direction="column" gap="md" wrap>
+      <h3>Tailles</h3>
+      <app-flex direction="row" gap="md" wrap alignItems="center">
+        @for (size of badgeSizes; track $index) {
+          <app-badge
+            text="{{ size.charAt(0).toUpperCase() + size.slice(1) }}"
+            variant="solid"
+            color="blue"
+            [size]="size"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+        }
+      </app-flex>
+    </app-flex>
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

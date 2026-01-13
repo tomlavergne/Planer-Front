@@ -9,6 +9,6 @@ export namespace Flex {
     | Extract<UISize, '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'>
     | 'none';
   export type Padding =
-    | Extract<UISize, '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>
+    | Extract<UISize, '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'>
     | 'none';
 }

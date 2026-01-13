@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:planer-front": "node dist/planer-front/server/server.mjs"
+    "serve:ssr:planer-front": "node dist/planer-front/server/server.mjs",
+    "generate-doc": "npx ts-node --esm scripts/generate-docs.ts 2>/dev/null"
   },
   "prettier": {
     "printWidth": 100,
@@ -35,6 +36,7 @@
     "@ng-icons/core": "^33.0.0",
     "@ng-icons/lucide": "^33.0.0",
     "express": "^5.1.0",
+    "highlight.js": "^11.11.1",
     "lucide-angular": "^0.561.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
@@ -47,6 +49,8 @@
     "@types/node": "^20.17.19",
     "jsdom": "^27.1.0",
     "prettier": "^3.7.4",
+    "ts-morph": "^27.0.2",
+    "ts-node": "^10.9.2",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }

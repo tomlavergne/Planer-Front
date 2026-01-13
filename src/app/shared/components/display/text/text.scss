@@ -1,7 +1,8 @@
 @use '../../../styles/mixins.scss' as *;
 
 :host {
-  display: inline;
+  display: block;
+  line-height: 1.5;
 
   /*******************/
   /***** COLORS *****/
@@ -67,8 +68,12 @@
   /***** WEIGHT *****/
   /******************/
 
-  &.weight-normal {
-    font-weight: var(--font-weight-normal);
+  &.weight-thin {
+    font-weight: var(--font-weight-thin);
+  }
+
+  &.weight-regular {
+    font-weight: var(--font-weight-regular);
   }
 
   &.weight-medium {
@@ -160,6 +165,7 @@
   }
 
   &.full-width {
+    display: block;
     width: 100%;
   }
 

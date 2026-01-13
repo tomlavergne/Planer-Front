@@ -1,0 +1,24 @@
+@let currentItem = item();
+
+@if (isSection(currentItem)) {
+  <!-- Section avec contenu -->
+  @let section = currentItem;
+  <app-accordion
+    [title]="section.title"
+    variant="ghost"
+    size="sm"
+    titleWeight="semibold"
+    [iconLeftName]="section.icon!"
+    [startOpen]="false"
+  >
+    <app-flex direction="column" gap="2xs" fullWidth>
+      @for (child of section.content; track $index) {
+        <app-documentation-index-item [item]="child" />
+      }
+    </app-flex>
+  </app-accordion>
+} @else if (isItem(currentItem)) {
+  <!-- Item simple avec lien -->
+  @let itemData = currentItem;
+  <app-sidebar-item [label]="itemData.title" [routerLink]="itemData.path" size="sm" expanded />
+}

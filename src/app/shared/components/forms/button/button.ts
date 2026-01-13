@@ -26,26 +26,46 @@ import { BUTTON_SIZES_CONFIG } from './button.config';
   },
 })
 export class Button {
-  /******************/
-  /***** Inputs *****/
-  /******************/
+  // Inputs //
 
+  /** Texte affiché dans le bouton */
   text = input<string | null>(null);
+
+  /** Type HTML du bouton */
   type = input<ButtonType.Type>('button');
+
+  /** Variant visuel du bouton */
   variant = input<ButtonType.Variant>('solid');
+
+  /** Couleur du bouton */
   color = input<Color | null>('blue');
+
+  /** Désactive le bouton */
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
+
+  /** Icône à gauche du texte */
   iconLeft = input<IconType.Name | null>(null);
+
+  /** Icône à droite du texte */
   iconRight = input<IconType.Name | null>(null);
+
+  /** Taille du bouton */
   size = input<ButtonType.Size>('md');
+
+  /** Rayon des bordures */
   borderRadius = input<ButtonType.BorderRadius>('md');
+
+  /** Bouton prend toute la largeur */
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
-  /*******************/
-  /***** Outputs *****/
-  /*******************/
+  /** Active le style popo */
+  popo = input<boolean, any>(false, { transform: booleanAttribute });
 
+  /** Émis lors du clic sur le bouton */
   clicked = output<MouseEvent>();
+
+  /** Test */
+  testOutput = output<void>();
 
   /*********************/
   /***** Computeds *****/

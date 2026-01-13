@@ -7,7 +7,7 @@ export namespace Text {
     '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
   >;
   export type Color = ColorType | 'primary' | 'secondary' | 'primary-inverse' | 'secondary-inverse';
-  export type Weight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+  export type Weight = 'thin' | 'regular' | 'medium' | 'semibold' | 'bold';
   export type Align = 'left' | 'center' | 'right' | 'justify';
   export type Decoration = 'none' | 'underline' | 'line-through' | 'overline';
   export type As =

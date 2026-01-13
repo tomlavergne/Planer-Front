@@ -5,13 +5,10 @@
   &.orientation-horizontal {
     width: 100%;
     height: 1px;
-    margin: var(--spacing-3xs) 0;
   }
 
   &.orientation-vertical {
     width: 1px;
     height: 100%;
-    margin: 0 var(--spacing-3xs);
-    display: inline-block;
   }
 }

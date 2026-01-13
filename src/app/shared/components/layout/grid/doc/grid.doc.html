@@ -1,0 +1,92 @@
+<app-documentation-template
+  title="Grid"
+  introduction="
+    Le composant Grid est un conteneur de grille qui permet de disposer les éléments enfants en utilisant un système de grille CSS, facilitant ainsi la création de mises en page réactives et organisées.
+"
+>
+  <div overview>
+    <app-flex direction="column" gap="xl" fullWidth>
+      <!-- Exemple 1: Grille simple avec 3 colonnes -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Grille 3 colonnes</app-text>
+        <app-grid columns="3" gap="md" fullWidth>
+          @for (item of gridItems3; track $index) {
+            <app-flex alignItems="center" justifyContent="center" padding="md" class="grid-item">
+              <app-text color="primary-inverse">{{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-grid>
+      </app-flex>
+
+      <!-- Exemple 2: Grille 4 colonnes avec gap différent -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Grille 4 colonnes (gap: lg)</app-text>
+        <app-grid columns="4" gap="lg" fullWidth>
+          @for (item of gridItems4; track $index) {
+            <app-flex alignItems="center" justifyContent="center" padding="md" class="grid-item">
+              <app-text color="primary-inverse">{{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-grid>
+      </app-flex>
+
+      <!-- Exemple 3: Grille avec alignement -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg"
+          >Grille avec alignement (center/center)</app-text
+        >
+        <app-grid columns="3" gap="md" alignItems="center" justifyItems="center" fullWidth>
+          @for (item of gridItems3; track $index) {
+            <app-flex
+              alignItems="center"
+              justifyContent="center"
+              padding="sm"
+              class="grid-item-small"
+            >
+              <app-text color="primary-inverse" size="sm">{{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-grid>
+      </app-flex>
+
+      <!-- Exemple 4: Grille responsive (6 colonnes) -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Grille 6 colonnes</app-text>
+        <app-grid columns="6" gap="sm" fullWidth>
+          @for (item of gridItems6; track $index) {
+            <app-flex
+              alignItems="center"
+              justifyContent="center"
+              padding="xs"
+              class="grid-item-small"
+            >
+              <app-text color="primary-inverse" size="xs">{{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-grid>
+      </app-flex>
+
+      <!-- Exemple 5: Grille avec row/column gap différents -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg"
+          >Grille avec row/column gap différents</app-text
+        >
+        <app-grid columns="3" rowGap="lg" columnGap="xs" fullWidth>
+          @for (item of gridItems6; track $index) {
+            <app-flex alignItems="center" justifyContent="center" padding="md" class="grid-item">
+              <app-text color="primary-inverse">{{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-grid>
+      </app-flex>
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

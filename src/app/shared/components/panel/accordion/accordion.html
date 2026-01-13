@@ -22,7 +22,11 @@
       }
 
       <!-- Text -->
-      <app-text [size]="currentConfig().header.fontSize" [color]="contentColor()">
+      <app-text
+        [size]="currentConfig().header.fontSize"
+        [weight]="titleWeight()"
+        [color]="contentColor()"
+      >
         {{ title() }}
       </app-text>
     </app-flex>

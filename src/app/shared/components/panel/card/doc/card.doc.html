@@ -1,0 +1,25 @@
+<app-documentation-template
+  title="Card"
+  introduction="
+  Le composant Card est utilisé pour afficher du contenu dans un conteneur visuellement distinct avec des options de style variées.
+  "
+>
+  <div overview>
+    <app-flex direction="column" gap="lg" fullWidth>
+      <app-text color="text" weight="medium" size="md">Variants disponibles :</app-text>
+      @for (variant of cardVariants; track $index) {
+        <app-card [variant]="variant" [title]="variant" fullWidth>
+          Contenu de la carte en variant "{{ variant }}"
+        </app-card>
+      }
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

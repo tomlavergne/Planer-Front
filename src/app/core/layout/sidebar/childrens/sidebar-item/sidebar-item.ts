@@ -10,6 +10,7 @@ import { TooltipDirective } from '../../../../../shared/directives/tooltip/toolt
 
 /***** Import de types *****/
 import type { Icon as IconType } from '../../../../../shared/components/display/icon/icon.type';
+import type { Button as ButtonType } from '../../../../../shared/components/forms/button/button.type';
 
 @Component({
   selector: 'app-sidebar-item',
@@ -31,7 +32,7 @@ import type { Icon as IconType } from '../../../../../shared/components/display/
         [text]="expanded() ? label() : ''"
         [variant]="rla.isActive ? 'soft' : 'ghost'"
         [color]="rla.isActive ? 'blue' : 'gray'"
-        size="sm"
+        [size]="size()"
         fullWidth
         [iconLeft]="iconName()"
         class="sidebar-item-button"
@@ -46,6 +47,7 @@ export class SidebarItem {
 
   label = input<string>('');
   iconName = input<IconType.Name | null>(null);
+  size = input<ButtonType.Size>('sm');
   expanded = input<boolean, any>(true, { transform: booleanAttribute });
 
   // Link path for routerLink

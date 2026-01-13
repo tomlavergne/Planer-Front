@@ -1,5 +1,4 @@
 :host {
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-base);
@@ -25,5 +24,28 @@
     &:not(:has(*)) {
       display: none;
     }
+  }
+
+  &.variant-soft {
+    background-color: var(--color-surface);
+  }
+  &.variant-outline {
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+
+    box-shadow: none;
+  }
+  &.variant-ghost {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+    }
+  }
+  &.variant-elevated {
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-md);
   }
 }

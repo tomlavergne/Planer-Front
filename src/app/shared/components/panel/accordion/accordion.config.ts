@@ -17,6 +17,17 @@ export const ACCORDION_SIZES_CONFIG: Record<
     };
   }
 > = {
+  xs: {
+    header: {
+      gap: '3xs',
+      padding: '3xs',
+      fontSize: 'xs',
+      iconSize: '2xs',
+    },
+    content: {
+      padding: '3xs',
+    },
+  },
   sm: {
     header: {
       gap: '2xs',

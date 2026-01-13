@@ -24,7 +24,7 @@ export class Text {
   truncate = input<boolean, any>(false, { transform: booleanAttribute });
   italic = input<boolean>(false);
   underline = input<boolean>(false);
-  wrap = input<boolean, any>(false, { transform: booleanAttribute });
+  wrap = input<boolean, any>(true, { transform: booleanAttribute });
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Computed *****/

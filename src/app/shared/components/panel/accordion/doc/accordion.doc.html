@@ -1,0 +1,28 @@
+<app-documentation-template
+  title="Accordion"
+  introduction="
+Le composant Accordion permet d'afficher des sections repliables pour organiser le contenu de manière compacte et accessible.
+"
+>
+  <div overview>
+    <app-flex direction="column" gap="sm" fullWidth>
+      <app-text color="text" weight="medium" size="md">Variants disponibles :</app-text>
+
+      <app-flex direction="column" gap="sm" alignItems="center" fullWidth>
+        @for (variant of accordionVariants; track $index) {
+          <app-accordion [variant]="variant" [title]="variant" fullWidth>
+            Contenu de l'accordéon en variant "{{ variant }}"
+          </app-accordion>
+        }
+      </app-flex>
+    </app-flex>
+  </div>
+
+  <div properties>
+    <!-- Propriétés du composant accordion -->
+  </div>
+
+  <div usage>
+    <!-- Instructions d'utilisation -->
+  </div>
+</app-documentation-template>

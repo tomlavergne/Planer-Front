@@ -1,0 +1,97 @@
+<app-documentation-template title="Table">
+  <div examples>
+    <app-flex direction="column" gap="xl" fullWidth>
+      <!-- Exemple 1: Table basique -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Table basique</app-text>
+        <app-table [columns]="basicColumns" [data]="users" [sortable]="false" [resizable]="false" />
+      </app-flex>
+
+      <!-- Exemple 2: Table avec tri -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Table avec tri</app-text>
+        <app-text color="primary" size="sm">Cliquez sur les en-têtes pour trier</app-text>
+        <app-table
+          [columns]="fullColumns"
+          [data]="users"
+          [sortable]="true"
+          [resizable]="false"
+          (sortChange)="onSortChange($event)"
+        />
+      </app-flex>
+
+      <!-- Exemple 3: Table avec redimensionnement -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Table avec redimensionnement</app-text>
+        <app-text color="primary" size="sm"
+          >Glissez les bordures des colonnes pour les redimensionner</app-text
+        >
+        <app-table
+          [columns]="fullColumns"
+          [data]="users"
+          [resizable]="true"
+          (columnResize)="onColumnResize($event)"
+        />
+      </app-flex>
+
+      <!-- Exemple 4: Table avec sélection -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg">Table avec sélection</app-text>
+        <app-text color="primary" size="sm">Cliquez sur une ligne pour la sélectionner</app-text>
+        <app-table
+          [columns]="fullColumns"
+          [data]="users"
+          [selectable]="true"
+          [sortable]="true"
+          [resizable]="true"
+          (rowClick)="onRowClick($event)"
+        />
+        @if (lastClickedRow()) {
+          <app-text color="primary" size="sm" weight="medium">
+            Dernière ligne cliquée : {{ lastClickedRow() }}
+          </app-text>
+        }
+      </app-flex>
+
+      <!-- Exemple 5: Table avec variants -->
+      <app-flex direction="column" gap="sm" fullWidth>
+        <app-text color="text" weight="semibold" size="lg"
+          >Table avec styles (striped + hoverable)</app-text
+        >
+        <app-table
+          [columns]="fullColumns"
+          [data]="users"
+          [striped]="true"
+          [hoverable]="true"
+          [sortable]="true"
+        />
+      </app-flex>
+    </app-flex>
+  </div>
+
+  <div properties>
+    <app-flex direction="column" gap="sm" fullWidth>
+      <app-text color="text" weight="semibold" size="md">Propriétés principales</app-text>
+      <app-text color="primary" size="sm">
+        <strong>columns</strong> (required): Configuration des colonnes<br />
+        <strong>data</strong> (required): Données à afficher<br />
+        <strong>sortable</strong>: Active le tri (défaut: true)<br />
+        <strong>resizable</strong>: Active le redimensionnement (défaut: true)<br />
+        <strong>selectable</strong>: Active la sélection (défaut: false)<br />
+        <strong>striped</strong>: Lignes alternées (défaut: false)<br />
+        <strong>hoverable</strong>: Effet hover (défaut: true)
+      </app-text>
+    </app-flex>
+  </div>
+
+  <div usage>
+    <app-flex direction="column" gap="sm" fullWidth>
+      <app-text color="text" weight="semibold" size="md">Utilisation</app-text>
+      <app-text color="primary" size="sm" style="font-family: monospace; white-space: pre-wrap">
+        &lt;app-table [columns]="columns" [data]="data" [sortable]="true" [resizable]="true"
+        [selectable]="true" (rowClick)="onRowClick($event)" (columnResize)="onColumnResize($event)"
+        (sortChange)="onSortChange($event)" /&gt;
+      </app-text>
+    </app-flex>
+  </div>
+</app-documentation-template>
