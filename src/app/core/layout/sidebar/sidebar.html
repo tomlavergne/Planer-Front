@@ -45,11 +45,20 @@
     </app-button>
 
     @if (expanded()) {
-      <app-sidebar-item
-        label="Documentation"
-        iconName="lucideFileText"
+      <app-button
         routerLink="/documentation"
-        [expanded]="false"
+        routerLinkActive="active"
+        #rla="routerLinkActive"
+        [variant]="rla.isActive ? 'soft' : 'ghost'"
+        [color]="rla.isActive ? 'blue' : 'gray'"
+        size="sm"
+        iconLeft="lucideFileText"
+        [tooltip]="{
+          content: 'Documentation',
+          position: 'right',
+          delay: 500,
+          disabled: expanded(),
+        }"
       />
     }
   </app-flex>
@@ -58,68 +67,27 @@
 
   <!-- Navigation principale -->
   <app-flex direction="column" gap="2xs" fullWidth fullHeight>
-    <app-sidebar-item
-      label="Accueil"
-      iconName="lucideHome"
-      routerLink="/home"
-      [expanded]="expanded()"
-    />
-    <app-sidebar-item
-      label="Calendrier"
-      iconName="lucideCalendar"
-      routerLink="/calendar"
-      [expanded]="expanded()"
-    />
-    <app-sidebar-item
-      label="Utilisateurs"
-      iconName="lucideUsers"
-      routerLink="/users"
-      [expanded]="expanded()"
-    />
-    <app-sidebar-item
-      label="Ressources"
-      iconName="lucideBox"
-      routerLink="/ressources"
-      [expanded]="expanded()"
-    />
+    @for (item of navigationItems; track $index) {
+      <app-button
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        #rla="routerLinkActive"
+        [text]="expanded() ? item.label : ''"
+        [variant]="rla.isActive ? 'soft' : 'ghost'"
+        [color]="rla.isActive ? 'blue' : 'gray'"
+        size="sm"
+        [iconLeft]="item.iconName"
+        fullWidth
+        [tooltip]="{
+          content: item.label,
+          position: 'right',
+          delay: 500,
+          disabled: expanded(),
+        }"
+      />
+    }
 
     @if (expanded()) {
-      <app-accordion
-        title="Plus"
-        variant="ghost"
-        size="sm"
-        iconLeftName="lucideEllipsis"
-        [contentPadding]="false"
-        startOpen
-      >
-        <app-flex
-          direction="column"
-          alignItems="center"
-          gap="2xs"
-          class="accordion-header"
-          fullWidth
-        >
-          <app-sidebar-item
-            label="Projet A"
-            iconName="lucideFolder"
-            routerLink="/projects/a"
-            [expanded]="expanded()"
-          />
-          <app-sidebar-item
-            label="Projet B"
-            iconName="lucideFolder"
-            routerLink="/projects/b"
-            [expanded]="expanded()"
-          />
-          <app-sidebar-item
-            label="Projet C"
-            iconName="lucideFolder"
-            routerLink="/projects/c"
-            [expanded]="expanded()"
-          />
-        </app-flex>
-      </app-accordion>
-
       <app-button
         text="Plus"
         variant="ghost"
@@ -148,13 +116,24 @@
       }"
       fullWidth
     />
-    <app-sidebar-item
-      label="Paramètres"
-      iconName="lucideSettings"
-      routerLink="/settings"
-      [expanded]="expanded()"
-    />
 
+    <app-button
+      routerLink="settings"
+      routerLinkActive="active"
+      #rla="routerLinkActive"
+      [text]="expanded() ? 'Paramètres' : ''"
+      [variant]="rla.isActive ? 'soft' : 'ghost'"
+      [color]="rla.isActive ? 'blue' : 'gray'"
+      size="sm"
+      iconLeft="lucideSettings"
+      fullWidth
+      [tooltip]="{
+        content: 'Paramètres',
+        position: 'right',
+        delay: 500,
+        disabled: expanded(),
+      }"
+    />
     <app-separator />
 
     <app-button variant="ghost" color="gray" size="xs" fullWidth>

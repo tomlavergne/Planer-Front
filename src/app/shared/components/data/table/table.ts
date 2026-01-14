@@ -7,6 +7,11 @@ import {
   signal,
   effect,
   booleanAttribute,
+  ContentChildren,
+  QueryList,
+  TemplateRef,
+  Directive,
+  Input,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -16,6 +21,16 @@ import { Icon } from '../../display/icon/icon';
 /***** Imports de types *****/
 import { Table as TableType } from './table.type';
 import type { Icon as IconType } from '../../display/icon/icon.type';
+
+/***** Directive pour les templates de colonnes *****/
+@Directive({
+  selector: '[columnId]',
+  standalone: true,
+})
+export class TableColumnTemplate {
+  @Input() columnId!: string;
+  constructor(public template: TemplateRef<any>) {}
+}
 
 @Component({
   selector: 'app-table',
@@ -27,6 +42,9 @@ import type { Icon as IconType } from '../../display/icon/icon.type';
   },
 })
 export class Table<T = any> {
+  /***** Templates personnalisés *****/
+  @ContentChildren(TableColumnTemplate) columnTemplates!: QueryList<TableColumnTemplate>;
+
   /***** Inputs *****/
   columns = input.required<TableType.Column<T>[]>();
   data = input.required<T[]>();
@@ -107,6 +125,12 @@ export class Table<T = any> {
   }
 
   /***** Methods *****/
+
+  // Récupérer le template personnalisé d'une colonne
+  getColumnTemplate(columnId: string): TemplateRef<any> | null {
+    const template = this.columnTemplates?.find((t) => t.columnId === columnId);
+    return template?.template || null;
+  }
 
   // Obtenir la valeur d'une cellule
   getCellValue(row: T, column: TableType.Column<T>): any {

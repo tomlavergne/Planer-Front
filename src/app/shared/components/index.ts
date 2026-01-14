@@ -15,7 +15,7 @@ export { Text } from './display/text/text';
 export { Code } from './display/code/code';
 
 /***** Data Components *****/
-export { Table } from './data/table/table';
+export { Table, TableColumnTemplate } from './data/table/table';
 
 /***** Panel Components *****/
 export { Accordion } from './panel/accordion/accordion';

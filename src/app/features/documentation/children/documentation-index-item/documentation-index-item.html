@@ -20,5 +20,15 @@
 } @else if (isItem(currentItem)) {
   <!-- Item simple avec lien -->
   @let itemData = currentItem;
-  <app-sidebar-item [label]="itemData.title" [routerLink]="itemData.path" size="sm" expanded />
+
+  <app-button
+    [routerLink]="itemData.path"
+    routerLinkActive="active"
+    #rla="routerLinkActive"
+    [text]="itemData.title"
+    [variant]="rla.isActive ? 'soft' : 'ghost'"
+    [color]="rla.isActive ? 'blue' : 'gray'"
+    size="xs"
+    fullWidth
+  />
 }

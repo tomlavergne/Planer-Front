@@ -1,16 +1,16 @@
 /***** Imports Angular *****/
 import { Component, input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports des composants *****/
-import { Flex, Accordion } from '../../../../shared/components';
-import { SidebarItem } from '../../../../core/layout/sidebar/childrens/sidebar-item/sidebar-item';
+import { Flex, Accordion, Button } from '../../../../shared/components';
 
 /***** Import de types *****/
 import type { Documentation as DocumentationType } from '../../documentation.type';
 
 @Component({
   selector: 'app-documentation-index-item',
-  imports: [Flex, Accordion, SidebarItem],
+  imports: [Flex, Accordion, Button, RouterLink, RouterLinkActive],
   templateUrl: './documentation-index-item.html',
 })
 export class DocumentationIndexItem {

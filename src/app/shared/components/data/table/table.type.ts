@@ -2,7 +2,7 @@ export namespace Table {
   export interface Column<T> {
     id: string;
     header: string;
-    accessor: keyof T | ((row: T) => any);
+    accessor?: keyof T | ((row: T) => any);
     width?: number;
     minWidth?: number;
     maxWidth?: number;

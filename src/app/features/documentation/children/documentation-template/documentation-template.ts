@@ -3,10 +3,20 @@ import { Component, input, signal, OnInit, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 /***** Import de composants *****/
-import { Flex, Text, Card, Table, Button, Separator, Code } from '../../../../shared/components';
+import {
+  Flex,
+  Text,
+  Card,
+  Table,
+  TableColumnTemplate,
+  Button,
+  Separator,
+  Code,
+} from '../../../../shared/components';
 
 /***** Import de directives *****/
 import { TooltipDirective } from '../../../../shared/directives/tooltip/tooltip';
+import { PopoverDirective } from '../../../../shared/directives';
 
 /***** Import de services *****/
 import {
@@ -20,7 +30,19 @@ import { InputConfig, OutputConfig } from '../../../../shared/types';
 
 @Component({
   selector: 'app-documentation-template',
-  imports: [Flex, Text, Card, Table, Button, Separator, Code, RouterLink, TooltipDirective],
+  imports: [
+    Flex,
+    Text,
+    Card,
+    Table,
+    TableColumnTemplate,
+    Button,
+    Separator,
+    Code,
+    RouterLink,
+    TooltipDirective,
+    PopoverDirective,
+  ],
   templateUrl: './documentation-template.html',
   styleUrl: './documentation-template.scss',
 })
@@ -34,13 +56,11 @@ export class DocumentationTemplate {
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
-    { id: 'description', header: 'Description', accessor: 'description', sortable: false },
   ];
 
   outputsColumns: TableType.Column<OutputConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
-    { id: 'description', header: 'Description', accessor: 'description', sortable: false },
   ];
 
   codeExample = input<string>();

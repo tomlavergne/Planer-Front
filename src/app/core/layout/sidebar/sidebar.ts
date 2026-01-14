@@ -1,37 +1,34 @@
 /***** Imports de Angular *****/
-import { Component, signal, computed, HostListener, ElementRef, inject } from '@angular/core';
+import { Component, signal, computed, HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
-import {
-  Button,
-  Accordion,
-  Flex,
-  Avatar,
-  Icon,
-  Spacer,
-  Text,
-  Separator,
-} from '../../../shared/components';
-import { SidebarItem } from './childrens/sidebar-item/sidebar-item';
+import { Button, Flex, Avatar, Icon, Text, Separator } from '../../../shared/components';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
-import { PopoverDirective } from '../../../shared/directives/popover/popover';
+
+/***** Import de types *****/
+import type { Icon as IconType } from '../../../shared/components/display/icon/icon.type';
+
+interface NavigationItem {
+  label: string;
+  iconName: IconType.Name;
+  path: string;
+}
 
 @Component({
   selector: 'app-sidebar',
   imports: [
-    Accordion,
     Button,
     Text,
-    SidebarItem,
     Avatar,
     Icon,
     Flex,
     TooltipDirective,
-    PopoverDirective,
-    Spacer,
     Separator,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
@@ -43,6 +40,30 @@ import { PopoverDirective } from '../../../shared/directives/popover/popover';
 export class Sidebar {
   // Current theme signal
   currentTheme = signal<string>(document.documentElement.getAttribute('data-theme') || 'light');
+
+  // Navigation items
+  navigationItems: NavigationItem[] = [
+    {
+      label: 'Accueil',
+      iconName: 'lucideHome',
+      path: '/home',
+    },
+    {
+      label: 'Calendrier',
+      iconName: 'lucideCalendar',
+      path: '/calendar',
+    },
+    {
+      label: 'Utilisateurs',
+      iconName: 'lucideUsers',
+      path: '/users',
+    },
+    {
+      label: 'Ressources',
+      iconName: 'lucideBox',
+      path: '/ressources',
+    },
+  ];
 
   /***************************/
   /***** RESIZING HANDLE *****/

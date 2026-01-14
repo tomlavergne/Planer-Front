@@ -32,7 +32,13 @@
         <tr class="table-row" [class.clickable]="selectable()" (click)="onRowClick(row, $index)">
           @for (column of displayedColumns(); track column.id) {
             <td class="table-cell" [style.text-align]="column.align || 'left'">
-              {{ getCellValue(row, column) }}
+              @if (getColumnTemplate(column.id); as template) {
+                <ng-container
+                  *ngTemplateOutlet="template; context: { $implicit: row, column: column }"
+                />
+              } @else {
+                {{ getCellValue(row, column) }}
+              }
             </td>
           }
         </tr>
