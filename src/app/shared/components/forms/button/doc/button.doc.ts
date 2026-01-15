@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 
 /***** Imports de composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { Flex, Button } from '../../../';
+import { CodeExemple } from '../../../../../features/documentation/children/code-exemple/code-exemple';
+import { Flex, Button, Code, Text, Icon } from '../../../';
 
 /***** Import de types *****/
 import type { Button as ButtonType } from '../button.type';
@@ -13,7 +14,7 @@ import type { InputConfig, OutputConfig } from '../../../../types/utils.types';
 
 @Component({
   selector: 'app-button-documentation',
-  imports: [DocumentationTemplate, Flex, Button],
+  imports: [DocumentationTemplate, Flex, Button, CodeExemple, Icon, Text],
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {
@@ -29,10 +30,10 @@ export class ButtonDoc {
     'pink',
     'gray',
   ];
-  buttonVariants: ButtonType.Variant[] = ['solid', 'soft', 'outline', 'ghost'];
-  buttonSizes: ButtonType.Size[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl'];
+  variants: ButtonType.Variant[] = ['solid', 'soft', 'outline', 'ghost'];
+  sizes: ButtonType.Size[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl'];
 
-  buttonInputsMetadata: InputConfig[] = [
+  inputsMetadata: InputConfig[] = [
     {
       name: 'text',
       default: null as string | null,
@@ -95,11 +96,58 @@ export class ButtonDoc {
     },
   ];
 
-  buttonOutputsMetadata: OutputConfig[] = [
+  outputsMetadata: OutputConfig[] = [
     {
       name: 'clicked',
       type: 'MouseEvent',
       description: 'Événement émis lors du clic sur le bouton',
     },
   ];
+
+  contentExempleCode = `// Text only button
+<app-button text="Text only" size="sm" borderRadius="full" />
+
+// Icon only button
+<app-button size="sm" iconLeft="lucideStar" borderRadius="full" />
+
+// Custom content button
+<app-button size="sm" borderRadius="full">
+    <app-flex direction="row" alignItems="center" gap="sm">
+        <app-text size="sm" color="primary-inverse">Custom Content</app-text>
+
+        <app-icon color="white" name="lucideStar" size="sm" />
+
+        <app-text size="sm" color="primary-inverse">Custom Content</app-text>
+    </app-flex>
+
+</app-button>`;
+
+  colorExempleCode = `@for (color of [${this.colors.toString()}] track $index) {
+    <app-button
+        [text]="color"
+        [color]="color"
+        size="sm"
+        borderRadius="full"
+    />
+}`;
+
+  variantExempleCode = `@for (variant of [${this.variants.toString()}]; track $index) {
+    <app-button
+        [text]="variant"
+        [variant]="variant"
+        size="sm"
+        borderRadius="full"
+    />
+}`;
+
+  sizeExempleCode = `@for (size of [${this.sizes.toString()}]; track $index) {
+    <app-button
+        [text]="size"
+        [variant]="variant"
+        size="sm"
+        borderRadius="full"
+    />
+}`;
+
+  disabledExempleCode = `<app-button text="Disabled" size="sm" color="blue" borderRadius="full" disabled />`;
 }

@@ -2,136 +2,117 @@
   title="Button"
   introduction="Déclencher une action ou un événement en un clic, comme la soumission d'un formulaire ou l'affichage d'une boîte de dialogue.
   Les boutons contiennent généralement du texte qui indique l'action qu'ils effectuent."
-  [inputs]="buttonInputsMetadata"
-  [outputs]="buttonOutputsMetadata"
+  [inputs]="inputsMetadata"
+  [outputs]="outputsMetadata"
   codeExample="const hello = 'world';"
 >
   <div overview>
-    <app-flex direction="column" gap="lg" wrap fullWidth>
-      @for (variant of buttonVariants; track $index) {
-        <app-flex direction="column" gap="sm" wrap>
-          <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
+    <app-flex direction="column" gap="2xl" wrap fullWidth>
+      <!-- Contenu -->
+      <app-flex direction="column" gap="sm" wrap fullWidth>
+        <app-text size="xl" color="text" weight="semibold">Contenu</app-text>
+
+        <app-text size="md" color="secondary" weight="regular">
+          Le composant Button peut contenir du texte, des icônes ou des éléments personnalisés en
+          utilisant la projection de contenu.
+        </app-text>
+
+        <app-code-exemple language="typescript" [code]="contentExempleCode">
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            <app-button text="Text only" size="sm" borderRadius="full" />
+
+            <app-button size="sm" iconLeft="lucideStar" borderRadius="full" />
+
+            <app-button size="sm" borderRadius="full">
+              <app-flex direction="row" alignItems="center" gap="sm">
+                <app-text size="sm" color="primary-inverse" weight="medium"
+                  >Custom Content</app-text
+                >
+
+                <app-icon color="white" name="lucideStar" size="sm" />
+
+                <app-text size="sm" color="primary-inverse">Custom Content</app-text>
+              </app-flex>
+
+              <app-flex></app-flex>
+            </app-button>
+          </app-flex>
+        </app-code-exemple>
+      </app-flex>
+
+      <!-- Couleurs -->
+      <app-flex direction="column" gap="sm" wrap fullWidth>
+        <app-text size="xl" color="text" weight="semibold">Couleurs</app-text>
+
+        <app-text size="md" color="secondary" weight="regular">
+          Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents
+          contextes d'utilisation.
+        </app-text>
+
+        <app-code-exemple language="typescript" [code]="colorExempleCode">
           <app-flex direction="row" gap="sm" wrap>
             @for (color of colors; track $index) {
+              <app-button [text]="color" [color]="color" size="sm" borderRadius="full" />
+            }
+          </app-flex>
+        </app-code-exemple>
+      </app-flex>
+
+      <!-- Variants -->
+      <app-flex direction="column" gap="sm" wrap fullWidth>
+        <app-text size="xl" color="text" weight="semibold">Variants</app-text>
+
+        <app-text size="md" color="secondary" weight="regular">
+          Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents
+          contextes d'utilisation.
+        </app-text>
+
+        <app-code-exemple language="typescript" [code]="colorExempleCode">
+          <app-flex direction="row" gap="sm" wrap>
+            @for (variant of variants; track $index) {
+              <app-button [text]="variant" [variant]="variant" size="sm" borderRadius="full" />
+            }
+          </app-flex>
+        </app-code-exemple>
+      </app-flex>
+
+      <!-- Tailles -->
+      <app-flex direction="column" gap="sm" wrap fullWidth>
+        <app-text size="xl" color="text" weight="semibold">Tailles</app-text>
+
+        <app-text size="md" color="secondary" weight="regular">
+          Le composant Button prend en charge plusieurs tailles pour s'adapter à différents
+          contextes d'utilisation.
+        </app-text>
+
+        <app-code-exemple language="typescript" [code]="colorExempleCode">
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            @for (size of sizes; track $index) {
               <app-button
-                [text]="
-                  `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-                "
-                [variant]="variant"
-                [color]="color"
-                size="sm"
+                [text]="size"
+                variant="solid"
+                color="blue"
+                [size]="size"
                 borderRadius="full"
+                iconLeft="lucidePlus"
               />
             }
           </app-flex>
-        </app-flex>
-      }
-
-      <app-flex direction="column" gap="md" wrap>
-        <h3>Avec Icônes</h3>
-        <app-flex direction="row" gap="md" wrap>
-          <app-button
-            text="Enregistrer"
-            variant="solid"
-            color="green"
-            size="sm"
-            borderRadius="full"
-            iconLeft="lucideSave"
-          />
-          <app-button
-            text="Supprimer"
-            variant="outline"
-            color="red"
-            size="sm"
-            borderRadius="full"
-            iconLeft="lucideTrash2"
-          />
-          <app-button
-            text="Options"
-            variant="outline"
-            color="gray"
-            size="sm"
-            borderRadius="full"
-            iconLeft="lucideChevronDown"
-          />
-          <app-button
-            variant="ghost"
-            color="gray"
-            size="sm"
-            borderRadius="full"
-            iconLeft="lucideStar"
-          />
-          <app-button
-            variant="soft"
-            color="blue"
-            size="sm"
-            borderRadius="full"
-            iconLeft="lucidePlus"
-          />
-        </app-flex>
+        </app-code-exemple>
       </app-flex>
 
-      <app-flex direction="column" gap="md" wrap>
-        <h3>Désactivés</h3>
+      <!-- Disabled -->
+      <app-flex direction="column" gap="sm" wrap fullWidth>
+        <app-text size="xl" color="text" weight="semibold">Disabled</app-text>
 
-        <app-flex direction="row" gap="sm" wrap>
-          @for (variant of buttonVariants; track $index) {
-            <app-button
-              text="Disabled"
-              [variant]="variant"
-              color="blue"
-              size="sm"
-              borderRadius="full"
-              disabled
-            />
-          }
-        </app-flex>
-      </app-flex>
+        <app-text size="md" color="secondary" weight="regular">
+          Le composant Button peut être désactivé pour indiquer qu'il n'est pas interactif.
+        </app-text>
 
-      <app-flex direction="column" gap="md" wrap>
-        <h3>Tailles</h3>
-
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of buttonSizes; track $index) {
-            <app-button
-              [text]="size"
-              variant="solid"
-              color="blue"
-              [size]="size"
-              borderRadius="full"
-              iconLeft="lucidePlus"
-            />
-          }
-        </app-flex>
-
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of buttonSizes; track $index) {
-            <app-button
-              variant="solid"
-              color="blue"
-              [size]="size"
-              borderRadius="full"
-              iconLeft="lucidePlus"
-            />
-          }
-        </app-flex>
-
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of buttonSizes; track $index) {
-            <app-button
-              [text]="'Texte ' + size"
-              variant="solid"
-              color="blue"
-              [size]="size"
-              borderRadius="full"
-            />
-          }
-        </app-flex>
+        <app-code-exemple language="typescript" [code]="disabledExempleCode">
+          <app-button text="Disabled" size="sm" color="blue" borderRadius="full" disabled />
+        </app-code-exemple>
       </app-flex>
     </app-flex>
-  </div>
-
-  <div usage>
-    <!-- Instructions d'utilisation -->
   </div>
 </app-documentation-template>

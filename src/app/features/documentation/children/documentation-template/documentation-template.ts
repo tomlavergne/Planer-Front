@@ -10,6 +10,7 @@ import {
   Table,
   TableColumnTemplate,
   Button,
+  Badge,
   Separator,
   Code,
 } from '../../../../shared/components';
@@ -34,6 +35,7 @@ import { InputConfig, OutputConfig } from '../../../../shared/types';
     Flex,
     Text,
     Card,
+    Badge,
     Table,
     TableColumnTemplate,
     Button,
@@ -65,12 +67,15 @@ export class DocumentationTemplate {
 
   codeExample = input<string>();
 
-  scrollToAPI() {
-    console.log('Scrolling to API section');
-    const apiSection = document.getElementById('api-section');
-    if (apiSection) {
-      apiSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  formatDefaultValue(value: any): string {
+    if (value === null) return 'null';
+    if (value === undefined) return 'undefined';
+    if (typeof value === 'string') return `"${value}"`;
+    if (typeof value === 'boolean') return value.toString();
+    if (typeof value === 'number') return value.toString();
+    if (Array.isArray(value)) return JSON.stringify(value);
+    if (typeof value === 'object') return JSON.stringify(value);
+    return String(value);
   }
 
   private navService = inject(DocumentationNavigationService);

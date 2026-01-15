@@ -69,7 +69,13 @@ export class Documentation {
             { title: 'Toast', path: 'toast', icon: 'lucideBell' },
           ],
         },
-        { title: 'Navigation', content: [] },
+        {
+          title: 'Navigation',
+          content: [
+            { title: 'Breadcrumb', path: 'breadcrumb', icon: 'lucideHome' },
+            { title: 'Tabs', path: 'tabs', icon: 'lucideSquare' },
+          ],
+        },
       ],
     },
     {

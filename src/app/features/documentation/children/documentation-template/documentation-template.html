@@ -40,46 +40,22 @@
       </app-text>
     }
 
-    <!-- Liens rapides -->
-    <app-flex direction="row" gap="sm" wrap>
-      <app-button
-        text="Code d'exemple"
-        variant="soft"
-        color="gray"
-        size="sm"
-        iconLeft="lucideCode"
-      />
-
-      <app-button
-        text="API"
-        variant="soft"
-        color="gray"
-        size="sm"
-        iconLeft="lucideTable"
-        (clicked)="scrollToAPI()"
-      />
-    </app-flex>
-
     <app-separator />
   </app-flex>
 
-  <app-flex direction="column" gap="sm">
-    <app-text size="xl" color="text" weight="semibold">Vue d'ensemble :</app-text>
+  <app-flex direction="column" gap="xl">
+    <app-text size="2xl" color="text" weight="semibold">Usage</app-text>
 
-    <app-card variant="outline" fullWidth>
-      <ng-content select="[overview]"></ng-content>
-    </app-card>
+    <ng-content></ng-content>
   </app-flex>
 
-  <app-code [code]="codeExample()!" [language]="'typescript'" [title]="'Exemple TypeScript'" />
-
-  <app-flex id="api-section" direction="column" gap="xl" fullWidth>
-    <app-text size="xl" color="text" weight="semibold">API :</app-text>
+  <app-flex direction="column" gap="xl" fullWidth>
+    <app-text size="2xl" color="text" weight="semibold">API</app-text>
 
     <!-- Inputs -->
     @if (inputs()) {
       <app-flex direction="column" gap="sm" fullWidth>
-        <app-text size="lg" color="text" weight="semibold">Inputs :</app-text>
+        <app-text size="lg" color="text" weight="semibold">Inputs</app-text>
 
         <app-table
           [columns]="inputsColumns"
@@ -107,6 +83,18 @@
               </ng-template>
             </app-flex>
           </ng-template>
+
+          <ng-template columnId="type" let-row>
+            @if (row.type) {
+              <app-badge [text]="row.type" color="blue" variant="soft" size="sm" />
+            }
+          </ng-template>
+
+          <ng-template columnId="default" let-row>
+            @if (row.default) {
+              <app-badge [text]="row.default" color="blue" variant="soft" size="sm" />
+            }
+          </ng-template>
         </app-table>
       </app-flex>
     }
@@ -114,7 +102,7 @@
     @if (outputs()) {
       <!-- Outputs -->
       <app-flex direction="column" gap="sm" fullWidth>
-        <app-text size="lg" color="text" weight="semibold">Outputs :</app-text>
+        <app-text size="lg" color="text" weight="semibold">Outputs</app-text>
 
         <app-table
           [columns]="outputsColumns"
@@ -141,6 +129,19 @@
                 </app-flex>
               </ng-template>
             </app-flex>
+          </ng-template>
+
+          <ng-template columnId="default" let-row>
+            <app-flex direction="row" gap="xs" alignItems="center">
+              <app-text color="primary">{{ row.name }}</app-text>
+              <app-button iconLeft="lucideInfo" size="xs" variant="ghost" color="gray" />
+            </app-flex>
+          </ng-template>
+
+          <ng-template columnId="type" let-row>
+            @if (row.type) {
+              <app-badge [text]="row.type" color="blue" variant="soft" size="sm" />
+            }
           </ng-template>
         </app-table>
       </app-flex>

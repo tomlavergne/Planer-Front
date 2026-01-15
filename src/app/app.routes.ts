@@ -83,6 +83,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./shared/components/data/table/doc/table.doc').then((t) => t.TableDoc),
       },
+      {
+        path: 'breadcrumb',
+        loadComponent: () =>
+          import('./shared/components/navigation/breadcrumb/doc/breadcrumb.doc').then(
+            (b) => b.BreadcrumbDoc,
+          ),
+      },
     ],
   },
   {

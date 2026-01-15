@@ -39,6 +39,7 @@ export * from './overlay/context-menu/context-menu-content';
 
 /***** Navigation Components *****/
 export { Tabs, type TabItem } from './navigation/tabs/tabs';
+export { Breadcrumb } from './navigation/breadcrumb/breadcrumb';
 
 /***** Feedback Components *****/
 export { Progress } from './feedback/progress/progress';

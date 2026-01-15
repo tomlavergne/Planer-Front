@@ -1,9 +1,11 @@
-<app-flex direction="row" fullHeight>
+<app-flex direction="row" fullHeight fullWidth>
   <div class="documentation-sidebar">
     @for (item of index; track $index) {
       <app-documentation-index-item [item]="item" />
     }
   </div>
 
-  <router-outlet />
+  <div class="documentation-content">
+    <router-outlet />
+  </div>
 </app-flex>

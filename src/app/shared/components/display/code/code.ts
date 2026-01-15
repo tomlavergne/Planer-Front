@@ -7,10 +7,13 @@ import {
   ElementRef,
   viewChild,
   afterNextRender,
+  booleanAttribute,
 } from '@angular/core';
 
 /***** Imports externes *****/
 import hljs from 'highlight.js/lib/core';
+
+/***** Import des langages pour la coloration syntaxique *****/
 import typescript from 'highlight.js/lib/languages/typescript';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml'; // pour HTML
@@ -39,7 +42,7 @@ hljs.registerLanguage('java', java);
 hljs.registerLanguage('sql', sql);
 
 /***** Imports de composants *****/
-import { Button, Icon, Flex } from '../../';
+import { Button, Icon, Flex, Text, Badge, Separator } from '../../';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../directives/tooltip/tooltip';
@@ -49,7 +52,7 @@ import type { Code as CodeType } from './code.type';
 
 @Component({
   selector: 'app-code',
-  imports: [Button, Icon, Flex, TooltipDirective],
+  imports: [Button, Icon, Flex, TooltipDirective, Text, Badge, Separator],
   templateUrl: './code.html',
   styleUrl: './code.scss',
   host: {
@@ -57,6 +60,10 @@ import type { Code as CodeType } from './code.type';
   },
 })
 export class Code {
+  /******************/
+  /***** INPUTS *****/
+  /******************/
+
   /** Code à afficher */
   code = input.required<string>();
 
@@ -64,16 +71,20 @@ export class Code {
   language = input<CodeType.Language>('typescript');
 
   /** Afficher le bouton copier */
-  showCopy = input<boolean>(true);
+  showCopy = input<boolean, any>(true, { transform: booleanAttribute });
 
   /** Afficher le nom du langage */
-  showLanguage = input<boolean>(true);
+  showLanguage = input<boolean, any>(true, { transform: booleanAttribute });
 
   /** Titre optionnel du bloc de code */
   title = input<string>();
 
   // Référence au bloc de code
   codeElement = viewChild<ElementRef<HTMLElement>>('codeBlock');
+
+  /*******************/
+  /***** SIGNALS *****/
+  /*******************/
 
   // État de la copie
   copied = signal(false);

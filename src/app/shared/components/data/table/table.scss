@@ -11,7 +11,6 @@
   overflow-x: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
-  background: var(--color-surface);
 }
 
 .table {
@@ -21,8 +20,8 @@
 
   /***** HEADER *****/
   thead {
-    background: var(--color-surface-alt);
-    border-bottom: 2px solid var(--color-border);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
 
     tr {
       border: none;
@@ -101,6 +100,8 @@
 
   /***** BODY *****/
   tbody {
+    background: var(--color-background);
+
     .table-row {
       border-bottom: 1px solid var(--color-border);
       transition: background-color 0.15s ease;
