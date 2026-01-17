@@ -20,7 +20,7 @@
 
   /***** HEADER *****/
   thead {
-    background: var(--color-surface);
+    background: var(--color-background-secondary);
     border-bottom: 1px solid var(--color-border);
 
     tr {
@@ -135,7 +135,7 @@
 // Striped
 :host(.striped) {
   .table tbody .table-row:nth-child(even) {
-    background: color-mix(in srgb, var(--color-surface-alt) 50%, transparent);
+    background: color-mix(in srgb, var(--color-background-secondary-alt) 50%, transparent);
   }
 }
 

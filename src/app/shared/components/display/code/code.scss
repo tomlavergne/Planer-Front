@@ -3,12 +3,25 @@
 
 .code-content {
   position: relative;
+  max-width: 100%;
+  overflow: hidden;
 
   pre {
+    margin: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap; // Permet au code de se couper sur plusieurs lignes
+    word-wrap: break-word; // Coupe les mots longs si nécessaire
+    word-break: break-word; // Force la coupure des mots même sans espaces
+
     code {
       font-size: var(--font-size-sm);
-      background-color: var(--color-surface);
+      background-color: var(--color-background-secondary);
       color: var(--color-text-secondary);
+      display: block;
+      max-width: 100%;
+      overflow-wrap: break-word; // Coupe les mots longs
+      word-break: break-word; // Force la coupure même dans les tableaux/listes
 
       // Vos styles personnalisés avec ::ng-deep pour percer l'encapsulation
       ::ng-deep .hljs-keyword,

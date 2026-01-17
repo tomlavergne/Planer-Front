@@ -2,7 +2,8 @@
 import { Component } from '@angular/core';
 
 /***** Import de composants *****/
-import { Flex, Button } from '../../';
+import { Flex } from '../../layout/flex/flex';
+import { Button } from '../../form/button/button';
 
 @Component({
   selector: 'app-breadcrumb',

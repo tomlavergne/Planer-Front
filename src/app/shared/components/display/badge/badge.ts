@@ -9,6 +9,7 @@ import { Icon } from '../icon/icon';
 /***** Imports de types *****/
 import type { Badge as BadgeType } from './badge.type';
 import type { Icon as IconType } from '../icon/icon.type';
+import type { Text as TextType } from '../text/text.type';
 
 /***** Import de configuration *****/
 import { BADGE_SIZES_CONFIG } from './badge.config';
@@ -51,9 +52,9 @@ export class Badge {
   });
 
   // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): BadgeType.Color => {
+  contentColor = computed((): TextType.Color => {
     if (this.variant() === 'solid') {
-      return 'white';
+      return 'blue';
     } else {
       return this.color() || 'blue';
     }

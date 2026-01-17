@@ -529,7 +529,7 @@ Beaucoup de composants supportent des slots nommés :
 Les composants utilisent des variables CSS pour le theming :
 
 - `--color-primary`, `--color-primary-hover`, `--color-primary-alpha`
-- `--color-surface`, `--color-surface-hover`
+- `--color-background-secondary`, `--color-background-secondary-hover`
 - `--color-border`, `--color-border-hover`
 - `--color-text`, `--color-text-secondary`
 - `--color-success`, `--color-warning`, `--color-danger`

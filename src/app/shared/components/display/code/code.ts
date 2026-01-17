@@ -42,7 +42,8 @@ hljs.registerLanguage('java', java);
 hljs.registerLanguage('sql', sql);
 
 /***** Imports de composants *****/
-import { Button, Icon, Flex, Text, Badge, Separator } from '../../';
+import { Button } from '../../form/button/button';
+import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../directives/tooltip/tooltip';
@@ -52,7 +53,7 @@ import type { Code as CodeType } from './code.type';
 
 @Component({
   selector: 'app-code',
-  imports: [Button, Icon, Flex, TooltipDirective, Text, Badge, Separator],
+  imports: [Button, Flex, TooltipDirective],
   templateUrl: './code.html',
   styleUrl: './code.scss',
   host: {

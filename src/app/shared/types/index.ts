@@ -6,9 +6,6 @@
 // Types UI de base
 export * from './ui.types';
 
-// Types spécifiques aux composants
-export * from './component.types';
-
 // Types de thème
 export * from './theme.types';
 

@@ -22,20 +22,18 @@ export { Accordion } from './panel/accordion/accordion';
 export { Card } from './panel/card/card';
 
 /***** Form Components *****/
-export { Button } from './forms/button/button';
-export { Input } from './forms/input/input';
-export { Textarea } from './forms/textarea/textarea';
-export { Label } from './forms/label/label';
-export { Checkbox } from './forms/checkbox/checkbox';
-export { Toggle } from './forms/toggle/toggle';
-export { Select, type SelectOption } from './forms/select/select';
-export { RadioGroup, type RadioOption } from './forms/radio-group/radio-group';
+export { Button } from './form/button/button';
+export { Input } from './form/input/input';
+export { Textarea } from './form/textarea/textarea';
+export { Label } from './form/label/label';
+export { Checkbox } from './form/checkbox/checkbox';
+export { Toggle } from './form/toggle/toggle';
+export { Select, type SelectOption } from './form/select/select';
+export { RadioGroup, type RadioOption } from './form/radio-group/radio-group';
 
 /***** Overlay Components *****/
 export { Popover } from './overlay/popover/popover';
 export { Dialog } from './overlay/dialog/dialog';
-export * from './overlay/context-menu/context-menu';
-export * from './overlay/context-menu/context-menu-content';
 
 /***** Navigation Components *****/
 export { Tabs, type TabItem } from './navigation/tabs/tabs';

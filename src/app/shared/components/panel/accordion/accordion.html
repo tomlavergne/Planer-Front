@@ -14,19 +14,11 @@
     <app-flex direction="row" alignItems="center" [gap]="currentConfig().header.gap">
       <!-- Icon -->
       @if (iconLeftName()) {
-        <app-icon
-          [name]="iconLeftName()!"
-          [size]="currentConfig().header.iconSize"
-          [color]="contentColor()"
-        ></app-icon>
+        <app-icon [name]="iconLeftName()!" [size]="currentConfig().header.iconSize"></app-icon>
       }
 
       <!-- Text -->
-      <app-text
-        [size]="currentConfig().header.fontSize"
-        [weight]="titleWeight()"
-        [color]="contentColor()"
-      >
+      <app-text [size]="currentConfig().header.fontSize" [weight]="titleWeight()">
         {{ title() }}
       </app-text>
     </app-flex>
@@ -34,7 +26,6 @@
     <!-- Chevron -->
     <app-icon
       [size]="currentConfig().header.iconSize"
-      [color]="contentColor()"
       [name]="isOpen() ? 'lucideChevronUp' : 'lucideChevronDown'"
     />
   </app-flex>

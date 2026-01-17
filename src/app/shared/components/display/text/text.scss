@@ -8,11 +8,48 @@
   /***** COLORS *****/
   /*******************/
 
-  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
-
+  $colors: (
+    'primary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+    'red',
+    'orange',
+    'amber',
+    'yellow',
+    'lime',
+    'green',
+    'emerald',
+    'teal',
+    'cyan',
+    'sky',
+    'blue',
+    'indigo',
+    'violet',
+    'purple',
+    'fuchsia',
+    'pink',
+    'rose',
+    'white',
+    'gray',
+    'black'
+  );
   @each $color in $colors {
     &.color-#{$color} {
       color: var(--color-#{$color}-dark);
+    }
+  }
+
+  $textColors: (
+    'foreground-primary',
+    'foreground-secondary',
+    'foreground-primary-inverse',
+    'foreground-secondary-inverse'
+  );
+  @each $color in $textColors {
+    &.color-#{$color} {
+      color: var(--color-#{$color});
     }
   }
 
@@ -25,18 +62,8 @@
   }
 
   &.color-primary {
-    color: var(--color-text-primary);
+    color: var(--color-primary);
   }
-  &.color-secondary {
-    color: var(--color-text-secondary);
-  }
-  &.color-primary-inverse {
-    color: var(--color-text-primary-inverse);
-  }
-  &.color-secondary-inverse {
-    color: var(--color-text-secondary-inverse);
-  }
-
   /*****************/
   /***** SIZES *****/
   /*****************/

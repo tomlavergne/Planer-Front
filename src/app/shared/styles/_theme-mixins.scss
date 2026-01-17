@@ -1,0 +1,66 @@
+// ==========================================
+// Mixins pour la génération des thèmes
+// ==========================================
+
+// Mixin pour générer les variables de radius
+@mixin theme-radius($map) {
+  @each $name, $value in $map {
+    --radius-#{$name}: #{$value};
+  }
+}
+
+// Mixin pour générer une palette de couleurs
+@mixin color-palette($palette) {
+  @each $name, $value in $palette {
+    --color-#{$name}: #{$value};
+  }
+}
+
+// Mixin pour générer toutes les variantes d'une palette neutral (light + dark)
+@mixin generate-neutral-variants($name, $light-palette, $dark-palette) {
+  [data-theme='light'] {
+    &[data-neutral='#{$name}'] {
+      @include color-palette($light-palette);
+    }
+  }
+
+  [data-theme='dark'] {
+    &[data-neutral='#{$name}'] {
+      @include color-palette($dark-palette);
+    }
+  }
+}
+// Mixin pour générer une couleur avec ses variantes (light, dark) pour les deux thèmes
+@mixin generate-color(
+  $name,
+  $light-main,
+  $light-light,
+  $light-dark,
+  $dark-main,
+  $dark-light,
+  $dark-dark
+) {
+  --color-#{$name}: #{$light-main};
+  --color-#{$name}-light: #{$light-light};
+  --color-#{$name}-dark: #{$light-dark};
+
+  // Note: l'override pour dark theme doit être fait séparément dans styles.scss
+  // car ce mixin est appelé depuis :root et le sélecteur [data-theme='dark'] & ne fonctionne pas
+}
+
+// Mixin pour générer les overrides du thème dark pour une couleur
+@mixin generate-color-dark-override($name, $dark-main, $dark-light, $dark-dark) {
+  --color-#{$name}: #{$dark-main};
+  --color-#{$name}-light: #{$dark-light};
+  --color-#{$name}-dark: #{$dark-dark};
+}
+
+// Mixin pour générer l'assignation primary
+@mixin generate-primary($name) {
+  [data-primary='#{$name}'] {
+    --color-primary: var(--color-#{$name});
+    --color-primary-light: var(--color-#{$name}-light);
+    --color-primary-dark: var(--color-#{$name}-dark);
+    --color-on-primary: #ffffff;
+  }
+}

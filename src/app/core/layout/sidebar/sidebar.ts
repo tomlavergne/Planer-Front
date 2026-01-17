@@ -4,12 +4,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
 import { Button, Flex, Avatar, Icon, Text, Separator } from '../../../shared/components';
+import { ThemeConfigurator } from './children/theme-configurator/theme-configurator';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
 
 /***** Import de types *****/
 import type { Icon as IconType } from '../../../shared/components/display/icon/icon.type';
+import { PopoverDirective } from '../../../shared/directives';
 
 interface NavigationItem {
   label: string;
@@ -28,7 +30,9 @@ interface NavigationItem {
     TooltipDirective,
     Separator,
     RouterLink,
+    ThemeConfigurator,
     RouterLinkActive,
+    PopoverDirective,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
@@ -40,6 +44,8 @@ interface NavigationItem {
 export class Sidebar {
   // Current theme signal
   currentTheme = signal<string>(document.documentElement.getAttribute('data-theme') || 'light');
+  currentNeutral = signal<string>(document.documentElement.getAttribute('data-neutral') || 'gray');
+  currentPrimary = signal<string>(document.documentElement.getAttribute('data-primary') || 'blue');
 
   // Navigation items
   navigationItems: NavigationItem[] = [
@@ -169,5 +175,48 @@ export class Sidebar {
     const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
     this.currentTheme.set(newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
+  }
+
+  // Toggle app neutral
+  toggleNeutral(): void {
+    const neutral = ['gray', 'slate', 'zinc', 'stone', 'neutral'];
+    const currentNeutral = document.documentElement.getAttribute('data-neutral') || 'gray';
+    const currentIndex = neutral.indexOf(currentNeutral);
+    const nextIndex = (currentIndex + 1) % neutral.length;
+    const nextNeutral = neutral[nextIndex];
+    this.currentNeutral.set(nextNeutral);
+    document.documentElement.setAttribute('data-neutral', nextNeutral);
+  }
+
+  // Toggle app primary
+  togglePrimary(): void {
+    const primary = [
+      'red',
+      'orange',
+      'amber',
+      'yellow',
+      'lime',
+      'green',
+      'emerald',
+      'teal',
+      'cyan',
+      'sky',
+      'blue',
+      'indigo',
+      'violet',
+      'purple',
+      'fuchsia',
+      'pink',
+      'rose',
+      'white',
+      'gray',
+      'black',
+    ];
+    const currentPrimary = document.documentElement.getAttribute('data-primary') || 'gray';
+    const currentIndex = primary.indexOf(currentPrimary);
+    const nextIndex = (currentIndex + 1) % primary.length;
+    const nextPrimary = primary[nextIndex];
+    this.currentPrimary.set(nextPrimary);
+    document.documentElement.setAttribute('data-primary', nextPrimary);
   }
 }

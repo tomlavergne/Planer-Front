@@ -1,16 +1,14 @@
-import { Icon as IconType } from '../../shared/components/display/icon/icon.type';
-
 export namespace Documentation {
   export type Item = {
-    title: string;
+    name: string;
     path: string;
-    icon?: IconType.Name;
+    importPath: string;
+    loadComponent: () => Promise<any>;
   };
 
-  export type Section = {
-    title: string;
-    icon?: IconType.Name;
-    content: (Item | Section)[];
+  // Section hérite de BaseItem et ajoute content
+  export type Section = Item & {
+    content: Item[];
   };
 
   export type Index = Section[];

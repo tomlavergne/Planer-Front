@@ -24,7 +24,6 @@ export class AlertDoc {
     'indigo',
     'purple',
     'pink',
-    'gray',
   ];
   variants: AlertType.Variant[] = ['solid', 'soft', 'outline'];
 

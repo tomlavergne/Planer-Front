@@ -1,23 +1,24 @@
 /***** Import Angular *****/
-import { Component, input, signal, OnInit, inject } from '@angular/core';
+import { Component, input, signal, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 /***** Import de composants *****/
 import {
   Flex,
   Text,
-  Card,
   Table,
   TableColumnTemplate,
   Button,
   Badge,
   Separator,
-  Code,
 } from '../../../../shared/components';
 
 /***** Import de directives *****/
 import { TooltipDirective } from '../../../../shared/directives/tooltip/tooltip';
 import { PopoverDirective } from '../../../../shared/directives';
+
+/***** Import de confiuration *****/
+import { DOCUMENTED_COMPONENTS } from '../../documentation.config';
 
 /***** Import de services *****/
 import {
@@ -27,20 +28,18 @@ import {
 
 /***** Import de types *****/
 import type { Table as TableType } from '../../../../shared/components/data/table/table.type';
-import { InputConfig, OutputConfig } from '../../../../shared/types';
+import { InputConfig, ModelConfig, OutputConfig } from '../../../../shared/types';
 
 @Component({
   selector: 'app-documentation-template',
   imports: [
     Flex,
     Text,
-    Card,
     Badge,
     Table,
     TableColumnTemplate,
     Button,
     Separator,
-    Code,
     RouterLink,
     TooltipDirective,
     PopoverDirective,
@@ -52,9 +51,16 @@ export class DocumentationTemplate {
   title = input.required<string>();
   introduction = input<string>();
   inputs = input<InputConfig[]>();
+  models = input<ModelConfig[]>();
   outputs = input<OutputConfig[]>();
 
   inputsColumns: TableType.Column<InputConfig>[] = [
+    { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
+    { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
+    { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
+  ];
+
+  modelsColumns: TableType.Column<ModelConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
@@ -107,6 +113,8 @@ export class DocumentationTemplate {
   }
 
   getRouteName(route: string): string {
+    if (!route) return '';
+    console.log('route', route);
     // Capitaliser la première lettre
     return route.charAt(0).toUpperCase() + route.slice(1);
   }

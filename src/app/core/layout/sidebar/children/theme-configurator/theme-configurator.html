@@ -1,0 +1,81 @@
+<app-flex direction="column" gap="sm" padding="md">
+  <app-flex direction="row" justifyContent="between" alignItems="center">
+    <app-text color="foreground-primary" size="sm" weight="semibold"
+      >Configuration du thème</app-text
+    >
+    <app-button variant="ghost" size="xs" iconLeft="lucideX" />
+  </app-flex>
+
+  <!-- Thème (Light/Dark/Auto) -->
+  <app-flex direction="column" gap="3xs">
+    <app-text size="xs" color="foreground-secondary" weight="medium">Mode</app-text>
+    <app-grid columns="3" gap="3xs">
+      @for (theme of themes; track $index) {
+        <app-button
+          [text]="theme.name"
+          [variant]="themeService.theme() === theme.name ? 'solid' : 'soft'"
+          size="xs"
+          [iconLeft]="theme.icon"
+          fullWidth
+          (clicked)="setTheme(theme.name)"
+        />
+      }
+    </app-grid>
+  </app-flex>
+
+  <!-- Couleur primaire -->
+  <app-flex direction="column" gap="3xs">
+    <app-text size="xs" color="foreground-secondary" weight="medium">Couleur primaire</app-text>
+    <app-grid columns="5" gap="3xs">
+      @for (primary of primaries; track $index) {
+        <app-button
+          [variant]="themeService.primary() === primary ? 'solid' : 'soft'"
+          size="xs"
+          borderRadius="md"
+          fullWidth
+          (clicked)="setPrimary(primary)"
+        >
+          <app-flex direction="row" alignItems="center" justifyContent="center" gap="2xs" fullWidth>
+            <div class="w-4 h-4 rounded-full"></div>
+
+            <app-text color="foreground-primary" weight="medium">
+              {{ primary }}
+            </app-text>
+          </app-flex>
+        </app-button>
+      }
+    </app-grid>
+  </app-flex>
+
+  <!-- Couleur neutre -->
+  <app-flex direction="column" gap="3xs">
+    <app-text size="xs" color="foreground-secondary" weight="medium">Couleur neutre</app-text>
+    <app-grid columns="5" gap="3xs">
+      @for (neutral of neutrals; track $index) {
+        <app-button
+          [text]="neutral"
+          [variant]="themeService.neutral() === neutral ? 'solid' : 'soft'"
+          size="xs"
+          fullWidth
+          (clicked)="setNeutral(neutral)"
+        />
+      }
+    </app-grid>
+  </app-flex>
+
+  <!-- Radius -->
+  <app-flex direction="column" gap="3xs">
+    <app-text size="xs" color="foreground-secondary" weight="medium">Radius</app-text>
+    <app-grid columns="5" gap="3xs">
+      @for (radius of radiusOptions; track $index) {
+        <app-button
+          [text]="radius"
+          [variant]="themeService.radius() === radius ? 'solid' : 'soft'"
+          size="xs"
+          fullWidth
+          (clicked)="setRadius(radius)"
+        />
+      }
+    </app-grid>
+  </app-flex>
+</app-flex>

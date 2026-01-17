@@ -4,13 +4,14 @@ import { booleanAttribute, Component, computed, input, output } from '@angular/c
 /***** Imports de composants *****/
 import { Icon } from '../../display/icon/icon';
 import { Text } from '../../display/text/text';
-import { Button } from '../../forms/button/button';
+import { Button } from '../../form/button/button';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
 import type { Alert as AlertType } from './alert.type';
 import type { Icon as Toggle } from '../../display/icon/icon.type';
-import type { Button as ButtonType } from '../../forms/button/button.type';
+import type { Button as ButtonType } from '../../form/button/button.type';
+import type { Text as textType } from '../../display/text/text.type';
 
 @Component({
   selector: 'app-alert',
@@ -63,9 +64,9 @@ export class Alert {
   });
 
   // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): AlertType.IconColor => {
+  contentColor = computed((): textType.Color => {
     if (this.variant() === 'solid') {
-      return 'white';
+      return 'foreground-primary';
     } else {
       return this.color() || 'blue';
     }

@@ -16,14 +16,22 @@ export class BadgeDoc {
   colors: BadgeType.Color[] = [
     'red',
     'orange',
+    'amber',
     'yellow',
+    'lime',
     'green',
+    'emerald',
     'teal',
+    'cyan',
+    'sky',
     'blue',
     'indigo',
+    'violet',
     'purple',
+    'fuchsia',
     'pink',
-    'gray',
+    'rose',
+    'black',
   ];
   badgeVariants: BadgeType.Variant[] = ['solid', 'soft', 'outline'];
   badgeSizes: BadgeType.Size[] = ['xs', 'sm', 'md', 'lg'];

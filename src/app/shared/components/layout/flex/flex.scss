@@ -2,6 +2,8 @@
 
 :host {
   display: flex;
+  min-width: 0; // Permet au flex de se réduire en dessous de la taille de son contenu
+  box-sizing: border-box;
 
   /**********************/
   /***** Directions *****/
@@ -64,6 +66,7 @@
 
   &.full-width {
     width: 100%;
+    max-width: 100%;
   }
   &.full-height {
     height: 100%;

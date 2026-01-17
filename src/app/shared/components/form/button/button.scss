@@ -1,0 +1,290 @@
+@use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables.scss' as *;
+
+:host {
+  user-select: none;
+  display: inline-block;
+  min-width: 0; // Permet au bouton de se réduire si nécessaire dans un flex container
+  flex-shrink: 1; // Permet au bouton de rétrécir dans un contexte flex
+
+  button {
+    cursor: pointer;
+    white-space: nowrap; // Empêche le texte de se couper sur plusieurs lignes
+    @include focus-accessible($selector: 'button');
+  }
+
+  // Disabled state
+  &.disabled button {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  // Hover state
+  &:hover:not(:disabled):not(.disabled) {
+    transform: translateY(-0.5px);
+  }
+
+  // Active state
+  &:active:not(:disabled):not(.disabled) {
+    transform: translateY(0.5px);
+  }
+
+  // Border radius variants
+  $radii: ('sm', 'md', 'lg', 'xl');
+
+  @each $radius in $radii {
+    &.border-radius-#{$radius} button {
+      border-radius: var(--radius-#{$radius});
+    }
+  }
+
+  // Full width
+  &.full-width button {
+    width: 100%;
+  }
+
+  // Styles par défaut pour chaque variant
+  // Ces styles seront appliqués à tous les boutons et surchargés si une couleur est spécifiée
+
+  // ==========================================
+  // SOLID - Style neutre par défaut
+  // ==========================================
+  &.variant-solid button {
+    background: linear-gradient(
+      180deg,
+      var(--color-background-secondary),
+      color-mix(in srgb, var(--color-background-secondary) 100%, black 5%)
+    );
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+      0 1px 2px rgba(0, 0, 0, 0.08),
+      0 1px 3px rgba(0, 0, 0, 0.04);
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-background-secondary) 100%, white 5%),
+        var(--color-background-secondary)
+      );
+      border-color: color-mix(in srgb, var(--color-border) 100%, black 10%);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    &:active:not(:disabled) {
+      background: color-mix(in srgb, var(--color-background-secondary) 100%, black 5%);
+      border-color: var(--color-border);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.05) inset,
+        0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    }
+  }
+
+  // ==========================================
+  // SOFT - Style neutre léger par défaut
+  // ==========================================
+  &.variant-soft button {
+    background-color: var(--color-background-secondary);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    color: var(--color-text-primary);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(
+        in srgb,
+        var(--color-background-secondary) 100%,
+        var(--color-text-primary) 5%
+      );
+      border-color: var(--color-border);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color-mix(
+        in srgb,
+        var(--color-background-secondary) 100%,
+        var(--color-text-primary) 8%
+      );
+      border-color: var(--color-border);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) inset;
+    }
+  }
+
+  // ==========================================
+  // OUTLINE - Bordure neutre par défaut
+  // ==========================================
+  &.variant-outline button {
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    color: var(--color-text-primary);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-background-secondary);
+      border-color: var(--color-text-secondary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color-mix(
+        in srgb,
+        var(--color-background-secondary) 100%,
+        var(--color-text-primary) 5%
+      );
+      border-color: var(--color-text-primary);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06) inset;
+    }
+  }
+
+  // ==========================================
+  // GHOST - Transparent neutre par défaut
+  // ==========================================
+  &.variant-ghost button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--color-text-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-background-secondary);
+      border-color: color-mix(in srgb, var(--color-border) 50%, transparent);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color-mix(
+        in srgb,
+        var(--color-background-secondary) 100%,
+        var(--color-text-primary) 5%
+      );
+      border-color: var(--color-border);
+    }
+  }
+
+  // Surcharge des styles avec couleurs spécifiques
+  // Ces styles surchargent les styles par défaut ci-dessus
+  $colors: (
+    'primary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+    'red',
+    'orange',
+    'amber',
+    'yellow',
+    'lime',
+    'green',
+    'emerald',
+    'teal',
+    'cyan',
+    'sky',
+    'blue',
+    'indigo',
+    'violet',
+    'purple',
+    'fuchsia',
+    'pink',
+    'rose',
+    'white',
+    'gray',
+    'black'
+  );
+  $variants: ('solid', 'soft', 'outline', 'ghost');
+
+  @each $variant-name in $variants {
+    @each $color-name in $colors {
+      $color: var(--color-#{$color-name});
+      $color-dark: var(--color-#{$color-name}-dark);
+      $color-light: var(--color-#{$color-name}-light);
+
+      &.variant-#{$variant-name}.color-#{$color-name} button {
+        // ==========================================
+        // SOLID - Bouton plein avec dégradé
+        // ==========================================
+        @if $variant-name == 'solid' {
+          @include gradient-solid($color, 12%);
+          border: 1px solid color-mix(in srgb, $color 100%, black 20%);
+          box-shadow:
+            0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+            0 1px 2px rgba(0, 0, 0, 0.12),
+            0 1px 3px rgba(0, 0, 0, 0.08);
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+
+          &:hover:not(:disabled) {
+            @include gradient-solid($color-dark, 10%);
+            border-color: color-mix(in srgb, $color-dark 100%, black 20%);
+            box-shadow:
+              0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+              0 2px 4px rgba(0, 0, 0, 0.12),
+              0 2px 6px rgba(0, 0, 0, 0.08);
+          }
+
+          &:active:not(:disabled) {
+            background: linear-gradient(180deg, $color, color-mix(in srgb, $color 100%, black 10%));
+            border-color: color-mix(in srgb, $color 100%, black 25%);
+            box-shadow:
+              0 0 0 1px rgba(0, 0, 0, 0.1) inset,
+              0 1px 2px rgba(0, 0, 0, 0.15) inset,
+              0 1px 2px rgba(0, 0, 0, 0.05);
+          }
+        }
+
+        // ==========================================
+        // SOFT - Fond coloré léger
+        // ==========================================
+        @else if $variant-name == 'soft' {
+          background-color: $color-light;
+          border: 1px solid color-mix(in srgb, $color 30%, transparent);
+          @include shadow-base;
+
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
+
+          &:active:not(:disabled) {
+            @include active-light($color);
+          }
+        }
+
+        // ==========================================
+        // OUTLINE - Bordure colorée
+        // ==========================================
+        @else if $variant-name == 'outline' {
+          background-color: transparent;
+          border: 1px solid color-mix(in srgb, $color 30%, transparent);
+          box-shadow:
+            0 0 0 1px color-mix(in srgb, $color 20%, transparent) inset,
+            0 1px 2px rgba(0, 0, 0, 0.08),
+            0 1px 3px rgba(0, 0, 0, 0.04);
+
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
+
+          &:active:not(:disabled) {
+            @include active-light($color);
+          }
+        }
+
+        // ==========================================
+        // GHOST - Transparent
+        // ==========================================
+        @else if $variant-name == 'ghost' {
+          background-color: transparent;
+          border: 1px solid transparent;
+
+          &:hover:not(:disabled) {
+            @include hover-light($color);
+          }
+
+          &:active:not(:disabled) {
+            @include active-light($color);
+          }
+        }
+      }
+    }
+  }
+}

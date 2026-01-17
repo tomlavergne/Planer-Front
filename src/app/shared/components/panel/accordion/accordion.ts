@@ -7,7 +7,6 @@ import { Icon } from '../../display/icon/icon';
 import { Text } from '../../display/text/text';
 
 /***** Imports de types *****/
-import { Color } from '../../../types/';
 import type { Icon as IconType } from '../../display/icon/icon.type';
 import type { Accordion as AccordionType } from './accordion.type';
 
@@ -33,7 +32,6 @@ export class Accordion {
 
   title = input<string>('Accordion Title');
   variant = input<AccordionType.Variant>('soft');
-  color = input<Color>('gray');
   size = input<AccordionType.Size>('md');
   titleWeight = input<AccordionType.TitleWeight>('regular');
   iconLeftName = input<IconType.Name | null>(null);
@@ -61,15 +59,9 @@ export class Accordion {
     return [
       this.isOpen() ? 'open' : 'closed',
       `variant-${this.variant()}`,
-      `color-${this.color()}`,
       `size-${this.size()}`,
       `content-padding-${this.contentPadding() ? 'true' : 'false'}`,
     ].join(' ');
-  });
-
-  // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): Color => {
-    return this.color() || 'gray';
   });
 
   // Computed pour la configuration actuelle en fonction de la taille

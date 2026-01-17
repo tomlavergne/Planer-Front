@@ -9,7 +9,7 @@ Le composant Flex est un conteneur flexible qui utilise le modèle de boîte fle
       <app-flex direction="column" gap="md" wrap>
         @for (item of items; track $index) {
           <app-flex alignItems="center" justifyContent="center" padding="sm" class="item">
-            <app-text color="primary-inverse">Div {{ $index + 1 }}</app-text>
+            <app-text color="foreground-primary-inverse">Div {{ $index + 1 }}</app-text>
           </app-flex>
         }
       </app-flex>
@@ -24,7 +24,7 @@ Le composant Flex est un conteneur flexible qui utilise le modèle de boîte fle
             class="item"
             fullWidth
           >
-            <app-text color="primary-inverse">Div {{ $index + 1 }}</app-text>
+            <app-text color="foreground-primary-inverse">Div {{ $index + 1 }}</app-text>
           </app-flex>
         }
       </app-flex>

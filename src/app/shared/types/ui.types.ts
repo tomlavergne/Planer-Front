@@ -55,19 +55,40 @@ export type InputState = 'default' | 'focus' | 'error' | 'disabled' | 'readonly'
 export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
 
 /***** Couleurs *****/
-export type Color =
+
+export type PrimaryColor =
   | 'red'
   | 'orange'
+  | 'amber'
   | 'yellow'
+  | 'lime'
   | 'green'
+  | 'emerald'
   | 'teal'
+  | 'cyan'
+  | 'sky'
   | 'blue'
   | 'indigo'
+  | 'violet'
   | 'purple'
+  | 'fuchsia'
   | 'pink'
-  | 'white'
-  | 'gray'
+  | 'rose'
   | 'black';
 
-/***** Variantes de couleur *****/
+export type NeutralColor = 'gray' | 'slate' | 'zinc' | 'neutral' | 'stone';
+
+export type SemanticColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
+
+// Nuances pour les textes et bordures
+export type ForegroundShade =
+  | 'foreground-primary'
+  | 'foreground-secondary'
+  | 'foreground-primary-inverse'
+  | 'foreground-secondary-inverse';
+export type BackgroundShade = 'background-primary' | 'background-secondary';
+export type BorderShade = 'border';
+export type Shade = ForegroundShade | BackgroundShade | BorderShade;
+
+/***** Variants *****/
 export type Variant = 'solid' | 'soft' | 'outline' | 'ghost';

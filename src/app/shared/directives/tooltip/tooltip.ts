@@ -17,6 +17,9 @@ import { CommonModule } from '@angular/common';
 import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 
+/***** Import de composants *****/
+import { Text } from '../../components/display/text/text';
+
 /***** Import de types *****/
 import { Tooltip as TooltipType } from './tooltip.type';
 
@@ -24,7 +27,7 @@ import { Tooltip as TooltipType } from './tooltip.type';
 @Component({
   selector: 'app-tooltip-content',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Text],
   templateUrl: './tooltip.html',
   styleUrl: './tooltip.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

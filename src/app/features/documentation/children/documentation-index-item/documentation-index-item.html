@@ -3,7 +3,7 @@
 @if (isSection(currentItem)) {
   <!-- Section avec contenu -->
   @let section = currentItem;
-  <app-accordion
+  <!-- <app-accordion
     [title]="section.title"
     variant="ghost"
     size="sm"
@@ -16,12 +16,12 @@
         <app-documentation-index-item [item]="child" />
       }
     </app-flex>
-  </app-accordion>
+  </app-accordion> -->
 } @else if (isItem(currentItem)) {
   <!-- Item simple avec lien -->
   @let itemData = currentItem;
 
-  <app-button
+  <!-- <app-button
     [routerLink]="itemData.path"
     routerLinkActive="active"
     #rla="routerLinkActive"
@@ -30,5 +30,5 @@
     [color]="rla.isActive ? 'blue' : 'gray'"
     size="xs"
     fullWidth
-  />
+  /> -->
 }

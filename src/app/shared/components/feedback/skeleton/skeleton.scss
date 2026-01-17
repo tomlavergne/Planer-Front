@@ -1,11 +1,11 @@
 :host {
   display: block;
-  background-color: var(--color-surface);
+  background-color: var(--color-background-secondary);
   background: linear-gradient(
     90deg,
-    var(--color-surface) 0%,
-    var(--color-surface-hover) 50%,
-    var(--color-surface) 100%
+    var(--color-background-secondary) 0%,
+    var(--color-background-secondary-hover) 50%,
+    var(--color-background-secondary) 100%
   );
   background-size: 200% 100%;
 

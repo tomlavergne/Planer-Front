@@ -9,7 +9,6 @@
         @for (iconName of iconNames; track iconName) {
           <app-button
             variant="ghost"
-            color="gray"
             fullWidth
             (clicked)="copyIconName(iconName)"
             [tooltip]="{ content: 'Copier le nom de l\'icone' }"

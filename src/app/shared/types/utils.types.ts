@@ -22,6 +22,17 @@ export interface InputConfig<T = any> {
   options?: InputOptions<T, any>;
 }
 
+export interface ModelConfig<T = any> {
+  /** Nom du model */
+  name: string;
+  /** Valeur par défaut */
+  default: T;
+  /** Type TypeScript (pour la documentation) */
+  type: string;
+  /** Description */
+  description: string;
+}
+
 /**
  * Configuration pour un output Angular
  */
