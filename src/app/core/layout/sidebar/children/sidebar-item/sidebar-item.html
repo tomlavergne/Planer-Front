@@ -1,0 +1,13 @@
+<app-button
+  [text]="expanded() ? text() : ''"
+  [iconLeft]="icon()!"
+  [variant]="isActive() ? 'soft' : 'ghost'"
+  [color]="isActive() ? 'primary' : 'secondary'"
+  [size]="size()"
+  fullWidth
+  [tooltip]="{
+    content: !expanded() ? text() : '',
+    position: 'right',
+    disabled: expanded(),
+  }"
+/>

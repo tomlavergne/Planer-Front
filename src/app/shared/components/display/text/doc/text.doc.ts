@@ -10,7 +10,7 @@ import { Text as TextType } from '../text.type';
 import { Documentation } from '../../../../../features/documentation/documentation';
 
 @Component({
-  selector: 'app-text-doc',
+  selector: 'Text-doc',
   imports: [DocumentationTemplate, Flex, Text, Documentation],
   templateUrl: './text.doc.html',
 })

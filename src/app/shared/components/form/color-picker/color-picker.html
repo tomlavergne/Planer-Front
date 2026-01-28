@@ -1,0 +1,47 @@
+<!-- Trigger app-button -->
+<app-button
+  type="button"
+  variant="soft"
+  size="sm"
+  (click)="togglePicker()"
+  [disabled]="disabled()"
+  [popover]="{
+    content: pickerPopover,
+  }"
+>
+  <div class="color-preview" [style.background-color]="value()"></div>
+
+  <span class="color-value">{{ displayValue() }}</span>
+</app-button>
+
+<!-- Popover Content -->
+<ng-template #pickerPopover>
+  <app-flex direction="column" gap="sm" padding="sm" style="width: 220px">
+    <!-- Saturation/Lightness Selector -->
+    <div
+      class="saturation-lightness-selector"
+      [style.background-color]="'hsl(' + hue() + ', 100%, 50%)'"
+      (mousedown)="onSaturationLightnessChange($event)"
+    >
+      <div class="saturation-gradient"></div>
+      <div class="lightness-gradient"></div>
+      <div
+        class="selector-cursor"
+        [style.left.%]="saturation()"
+        [style.top.%]="100 - lightness()"
+      ></div>
+    </div>
+
+    <!-- Hue Slider -->
+    <div class="hue-slider-container">
+      <input
+        type="range"
+        min="0"
+        max="360"
+        [value]="hue()"
+        (input)="onHueChange($event)"
+        class="hue-slider"
+      />
+    </div>
+  </app-flex>
+</ng-template>

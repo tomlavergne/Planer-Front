@@ -1,12 +1,7 @@
 :host {
   display: flex;
 
-  $colors: (
-    'primary',
-    'success',
-    'warning',
-    'danger',
-    'info',
+  $iconColors: (
     'red',
     'orange',
     'amber',
@@ -24,21 +19,18 @@
     'fuchsia',
     'pink',
     'rose',
-    'white',
-    'gray',
-    'black'
-  );
-  @each $color in $colors {
-    &.color-#{$color} {
-      color: var(--color-#{$color}-dark);
-    }
-  }
-
-  $iconColors: (
-    'foreground-primary',
-    'foreground-secondary',
-    'foreground-primary-inverse',
-    'foreground-secondary-inverse'
+    'neutral',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+    'text-primary',
+    'text-secondary',
+    'text-tertiary',
+    'text-inverse',
+    'text-disabled'
   );
   @each $color in $iconColors {
     &.color-#{$color} {
@@ -52,9 +44,5 @@
 
   &.color-black {
     color: black;
-  }
-
-  &.color-text {
-    color: var(--color-text-primary);
   }
 }

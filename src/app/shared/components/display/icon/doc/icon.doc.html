@@ -1,47 +1,102 @@
-<app-documentation-template title="Icons">
-  <div overview>
-    <app-flex direction="column" gap="lg" wrap fullWidth>
-      <app-text size="md" color="text" weight="medium">
-        Toutes les icônes Lucide ({{ iconNames.length }} icônes)
-      </app-text>
+<app-documentation-template
+  title="Icon"
+  selector="app-icon"
+  introduction="Découvrez la vaste bibliothèque d'icônes Lucide intégrée dans notre application. Avec plus de 400 icônes disponibles, vous pouvez facilement enrichir l'interface utilisateur et améliorer l'expérience visuelle de vos projets. Parcourez toutes les icônes ci-dessous et cliquez sur n'importe quelle icône pour copier son nom et l'utiliser dans votre code."
+  [inputs]="inputsMetadata"
+  showUsageTab
+  showLibraryTab
+>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Colors -->
+    <app-documentation-usage
+      title="Couleurs"
+      description="Le composant Icon permet de définir la couleur de l'icône à l'aide de la propriété 'color'. Vous pouvez choisir parmi une variété de couleurs prédéfinies pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          @for (color of primaryColors; track $index) {
+            <app-icon name="lucideStar" size="md" [color]="color" [tooltip]="{ content: color }" />
+          }
+        </app-flex>
 
-      <app-grid columns="5" gap="md">
-        @for (iconName of iconNames; track iconName) {
-          <app-button
-            variant="ghost"
-            fullWidth
-            (clicked)="copyIconName(iconName)"
-            [tooltip]="{ content: 'Copier le nom de l\'icone' }"
-          >
-            <app-flex
-              direction="column"
-              gap="2xs"
-              alignItems="center"
-              justifyContent="center"
-              fullWidth
-            >
-              <app-icon [name]="iconName" size="md" color="text" />
+        <app-flex direction="row" gap="md" wrap alignItems="center">
+          @for (color of semanticColors; track $index) {
+            <app-icon name="lucideStar" size="md" [color]="color" [tooltip]="{ content: color }" />
+          }
+        </app-flex>
+      </app-flex>
+    </app-documentation-usage>
 
-              <app-text
-                size="sm"
-                color="secondary"
-                style="word-break: break-all; text-align: center"
-                truncate
-              >
-                {{ iconName }}
-              </app-text>
-            </app-flex>
-          </app-button>
+    <!-- Sizes -->
+    <app-documentation-usage
+      title="Tailles"
+      description="Le composant Icon permet de définir la taille de l'icône à l'aide de la propriété 'size'. Vous pouvez choisir parmi plusieurs tailles prédéfinies pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="row" gap="md" wrap alignItems="center">
+        @for (size of sizes; track $index) {
+          <app-icon
+            name="lucideStar"
+            [size]="size"
+            color="secondary"
+            [tooltip]="{ content: size }"
+          />
         }
-      </app-grid>
-    </app-flex>
-  </div>
+      </app-flex>
+    </app-documentation-usage>
 
-  <div properties>
-    <!-- Propriétés du composant accordion -->
-  </div>
+    <!-- Stroke width -->
+    <app-documentation-usage
+      title="Largeur du trait"
+      description="La propriété 'strokeWidth' du composant Icon permet de définir l'épaisseur du trait de l'icône. Vous pouvez ajuster cette valeur pour obtenir l'apparence souhaitée."
+    >
+      <app-flex direction="row" gap="md" wrap alignItems="center">
+        @for (width of strokeWidths; track $index) {
+          <app-icon
+            name="lucideStar"
+            size="lg"
+            [strokeWidth]="width"
+            color="secondary"
+            [tooltip]="{ content: width.toString() }"
+          />
+        }
+      </app-flex>
+    </app-documentation-usage>
+  </app-flex>
 
-  <div usage>
-    <!-- Instructions d'utilisation -->
-  </div>
+  <app-flex library direction="column" gap="lg" wrap fullWidth>
+    <app-text size="md" color="text" weight="medium">
+      Toutes les icônes Lucide ({{ lucideIconsName.length }} icônes)
+    </app-text>
+
+    <app-grid [columns]="5" gap="md">
+      @for (iconName of lucideIconsName; track iconName) {
+        <app-button
+          variant="soft"
+          color="secondary"
+          fullWidth
+          (clicked)="copyIconName(iconName)"
+          [tooltip]="{ content: 'Copier le nom de l\'icone' }"
+        >
+          <app-flex
+            direction="column"
+            gap="2xs"
+            alignItems="center"
+            justifyContent="center"
+            fullWidth
+          >
+            <app-icon [name]="iconName" size="md" color="secondary" />
+
+            <app-text
+              size="sm"
+              color="neutral"
+              style="word-break: break-all; text-align: center"
+              truncate
+            >
+              {{ iconName }}
+            </app-text>
+          </app-flex>
+        </app-button>
+      }
+    </app-grid>
+  </app-flex>
 </app-documentation-template>

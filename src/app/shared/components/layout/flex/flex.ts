@@ -16,6 +16,7 @@ import { Flex as FlexType } from './flex.type';
 })
 export class Flex {
   /***** Inputs *****/
+  display = input<FlexType.Display>('flex');
   direction = input<FlexType.Direction>('row');
   alignItems = input<FlexType.Align>('stretch');
   justifyContent = input<FlexType.Justify>('start');

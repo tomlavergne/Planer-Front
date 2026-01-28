@@ -56,9 +56,17 @@
     justify-content: space-around;
   }
 
-  @include gaps();
-  @include paddings();
-  @include margins();
+  /*************************/
+  /********** GAPS *********/
+  /*************************/
+
+  $sizes: ('none', '6xs', '5xs', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl');
+
+  @each $size-name in $sizes {
+    &.gap-#{$size-name} {
+      gap: var(--spacing-#{$size-name});
+    }
+  }
 
   /*********************/
   /******* SIZES *******/
@@ -77,5 +85,19 @@
   /*********************/
   &.wrap {
     flex-wrap: wrap;
+  }
+
+  &.no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  /*********************/
+  /***** PADDINGS *****/
+  /*********************/
+
+  @each $size-name in $sizes {
+    &.padding-#{$size-name} {
+      padding: var(--spacing-#{$size-name});
+    }
   }
 }

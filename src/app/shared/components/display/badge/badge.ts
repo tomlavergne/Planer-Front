@@ -30,7 +30,7 @@ export class Badge {
 
   text = input<string>('');
   variant = input<BadgeType.Variant>('solid');
-  color = input<BadgeType.Color | null>('blue');
+  color = input<BadgeType.Color | null>('primary');
   icon = input<{
     name: IconType.Name;
     position?: BadgeType.IconPosition;
@@ -53,8 +53,11 @@ export class Badge {
 
   // Computed pour la couleur du contenu (icone + texte)
   contentColor = computed((): TextType.Color => {
+    if (!this.color()) {
+      return 'primary';
+    }
     if (this.variant() === 'solid') {
-      return 'blue';
+      return 'text-inverse';
     } else {
       return this.color() || 'blue';
     }

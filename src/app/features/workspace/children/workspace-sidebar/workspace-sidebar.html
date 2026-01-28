@@ -1,0 +1,115 @@
+<app-sidebar [(expanded)]="expanded" expandable>
+  <app-flex direction="column" gap="xs" fullHeight>
+    <!-- Header -->
+    <app-flex alignItems="center" justifyContent="between" gap="sm">
+      <!-- Planer Button -->
+      <app-button
+        variant="ghost"
+        size="xs"
+        [tooltip]="
+          expanded()
+            ? null
+            : {
+                content: 'Accueil',
+                position: 'right',
+                delay: 500,
+              }
+        "
+      >
+        <app-flex alignItems="center" gap="2xs">
+          <!-- Logo Icon -->
+          <app-shape type="circle" size="sm" color="primary" />
+
+          @if (expanded()) {
+            <!-- Logo Text -->
+            <app-text size="lg" weight="medium" color="text-primary">Planer</app-text>
+
+            <!-- Chevron Icon -->
+            <app-icon name="lucideChevronDown" size="xs" color="text-primary" class="home-icon" />
+          }
+        </app-flex>
+      </app-button>
+    </app-flex>
+
+    <app-separator />
+
+    <!-- Navigation principale -->
+    <app-flex direction="column" gap="2xs" fullWidth fullHeight>
+      <app-sidebar-item
+        text="Accueil"
+        path="/home"
+        icon="lucideHome"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Calendrier"
+        path="/calendar"
+        icon="lucideCalendar"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Utilisateurs"
+        path="/users"
+        icon="lucideUsers"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Ressources"
+        path="/ressources"
+        icon="lucideBox"
+        size="md"
+        [expanded]="expanded()"
+      />
+    </app-flex>
+
+    <!-- Footer -->
+    <app-flex direction="column" gap="2xs" fullWidth>
+      <app-sidebar-item
+        text="Documentation"
+        path="/documentation"
+        icon="lucideFileText"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Paramètres"
+        path="/settings"
+        icon="lucideSettings"
+        size="md"
+        [expanded]="expanded()"
+      />
+      <app-separator />
+
+      <app-button variant="ghost" size="xs" fullWidth>
+        <app-flex
+          direction="row"
+          alignItems="center"
+          [justifyContent]="expanded() ? 'between' : 'center'"
+          gap="xs"
+          fullWidth
+        >
+          <app-flex direction="row" alignItems="center" gap="2xs">
+            <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
+
+            @if (expanded()) {
+              <app-flex direction="column" gap="4xs">
+                <app-text color="text-secondary" size="sm" weight="medium"> Tom Lavergne </app-text>
+              </app-flex>
+            }
+          </app-flex>
+
+          @if (expanded()) {
+            <app-icon name="lucideChevronsUpDown" size="xs" color="text-secondary" />
+          }
+        </app-flex>
+      </app-button>
+    </app-flex>
+  </app-flex>
+</app-sidebar>

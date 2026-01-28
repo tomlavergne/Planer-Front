@@ -1,6 +1,7 @@
 import type { Size as UISize } from '../../../types/ui.types';
 
 export namespace Flex {
+  export type Display = 'flex' | 'inline-flex' | 'none';
   export type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
   export type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
   export type Align = 'start' | 'center' | 'end' | 'stretch' | 'baseline';

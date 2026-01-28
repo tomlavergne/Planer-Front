@@ -4,18 +4,17 @@ import { Component } from '@angular/core';
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
 import { Flex, Button, Text, Toggle } from '../../../';
-import { CodeExemple } from '../../../../../features/documentation/children/code-exemple/code-exemple';
 
 /***** Import de directives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
 
 /***** Import de types *****/
 import { Toggle as ToggleType } from '../toggle.type';
-import type { InputConfig, ModelConfig, OutputConfig } from '../../../../types/utils.types';
+import { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
 @Component({
   selector: 'app-toggle-doc',
-  imports: [DocumentationTemplate, Flex, Button, Text, Toggle, CodeExemple, TooltipDirective],
+  imports: [DocumentationTemplate, Flex, Button, Text, Toggle, TooltipDirective],
   templateUrl: './toggle.doc.html',
 })
 export class ToggleDoc {
@@ -59,7 +58,7 @@ export class ToggleDoc {
     return combinations;
   })();
 
-  inputsMetadata: InputConfig[] = [
+  inputsMetadata: DocumentationType.InputConfig[] = [
     {
       name: 'label',
       default: null as string | null,
@@ -92,7 +91,7 @@ export class ToggleDoc {
     },
   ];
 
-  modelsMetadata: ModelConfig[] = [
+  modelsMetadata: DocumentationType.ModelConfig[] = [
     {
       name: 'checked',
       default: false,
@@ -101,7 +100,7 @@ export class ToggleDoc {
     },
   ];
 
-  outputsMetadata: OutputConfig[] = [
+  outputsMetadata: DocumentationType.OutputConfig[] = [
     {
       name: 'checkedChange',
       type: 'boolean',
@@ -110,7 +109,7 @@ export class ToggleDoc {
   ];
 
   colorExempleCode = `@for (color of [${this.colors.toString()}] track $index) {
-    <app-button
+    <Button
         [text]="color"
         [color]="color"
         size="sm"

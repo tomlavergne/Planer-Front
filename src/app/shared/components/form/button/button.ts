@@ -23,8 +23,6 @@ import { ThemeService } from '../../../config/theme.service';
   styleUrl: './button.scss',
   host: {
     '[class]': 'hostClasses()',
-    '[style.--button-padding]': 'currentConfig().padding',
-    '[style.--button-font-size]': 'currentConfig().fontSize',
   },
 })
 export class Button {
@@ -41,7 +39,7 @@ export class Button {
   variant = input<ButtonType.Variant>('solid');
 
   /** Couleur du bouton */
-  color = input<ButtonType.Color | null>(null);
+  color = input<ButtonType.Color | null>('secondary');
 
   /** Désactive le bouton */
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
@@ -91,20 +89,14 @@ export class Button {
   // Computed pour la couleur du contenu (texte et icône)
   contentColor = computed((): TextType.Color => {
     if (!this.color()) {
-      return 'foreground-secondary';
+      return 'primary';
     }
     if (this.variant() === 'solid') {
-      return 'white';
+      return 'text-inverse';
     } else {
       return this.color() || 'blue';
     }
   });
-
-  /*************************/
-  /***** Content Child *****/
-  /*************************/
-
-  constructor() {}
 
   /********************/
   /***** Méthodes *****/

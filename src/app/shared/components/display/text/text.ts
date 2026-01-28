@@ -16,7 +16,7 @@ import type { Text as TextTypes } from './text.type';
 export class Text {
   /***** Inputs *****/
   as = input<TextTypes.As>('p');
-  color = input<TextTypes.Color | 'text'>('blue'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
+  color = input<TextTypes.Color>('text-primary'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
   size = input<TextTypes.Size | null>(null);
   weight = input<TextTypes.Weight | null>(null);
   align = input<TextTypes.Align>('left');
@@ -25,6 +25,7 @@ export class Text {
   italic = input<boolean>(false);
   underline = input<boolean>(false);
   wrap = input<boolean, any>(true, { transform: booleanAttribute });
+  lineHeight = input<TextTypes.LineHeight | null>('short');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Computed *****/
@@ -38,6 +39,7 @@ export class Text {
       `italic-${this.italic()}`,
       `decoration-${this.decoration()}`,
       `underline-${this.underline()}`,
+      `line-height-${this.lineHeight()}`,
       `as-${this.as()}`,
       this.wrap() ? 'wrap' : 'no-wrap',
       this.fullWidth() ? 'full-width' : '',

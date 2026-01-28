@@ -1,0 +1,35 @@
+<div class="slider-container">
+  @if (showLabels()) {
+    <div class="slider-labels">
+      <span class="slider-label">{{ min() }}</span>
+      <span class="slider-label">{{ max() }}</span>
+    </div>
+  }
+
+  <div class="slider-wrapper">
+    <div class="slider-track">
+      <div class="slider-fill" [style.width.%]="percentage()"></div>
+    </div>
+
+    <input
+      type="range"
+      class="slider-input"
+      [min]="min()"
+      [max]="max()"
+      [step]="step()"
+      [value]="value()"
+      [disabled]="disabled()"
+      (input)="onInput($event)"
+      (mousedown)="onMouseDown()"
+      (mouseup)="onMouseUp()"
+      (touchstart)="onTouchStart()"
+      (touchend)="onTouchEnd()"
+    />
+  </div>
+
+  @if (showValue()) {
+    <div class="slider-value">
+      <span>{{ value() }}</span>
+    </div>
+  }
+</div>

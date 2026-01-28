@@ -1,6 +1,6 @@
 <div class="tooltip-content" [attr.data-position]="position()">
   @if (text()) {
-    <app-text color="foreground-primary-inverse">{{ text() }}</app-text>
+    <app-text color="text-inverse">{{ text() }}</app-text>
   }
   @if (template()) {
     <ng-container *ngTemplateOutlet="template()!"></ng-container>

@@ -1,5 +1,5 @@
 /***** Import Angular *****/
-import { Component, input, signal, inject } from '@angular/core';
+import { Component, input, signal, inject, computed, booleanAttribute } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 /***** Import de composants *****/
@@ -11,14 +11,13 @@ import {
   Button,
   Badge,
   Separator,
+  Tabs,
 } from '../../../../shared/components';
 
 /***** Import de directives *****/
 import { TooltipDirective } from '../../../../shared/directives/tooltip/tooltip';
 import { PopoverDirective } from '../../../../shared/directives';
-
-/***** Import de confiuration *****/
-import { DOCUMENTED_COMPONENTS } from '../../documentation.config';
+import { TabPanelDirective } from '../../../../shared/components/navigation/tabs/tab-panel.directive';
 
 /***** Import de services *****/
 import {
@@ -28,7 +27,8 @@ import {
 
 /***** Import de types *****/
 import type { Table as TableType } from '../../../../shared/components/data/table/table.type';
-import { InputConfig, ModelConfig, OutputConfig } from '../../../../shared/types';
+import { Documentation as DocumentationType } from '@features/documentation/documentation.type';
+import type { Tabs as TabsType } from '@shared/components/navigation/tabs/tabs.type';
 
 @Component({
   selector: 'app-documentation-template',
@@ -39,10 +39,12 @@ import { InputConfig, ModelConfig, OutputConfig } from '../../../../shared/types
     Table,
     TableColumnTemplate,
     Button,
+    Tabs,
     Separator,
     RouterLink,
     TooltipDirective,
     PopoverDirective,
+    TabPanelDirective,
   ],
   templateUrl: './documentation-template.html',
   styleUrl: './documentation-template.scss',
@@ -50,28 +52,94 @@ import { InputConfig, ModelConfig, OutputConfig } from '../../../../shared/types
 export class DocumentationTemplate {
   title = input.required<string>();
   introduction = input<string>();
-  inputs = input<InputConfig[]>();
-  models = input<ModelConfig[]>();
-  outputs = input<OutputConfig[]>();
+  selector = input<string>();
+  inputs = input<DocumentationType.InputConfig[]>();
+  models = input<DocumentationType.ModelConfig[]>();
+  outputs = input<DocumentationType.OutputConfig[]>();
+  showUsageTab = input<boolean, any>(false, { transform: booleanAttribute });
+  showLibraryTab = input<boolean, any>(false, { transform: booleanAttribute });
 
-  inputsColumns: TableType.Column<InputConfig>[] = [
+  hasApiContent = computed(() => {
+    return !!(this.inputs() || this.models() || this.outputs());
+  });
+
+  allTabs: TabsType.Item[] = [
+    {
+      id: 'usage',
+      label: 'Usage',
+    },
+    {
+      id: 'api',
+      label: 'API',
+    },
+    {
+      id: 'library',
+      label: 'Library',
+    },
+  ];
+
+  tabsConfig = computed(() => {
+    return this.allTabs.filter((tab) => {
+      if (tab.id === 'usage') {
+        return this.showUsageTab();
+      }
+      if (tab.id === 'library') {
+        return this.showLibraryTab();
+      }
+      if (tab.id === 'api') {
+        return this.hasApiContent();
+      }
+      return true;
+    });
+  });
+
+  inputsColumns: TableType.Column<DocumentationType.InputConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
   ];
 
-  modelsColumns: TableType.Column<ModelConfig>[] = [
+  modelsColumns: TableType.Column<DocumentationType.ModelConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
     { id: 'default', header: 'Défaut', accessor: 'default', sortable: false, width: 100 },
   ];
 
-  outputsColumns: TableType.Column<OutputConfig>[] = [
+  outputsColumns: TableType.Column<DocumentationType.OutputConfig>[] = [
     { id: 'name', header: 'Nom', accessor: 'name', sortable: true, width: 150 },
     { id: 'type', header: 'Type', accessor: 'type', sortable: true, width: 200 },
   ];
 
-  codeExample = input<string>();
+  // Structure pour itérer sur les sections API
+  apiSections: Array<{
+    title: string;
+    data: () =>
+      | DocumentationType.InputConfig[]
+      | DocumentationType.ModelConfig[]
+      | DocumentationType.OutputConfig[]
+      | undefined;
+    columns: TableType.Column<any>[];
+    hasDefault: boolean;
+  }> = [
+    {
+      title: 'Inputs',
+      data: () => this.inputs(),
+      columns: this.inputsColumns,
+      hasDefault: true,
+    },
+    {
+      title: 'Models',
+      data: () => this.models(),
+      columns: this.modelsColumns,
+      hasDefault: true,
+    },
+    {
+      title: 'Outputs',
+      data: () => this.outputs(),
+      columns: this.outputsColumns,
+      hasDefault: false,
+    },
+  ];
 
   formatDefaultValue(value: any): string {
     if (value === null) return 'null';
@@ -82,6 +150,24 @@ export class DocumentationTemplate {
     if (Array.isArray(value)) return JSON.stringify(value);
     if (typeof value === 'object') return JSON.stringify(value);
     return String(value);
+  }
+
+  //   Type checking methods for template
+
+  isArray(val: unknown): boolean {
+    return Array.isArray(val);
+  }
+
+  isBoolean(val: unknown): boolean {
+    return typeof val === 'boolean';
+  }
+
+  isString(val: unknown): boolean {
+    return typeof val === 'string';
+  }
+
+  isNumber(val: unknown): boolean {
+    return typeof val === 'number';
   }
 
   private navService = inject(DocumentationNavigationService);
@@ -114,7 +200,6 @@ export class DocumentationTemplate {
 
   getRouteName(route: string): string {
     if (!route) return '';
-    console.log('route', route);
     // Capitaliser la première lettre
     return route.charAt(0).toUpperCase() + route.slice(1);
   }

@@ -1,11 +1,11 @@
-<app-documentation-template title="Buttons">
+<app-documentation-template title="app-buttons">
   <div examples>
     <app-flex direction="row" gap="md" wrap>
       @for (position of positions; track $index) {
         <app-button
           [text]="position"
           variant="solid"
-          color="blue"
+          color="primary"
           size="sm"
           [popover]="{
             content: customTooltip,

@@ -1,0 +1,5 @@
+// DEBUG: Force background to show through
+:host ::ng-deep app-flex.flexy {
+  background: transparent !important;
+  height: 100%;
+}

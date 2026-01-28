@@ -64,12 +64,10 @@
         transition: all var(--transition-fast);
 
         &:hover:not(:disabled) {
-          @include hover-light($color);
           transform: translateY(0.5px);
         }
 
         &:active:not(:disabled) {
-          @include active-light($color);
           transform: translateY(1px);
         }
       }

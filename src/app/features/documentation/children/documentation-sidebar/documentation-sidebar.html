@@ -1,0 +1,31 @@
+<app-sidebar [expanded]="true">
+  <app-flex direction="column" gap="md" fullWidth>
+    <app-button
+      text="Retour"
+      iconLeft="lucideChevronLeft"
+      variant="ghost"
+      size="sm"
+      routerLink=""
+    />
+
+    <app-flex direction="column" gap="lg" class="documentation-sidebar">
+      @for (section of indexConfiguration; track $index) {
+        <!-- Section -->
+        <app-flex direction="column" gap="2xs">
+          <!-- Titre Section -->
+          <app-text size="xs" weight="medium" class="section-title">{{ section.name }}</app-text>
+
+          <!-- Contenu de la section -->
+          <app-flex direction="row" gap="2xs">
+            <!-- Items -->
+            <app-flex direction="column" gap="3xs" fullWidth>
+              @for (item of section.content; track $index) {
+                <app-sidebar-item [text]="item.name" [path]="item.path" size="md" />
+              }
+            </app-flex>
+          </app-flex>
+        </app-flex>
+      }
+    </app-flex>
+  </app-flex>
+</app-sidebar>

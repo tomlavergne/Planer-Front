@@ -4,6 +4,20 @@
   display: grid;
 
   /*********************/
+  /***** DISPLAY *****/
+  /*********************/
+
+  &.display-grid {
+    display: grid;
+  }
+  &.display-inline-grid {
+    display: inline-grid;
+  }
+  &.display-none {
+    display: none;
+  }
+
+  /*********************/
   /***** COLUMNS *****/
   /*********************/
 
@@ -191,21 +205,10 @@
     grid-auto-flow: column dense;
   }
 
-  @include gaps();
-  @include paddings();
-  @include margins();
-
-  // Row gap spécifique
-  @each $size-name in ('none', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl') {
-    &.row-gap-#{$size-name} {
-      row-gap: var(--spacing-#{$size-name});
-    }
-  }
-
   // Column gap spécifique
   @each $size-name in ('none', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl') {
-    &.column-gap-#{$size-name} {
-      column-gap: var(--spacing-#{$size-name});
+    &.gap-#{$size-name} {
+      gap: var(--spacing-#{$size-name});
     }
   }
 

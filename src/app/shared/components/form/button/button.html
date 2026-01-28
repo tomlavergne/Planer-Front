@@ -4,7 +4,7 @@
     direction="row"
     alignItems="center"
     justifyContent="start"
-    [padding]="currentConfig().padding"
+    [padding]="variant() !== 'link' ? currentConfig().padding : 'none'"
     [gap]="currentConfig().gap"
   >
     <!-- Contenu personnalisé -->
@@ -21,7 +21,13 @@
 
     <!-- Text -->
     @if (text()) {
-      <app-text [color]="contentColor()" [size]="currentConfig().fontSize"> {{ text() }}</app-text>
+      <app-text
+        [color]="contentColor()"
+        [size]="currentConfig().fontSize"
+        weight="thin"
+        lineHeight="none"
+        >{{ text() }}</app-text
+      >
     }
 
     <!-- Right Icon -->

@@ -66,7 +66,7 @@ export class Alert {
   // Computed pour la couleur du contenu (icone + texte)
   contentColor = computed((): textType.Color => {
     if (this.variant() === 'solid') {
-      return 'foreground-primary';
+      return 'primary';
     } else {
       return this.color() || 'blue';
     }

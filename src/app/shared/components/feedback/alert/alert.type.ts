@@ -3,6 +3,6 @@ import type { Icon } from '../../display/icon/icon.type';
 
 export namespace Alert {
   export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
-  export type Color = PrimaryColor | SemanticColor;
+  export type Color = SemanticColor;
   export type IconColor = Icon.Color;
 }

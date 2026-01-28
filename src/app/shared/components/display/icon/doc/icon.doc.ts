@@ -3,23 +3,90 @@ import { Component } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
+import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
 import { Flex, Grid, Text, Icon, Button } from '../../..';
 
 /***** Import de drirectives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
 
+/***** Import de types *****/
+import { Documentation as DocumentationType } from '../../../../../features/documentation/documentation.type';
+import { Icon as IconType } from '../icon.type';
+
 /***** Imports des icônes *****/
 import * as lucideIcons from '@ng-icons/lucide';
+import * as phosphorIcons from '@ng-icons/phosphor-icons';
 
 @Component({
   selector: 'app-icon-doc',
-  imports: [DocumentationTemplate, Flex, Grid, Text, Icon, Button, TooltipDirective],
+  imports: [
+    DocumentationTemplate,
+    DocumentationUsage,
+    Flex,
+    Grid,
+    Text,
+    Icon,
+    Button,
+    TooltipDirective,
+  ],
   templateUrl: './icon.doc.html',
 })
 export class IconDoc {
-  readonly iconNames = Object.keys(lucideIcons) as Array<keyof typeof lucideIcons>;
+  readonly lucideIconsName = Object.keys(lucideIcons) as Array<keyof typeof lucideIcons>;
+  //   readonly phosphorIconsName = Object.keys(phosphorIcons) as Array<keyof typeof phosphorIcons>;
 
   copyIconName(iconName: string): void {
     navigator.clipboard.writeText(iconName);
   }
+
+  semanticColors: IconType.Color[] = [
+    'primary',
+    'secondary',
+    'info',
+    'success',
+    'warning',
+    'danger',
+  ];
+  primaryColors: IconType.Color[] = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'teal',
+    'blue',
+    'indigo',
+    'purple',
+    'pink',
+  ];
+
+  sizes: IconType.Size[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+
+  strokeWidths: IconType.StrokeWidth[] = [1, 2, 3, 4, 5];
+
+  inputsMetadata: DocumentationType.InputConfig[] = [
+    {
+      name: 'IconType.Name',
+      default: null as IconType.Name | null,
+      type: 'string | null',
+      description: 'Texte affiché dans le bouton',
+    },
+    {
+      name: 'IconType.Size',
+      default: 'md' as IconType.Size,
+      type: ['xs', 'sm', 'md', 'lg', 'xl'],
+      description: "Taille de l'icône",
+    },
+    {
+      name: 'strokeWidth',
+      default: 2,
+      type: 'number',
+      description: "Épaisseur du trait de l'icône",
+    },
+    {
+      name: 'color',
+      default: 'blue' as IconType.Color | 'text',
+      type: 'Color | "text"',
+      description: "Couleur de l'icône",
+    },
+  ];
 }

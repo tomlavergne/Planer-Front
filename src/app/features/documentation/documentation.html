@@ -1,35 +1,5 @@
 <app-flex direction="row" fullHeight fullWidth>
-  <app-flex direction="column" gap="sm" padding="md" class="documentation-sidebar">
-    @for (section of indexConfiguration; track $index) {
-      <!-- Section -->
-      <app-flex direction="column" gap="3xs">
-        <!-- Titre Section -->
-        <app-text color="foreground-primary" weight="bold">{{ section.name }}</app-text>
-
-        <!-- Contenu de la section -->
-        <app-flex direction="row" gap="2xs" padding="2xs">
-          <div class="bar"></div>
-          <!-- Items -->
-          <app-flex direction="column" gap="3xs" fullWidth>
-            @for (item of section.content; track $index) {
-              <app-button
-                [text]="item.name"
-                size="sm"
-                [variant]="rla.isActive ? 'soft' : 'ghost'"
-                [color]="rla.isActive ? 'primary' : null"
-                fullWidth
-                [routerLink]="item.path"
-                routerLinkActive="active"
-                #rla="routerLinkActive"
-              />
-            }
-          </app-flex>
-        </app-flex>
-      </app-flex>
-
-      <!-- <app-documentation-index-item [item]="item" /> -->
-    }
-  </app-flex>
+  <app-documentation-sidebar />
 
   <div class="documentation-content">
     <router-outlet />

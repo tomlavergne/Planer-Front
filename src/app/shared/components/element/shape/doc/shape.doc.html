@@ -1,0 +1,87 @@
+<app-documentation-template
+  title="Shape"
+  introduction="
+    Le composant Shape est utilisé pour afficher différentes formes géométriques telles que des cercles, des carrés, des triangles, etc. Il peut être personnalisé en termes de type, de couleur et de taille.  
+  "
+  [inputs]="inputsMetadata"
+  codeExample="const hello = 'world';"
+>
+  <!-- <app-flex direction="column" gap="2xl" wrap fullWidth>
+    <app-flex direction="column" gap="sm" fullWidth wrap>
+      <app-text size="xl" color="text" weight="semibold">Types</app-text>
+
+      <app-text size="md" color="neutral" weight="regular">
+        Le composant Shape prend en charge plusieurs types de formes géométriques pour s'adapter à
+        différents contextes d'utilisation.
+      </app-text>
+
+      <app-documentation-exemple language="typescript" [code]="colorExempleCode">
+        <app-flex
+          direction="row"
+          gap="sm"
+          alignItems="center"
+          justifyContent="center"
+          fullWidth
+          wrap
+        >
+          @for (type of types; track $index) {
+            <app-flex direction="column" gap="xs" alignItems="center" justifyContent="center">
+              <app-shape [type]="type" color="primary" size="sm" />
+
+              <app-text size="sm" color="text" weight="regular">{{ type }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+      </app-documentation-exemple>
+    </app-flex>
+
+    <app-flex direction="column" gap="sm" fullWidth wrap>
+      <app-text size="xl" color="text" weight="semibold">Couleurs</app-text>
+
+      <app-text size="md" color="neutral" weight="regular">
+        Le composant Shape prend en charge plusieurs couleurs pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+
+      <app-documentation-exemple language="typescript" [code]="colorExempleCode">
+        <app-flex direction="row" gap="sm" fullWidth wrap>
+          @for (color of colors; track $index) {
+            <app-shape [color]="color" size="sm" />
+          }
+        </app-flex>
+      </app-documentation-exemple>
+    </app-flex> -->
+
+  <!-- Tailles -->
+  <!-- <app-flex direction="column" gap="sm" wrap fullWidth>
+      <app-text size="xl" color="text" weight="semibold">Tailles</app-text>
+
+      <app-text size="md" color="neutral" weight="regular">
+        Le composant Button prend en charge plusieurs tailles pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+
+      <app-documentation-exemple language="typescript" [code]="sizeExempleCode">
+        <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            @for (size of sizes; track $index) {
+              <Button [text]="size" [size]="size" />
+            }
+          </app-flex>
+
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            @for (size of sizes; track $index) {
+              <Button [size]="size" iconLeft="lucidePlus" />
+            }
+          </app-flex>
+
+          <app-flex direction="row" gap="sm" alignItems="center" wrap>
+            @for (size of sizes; track $index) {
+              <Button [text]="size" [size]="size" iconLeft="lucidePlus" />
+            }
+          </app-flex>
+        </app-flex>
+      </app-documentation-exemple>
+    </app-flex> -->
+  <!-- </app-flex> -->
+</app-documentation-template>

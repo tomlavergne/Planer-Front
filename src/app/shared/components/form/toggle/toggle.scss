@@ -137,7 +137,6 @@
           .toggle-track {
             background-color: var(--color-gray-light);
             border: 1px solid transparent;
-            @include shadow-base;
           }
 
           .toggle-thumb {

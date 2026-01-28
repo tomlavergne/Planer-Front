@@ -3,13 +3,25 @@
   <app-flex direction="column" gap="xl" fullWidth>
     <!-- Première ligne -->
     <app-flex direction="row" gap="sm" justifyContent="between" alignItems="center" fullWidth>
-      <app-text size="3xl" color="text" weight="semibold">{{ title() }}</app-text>
+      <app-flex gap="lg" alignItems="center">
+        <app-text size="3xl" color="text-primary" weight="semibold">{{ title() }}</app-text>
+
+        @if (selector()) {
+          <app-button
+            variant="soft"
+            [text]="selector()!"
+            [tooltip]="{
+              content: 'Copier le sélecteur',
+            }"
+          />
+        }
+      </app-flex>
 
       <!-- Navigation entre les composants -->
-      <app-flex direction="row" gap="sm" wrap>
+      <app-flex direction="row" gap="xs" wrap>
         <app-button
           variant="soft"
-          size="sm"
+          size="md"
           iconLeft="lucideArrowLeft"
           [disabled]="!navigation().previous"
           [tooltip]="{
@@ -20,7 +32,7 @@
 
         <app-button
           variant="soft"
-          size="sm"
+          size="md"
           iconLeft="lucideArrowRight"
           [disabled]="!navigation().next"
           [tooltip]="{
@@ -33,161 +45,146 @@
 
     <!-- Introduction -->
     @if (introduction()) {
-      <app-text size="md" color="secondary" weight="regular">
+      <app-text size="md" color="neutral" weight="regular">
         {{ introduction() }}
       </app-text>
     }
 
-    <app-separator />
-  </app-flex>
+    <!-- Tabs pour les sections -->
+    <app-tabs [tabs]="tabsConfig()">
+      <!-- Usage Tab -->
+      <ng-template appTabPanel="usage">
+        <app-flex direction="column" gap="xl" fullWidth>
+          <app-text size="2xl" color="text-primary" weight="semibold">Usage</app-text>
 
-  <app-flex direction="column" gap="xl" fullWidth>
-    <app-text size="2xl" color="text" weight="semibold">Usage</app-text>
+          <ng-content select="[usage]" />
+        </app-flex>
+      </ng-template>
 
-    <ng-content></ng-content>
-  </app-flex>
+      <!-- API Tab -->
+      <ng-template appTabPanel="api">
+        <app-flex direction="column" gap="xl" fullWidth>
+          <app-text size="2xl" color="text-primary" weight="semibold">API</app-text>
 
-  <app-flex direction="column" gap="xl" fullWidth>
-    <app-text size="2xl" color="text" weight="semibold">API</app-text>
+          <!-- API Sections (Inputs, Models, Outputs) -->
+          @for (section of apiSections; track section.title) {
+            @if (section.data()) {
+              <app-flex direction="column" gap="sm" fullWidth>
+                <app-text size="lg" color="secondary" weight="semibold">{{
+                  section.title
+                }}</app-text>
 
-    <!-- Inputs -->
-    @if (inputs()) {
-      <app-flex direction="column" gap="sm" fullWidth>
-        <app-text size="lg" color="text" weight="semibold">Inputs</app-text>
+                <app-table
+                  [columns]="section.columns"
+                  [data]="section.data()!"
+                  [sortable]="false"
+                  [resizable]="true"
+                >
+                  <ng-template columnId="name" let-row>
+                    <app-flex direction="row" gap="2xs" alignItems="center">
+                      <app-badge [text]="row.name" variant="soft" color="primary" size="sm" />
+                      <app-button
+                        iconLeft="lucideInfo"
+                        size="xs"
+                        variant="ghost"
+                        [popover]="{ content: popoverTemplate, position: 'top' }"
+                      />
 
-        <app-table
-          [columns]="inputsColumns"
-          [data]="inputs()!"
-          [sortable]="false"
-          [resizable]="true"
-        >
-          <ng-template columnId="name" let-row>
-            <app-flex direction="row" gap="xs" alignItems="center">
-              <app-text color="foreground-primary">{{ row.name }}</app-text>
-              <app-button
-                iconLeft="lucideInfo"
-                size="xs"
-                variant="ghost"
-                [popover]="{ content: popoverTemplate, position: 'top' }"
-              />
+                      <ng-template #popoverTemplate>
+                        <app-flex variant="outline" padding="2xs">
+                          <app-text size="xs" color="secondary">
+                            {{ row.description }}
+                          </app-text>
+                        </app-flex>
+                      </ng-template>
+                    </app-flex>
+                  </ng-template>
 
-              <ng-template #popoverTemplate>
-                <app-flex variant="outline" padding="sm">
-                  <app-text size="sm" color="text">
-                    {{ row.description }}
-                  </app-text>
-                </app-flex>
-              </ng-template>
-            </app-flex>
-          </ng-template>
+                  <!-- Column type -->
+                  <ng-template columnId="type" let-row>
+                    @if (isArray(row.type)) {
+                      <app-flex direction="row" gap="2xs" alignItems="center">
+                        <app-badge text="enum" variant="soft" color="secondary" size="sm" />
 
-          <ng-template columnId="type" let-row>
-            @if (row.type) {
-              <app-badge [text]="row.type" color="blue" variant="soft" size="sm" />
+                        <app-button
+                          iconLeft="lucideInfo"
+                          size="xs"
+                          variant="ghost"
+                          [popover]="{ content: popoverTypeTemplate, position: 'top' }"
+                        />
+
+                        <ng-template #popoverTypeTemplate>
+                          <app-flex
+                            direction="row"
+                            gap="2xs"
+                            alignItems="center"
+                            padding="2xs"
+                            wrap
+                          >
+                            @for (t of row.type; track t) {
+                              <app-badge
+                                [text]="`'${t}'`"
+                                size="sm"
+                                variant="soft"
+                                color="secondary"
+                              />
+
+                              @if (!$last) {
+                                <app-text size="xs" color="secondary">|</app-text>
+                              }
+                            }
+                          </app-flex>
+                        </ng-template>
+                      </app-flex>
+                    } @else {
+                      <app-badge [text]="row.type" variant="soft" color="secondary" size="sm" />
+                    }
+                  </ng-template>
+
+                  <!-- Colomn default -->
+                  @if (section.hasDefault) {
+                    <ng-template columnId="default" let-row>
+                      @if (isBoolean(row.default)) {
+                        <app-badge
+                          [text]="row.default ? 'true' : 'false'"
+                          variant="soft"
+                          color="secondary"
+                          size="sm"
+                        />
+                      } @else if (isString(row.default)) {
+                        <app-badge
+                          [text]="`'${row.default}'`"
+                          variant="soft"
+                          color="secondary"
+                          size="sm"
+                        />
+                      } @else if (row.default === null) {
+                        <app-badge text="null" variant="soft" color="secondary" size="sm" />
+                      } @else {
+                        <app-badge
+                          [text]="row.default"
+                          variant="soft"
+                          color="secondary"
+                          size="sm"
+                        />
+                      }
+                    </ng-template>
+                  }
+                </app-table>
+              </app-flex>
             }
-          </ng-template>
+          }
+        </app-flex>
+      </ng-template>
 
-          <ng-template columnId="default" let-row>
-            @if (row.default !== undefined) {
-              <app-badge [text]="row.default" color="blue" variant="soft" size="sm" />
-            }
-          </ng-template>
-        </app-table>
-      </app-flex>
-    }
+      <ng-template appTabPanel="library">
+        <app-flex direction="column" gap="xl" fullWidth>
+          <app-text size="2xl" color="text-primary" weight="semibold">Library</app-text>
 
-    @if (models()) {
-      <!-- Outputs -->
-      <app-flex direction="column" gap="sm" fullWidth>
-        <app-text size="lg" color="text" weight="semibold">Models</app-text>
-
-        <app-table
-          [columns]="modelsColumns"
-          [data]="models()!"
-          [sortable]="false"
-          [resizable]="true"
-        >
-          <ng-template columnId="name" let-row>
-            <app-flex direction="row" gap="xs" alignItems="center">
-              <app-text color="foreground-primary">{{ row.name }}</app-text>
-              <app-button
-                iconLeft="lucideInfo"
-                size="xs"
-                variant="ghost"
-                [popover]="{ content: popoverTemplate, position: 'top' }"
-              />
-
-              <ng-template #popoverTemplate>
-                <app-flex variant="outline" padding="sm">
-                  <app-text size="sm" color="text">
-                    {{ row.description }}
-                  </app-text>
-                </app-flex>
-              </ng-template>
-            </app-flex>
-          </ng-template>
-
-          <ng-template columnId="type" let-row>
-            @if (row.type) {
-              <app-badge [text]="row.type" color="blue" variant="soft" size="sm" />
-            }
-          </ng-template>
-
-          <ng-template columnId="default" let-row>
-            @if (row.default !== undefined) {
-              <app-badge [text]="row.default" color="blue" variant="soft" size="sm" />
-            }
-          </ng-template>
-        </app-table>
-      </app-flex>
-    }
-
-    @if (outputs()) {
-      <!-- Outputs -->
-      <app-flex direction="column" gap="sm" fullWidth>
-        <app-text size="lg" color="text" weight="semibold">Outputs</app-text>
-
-        <app-table
-          [columns]="outputsColumns"
-          [data]="outputs()!"
-          [sortable]="false"
-          [resizable]="true"
-        >
-          <ng-template columnId="name" let-row>
-            <app-flex direction="row" gap="xs" alignItems="center">
-              <app-text color="foreground-primary">{{ row.name }}</app-text>
-              <app-button
-                iconLeft="lucideInfo"
-                size="xs"
-                variant="ghost"
-                [popover]="{ content: popoverTemplate, position: 'top' }"
-              />
-
-              <ng-template #popoverTemplate>
-                <app-flex variant="outline" padding="sm">
-                  <app-text size="sm" color="text">
-                    {{ row.description }}
-                  </app-text>
-                </app-flex>
-              </ng-template>
-            </app-flex>
-          </ng-template>
-
-          <ng-template columnId="default" let-row>
-            <app-flex direction="row" gap="xs" alignItems="center">
-              <app-text color="primary">{{ row.name }}</app-text>
-              <app-button iconLeft="lucideInfo" size="xs" variant="ghost" />
-            </app-flex>
-          </ng-template>
-
-          <ng-template columnId="type" let-row>
-            @if (row.type) {
-              <app-badge [text]="row.type" color="blue" variant="soft" size="sm" />
-            }
-          </ng-template>
-        </app-table>
-      </app-flex>
-    }
+          <ng-content select="[library]" />
+        </app-flex>
+      </ng-template>
+    </app-tabs>
   </app-flex>
 
   <!-- Navigation entre les pages -->
@@ -199,7 +196,7 @@
         <app-button
           [text]="getRouteName(navigation().previous!)"
           variant="soft"
-          size="sm"
+          size="md"
           iconLeft="lucideArrowLeft"
           [routerLink]="['/documentation', navigation().previous]"
           (clicked)="goToPrevious()"
@@ -209,7 +206,7 @@
       }
 
       <app-flex direction="column" alignItems="center" gap="sm">
-        <app-text size="xs" color="secondary">
+        <app-text size="xs" color="neutral">
           {{ navigation().currentIndex + 1 }} / {{ navigation().total }}
         </app-text>
       </app-flex>
@@ -218,7 +215,7 @@
         <app-button
           [text]="getRouteName(navigation().next!)"
           variant="soft"
-          size="sm"
+          size="md"
           iconRight="lucideArrowRight"
           [routerLink]="['/documentation', navigation().next]"
           (clicked)="goToNext()"

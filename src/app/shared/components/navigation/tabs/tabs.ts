@@ -1,54 +1,81 @@
-/***** Imports de Angular *****/
-import { Component, input, output, signal, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+/***** Imports Angular *****/
+import {
+  Component,
+  input,
+  output,
+  signal,
+  computed,
+  ContentChildren,
+  QueryList,
+  AfterContentInit,
+} from '@angular/core';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 
-export interface TabItem {
-  id: string;
-  label: string;
-  disabled?: boolean;
-}
+/***** Imports de composants *****/
+import { Button, Flex, Separator } from '@shared/components/';
 
-type TabOrientation = 'horizontal' | 'vertical';
+/***** Imports de directives *****/
+import { TabPanelDirective } from './tab-panel.directive';
+
+/***** Imports de types *****/
+import type { Tabs as TabsType } from './tabs.type';
 
 @Component({
   selector: 'app-tabs',
-  imports: [CommonModule],
+  imports: [CommonModule, Flex, Button, Separator, TabPanelDirective, NgTemplateOutlet],
   templateUrl: './tabs.html',
   styleUrl: './tabs.scss',
   host: {
     '[class]': 'hostClasses()',
   },
 })
-export class Tabs {
-  /***** Inputs *****/
-  tabs = input.required<TabItem[]>();
-  defaultTab = input<string | null>(null);
-  orientation = input<TabOrientation>('horizontal');
+export class Tabs implements AfterContentInit {
+  /******************/
+  /***** INPUTS *****/
+  /******************/
 
-  /***** Signals *****/
+  direction = input<TabsType.Direction>('row');
+  tabs = input.required<TabsType.Item[]>();
+  defaultTab = input<string | null>(null);
+
+  /*******************/
+  /***** SIGNALS *****/
+  /*******************/
+
   activeTab = signal<string | null>(null);
 
-  /***** Outputs *****/
+  /***************************/
+  /***** CONTENT CHILDREN ****/
+  /***************************/
+
+  @ContentChildren(TabPanelDirective) panels!: QueryList<TabPanelDirective>;
+
+  /*******************/
+  /***** OUTPUTS *****/
+  /*******************/
+
   tabChange = output<string>();
 
-  constructor() {
-    // Initialiser l'onglet actif avec effect pour éviter les erreurs
-    setTimeout(() => {
-      const defaultId = this.defaultTab();
-      if (defaultId) {
-        this.activeTab.set(defaultId);
-      } else if (this.tabs().length > 0) {
-        this.activeTab.set(this.tabs()[0].id);
-      }
-    });
+  ngAfterContentInit(): void {
+    // Initialiser l'onglet actif après que le contenu soit disponible
+    if (this.defaultTab()) {
+      this.activeTab.set(this.defaultTab());
+    } else if (this.tabs().length > 0) {
+      this.activeTab.set(this.tabs()[0].id);
+    }
   }
 
-  // Computed pour les classes
-  hostClasses = computed(() => {
-    return [`orientation-${this.orientation()}`].join(' ');
-  });
+  /*********************/
+  /***** COMPUTEDS *****/
+  /*********************/
 
-  selectTab(tab: TabItem): void {
+  hostClasses = computed(() => {});
+
+  /*******************/
+  /***** METHODS *****/
+  /*******************/
+
+  selectTab(tab: TabsType.Item): void {
     if (tab.disabled) return;
     this.activeTab.set(tab.id);
     this.tabChange.emit(tab.id);

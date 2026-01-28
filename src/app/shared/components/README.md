@@ -24,7 +24,7 @@ src/app/shared/components/
 Bouton personnalisable avec icônes et variantes.
 
 ```typescript
-<app-button
+<Button
   label="Click me"
   variant="primary"
   size="md"
@@ -74,7 +74,7 @@ Champ de saisie avec préfixes/suffixes.
 Zone de texte avec auto-resize et compteur de caractères.
 
 ```typescript
-<app-textarea
+<Textarea
   [(value)]="description"
   placeholder="Description"
   [maxLength]="500"
@@ -229,7 +229,7 @@ Carte avec header et footer optionnels.
   <p>Contenu de la carte</p>
 
   <div card-footer>
-    <app-button>Action</app-button>
+    <Button>Action</Button>
   </div>
 </app-card>
 ```
@@ -295,12 +295,12 @@ export class MyComponent {
   <p>Êtes-vous sûr ?</p>
 
   <div dialog-footer>
-    <app-button variant="outline" (clicked)="dialog.close()">
+    <Button variant="outline" (clicked)="dialog.close()">
       Annuler
-    </app-button>
-    <app-button variant="primary">
+    </Button>
+    <Button variant="primary">
       Confirmer
-    </app-button>
+    </Button>
   </div>
 </app-dialog>
 ```
@@ -317,7 +317,7 @@ Popover positionné.
 
 ```typescript
 <app-popover position="bottom" autoPosition closeOnClickOutside>
-  <app-button>Ouvrir</app-button>
+  <Button>Ouvrir</Button>
 
   <div popover-content>
     <p>Contenu du popover</p>
@@ -336,7 +336,7 @@ Tooltip au survol.
 
 ```typescript
 <app-tooltip position="top" content="Ceci est un tooltip">
-  <app-button>Survolez-moi</app-button>
+  <Button>Survolez-moi</Button>
 </app-tooltip>
 ```
 
@@ -495,10 +495,10 @@ Tous les props booléens supportent la syntaxe sans valeur :
 
 ```typescript
 <!-- Au lieu de -->
-<app-button [fullWidth]="true" />
+<Button [fullWidth]="true" />
 
 <!-- Vous pouvez écrire -->
-<app-button fullWidth />
+<Button fullWidth />
 ```
 
 ### Two-way Binding

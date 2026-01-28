@@ -2,7 +2,7 @@ import type {
   Size as UISize,
   PrimaryColor,
   SemanticColor,
-  ForegroundShade,
+  TextColor,
 } from '../../../types/ui.types';
 
 export namespace Text {
@@ -11,7 +11,7 @@ export namespace Text {
     UISize,
     '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
   >;
-  export type Color = PrimaryColor | SemanticColor | ForegroundShade | 'white';
+  export type Color = PrimaryColor | SemanticColor | TextColor | 'white';
   export type Weight = 'thin' | 'regular' | 'medium' | 'semibold' | 'bold';
   export type Align = 'left' | 'center' | 'right' | 'justify';
   export type Decoration = 'none' | 'underline' | 'line-through' | 'overline';
@@ -27,4 +27,5 @@ export namespace Text {
     | 'h6'
     | 'label'
     | 'small';
+  export type LineHeight = 'normal' | 'none' | 'short' | 'base' | 'tall';
 }

@@ -16,8 +16,9 @@ import { Grid as GridType } from './grid.type';
 })
 export class Grid {
   /***** Inputs *****/
-  columns = input<GridType.Columns>();
-  rows = input<GridType.Rows>();
+  display = input<GridType.Display>('grid');
+  columns = input<Number>();
+  rows = input<Number>();
   alignItems = input<GridType.AlignItems>('stretch');
   justifyItems = input<GridType.JustifyItems>('stretch');
   alignContent = input<GridType.AlignContent>('start');
@@ -33,6 +34,7 @@ export class Grid {
   // Computed signal pour générer les classes dynamiquement
   hostClasses = computed(() => {
     return [
+      'display-' + this.display(),
       this.columns() ? `columns-${this.columns()}` : '',
       this.rows() ? `rows-${this.rows()}` : '',
       `alignItems-${this.alignItems()}`,
@@ -49,4 +51,3 @@ export class Grid {
     ].join(' ');
   });
 }
-

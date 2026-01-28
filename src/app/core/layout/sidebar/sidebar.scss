@@ -2,33 +2,31 @@
 
 :host {
   position: relative;
+  display: block; // Ensure :host is a block element
+  height: 100%; // Take full height
   box-sizing: border-box;
   flex-shrink: 0; // Prevent flex from shrinking the sidebar
   flex-grow: 0; // Prevent flex from growing the sidebar
   border-right: 1px solid var(--color-border);
-
-  // TODO : Replace by final app icon
-  .circle {
-    width: var(--spacing-xl);
-    height: var(--spacing-xl);
-    border-radius: var(--radius-full);
-    background: var(--color-foreground-primary);
-  }
+  padding: var(--spacing-sm);
+  background-color: var(--color-background-primary); // For debug purposes, to be removed
+  overflow: auto; // Ensure content doesn't overflow
 
   /*************************/
   /***** Resize Handle *****/
   /*************************/
 
-  $resizeHandleWidth: 2px;
+  $resizeHandleWidth: 4px;
 
   .resize-handle {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -1px; // Position it over the border
     width: $resizeHandleWidth;
     height: 100%;
     cursor: ew-resize;
     transition: background-color 0.2s ease;
+    z-index: 999; // Ensure the resize handle is above everything
 
     &:hover,
     &.resizing {
@@ -45,6 +43,7 @@
       right: -($additionalClickableWidth / 2) - $resizeHandleWidth;
       width: $resizeHandleWidth + $additionalClickableWidth;
       height: 100%;
+      z-index: 10; // Same z-index as parent to ensure it's clickable
     }
   }
 }

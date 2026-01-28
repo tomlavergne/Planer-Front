@@ -7,13 +7,13 @@
   <app-flex direction="column" gap="xs" fullWidth>
     <!--  Title -->
     @if (title()) {
-      <app-text as="h2" TextVariant="body" size="lg" [color]="contentColor()!">{{
+      <app-text as="h2" app-textVariant="body" size="lg" [color]="contentColor()!">{{
         title()
       }}</app-text>
     }
 
     <!-- Message -->
-    <app-text as="p" TextVariant="body" size="sm" [color]="contentColor()!">{{
+    <app-text as="p" app-textVariant="body" size="sm" [color]="contentColor()!">{{
       message()
     }}</app-text>
   </app-flex>

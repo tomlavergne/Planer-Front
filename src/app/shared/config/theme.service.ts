@@ -1,7 +1,5 @@
 import { Injectable, signal, effect } from '@angular/core';
 
-import type { PrimaryColor, NeutralColor } from '../types/ui.types';
-
 export type Theme = 'light' | 'dark' | 'auto';
 export type Radius = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 
@@ -13,30 +11,22 @@ export type Radius = 'none' | 'sm' | 'md' | 'lg' | 'xl';
 })
 export class ThemeService {
   private readonly STORAGE_THEME_KEY = 'app-theme';
-  private readonly STORAGE_NEUTRAL_KEY = 'app-neutral';
-  private readonly STORAGE_PRIMARY_KEY = 'app-primary';
   private readonly STORAGE_RADIUS_KEY = 'app-radius';
 
   // États du thème
-  theme = signal<Theme>(this.getStoredValue(this.STORAGE_THEME_KEY, 'auto') as Theme);
-  neutral = signal<NeutralColor>(
-    this.getStoredValue(this.STORAGE_NEUTRAL_KEY, 'gray') as NeutralColor,
-  );
-  primary = signal<PrimaryColor>(
-    this.getStoredValue(this.STORAGE_PRIMARY_KEY, 'blue') as PrimaryColor,
-  );
+  theme = signal<Theme>(this.getStoredValue(this.STORAGE_THEME_KEY, 'light') as Theme);
   radius = signal<Radius>(this.getStoredValue(this.STORAGE_RADIUS_KEY, 'md') as Radius);
 
   // Thème effectif (résolu si "auto")
   effectiveTheme = signal<'light' | 'dark'>('light');
 
   constructor() {
-    // Appliquer tous les attributs au démarrage
-    this.applyAllAttributes();
+    // Appliquer les attributs au démarrage
+    this.applyTheme();
 
     // Observer les changements
     effect(() => {
-      this.applyAllAttributes();
+      this.applyTheme();
     });
 
     // Observer les changements du thème système si en mode auto
@@ -49,22 +39,6 @@ export class ThemeService {
   setTheme(theme: Theme): void {
     this.theme.set(theme);
     localStorage.setItem(this.STORAGE_THEME_KEY, theme);
-  }
-
-  /**
-   * Change la palette neutre
-   */
-  setNeutral(neutral: NeutralColor): void {
-    this.neutral.set(neutral);
-    localStorage.setItem(this.STORAGE_NEUTRAL_KEY, neutral);
-  }
-
-  /**
-   * Change la couleur primaire
-   */
-  setPrimary(primary: PrimaryColor): void {
-    this.primary.set(primary);
-    localStorage.setItem(this.STORAGE_PRIMARY_KEY, primary);
   }
 
   /**
@@ -84,21 +58,21 @@ export class ThemeService {
   }
 
   /**
-   * Applique tous les attributs au document
+   * Applique le thème au document
    */
-  private applyAllAttributes(): void {
+  private applyTheme(): void {
     const resolvedTheme = this.resolveTheme(this.theme());
     this.effectiveTheme.set(resolvedTheme);
 
-    // Appliquer tous les attributs data au document
-    document.documentElement.setAttribute('data-theme', resolvedTheme);
-    document.documentElement.setAttribute('data-neutral', this.neutral());
-    document.documentElement.setAttribute('data-primary', this.primary());
-    document.documentElement.setAttribute('data-radius', this.radius());
+    const root = document.documentElement;
+
+    // Appliquer l'attribut data-theme
+    root.setAttribute('data-theme', resolvedTheme);
+    root.setAttribute('data-radius', this.radius());
 
     // Classes pour rétrocompatibilité
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(resolvedTheme);
+    root.classList.remove('light', 'dark');
+    root.classList.add(resolvedTheme);
   }
 
   /**
@@ -127,7 +101,7 @@ export class ThemeService {
 
     mediaQuery.addEventListener('change', () => {
       if (this.theme() === 'auto') {
-        this.applyAllAttributes();
+        this.applyTheme();
       }
     });
   }

@@ -1,8 +1,7 @@
 import type { Size as UISize } from '../../../types/ui.types';
 
 export namespace Grid {
-  export type Columns = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
-  export type Rows = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
+  export type Display = 'grid' | 'inline-grid' | 'none';
   export type AlignItems = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   export type JustifyItems = 'start' | 'center' | 'end' | 'stretch';
   export type AlignContent =

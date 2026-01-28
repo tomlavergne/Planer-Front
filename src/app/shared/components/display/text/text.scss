@@ -2,18 +2,19 @@
 
 :host {
   display: block;
-  line-height: 1.5;
 
   /*******************/
   /***** COLORS *****/
   /*******************/
 
-  $colors: (
-    'primary',
-    'success',
-    'warning',
-    'danger',
-    'info',
+  $colors: ('primary', 'success', 'warning', 'danger', 'info');
+  @each $color in $colors {
+    &.color-#{$color} {
+      color: var(--color-#{$color});
+    }
+  }
+
+  $textColors: (
     'red',
     'orange',
     'amber',
@@ -31,21 +32,18 @@
     'fuchsia',
     'pink',
     'rose',
-    'white',
-    'gray',
-    'black'
-  );
-  @each $color in $colors {
-    &.color-#{$color} {
-      color: var(--color-#{$color}-dark);
-    }
-  }
-
-  $textColors: (
-    'foreground-primary',
-    'foreground-secondary',
-    'foreground-primary-inverse',
-    'foreground-secondary-inverse'
+    'neutral',
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+    'text-primary',
+    'text-secondary',
+    'text-tertiary',
+    'text-inverse',
+    'text-disabled'
   );
   @each $color in $textColors {
     &.color-#{$color} {
@@ -61,9 +59,6 @@
     color: black;
   }
 
-  &.color-primary {
-    color: var(--color-primary);
-  }
   /*****************/
   /***** SIZES *****/
   /*****************/
@@ -211,5 +206,19 @@
   }
   &.decoration-overline {
     text-decoration: overline;
+  }
+
+  /***********************/
+  /***** LINE HEIGHT *****/
+  /***********************/
+
+  &.line-height-none {
+    line-height: 1;
+  }
+  &.line-height-normal {
+    line-height: normal;
+  }
+  &.line-height-short {
+    line-height: 1.5;
   }
 }

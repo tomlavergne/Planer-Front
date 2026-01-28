@@ -3,11 +3,12 @@ import type {
   Variant as UIVariant,
   Position,
   PrimaryColor,
+  SemanticColor,
 } from '../../../types/ui.types';
 
 export namespace Badge {
   export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
   export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg'>;
   export type IconPosition = Position;
-  export type Color = PrimaryColor;
+  export type Color = PrimaryColor | SemanticColor;
 }

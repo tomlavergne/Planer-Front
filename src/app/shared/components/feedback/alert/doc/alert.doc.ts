@@ -15,16 +15,7 @@ import { Alert as AlertType } from '../alert.type';
 })
 export class AlertDoc {
   /***** Alert  *****/
-  colors: AlertType.Color[] = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'blue',
-    'indigo',
-    'purple',
-    'pink',
-  ];
+  colors: AlertType.Color[] = [];
   variants: AlertType.Variant[] = ['solid', 'soft', 'outline'];
 
   showAlert = signal(true);

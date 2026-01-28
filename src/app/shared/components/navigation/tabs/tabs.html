@@ -1,36 +1,25 @@
-<div class="tabs-container">
+<app-flex [direction]="direction() === 'row' ? 'column' : 'row'" gap="xs" fullWidth>
   <!-- Tab List -->
-  <div class="tabs-list" role="tablist">
+  <app-flex [direction]="direction()" gap="xs">
     @for (tab of tabs(); track tab.id) {
-      <button
-        type="button"
-        class="tab-trigger"
-        [class.active]="isActive(tab.id)"
-        [class.disabled]="tab.disabled"
+      <app-button
+        [text]="tab.label"
+        [variant]="isActive(tab.id) ? 'soft' : 'ghost'"
+        [color]="isActive(tab.id) ? 'primary' : 'secondary'"
         [disabled]="tab.disabled"
-        (click)="selectTab(tab)"
-        role="tab"
-        [attr.aria-selected]="isActive(tab.id)"
-        [attr.aria-controls]="'panel-' + tab.id"
-      >
-        {{ tab.label }}
-      </button>
+        (clicked)="selectTab(tab)"
+      />
     }
-  </div>
+  </app-flex>
 
-  <!-- Tab Panels -->
+  <app-separator />
+
+  <!-- Tab Panels - Affiche uniquement le panel actif -->
   <div class="tabs-content">
-    @for (tab of tabs(); track tab.id) {
-      @if (isActive(tab.id)) {
-        <div
-          class="tab-panel"
-          role="tabpanel"
-          [attr.id]="'panel-' + tab.id"
-          [attr.aria-labelledby]="tab.id"
-        >
-          <ng-content [select]="'[tab-panel=' + tab.id + ']'"></ng-content>
-        </div>
+    @for (panel of panels; track panel.appTabPanel()) {
+      @if (isActive(panel.appTabPanel())) {
+        <ng-container *ngTemplateOutlet="panel.template"></ng-container>
       }
     }
   </div>
-</div>
+</app-flex>

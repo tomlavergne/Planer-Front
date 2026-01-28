@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
 /***** Imports des composants *****/
-import { Flex, Badge, Text } from '../../..';
+import { Flex, Badge } from '../../..';
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
+import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
 
 // Import de types
 import { Badge as BadgeType } from '../badge.type';
 
 @Component({
   selector: 'app-badge-doc',
-  imports: [Flex, Badge, Text, DocumentationTemplate],
+  imports: [Flex, Badge, DocumentationTemplate, DocumentationUsage],
   templateUrl: './badge.doc.html',
 })
 export class BadgeDoc {
@@ -31,8 +32,8 @@ export class BadgeDoc {
     'fuchsia',
     'pink',
     'rose',
-    'black',
+    'neutral',
   ];
-  badgeVariants: BadgeType.Variant[] = ['solid', 'soft', 'outline'];
-  badgeSizes: BadgeType.Size[] = ['xs', 'sm', 'md', 'lg'];
+  variants: BadgeType.Variant[] = ['solid', 'soft', 'outline'];
+  sizes: BadgeType.Size[] = ['xs', 'sm', 'md', 'lg'];
 }

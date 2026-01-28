@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { Size } from '../../../types';
 
 @Component({
-  selector: 'app-textarea',
+  selector: 'Textarea',
   imports: [FormsModule],
   templateUrl: './textarea.html',
   styleUrl: './textarea.scss',

@@ -1,39 +1,20 @@
 /***** Imports de Angular *****/
-import { Component, signal, computed, HostListener } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-
-/***** Imports de composants *****/
-import { Button, Flex, Avatar, Icon, Text, Separator } from '../../../shared/components';
-import { ThemeConfigurator } from './children/theme-configurator/theme-configurator';
+import {
+  Component,
+  signal,
+  input,
+  model,
+  computed,
+  HostListener,
+  booleanAttribute,
+} from '@angular/core';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
 
-/***** Import de types *****/
-import type { Icon as IconType } from '../../../shared/components/display/icon/icon.type';
-import { PopoverDirective } from '../../../shared/directives';
-
-interface NavigationItem {
-  label: string;
-  iconName: IconType.Name;
-  path: string;
-}
-
 @Component({
   selector: 'app-sidebar',
-  imports: [
-    Button,
-    Text,
-    Avatar,
-    Icon,
-    Flex,
-    TooltipDirective,
-    Separator,
-    RouterLink,
-    ThemeConfigurator,
-    RouterLinkActive,
-    PopoverDirective,
-  ],
+  imports: [TooltipDirective],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
   host: {
@@ -42,41 +23,12 @@ interface NavigationItem {
   },
 })
 export class Sidebar {
-  // Current theme signal
-  currentTheme = signal<string>(document.documentElement.getAttribute('data-theme') || 'light');
-  currentNeutral = signal<string>(document.documentElement.getAttribute('data-neutral') || 'gray');
-  currentPrimary = signal<string>(document.documentElement.getAttribute('data-primary') || 'blue');
-
-  // Navigation items
-  navigationItems: NavigationItem[] = [
-    {
-      label: 'Accueil',
-      iconName: 'lucideHome',
-      path: '/home',
-    },
-    {
-      label: 'Calendrier',
-      iconName: 'lucideCalendar',
-      path: '/calendar',
-    },
-    {
-      label: 'Utilisateurs',
-      iconName: 'lucideUsers',
-      path: '/users',
-    },
-    {
-      label: 'Ressources',
-      iconName: 'lucideBox',
-      path: '/ressources',
-    },
-  ];
+  expanded = model<boolean>();
+  expandable = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***************************/
   /***** RESIZING HANDLE *****/
   /***************************/
-
-  // State to track if sidebar is expanded or collapsed
-  expanded = signal<boolean>(true);
 
   // State to track if we are currently resizing
   isResizing = signal<boolean>(false);
@@ -151,11 +103,6 @@ export class Sidebar {
   /***** Computeds *****/
   /*********************/
 
-  // Icon name for theme toggle button
-  iconNameTheme = computed(() => {
-    return this.currentTheme() === 'dark' ? 'lucideSun' : 'lucideMoon';
-  });
-
   // Host element classes
   hostClasses = computed(() => {
     return this.expanded() ? 'expanded' : 'collapsed';
@@ -165,58 +112,4 @@ export class Sidebar {
   sidebarWidthStyle = computed(() => {
     return this.expanded() ? `${this.sidebarWidth()}px` : 'auto';
   });
-
-  /*******************/
-  /***** Methods *****/
-  /********************/
-
-  // Toggle app theme
-  toggleTheme(): void {
-    const newTheme = this.currentTheme() === 'dark' ? 'light' : 'dark';
-    this.currentTheme.set(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  }
-
-  // Toggle app neutral
-  toggleNeutral(): void {
-    const neutral = ['gray', 'slate', 'zinc', 'stone', 'neutral'];
-    const currentNeutral = document.documentElement.getAttribute('data-neutral') || 'gray';
-    const currentIndex = neutral.indexOf(currentNeutral);
-    const nextIndex = (currentIndex + 1) % neutral.length;
-    const nextNeutral = neutral[nextIndex];
-    this.currentNeutral.set(nextNeutral);
-    document.documentElement.setAttribute('data-neutral', nextNeutral);
-  }
-
-  // Toggle app primary
-  togglePrimary(): void {
-    const primary = [
-      'red',
-      'orange',
-      'amber',
-      'yellow',
-      'lime',
-      'green',
-      'emerald',
-      'teal',
-      'cyan',
-      'sky',
-      'blue',
-      'indigo',
-      'violet',
-      'purple',
-      'fuchsia',
-      'pink',
-      'rose',
-      'white',
-      'gray',
-      'black',
-    ];
-    const currentPrimary = document.documentElement.getAttribute('data-primary') || 'gray';
-    const currentIndex = primary.indexOf(currentPrimary);
-    const nextIndex = (currentIndex + 1) % primary.length;
-    const nextPrimary = primary[nextIndex];
-    this.currentPrimary.set(nextPrimary);
-    document.documentElement.setAttribute('data-primary', nextPrimary);
-  }
 }

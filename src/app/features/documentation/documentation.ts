@@ -4,18 +4,21 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports des composants *****/
 import { Flex, Text, Button } from '../../shared/components';
-
-/***** Import de types *****/
-import type { Documentation as DocumentationType } from './documentation.type';
-
-import { DOCUMENTED_COMPONENTS } from './documentation.config';
+import { DocumentationSidebar } from './children/documentation-sidebar/documentation-sidebar';
 
 @Component({
   selector: 'app-documentation',
-  imports: [CommonModule, RouterOutlet, Flex, Text, Button, RouterLink, RouterLinkActive],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    Flex,
+    Text,
+    Button,
+    RouterLink,
+    RouterLinkActive,
+    DocumentationSidebar,
+  ],
   templateUrl: './documentation.html',
   styleUrl: './documentation.scss',
 })
-export class Documentation {
-  indexConfiguration: DocumentationType.Index = DOCUMENTED_COMPONENTS;
-}
+export class Documentation {}

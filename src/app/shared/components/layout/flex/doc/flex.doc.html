@@ -1,41 +1,43 @@
 <app-documentation-template
   title="Flex"
+  selector="app-flex"
   introduction="
 Le composant Flex est un conteneur flexible qui utilise le modèle de boîte flexible (Flexbox) pour organiser et aligner les éléments enfants de manière réactive et adaptable.
 "
+  [inputs]="inputsMetadata"
+  showUsageTab
 >
-  <div overview>
-    <app-flex direction="column" gap="lg" fullWidth>
-      <app-flex direction="column" gap="md" wrap>
-        @for (item of items; track $index) {
-          <app-flex alignItems="center" justifyContent="center" padding="sm" class="item">
-            <app-text color="foreground-primary-inverse">Div {{ $index + 1 }}</app-text>
-          </app-flex>
-        }
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <app-documentation-usage
+      title="Direction"
+      description="Le composant Flex permet de définir la direction des éléments enfants à l'aide de la propriété 'direction'. Les valeurs possibles sont 'row' (par défaut) pour une disposition horizontale et 'column' pour une disposition verticale."
+    >
+      <app-flex direction="column" gap="lg">
+        <app-flex direction="column" gap="md" wrap>
+          @for (item of items; track $index) {
+            <app-flex alignItems="center" justifyContent="center" padding="sm" class="item">
+              <app-text color="text-inverse">Element de colonne {{ $index + 1 }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+
+        <app-flex direction="row" gap="md">
+          @for (item of items; track $index) {
+            <app-flex
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              padding="sm"
+              class="item"
+              fullWidth
+            >
+              <app-text color="text-inverse" [wrap]="false"
+                >Element de ligne {{ $index + 1 }}</app-text
+              >
+            </app-flex>
+          }
+        </app-flex>
       </app-flex>
-
-      <app-flex direction="row" gap="md">
-        @for (item of items; track $index) {
-          <app-flex
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
-            padding="sm"
-            class="item"
-            fullWidth
-          >
-            <app-text color="foreground-primary-inverse">Div {{ $index + 1 }}</app-text>
-          </app-flex>
-        }
-      </app-flex>
-    </app-flex>
-  </div>
-
-  <div properties>
-    <!-- Propriétés du composant accordion -->
-  </div>
-
-  <div usage>
-    <!-- Instructions d'utilisation -->
-  </div>
+    </app-documentation-usage>
+  </app-flex>
 </app-documentation-template>

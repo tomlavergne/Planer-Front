@@ -1,0 +1,12 @@
+<!-- Couleurs -->
+<app-flex direction="column" gap="sm" fullWidth wrap>
+  <app-text size="xl" color="text" weight="semibold">{{ title() }}</app-text>
+
+  <app-text size="md" color="neutral" weight="regular">
+    {{ description() }}
+  </app-text>
+
+  <app-documentation-exemple language="typescript" [code]="codeExample()">
+    <ng-content />
+  </app-documentation-exemple>
+</app-flex>

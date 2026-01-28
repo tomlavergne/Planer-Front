@@ -7,48 +7,6 @@
   background: linear-gradient(180deg, color-mix(in srgb, $color 100%, white $lighten), $color);
 }
 
-// Dégradé subtle pour hover/active
-@mixin gradient-subtle($color, $start: 8%, $end: 12%) {
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, $color $start, transparent),
-    color-mix(in srgb, $color $end, transparent)
-  );
-}
-
-// Ombres par défaut
-@mixin shadow-base {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-// Ombres hover
-@mixin shadow-hover($color) {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-    0 2px 4px rgba(0, 0, 0, 0.06),
-    0 1px 2px color-mix(in srgb, $color 15%, transparent);
-}
-
-// État hover pour variants light (soft, outline, ghost)
-@mixin hover-light($color) {
-  @include gradient-subtle($color, 8%, 12%);
-  border-color: color-mix(in srgb, $color 30%, transparent);
-  @include shadow-hover($color);
-}
-
-// État active pour variants light (soft, outline, ghost)
-@mixin active-light($color) {
-  @include gradient-subtle($color, 12%, 16%);
-  border-color: color-mix(in srgb, $color 40%, transparent);
-  box-shadow:
-    0 0 0 1px rgba(0, 0, 0, 0.1) inset,
-    0 1px 2px rgba(0, 0, 0, 0.1) inset,
-    0 1px 2px color-mix(in srgb, $color 20%, transparent);
-}
-
 // Focus accessible (visible uniquement au clavier)
 @mixin focus-accessible($color: var(--color-primary), $offset: 0px, $width: 2px, $selector: null) {
   @if $selector {
@@ -72,36 +30,41 @@
   }
 }
 
-$sizes: ('none', '6xs', '5xs', '4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl');
+// ==========================================
+// MIXINS DE MANIPULATION DES COULEURS
+// ==========================================
 
-@mixin fontSizes {
-  @each $size-name in $sizes {
-    &.font-size-#{$size-name} {
-      font-size: var(--font-size-#{$size-name});
-    }
+// Éclaircir une couleur en la mélangeant avec le background
+// $color: La couleur à éclaircir
+// $amount: Pourcentage d'éclaircissement (0-100)
+@function lighten-color($color, $amount: 20) {
+  @return color-mix(in srgb, $color #{100 - $amount}%, var(--color-background) #{$amount}%);
+}
+
+// Assombrir une couleur en la mélangeant avec du noir
+// $color: La couleur à assombrir
+// $amount: Pourcentage d'assombrissement (0-100)
+@function darken-color($color, $amount: 20) {
+  @return color-mix(in srgb, $color #{100 - $amount}%, black #{$amount}%);
+}
+
+// Fonction polyvalente pour ajuster la luminosité d'une couleur
+// $color: La couleur à ajuster
+// $amount: Pourcentage d'ajustement (-100 à 100)
+//          Positif = éclaircir, Négatif = assombrir
+@function adjust-color-brightness($color, $amount: 0) {
+  @if $amount > 0 {
+    @return lighten-color($color, $amount);
+  } @else if $amount < 0 {
+    @return darken-color($color, abs($amount));
+  } @else {
+    @return $color;
   }
 }
 
-@mixin paddings {
-  @each $size-name in $sizes {
-    &.padding-#{$size-name} {
-      padding: var(--spacing-#{$size-name});
-    }
-  }
-}
-
-@mixin margins {
-  @each $size-name in $sizes {
-    &.margin-#{$size-name} {
-      margin: var(--spacing-#{$size-name});
-    }
-  }
-}
-
-@mixin gaps {
-  @each $size-name in $sizes {
-    &.gap-#{$size-name} {
-      gap: var(--spacing-#{$size-name});
-    }
-  }
+// Créer une variante transparente d'une couleur
+// $color: La couleur de base
+// $opacity: Opacité en pourcentage (0-100)
+@function alpha-color($color, $opacity: 20) {
+  @return color-mix(in srgb, $color #{$opacity}%, transparent #{100 - $opacity}%);
 }

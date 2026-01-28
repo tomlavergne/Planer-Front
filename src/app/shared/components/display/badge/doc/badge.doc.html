@@ -4,28 +4,66 @@
   Les boutons contiennent généralement du texte qui indique l'action qu'ils effectuent."
   codeExample="const hello = 'world';"
 >
-  <div overview>
-    @for (variant of badgeVariants; track $index) {
-      <app-flex direction="column" gap="sm" wrap>
-        <h3>{{ variant.charAt(0).toUpperCase() + variant.slice(1) }}</h3>
-        <app-flex direction="row" gap="sm" wrap>
-          @for (color of colors; track $index) {
-            <app-badge
-              [text]="
-                `${color.charAt(0).toUpperCase() + color.slice(1)} ${variant.charAt(0).toUpperCase() + variant.slice(1)}`
-              "
-              [variant]="variant"
-              [color]="color"
-              size="sm"
-              [icon]="{ name: 'lucideCircle' }"
-            />
-          }
-        </app-flex>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Couleurs -->
+    <app-documentation-usage
+      title="Couleurs"
+      description="Le composant Badge prend en charge plusieurs couleurs pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="row" gap="sm" wrap>
+        @for (color of colors; track $index) {
+          <app-badge
+            [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
+            variant="solid"
+            [color]="color"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+        }
       </app-flex>
-    }
+    </app-documentation-usage>
 
-    <app-flex direction="column" gap="md" wrap>
-      <h3>Avec Icônes</h3>
+    <!-- Variants -->
+    <app-documentation-usage
+      title="Variants"
+      description="Le composant Badge prend en charge plusieurs variantes pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="row" gap="sm" wrap>
+        @for (variant of variants; track $index) {
+          <app-badge
+            [text]="`${variant.charAt(0).toUpperCase() + variant.slice(1)}`"
+            [variant]="variant"
+            color="primary"
+            size="sm"
+            [icon]="{ name: 'lucideCircle' }"
+          />
+        }
+      </app-flex>
+    </app-documentation-usage>
+
+    <!-- Tailles -->
+    <app-documentation-usage
+      title="Tailles"
+      description="Le composant Badge prend en charge plusieurs tailles pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="row" gap="sm" alignItems="center" wrap>
+        @for (size of sizes; track $index) {
+          <app-badge
+            [text]="`${size.charAt(0).toUpperCase() + size.slice(1)}`"
+            variant="soft"
+            color="primary"
+            [size]="size"
+            [icon]="{ name: 'lucideStar' }"
+          />
+        }
+      </app-flex>
+    </app-documentation-usage>
+
+    <!-- Icones -->
+    <app-documentation-usage
+      title="Avec Icônes"
+      description="Le composant Badge peut inclure des icônes pour améliorer la reconnaissance visuelle."
+    >
       <app-flex direction="row" gap="md" wrap alignItems="center">
         <app-badge
           text="Success"
@@ -48,13 +86,7 @@
           size="sm"
           [icon]="{ name: 'lucideX' }"
         />
-        <app-badge
-          text="Info"
-          variant="soft"
-          color="blue"
-          size="sm"
-          [icon]="{ name: 'lucideInfo' }"
-        />
+        <app-badge text="Info" variant="soft" size="sm" [icon]="{ name: 'lucideInfo' }" />
         <app-badge
           text="New"
           variant="outline"
@@ -63,25 +95,6 @@
           [icon]="{ name: 'lucideSparkles' }"
         />
       </app-flex>
-    </app-flex>
-
-    <app-flex direction="column" gap="md" wrap>
-      <h3>Tailles</h3>
-      <app-flex direction="row" gap="md" wrap alignItems="center">
-        @for (size of badgeSizes; track $index) {
-          <app-badge
-            text="{{ size.charAt(0).toUpperCase() + size.slice(1) }}"
-            variant="solid"
-            color="blue"
-            [size]="size"
-            [icon]="{ name: 'lucideCircle' }"
-          />
-        }
-      </app-flex>
-    </app-flex>
-  </div>
-
-  <div usage>
-    <!-- Instructions d'utilisation -->
-  </div>
+    </app-documentation-usage>
+  </app-flex>
 </app-documentation-template>

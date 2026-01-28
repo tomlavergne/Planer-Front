@@ -14,6 +14,9 @@ export { Icon } from './display/icon/icon';
 export { Text } from './display/text/text';
 export { Code } from './display/code/code';
 
+/***** Element Components *****/
+export { Shape } from './element/shape/shape';
+
 /***** Data Components *****/
 export { Table, TableColumnTemplate } from './data/table/table';
 
@@ -23,6 +26,7 @@ export { Card } from './panel/card/card';
 
 /***** Form Components *****/
 export { Button } from './form/button/button';
+export { ColorPicker } from './form/color-picker/color-picker';
 export { Input } from './form/input/input';
 export { Textarea } from './form/textarea/textarea';
 export { Label } from './form/label/label';
@@ -30,13 +34,14 @@ export { Checkbox } from './form/checkbox/checkbox';
 export { Toggle } from './form/toggle/toggle';
 export { Select, type SelectOption } from './form/select/select';
 export { RadioGroup, type RadioOption } from './form/radio-group/radio-group';
+export { Slider } from './form/slider/slider';
 
 /***** Overlay Components *****/
 export { Popover } from './overlay/popover/popover';
 export { Dialog } from './overlay/dialog/dialog';
 
 /***** Navigation Components *****/
-export { Tabs, type TabItem } from './navigation/tabs/tabs';
+export { Tabs } from './navigation/tabs/tabs';
 export { Breadcrumb } from './navigation/breadcrumb/breadcrumb';
 
 /***** Feedback Components *****/

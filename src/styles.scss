@@ -1,19 +1,24 @@
-/* ==========================================
-   src/styles.css - Fichier principal
-   ========================================== */
+@use './app/shared/styles/animations'; // Import of global animations
+@use './app/shared/styles/mixins' as *; // Import of global mixins
 
-/* Imports */
-@use './app/shared/styles/animations';
-@use './app/shared/styles/theme-mixins' as *;
+@import 'highlight.js/styles/github.css'; // Import of highlight.js for syntaxic coloration
 
-/* Import du thème highlight.js */
-@import 'highlight.js/styles/github.css';
-
-/* ==========================================
-   VARIABLES GLOBALES (non-thématiques)
-   ========================================== */
 :root {
-  // Espacements
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  margin: 0;
+  font-size: var(--font-size-md);
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
+
+  // Spacing
   --spacing-4xs: 0.1rem;
   --spacing-3xs: 0.25rem;
   --spacing-2xs: 0.5rem;
@@ -26,7 +31,7 @@
   --spacing-3xl: 3rem;
   --spacing-4xl: 4rem;
 
-  // Typographie
+  // Font Sizes
   --font-size-4xs: 0.5rem;
   --font-size-3xs: 0.5625rem;
   --font-size-2xs: 0.625rem;
@@ -39,26 +44,22 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
 
-  --font-weight-thin: 300;
+  // Font Weights
+  --font-weight-thin: 200;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  // Radius (via mixin)
-  @include theme-radius(
-    (
-      none: none,
-      sm: 0.125rem,
-      md: 0.25rem,
-      lg: 0.375rem,
-      xl: 0.5rem,
-      '2xl': 0.75rem,
-      '3xl': 1rem,
-      '4xl': 1.5rem,
-      full: 9999px,
-    )
-  );
+  // Radii
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+  --radius-4xl: 1.5rem;
+  --radius-full: 9999px;
 
   // Transitions
   --transition-fast: 150ms ease;
@@ -70,341 +71,111 @@
   --z-modal: 1050;
   --z-tooltip: 1070;
 
-  --color-white: #ffffff;
-}
+  // ==========================================
+  // COLORS LIGHT THEME
+  // ==========================================
 
-/* ==========================================
-   THÈMES AVEC PALETTES NEUTRES (IMBRIQUÉS)
-   ========================================== */
+  // Colors palette
+  --color-red: #ef4444;
+  --color-orange: #f97316;
+  --color-amber: #f59e0b;
+  --color-yellow: #eab308;
+  --color-lime: #84cc16;
+  --color-green: #22c55e;
+  --color-emerald: #10b981;
+  --color-teal: #14b8a6;
+  --color-cyan: #06b6d4;
+  --color-sky: #0ea5e9;
+  --color-blue: #3b82f6;
+  --color-indigo: #6366f1;
+  --color-violet: #8b5cf6;
+  --color-purple: #a855f7;
+  --color-fuchsia: #d946ef;
+  --color-pink: #ec4899;
+  --color-rose: #f43f5e;
+  --color-neutral: #6b7280;
 
-// Génération des palettes neutres pour les thèmes light et dark avec le mixin
-@include generate-neutral-variants(
-  'gray',
-  (
-    background-primary: #f3f4f6,
-    background-secondary: #f4f4f5,
-    border: #9b9ea2,
-    foreground-primary: #141414,
-    foreground-secondary: #020202,
-    foreground-primary-inverse: #f3f4f6,
-    foreground-secondary-inverse: #f4f4f5,
-  ),
-  (
-    background-primary: #0f1419,
-    background-secondary: #191919,
-    border: #4f4f4f,
-    foreground-primary: #ffffff,
-    foreground-secondary: #d8d8d8,
-    foreground-primary-inverse: #0f1419,
-    foreground-secondary-inverse: #191919,
-  )
-);
-
-@include generate-neutral-variants(
-  'zinc',
-  (
-    background-primary: #f4f4f5,
-    background-secondary: #f4f4f5,
-    border: #52525b,
-    foreground-primary: #bababa,
-    foreground-secondary: #71717a,
-    foreground-primary-inverse: #202020,
-    foreground-secondary-inverse: #52525b,
-  ),
-  (
-    background-primary: #18181b,
-    background-secondary: #27272a,
-    border: #a1a1aa,
-    foreground-primary: #bababa,
-    foreground-secondary: #52525b,
-    foreground-primary-inverse: #343434,
-    foreground-secondary-inverse: #71717a,
-  )
-);
-
-@include generate-neutral-variants(
-  'neutral',
-  (
-    background-primary: #f5f5f5,
-    background-secondary: #f5f5f5,
-    border: #525252,
-    foreground-primary: #bababa,
-    foreground-secondary: #71717a,
-    foreground-primary-inverse: #202020,
-    foreground-secondary-inverse: #52525b,
-  ),
-  (
-    background-primary: #171717,
-    background-secondary: #262626,
-    border: #a3a3a3,
-    foreground-primary: #bababa,
-    foreground-secondary: #52525b,
-    foreground-primary-inverse: #343434,
-    foreground-secondary-inverse: #71717a,
-  )
-);
-
-@include generate-neutral-variants(
-  'slate',
-  (
-    background-primary: #f1f5f9,
-    background-secondary: #f1f5f9,
-    border: #475569,
-    foreground-primary: #bababa,
-    foreground-secondary: #71717a,
-    foreground-primary-inverse: #202020,
-    foreground-secondary-inverse: #52525b,
-  ),
-  (
-    background-primary: #0f172a,
-    background-secondary: #1e293b,
-    border: #94a3b8,
-    foreground-primary: #bababa,
-    foreground-secondary: #52525b,
-    foreground-primary-inverse: #343434,
-    foreground-secondary-inverse: #71717a,
-  )
-);
-
-@include generate-neutral-variants(
-  'stone',
-  (
-    background-primary: #f5f5f4,
-    background-secondary: #f5f5f4,
-    border: #57534e,
-    foreground-primary: #bababa,
-    foreground-secondary: #71717a,
-    foreground-primary-inverse: #202020,
-    foreground-secondary-inverse: #52525b,
-  ),
-  (
-    background-primary: #1c1917,
-    background-secondary: #292524,
-    border: #a8a29e,
-    foreground-primary: #bababa,
-    foreground-secondary: #52525b,
-    foreground-primary-inverse: #343434,
-    foreground-secondary-inverse: #71717a,
-  )
-);
-
-/* ==========================================
-   THÈMES (Global + Couleurs via Mixin)
-   ========================================== */
-:root {
-  // Couleurs avec variantes automatiques pour light et dark
-  @include generate-color('black', #000000, #262626, #000000, #ffffff, #f5f5f5, #e5e5e5);
-  @include generate-color('white', #ffffff, #f5f5f5, #e5e5e5, #000000, #262626, #000000);
-  @include generate-color('gray', #6b7280, #f3f4f6, #374151, #9ca3af, #1f2937, #d1d5db);
-
-  @include generate-color('red', #ef4444, #fee2e2, #dc2626, #dc2626, #1a0606, #ef4444);
-  @include generate-color('orange', #f59e0b, #fef3c7, #d97706, #ea580c, #1a0d05, #f97316);
-  @include generate-color('amber', #f59e0b, #fef3c7, #d97706, #f59e0b, #1f1506, #fbbf24);
-  @include generate-color('yellow', #eab308, #fef9c3, #ca8a04, #ca8a04, #1a1606, #eab308);
-  @include generate-color('lime', #84cc16, #ecfccb, #65a30d, #84cc16, #151f07, #a3e635);
-  @include generate-color('green', #179244, #cafddc, #117234, #16a34a, #061a0d, #22c55e);
-  @include generate-color('emerald', #10b981, #d1fae5, #059669, #10b981, #05190f, #34d399);
-  @include generate-color('teal', #14b8a6, #ccfbf1, #0d9488, #0d9488, #061815, #14b8a6);
-  @include generate-color('cyan', #06b6d4, #cffafe, #0891b2, #06b6d4, #061c20, #22d3ee);
-  @include generate-color('sky', #0ea5e9, #e0f2fe, #0284c7, #0ea5e9, #051c2a, #38bdf8);
-  @include generate-color('blue', #004fe1, #dbeafe, #0337a8, #2563eb, #060d1a, #3b82f6);
-  @include generate-color('indigo', #6366f1, #e0e7ff, #4f46e5, #4f46e5, #0d0d1a, #6366f1);
-  @include generate-color('violet', #8b5cf6, #ede9fe, #7c3aed, #7c3aed, #0f0d1a, #8b5cf6);
-  @include generate-color('purple', #a855f7, #f3e8ff, #9333ea, #a855f7, #170d1f, #c084fc);
-  @include generate-color('fuchsia', #d946ef, #fae8ff, #c026d3, #d946ef, #1f0a1f, #e879f9);
-  @include generate-color('pink', #ec4899, #fce7f3, #db2777, #db2777, #1a0d15, #ec4899);
-  @include generate-color('rose', #f43f5e, #ffe4e6, #e11d48, #f43f5e, #1f0a0e, #fb7185);
-
-  --color-success: var(--color-green);
-  --color-success-light: var(--color-green-light);
-  --color-success-dark: var(--color-green-dark);
-  --color-on-success: #ffffff;
-
-  --color-warning: var(--color-yellow);
-  --color-warning-light: var(--color-yellow-light);
-  --color-warning-dark: var(--color-yellow-dark);
-  --color-on-warning: #ffffff;
-
+  // Semantic Colors
+  --color-primary: var(--color-blue);
+  --color-secondary: var(--color-neutral);
+  --color-success: var(--color-emerald);
+  --color-warning: var(--color-amber);
   --color-danger: var(--color-red);
-  --color-danger-light: var(--color-red-light);
-  --color-danger-dark: var(--color-red-dark);
-  --color-on-danger: #ffffff;
+  --color-info: var(--color-sky);
 
-  --color-info: var(--color-blue);
-  --color-info-light: var(--color-blue-light);
-  --color-info-dark: var(--color-blue-dark);
-  --color-on-info: #ffffff;
-}
-
-[data-theme='light'] {
+  // Background Colors
   --color-background-primary: #ffffff;
-  --color-background-secondary: #f5f6f5;
-  --color-border: #cfcfcf;
-  --color-foreground-primary: #111827;
-  --color-foreground-secondary: #6b7280;
-  --color-foreground-primary-inverse: #e4e4e4;
-  --color-foreground-secondary-inverse: #2b2b2b;
+  --color-background-secondary: #f9fafb;
+  --color-background-tertiary: #f3f4f6;
+  --color-background-inverse: #1f2937;
 
-  // Ombres
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  // Borders Colors
+  --color-border: #e5e7eb;
 
-  // Aliases sémantiques
-  --color-success: var(--color-green);
-  --color-danger: var(--color-red);
-  --color-warning: var(--color-orange);
-  --color-info: var(--color-blue);
+  // Text Colors
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-text-inverse: #f9fafb;
+  --color-text-disabled: #d1d5db;
+
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+
+/* ==========================================
+   DARK THEME
+   ========================================== */
 
 [data-theme='dark'] {
-  --color-background-primary: #17181c;
-  --color-background-secondary: #191919;
-  --color-border: #334155;
-  --color-foreground-primary: #e2e8f0;
-  --color-foreground-secondary: #94a3b8;
-  --color-foreground-primary-inverse: #1a1a1a;
-  --color-foreground-secondary-inverse: #2b2b2b;
+  //  Colors palette
+  --color-red: #f87171;
+  --color-orange: #fb923c;
+  --color-amber: #fbbf24;
+  --color-yellow: #facc15;
+  --color-lime: #a3e635;
+  --color-green: #34d399;
+  --color-emerald: #10b981;
+  --color-teal: #2dd4bf;
+  --color-cyan: #06b6d4;
+  --color-sky: #0ea5e9;
+  --color-blue: #60a5fa;
+  --color-indigo: #818cf8;
+  --color-violet: #a78bfa;
+  --color-purple: #c084fc;
+  --color-fuchsia: #e879f9;
+  --color-pink: #f472b6;
+  --color-rose: #fb7185;
+  --color-neutral: #9ca3af;
 
-  // Ombres
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  // Background Colors
+  --color-background-primary: #111827;
+  --color-background-secondary: #1f2937;
+  --color-background-tertiary: #374151;
+  --color-background-inverse: #ffffff;
 
-  // Aliases sémantiques
-  --color-success: var(--color-green);
-  --color-danger: var(--color-red);
-  --color-warning: var(--color-orange);
-  --color-info: var(--color-blue);
+  // Borders Colors
+  --color-border: #374151;
 
-  // Overrides des couleurs pour le thème dark
-  @include generate-color-dark-override('black', #ffffff, #f5f5f5, #e5e5e5);
-  @include generate-color-dark-override('red', #dc2626, #1a0606, #ef4444);
-  @include generate-color-dark-override('orange', #ea580c, #1a0d05, #f97316);
-  @include generate-color-dark-override('amber', #f59e0b, #1f1506, #fbbf24);
-  @include generate-color-dark-override('yellow', #ca8a04, #1a1606, #eab308);
-  @include generate-color-dark-override('lime', #84cc16, #151f07, #a3e635);
-  @include generate-color-dark-override('green', #16a34a, #061a0d, #22c55e);
-  @include generate-color-dark-override('emerald', #10b981, #05190f, #34d399);
-  @include generate-color-dark-override('teal', #0d9488, #061815, #14b8a6);
-  @include generate-color-dark-override('cyan', #06b6d4, #061c20, #22d3ee);
-  @include generate-color-dark-override('sky', #0ea5e9, #051c2a, #38bdf8);
-  @include generate-color-dark-override('blue', #2563eb, #060d1a, #3b82f6);
-  @include generate-color-dark-override('indigo', #4f46e5, #0d0d1a, #6366f1);
-  @include generate-color-dark-override('violet', #7c3aed, #0f0d1a, #8b5cf6);
-  @include generate-color-dark-override('purple', #a855f7, #170d1f, #c084fc);
-  @include generate-color-dark-override('fuchsia', #d946ef, #1f0a1f, #e879f9);
-  @include generate-color-dark-override('pink', #db2777, #1a0d15, #ec4899);
-  @include generate-color-dark-override('rose', #f43f5e, #1f0a0e, #fb7185);
+  // Text Colors
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-text-tertiary: #6b7280;
+  --color-text-inverse: #111827;
+  --color-text-disabled: #4b5563;
+
+  // Shadows (darker for dark mode)
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================
-   PALETTES PRIMARY (Assignation via Mixin)
-   ========================================== */
-@include generate-primary('black');
-@include generate-primary('red');
-@include generate-primary('orange');
-@include generate-primary('amber');
-@include generate-primary('yellow');
-@include generate-primary('lime');
-@include generate-primary('green');
-@include generate-primary('emerald');
-@include generate-primary('teal');
-@include generate-primary('cyan');
-@include generate-primary('sky');
-@include generate-primary('blue');
-@include generate-primary('indigo');
-@include generate-primary('violet');
-@include generate-primary('purple');
-@include generate-primary('fuchsia');
-@include generate-primary('pink');
-@include generate-primary('rose');
-
-/* ==========================================
-   VARIANTES DE RADIUS (OPTIONNELLES)
-   ========================================== */
-[data-radius='none'] {
-  @include theme-radius(
-    (
-      none: none,
-      sm: none,
-      md: none,
-      lg: none,
-      xl: none,
-      '2xl': none,
-      '3xl': none,
-      '4xl': none,
-      full: none,
-    )
-  );
-}
-
-[data-radius='sm'] {
-  @include theme-radius(
-    (
-      none: none,
-      sm: 0.125rem,
-      md: 0.25rem,
-      lg: 0.375rem,
-      xl: 0.5rem,
-      '2xl': 0.625rem,
-      '3xl': 0.75rem,
-      '4xl': 1rem,
-      full: 9999px,
-    )
-  );
-}
-
-[data-radius='md'] {
-  @include theme-radius(
-    (
-      none: none,
-      sm: 0.25rem,
-      md: 0.375rem,
-      lg: 0.5rem,
-      xl: 0.75rem,
-      '2xl': 1rem,
-      '3xl': 1.25rem,
-      '4xl': 1.5rem,
-      full: 9999px,
-    )
-  );
-}
-
-[data-radius='lg'] {
-  @include theme-radius(
-    (
-      none: none,
-      sm: 0.375rem,
-      md: 0.5rem,
-      lg: 0.75rem,
-      xl: 1rem,
-      '2xl': 1.25rem,
-      '3xl': 1.5rem,
-      '4xl': 2rem,
-      full: 9999px,
-    )
-  );
-}
-
-[data-radius='xl'] {
-  @include theme-radius(
-    (
-      none: none,
-      sm: 0.5rem,
-      md: 0.75rem,
-      lg: 1rem,
-      xl: 1.25rem,
-      '2xl': 1.5rem,
-      '3xl': 2rem,
-      '4xl': 2.5rem,
-      full: 9999px,
-    )
-  );
-}
-
-/* ==========================================
-   RESET GLOBALE
+   GLOBAL RESET
    ========================================== */
 * {
   box-sizing: border-box;
@@ -414,15 +185,6 @@
 }
 
 body {
-  margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: var(--font-size-base);
-  background-color: var(--color-background-primary);
-  color: var(--color-foreground-primary);
-  transition:
-    background-color var(--transition-base),
-    color var(--transition-base);
   overflow: hidden;
   height: 100vh;
   width: 100vw;

@@ -74,21 +74,18 @@ export type PrimaryColor =
   | 'fuchsia'
   | 'pink'
   | 'rose'
-  | 'black';
+  | 'neutral';
 
 export type NeutralColor = 'gray' | 'slate' | 'zinc' | 'neutral' | 'stone';
 
-export type SemanticColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info';
-
+export type SemanticColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
 // Nuances pour les textes et bordures
-export type ForegroundShade =
-  | 'foreground-primary'
-  | 'foreground-secondary'
-  | 'foreground-primary-inverse'
-  | 'foreground-secondary-inverse';
-export type BackgroundShade = 'background-primary' | 'background-secondary';
-export type BorderShade = 'border';
-export type Shade = ForegroundShade | BackgroundShade | BorderShade;
+export type TextColor =
+  | 'text-primary'
+  | 'text-secondary'
+  | 'text-tertiary'
+  | 'text-inverse'
+  | 'text-disabled';
 
 /***** Variants *****/
-export type Variant = 'solid' | 'soft' | 'outline' | 'ghost';
+export type Variant = 'solid' | 'soft' | 'outline' | 'ghost' | 'link';

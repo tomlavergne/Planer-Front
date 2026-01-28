@@ -39,7 +39,6 @@
         @else if $variant-name == 'soft' {
           background-color: $color-light;
           border: 1px solid transparent;
-          @include shadow-base;
         }
 
         // ==========================================
