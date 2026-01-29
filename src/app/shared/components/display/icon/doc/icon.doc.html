@@ -64,7 +64,7 @@
   </app-flex>
 
   <app-flex library direction="column" gap="lg" wrap fullWidth>
-    <app-text size="md" color="text" weight="medium">
+    <app-text size="md" color="primary" weight="medium">
       Toutes les icônes Lucide ({{ lucideIconsName.length }} icônes)
     </app-text>
 
@@ -74,6 +74,7 @@
           variant="soft"
           color="secondary"
           fullWidth
+          fullHeight
           (clicked)="copyIconName(iconName)"
           [tooltip]="{ content: 'Copier le nom de l\'icone' }"
         >

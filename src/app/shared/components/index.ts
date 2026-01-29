@@ -48,3 +48,4 @@ export { Breadcrumb } from './navigation/breadcrumb/breadcrumb';
 export { Progress } from './feedback/progress/progress';
 export { Alert } from './feedback/alert/alert';
 export { Skeleton } from './feedback/skeleton/skeleton';
+export { ToastStack } from './feedback/toast-stack/toast-stack';

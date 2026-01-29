@@ -1,0 +1,27 @@
+<app-flex gap="sm" [alignItems]="'start'" fullWidth>
+  @if (defaultIcon()) {
+    <app-icon [name]="defaultIcon()!" size="sm" [color]="color()" />
+  }
+
+  <app-flex direction="column" gap="3xs" fullWidth>
+    @if (title()) {
+      <app-text size="sm" weight="medium" [color]="color()">
+        {{ title() }}
+      </app-text>
+    }
+
+    <app-text size="xs" [color]="color()">
+      {{ message() }}
+    </app-text>
+  </app-flex>
+
+  @if (dismissible()) {
+    <app-button
+      variant="ghost"
+      size="sm"
+      iconLeft="lucideX"
+      [color]="color()"
+      (click)="onDismiss()"
+    />
+  }
+</app-flex>

@@ -1,0 +1,69 @@
+<app-documentation-template
+  title="ToastStack"
+  selector="app-toast-stack"
+  introduction="Le composant ToastStack est utilisé pour afficher des notifications temporaires à l'utilisateur. Il gère une pile de toasts, permettant d'afficher plusieurs messages de manière organisée et non intrusive. Chaque toast peut contenir un message, un titre, une icône, et peut être configuré pour être dismissible ou non. Le ToastStack est idéal pour informer les utilisateurs des actions réussies, des erreurs ou des alertes sans interrompre leur flux de travail."
+  [inputs]="inputsMetadata"
+  showUsageTab
+>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Colors -->
+    <app-documentation-usage
+      title="Couleurs"
+      description="
+        Le service ToastStack prend en charge plusieurs couleurs pour s'adapter à différents contextes d'utilisation.
+      "
+    >
+      <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+        <app-button
+          variant="soft"
+          color="primary"
+          size="md"
+          text="Afficher un toast primary"
+          (clicked)="primaryToast()"
+        />
+        <app-button
+          variant="soft"
+          color="secondary"
+          size="md"
+          text="Afficher un toast secondary"
+          (clicked)="secondaryToast()"
+        />
+        <app-button
+          variant="soft"
+          color="info"
+          size="md"
+          text="Afficher un toast d'information"
+          (clicked)="infoToast()"
+        />
+        <app-button
+          variant="soft"
+          color="success"
+          size="md"
+          text="Afficher un toast de succès"
+          (clicked)="successToast()"
+        />
+        <app-button
+          variant="soft"
+          color="warning"
+          size="md"
+          text="Afficher un toast de warning"
+          (clicked)="warningToast()"
+        />
+        <app-button
+          variant="soft"
+          color="danger"
+          size="md"
+          text="Afficher un toast d'erreur"
+          (clicked)="dangerToast()"
+        />
+        <app-button
+          variant="soft"
+          color="purple"
+          size="md"
+          text="Afficher un toast custom"
+          (clicked)="customToast()"
+        />
+      </app-flex>
+    </app-documentation-usage>
+  </app-flex>
+</app-documentation-template>

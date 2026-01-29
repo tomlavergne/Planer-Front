@@ -20,7 +20,35 @@ import type { Documentation as DocumentationType } from '@features/documentation
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {
-  colors: ButtonType.Color[] = ['primary', 'secondary', 'success', 'info', 'warning', 'danger'];
+  primaryColors: ButtonType.Color[] = [
+    'red',
+    'orange',
+    'amber',
+    'yellow',
+    'lime',
+    'green',
+    'emerald',
+    'teal',
+    'cyan',
+    'sky',
+    'blue',
+    'indigo',
+    'violet',
+    'purple',
+    'fuchsia',
+    'pink',
+    'rose',
+    'neutral',
+  ];
+
+  semanticColors: ButtonType.Color[] = [
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+  ];
   variants: ButtonType.Variant[] = ['solid', 'soft', 'subtle', 'outline', 'ghost', 'link'];
   sizes: ButtonType.Size[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -113,7 +141,7 @@ export class ButtonDoc {
 
 </Button>`;
 
-  colorExempleCode = `@for (color of [${this.colors.toString()}] track $index) {
+  colorExempleCode = `@for (color of [${this.semanticColors.toString()}] track $index) {
     <Button
         [text]="color"
         [color]="color"

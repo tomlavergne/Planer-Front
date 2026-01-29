@@ -14,7 +14,7 @@ import { Badge as BadgeType } from '../badge.type';
   templateUrl: './badge.doc.html',
 })
 export class BadgeDoc {
-  colors: BadgeType.Color[] = [
+  primaryColors: BadgeType.Color[] = [
     'red',
     'orange',
     'amber',
@@ -33,6 +33,15 @@ export class BadgeDoc {
     'pink',
     'rose',
     'neutral',
+  ];
+
+  semanticColors: BadgeType.Color[] = [
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'info',
   ];
   variants: BadgeType.Variant[] = ['solid', 'soft', 'outline'];
   sizes: BadgeType.Size[] = ['xs', 'sm', 'md', 'lg'];

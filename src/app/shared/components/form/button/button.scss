@@ -38,9 +38,15 @@
     width: 100%;
   }
 
+  // Full height
+  &.full-height,
+  &.full-height button {
+    height: 100%;
+  }
+
   // Surcharge des styles avec couleurs spécifiques
   // Ces styles surchargent les styles par défaut ci-dessus
-  $colors: ('primary', 'secondary', 'success', 'info', 'warning', 'danger');
+
   $variants: ('solid', 'soft', 'subtle', 'outline', 'ghost', 'link');
 
   @each $variant-name in $variants {

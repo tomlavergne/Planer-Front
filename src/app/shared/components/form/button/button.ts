@@ -29,35 +29,16 @@ export class Button {
   // Injection du service de thème
   themeService = inject(ThemeService);
 
-  /** Texte affiché dans le bouton */
   text = input<string | null>(null);
-
-  /** Type HTML du bouton */
   type = input<ButtonType.Type>('button');
-
-  /** Variant visuel du bouton */
   variant = input<ButtonType.Variant>('solid');
-
-  /** Couleur du bouton */
   color = input<ButtonType.Color | null>('secondary');
-
-  /** Désactive le bouton */
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
-
-  /** Icône à gauche du texte */
   iconLeft = input<IconType.Name | null>(null);
-
-  /** Icône à droite du texte */
   iconRight = input<IconType.Name | null>(null);
-
-  /** Taille du bouton */
   size = input<ButtonType.Size>('md');
-
-  /** Bouton prend toute la largeur */
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
-
-  /** Active le style popo */
-  popo = input<boolean, any>(false, { transform: booleanAttribute });
+  fullHeight = input<boolean, any>(false, { transform: booleanAttribute });
 
   /******************/
   /***** OUTPUTS *****/
@@ -77,6 +58,7 @@ export class Button {
       `size-${this.size()}`,
       `border-radius-${this.themeService.radius()}`,
       this.fullWidth() ? 'full-width' : '',
+      this.fullHeight() ? 'full-height' : '',
       this.disabled() ? 'disabled' : '',
     ].join(' ');
   });

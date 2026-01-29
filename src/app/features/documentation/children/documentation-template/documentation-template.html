@@ -9,10 +9,12 @@
         @if (selector()) {
           <app-button
             variant="soft"
+            color="secondary"
             [text]="selector()!"
             [tooltip]="{
               content: 'Copier le sélecteur',
             }"
+            (clicked)="copySelector()"
           />
         }
       </app-flex>

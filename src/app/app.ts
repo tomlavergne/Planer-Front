@@ -3,12 +3,11 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 /***** Imports de composants *****/
-import { Sidebar } from './core/layout/sidebar/sidebar';
-import { Flex } from './shared/components';
+import { ToastStack } from '@shared/components';
 
 @Component({
   selector: 'app-root',
-  imports: [Sidebar, Flex, RouterOutlet],
+  imports: [RouterOutlet, ToastStack],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

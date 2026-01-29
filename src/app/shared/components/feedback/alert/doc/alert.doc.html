@@ -3,7 +3,7 @@
     <app-flex direction="column" gap="lg" fullWidth>
       @for (variant of variants; track $index) {
         <app-flex direction="column" gap="md" wrap>
-          <app-text color="text" weight="medium" size="md">{{
+          <app-text color="primary" weight="medium" size="md">{{
             variant.charAt(0).toUpperCase() + variant.slice(1)
           }}</app-text>
           <app-flex direction="column" gap="md" fullWidth>

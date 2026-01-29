@@ -1,0 +1,13 @@
+<app-flex direction="column" gap="sm" padding="md">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <app-toast
+      [color]="toast.color!"
+      [title]="toast.title ?? null"
+      [message]="toast.message"
+      [icon]="toast.icon"
+      [dismissible]="toast.dismissible ?? true"
+      [isDismissing]="toastService.dismissingToasts().has(toast.id)"
+      (dismiss)="onDismiss(toast.id)"
+    />
+  }
+</app-flex>

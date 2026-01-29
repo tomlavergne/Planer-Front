@@ -24,6 +24,7 @@ import {
   DocumentationNavigationService,
   RouteNavigation,
 } from '../../documentation-navigation.service';
+import { ToastService } from '@shared/components/feedback/toast-stack/toast-stack.service';
 
 /***** Import de types *****/
 import type { Table as TableType } from '../../../../shared/components/data/table/table.type';
@@ -50,6 +51,8 @@ import type { Tabs as TabsType } from '@shared/components/navigation/tabs/tabs.t
   styleUrl: './documentation-template.scss',
 })
 export class DocumentationTemplate {
+  toastService = inject(ToastService);
+
   title = input.required<string>();
   introduction = input<string>();
   selector = input<string>();
@@ -150,6 +153,18 @@ export class DocumentationTemplate {
     if (Array.isArray(value)) return JSON.stringify(value);
     if (typeof value === 'object') return JSON.stringify(value);
     return String(value);
+  }
+
+  /*******************/
+  /***** Methods *****/
+  /*******************/
+
+  copySelector(): void {
+    navigator.clipboard.writeText(this.selector()!);
+    this.toastService.success(
+      `Le sélecteur "${this.selector()}" a été copié dans le presse papier`,
+      'Selector Copied',
+    );
   }
 
   //   Type checking methods for template

@@ -2,6 +2,7 @@ import type {
   Variant as UIVariant,
   Position as UIPosition,
   Size as UISize,
+  PrimaryColor,
   SemanticColor,
 } from '../../../types/ui.types';
 
@@ -12,5 +13,5 @@ export namespace Button {
   export type Size = Extract<UISize, 'xs' | 'sm' | 'md' | 'lg' | 'xl'>;
   export type IconPosition = UIPosition;
   export type BorderRadius = Extract<UISize, 'none' | 'sm' | 'md' | 'lg' | 'full'>;
-  export type Color = SemanticColor;
+  export type Color = SemanticColor | PrimaryColor;
 }

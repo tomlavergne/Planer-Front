@@ -1,4 +1,5 @@
 @use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables.scss' as *;
 
 :host {
   border-radius: var(--radius-md);
@@ -11,32 +12,6 @@
   // GÉNÉRATION DES VARIANTS
   // ==========================================
 
-  $colors: (
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'info'
-  );
   $variants: ('solid', 'soft', 'outline');
 
   @each $variant-name in $variants {

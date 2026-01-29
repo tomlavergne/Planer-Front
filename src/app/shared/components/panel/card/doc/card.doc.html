@@ -6,7 +6,7 @@
 >
   <div overview>
     <app-flex direction="column" gap="lg" fullWidth>
-      <app-text color="text" weight="medium" size="md">Variants disponibles :</app-text>
+      <app-text color="primary" weight="medium" size="md">Variants disponibles :</app-text>
       @for (variant of cardVariants; track $index) {
         <app-card [variant]="variant" [title]="variant" fullWidth>
           Contenu de la carte en variant "{{ variant }}"

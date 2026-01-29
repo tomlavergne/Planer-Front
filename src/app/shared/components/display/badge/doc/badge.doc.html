@@ -2,27 +2,9 @@
   title="Badge"
   introduction="Déclencher une action ou un événement en un clic, comme la soumission d'un formulaire ou l'affichage d'une boîte de dialogue.
   Les boutons contiennent généralement du texte qui indique l'action qu'ils effectuent."
-  codeExample="const hello = 'world';"
+  showUsageTab
 >
   <app-flex usage direction="column" gap="2xl" wrap fullWidth>
-    <!-- Couleurs -->
-    <app-documentation-usage
-      title="Couleurs"
-      description="Le composant Badge prend en charge plusieurs couleurs pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="row" gap="sm" wrap>
-        @for (color of colors; track $index) {
-          <app-badge
-            [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
-            variant="solid"
-            [color]="color"
-            size="sm"
-            [icon]="{ name: 'lucideCircle' }"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
-
     <!-- Variants -->
     <app-documentation-usage
       title="Variants"
@@ -38,6 +20,38 @@
             [icon]="{ name: 'lucideCircle' }"
           />
         }
+      </app-flex>
+    </app-documentation-usage>
+
+    <!-- Couleurs -->
+    <app-documentation-usage
+      title="Couleurs"
+      description="Le composant Badge prend en charge plusieurs couleurs pour s'adapter à différents contextes d'utilisation."
+    >
+      <app-flex direction="column" gap="lg" alignItems="center">
+        <app-flex direction="row" gap="sm" justifyContent="center" wrap>
+          @for (color of primaryColors; track $index) {
+            <app-badge
+              [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
+              variant="solid"
+              [color]="color"
+              size="sm"
+              [icon]="{ name: 'lucideCircle' }"
+            />
+          }
+        </app-flex>
+
+        <app-flex direction="row" gap="sm" justifyContent="center" wrap>
+          @for (color of semanticColors; track $index) {
+            <app-badge
+              [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
+              variant="solid"
+              [color]="color"
+              size="sm"
+              [icon]="{ name: 'lucideCircle' }"
+            />
+          }
+        </app-flex>
       </app-flex>
     </app-documentation-usage>
 

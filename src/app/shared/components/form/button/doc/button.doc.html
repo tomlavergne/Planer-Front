@@ -4,9 +4,9 @@
   Les boutons contiennent généralement du texte qui indique l'action qu'ils effectuent."
   [inputs]="inputsMetadata"
   [outputs]="outputsMetadata"
-  codeExample="const hello = 'world';"
+  showUsageTab
 >
-  <app-flex direction="column" gap="2xl" wrap fullWidth>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
     <!-- Contenu -->
     <app-documentation-usage
       title="Contenu"
@@ -47,6 +47,39 @@
             borderRadius="full"
           />
         }
+      </app-flex>
+    </app-documentation-usage>
+
+    <!-- Couleurs -->
+    <app-documentation-usage
+      title="Couleurs"
+      description="Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
+        d'utilisation."
+    >
+      <app-flex direction="column" gap="lg" alignItems="center">
+        <app-flex direction="row" gap="sm" wrap>
+          @for (color of primaryColors; track $index) {
+            <app-button
+              [text]="color"
+              [color]="color"
+              variant="solid"
+              size="sm"
+              borderRadius="full"
+            />
+          }
+        </app-flex>
+
+        <app-flex direction="row" gap="sm" wrap>
+          @for (color of semanticColors; track $index) {
+            <app-button
+              [text]="color"
+              [color]="color"
+              variant="solid"
+              size="sm"
+              borderRadius="full"
+            />
+          }
+        </app-flex>
       </app-flex>
     </app-documentation-usage>
 

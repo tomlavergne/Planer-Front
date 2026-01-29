@@ -1,5 +1,5 @@
 /***** Imports Angular *****/
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
@@ -17,6 +17,9 @@ import { Icon as IconType } from '../icon.type';
 import * as lucideIcons from '@ng-icons/lucide';
 import * as phosphorIcons from '@ng-icons/phosphor-icons';
 
+/***** Imports de services *****/
+import { ToastService } from '@shared/components/feedback/toast-stack/toast-stack.service';
+
 @Component({
   selector: 'app-icon-doc',
   imports: [
@@ -32,11 +35,18 @@ import * as phosphorIcons from '@ng-icons/phosphor-icons';
   templateUrl: './icon.doc.html',
 })
 export class IconDoc {
+  toastService = inject(ToastService);
+
   readonly lucideIconsName = Object.keys(lucideIcons) as Array<keyof typeof lucideIcons>;
   //   readonly phosphorIconsName = Object.keys(phosphorIcons) as Array<keyof typeof phosphorIcons>;
 
   copyIconName(iconName: string): void {
     navigator.clipboard.writeText(iconName);
+    console.log(iconName);
+    this.toastService.success(
+      `L'icone nommée "${iconName}" a été copié dans le presse papier`,
+      'Icon Name Copied',
+    );
   }
 
   semanticColors: IconType.Color[] = [
@@ -85,7 +95,7 @@ export class IconDoc {
     {
       name: 'color',
       default: 'blue' as IconType.Color | 'text',
-      type: 'Color | "text"',
+      type: 'Color | "primary"',
       description: "Couleur de l'icône",
     },
   ];

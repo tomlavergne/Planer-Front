@@ -171,6 +171,15 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
         loadComponent: () =>
           import('../../shared/components/feedback/alert/doc/alert.doc').then((m) => m.AlertDoc),
       },
+      {
+        name: 'ToastStack',
+        path: 'toast-stack',
+        importPath: '../../shared/components/feedback/toast-stack/doc/toast-stack.doc',
+        loadComponent: () =>
+          import('../../shared/components/feedback/toast-stack/doc/toast-stack.doc').then(
+            (m) => m.ToastStackDoc,
+          ),
+      },
     ],
   },
 ];

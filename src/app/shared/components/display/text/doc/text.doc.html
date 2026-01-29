@@ -6,7 +6,7 @@
       <h3>Sizes</h3>
       <app-flex direction="row" gap="sm" alignItems="center" wrap>
         @for (size of textSizes; track $index) {
-          <app-text [size]="size" color="text">{{ size }}</app-text>
+          <app-text [size]="size" color="primary">{{ size }}</app-text>
         }
       </app-flex>
     </app-flex>
@@ -15,7 +15,7 @@
       <h3>Weights</h3>
       <app-flex direction="row" gap="sm" alignItems="end" wrap>
         @for (weight of textWeights; track $index) {
-          <app-text [weight]="weight" color="text">{{ weight }}</app-text>
+          <app-text [weight]="weight" color="primary">{{ weight }}</app-text>
         }
       </app-flex>
     </app-flex>

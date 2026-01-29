@@ -6,11 +6,18 @@
   max-width: 100%;
 
   .demo {
+    position: relative;
     padding: var(--spacing-md);
     border-bottom: 1px solid var(--color-border);
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
     overflow: hidden; // Empêche le débordement horizontal
+
+    .preview-badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+    }
   }
 }
