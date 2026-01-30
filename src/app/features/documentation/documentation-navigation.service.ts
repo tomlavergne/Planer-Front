@@ -2,6 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { DOCUMENTED_COMPONENTS } from './documentation.config';
+import type { Documentation as DocumentationType } from './documentation.type';
 
 export interface RouteNavigation {
   current: string | null;
@@ -18,18 +20,19 @@ export class DocumentationNavigationService {
   private router = inject(Router);
 
   /**
-   * Récupérer dynamiquement les routes de documentation depuis le router
+   * Récupérer les routes de documentation depuis la configuration
+   * Cela préserve l'ordre défini dans documentation.config.ts
    */
   private getDocumentationRoutes(): string[] {
-    const docRoute = this.router.config.find((route) => route.path === 'documentation');
-    if (!docRoute?.children) {
-      return [];
-    }
+    const routes: string[] = [];
 
-    return docRoute.children
-      .filter((child) => child.path && child.path !== '')
-      .map((child) => child.path as string)
-      .sort();
+    DOCUMENTED_COMPONENTS.forEach((section: DocumentationType.Section) => {
+      section.content.forEach((item: DocumentationType.Item) => {
+        routes.push(item.path);
+      });
+    });
+
+    return routes;
   }
 
   /**

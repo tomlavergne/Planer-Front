@@ -1,0 +1,22 @@
+@use '../../../styles/variables.scss' as *;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+
+  @each $color-name in $colors {
+    // Calcul des couleurs dérivées
+    &.color-#{$color-name} {
+      background-color: var(--color-#{$color-name});
+    }
+  }
+
+  @each $bg-color in $backgroundColors {
+    &.color-#{$bg-color} {
+      background-color: var(--color-#{$bg-color});
+    }
+  }
+}

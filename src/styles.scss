@@ -116,7 +116,7 @@
   --color-text-primary: #111827;
   --color-text-secondary: #6b7280;
   --color-text-tertiary: #9ca3af;
-  --color-text-inverse: #f9fafb;
+  --color-text-inverse: var(--color-background-primary);
   --color-text-disabled: #d1d5db;
 
   // Shadows
@@ -164,7 +164,6 @@
   --color-text-primary: #f9fafb;
   --color-text-secondary: #9ca3af;
   --color-text-tertiary: #6b7280;
-  --color-text-inverse: #111827;
   --color-text-disabled: #4b5563;
 
   // Shadows (darker for dark mode)

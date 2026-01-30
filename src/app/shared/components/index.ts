@@ -4,6 +4,7 @@ export { Ripple } from './design/ripple/ripple';
 /***** Layout Components *****/
 export { Flex } from './layout/flex/flex';
 export { Grid } from './layout/grid/grid';
+export { Box } from './layout/box/box';
 export { Spacer } from './layout/spacer/spacer/spacer';
 
 /***** Display Components *****/

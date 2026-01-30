@@ -1,5 +1,93 @@
 <app-documentation-template
   title="Système de Couleurs"
   introduction="Découvrez le système de couleurs dynamique inspiré de Linear, conçu pour offrir une expérience visuelle cohérente et adaptative à travers toute l'application. Basé sur trois paramètres fondamentaux, ce système permet une personnalisation facile tout en garantissant l'accessibilité et la lisibilité."
+  showUsageTab
 >
+  <app-flex usage direction="column" gap="3xl" wrap fullWidth>
+    <!-- Couleurs primaires -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs primaires définissent l'identité visuelle de l'application. Elles sont
+        utilisées pour les éléments interactifs tels que les boutons, les liens et les icônes. Le
+        système permet de choisir une couleur principale et une couleur secondaire, qui seront
+        automatiquement ajustées pour s'adapter aux thèmes clair et sombre.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" wrap>
+          @for (color of primaryColors; track $index) {
+            <app-box [color]="color" height="40px" width="100px">
+              <app-text size="sm" color="text-inverse">{{ color }}</app-text>
+            </app-box>
+          }
+        </app-flex>
+      </app-card>
+    </app-flex>
+
+    <!-- Couleurs sémantiques -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs primaires définissent l'identité visuelle de l'application. Elles sont
+        utilisées pour les éléments interactifs tels que les boutons, les liens et les icônes. Le
+        système permet de choisir une couleur principale et une couleur secondaire, qui seront
+        automatiquement ajustées pour s'adapter aux thèmes clair et sombre.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" wrap>
+          @for (color of semanticColors; track $index) {
+            <app-box [color]="color" height="40px" width="100px">
+              <app-text size="sm" color="text-inverse">{{ color }}</app-text>
+            </app-box>
+          }
+        </app-flex>
+      </app-card>
+    </app-flex>
+
+    <!-- Couleurs de fond -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Couleurs de fond</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs de fond assurent une bonne lisibilité du contenu tout en offrant un contraste
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" wrap>
+          @for (color of backgroundColor; track $index) {
+            <app-box [color]="color" height="100px" width="200px">
+              <app-text
+                size="sm"
+                [color]="color === 'background-inverse' ? 'text-inverse' : 'text-primary'"
+              >
+                {{ color }}
+              </app-text>
+            </app-box>
+          }
+        </app-flex>
+      </app-card>
+    </app-flex>
+
+    <!-- Couleurs de texte -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Couleurs de texte</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs de texte sont conçues pour garantir une lisibilité optimale sur les différentes
+        couleurs de fond utilisées dans l'application.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" wrap>
+          @for (color of textColor; track $index) {
+            <app-box
+              [color]="color === 'text-inverse' ? 'background-inverse' : 'background-primary'"
+              height="60px"
+              width="180px"
+            >
+              <app-text size="sm" [color]="color">
+                {{ color }}
+              </app-text>
+            </app-box>
+          }
+        </app-flex>
+      </app-card>
+    </app-flex>
+  </app-flex>
 </app-documentation-template>

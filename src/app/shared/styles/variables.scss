@@ -24,3 +24,12 @@ $primaryColors: (
 );
 
 $colors: join($semanticColors, $primaryColors);
+
+$backgroundColors: (
+  'background-primary',
+  'background-secondary',
+  'background-tertiary',
+  'background-inverse'
+);
+
+$textColors: ('text-primary', 'text-secondary', 'text-tertiary', 'text-inverse', 'text-disabled');

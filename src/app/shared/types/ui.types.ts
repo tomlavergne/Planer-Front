@@ -87,5 +87,11 @@ export type TextColor =
   | 'text-inverse'
   | 'text-disabled';
 
+export type BackgroundColor =
+  | 'background-primary'
+  | 'background-secondary'
+  | 'background-tertiary'
+  | 'background-inverse';
+
 /***** Variants *****/
 export type Variant = 'solid' | 'soft' | 'outline' | 'ghost' | 'link';

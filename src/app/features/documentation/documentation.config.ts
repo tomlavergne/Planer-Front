@@ -22,6 +22,12 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
         importPath: './pages/colors/colors',
         loadComponent: () => import('./pages/colors/colors').then((m) => m.Colors),
       },
+      {
+        name: 'Sizes',
+        path: 'sizes',
+        importPath: './pages/colors/colors',
+        loadComponent: () => import('./pages/colors/colors').then((m) => m.Colors),
+      },
     ],
   },
   {
@@ -31,6 +37,13 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
     loadComponent: () =>
       import('../../shared/components/layout/flex/doc/flex.doc').then((m) => m.FlexDoc),
     content: [
+      {
+        name: 'Box',
+        path: 'box',
+        importPath: '../../shared/components/layout/box/doc/box.doc',
+        loadComponent: () =>
+          import('../../shared/components/layout/box/doc/box.doc').then((m) => m.BoxDoc),
+      },
       {
         name: 'Flex',
         path: 'flex',
@@ -73,8 +86,56 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
     ],
   },
   {
-    name: 'Element',
-    path: 'element',
+    name: 'Navigation',
+    path: 'navigation',
+    importPath: '../../shared/components/forms/button/doc/button.doc',
+    loadComponent: () =>
+      import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
+    content: [
+      {
+        name: 'Tabs',
+        path: 'tabs',
+        importPath: '../../shared/components/navigation/tabs/doc/tabs.doc',
+        loadComponent: () =>
+          import('../../shared/components/navigation/tabs/doc/tabs.doc').then((t) => t.TabsDoc),
+      },
+    ],
+  },
+  {
+    name: 'Form',
+    path: 'form',
+    importPath: '../../shared/components/forms/button/doc/button.doc',
+    loadComponent: () =>
+      import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
+    content: [
+      {
+        name: 'Button',
+        path: 'button',
+        importPath: '../../shared/components/forms/button/doc/button.doc',
+        loadComponent: () =>
+          import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
+      },
+      {
+        name: 'ColorPicker',
+        path: 'color-picker',
+        importPath: '../../shared/components/form/color-picker/doc/color-picker.doc',
+        loadComponent: () =>
+          import('@shared/components/form/color-picker/doc/color-picker.doc').then(
+            (m) => m.ColorPickerDoc,
+          ),
+      },
+      {
+        name: 'Toggle',
+        path: 'toggle',
+        importPath: '../../shared/components/forms/toggle/doc/toggle.doc',
+        loadComponent: () =>
+          import('../../shared/components/form/toggle/doc/toggle.doc').then((m) => m.ToggleDoc),
+      },
+    ],
+  },
+  {
+    name: 'Misc',
+    path: 'misc',
     importPath: '../../shared/components/display/text/doc/text.doc',
     loadComponent: () =>
       import('../../shared/components/display/text/doc/text.doc').then((m) => m.TextDoc),
@@ -113,54 +174,6 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
         importPath: '../../shared/components/display/code/doc/code.doc',
         loadComponent: () =>
           import('../../shared/components/display/code/doc/code.doc').then((m) => m.CodeDoc),
-      },
-    ],
-  },
-  {
-    name: 'Form',
-    path: 'form',
-    importPath: '../../shared/components/forms/button/doc/button.doc',
-    loadComponent: () =>
-      import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
-    content: [
-      {
-        name: 'Button',
-        path: 'button',
-        importPath: '../../shared/components/forms/button/doc/button.doc',
-        loadComponent: () =>
-          import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
-      },
-      {
-        name: 'ColorPicker',
-        path: 'color-picker',
-        importPath: '../../shared/components/form/color-picker/doc/color-picker.doc',
-        loadComponent: () =>
-          import('@shared/components/form/color-picker/doc/color-picker.doc').then(
-            (m) => m.ColorPickerDoc,
-          ),
-      },
-      {
-        name: 'Toggle',
-        path: 'toggle',
-        importPath: '../../shared/components/forms/toggle/doc/toggle.doc',
-        loadComponent: () =>
-          import('../../shared/components/form/toggle/doc/toggle.doc').then((m) => m.ToggleDoc),
-      },
-    ],
-  },
-  {
-    name: 'Navigation',
-    path: 'navigation',
-    importPath: '../../shared/components/forms/button/doc/button.doc',
-    loadComponent: () =>
-      import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
-    content: [
-      {
-        name: 'Tabs',
-        path: 'tabs',
-        importPath: '../../shared/components/navigation/tabs/doc/tabs.doc',
-        loadComponent: () =>
-          import('../../shared/components/navigation/tabs/doc/tabs.doc').then((t) => t.TabsDoc),
       },
     ],
   },

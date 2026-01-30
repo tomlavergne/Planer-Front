@@ -21,27 +21,29 @@
 
       <!-- Navigation entre les composants -->
       <app-flex direction="row" gap="xs" wrap>
-        <app-button
-          variant="soft"
-          size="md"
-          iconLeft="lucideArrowLeft"
-          [disabled]="!navigation().previous"
-          [tooltip]="{
-            content: getRouteName(navigation().previous!),
-          }"
-          (clicked)="goToPrevious()"
-        />
+        @if (navigation().previous) {
+          <app-button
+            variant="soft"
+            size="md"
+            iconLeft="lucideArrowLeft"
+            [tooltip]="{
+              content: getRouteName(navigation().previous!),
+            }"
+            (clicked)="goToPrevious()"
+          />
+        }
 
-        <app-button
-          variant="soft"
-          size="md"
-          iconLeft="lucideArrowRight"
-          [disabled]="!navigation().next"
-          [tooltip]="{
-            content: getRouteName(navigation().next!),
-          }"
-          (clicked)="goToNext()"
-        />
+        @if (navigation().next) {
+          <app-button
+            variant="soft"
+            size="md"
+            iconLeft="lucideArrowRight"
+            [tooltip]="{
+              content: getRouteName(navigation().next!),
+            }"
+            (clicked)="goToNext()"
+          />
+        }
       </app-flex>
     </app-flex>
 

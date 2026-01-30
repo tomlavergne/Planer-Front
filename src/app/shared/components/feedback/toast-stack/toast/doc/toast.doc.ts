@@ -26,10 +26,10 @@ export class ToastDoc {
   semanticColors: ToastType.Config['color'][] = [
     'primary',
     'secondary',
-    'success',
-    'danger',
-    'warning',
     'info',
+    'success',
+    'warning',
+    'danger',
   ];
 
   primaryColors: ToastType.Config['color'][] = [

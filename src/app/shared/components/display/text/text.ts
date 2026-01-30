@@ -19,7 +19,7 @@ export class Text {
   color = input<TextTypes.Color>('text-primary'); // TODO: Mettre à jour avec TextTypes.Variant une fois corrigé
   size = input<TextTypes.Size | null>(null);
   weight = input<TextTypes.Weight | null>(null);
-  align = input<TextTypes.Align>('left');
+  textAlign = input<TextTypes.Align>('left');
   decoration = input<TextTypes.Decoration | null>(null);
   truncate = input<boolean, any>(false, { transform: booleanAttribute });
   italic = input<boolean>(false);
@@ -34,7 +34,7 @@ export class Text {
       `color-${this.color()}`,
       `font-size-${this.size()}`,
       `weight-${this.weight()}`,
-      `align-${this.align()}`,
+      `align-${this.textAlign()}`,
       `truncate-${this.truncate()}`,
       `italic-${this.italic()}`,
       `decoration-${this.decoration()}`,
