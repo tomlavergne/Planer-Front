@@ -3,8 +3,8 @@
 
 :host {
   user-select: none;
+
   display: inline-block;
-  min-width: 0; // Permet au bouton de se réduire si nécessaire dans un flex container
   flex-shrink: 1; // Permet au bouton de rétrécir dans un contexte flex
   border-color: transparent;
 
@@ -14,7 +14,6 @@
     border-color: transparent;
     background-color: transparent;
     white-space: nowrap; // Empêche le texte de se couper sur plusieurs lignes
-    // @include focus-accessible($selector: 'button');
   }
 
   // Disabled state
@@ -98,6 +97,7 @@
         // ==========================================
         @else if $variant-name == 'outline' {
           border-color: $color-border-ouline;
+          background-color: var(--color-background-primary);
 
           &:hover:not(:disabled) {
             background-color: $color-background-soft-hover;

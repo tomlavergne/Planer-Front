@@ -1,23 +1,10 @@
-.code-exemple {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  width: 100%;
-  max-width: 100%;
+.demo {
+  max-height: 300px;
+  overflow: auto;
+}
 
-  .demo {
-    position: relative;
-    padding: var(--spacing-md);
-    border-bottom: 1px solid var(--color-border);
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: hidden; // Empêche le débordement horizontal
-
-    .preview-badge {
-      position: absolute;
-      top: var(--spacing-sm);
-      left: var(--spacing-sm);
-    }
-  }
+.preview-badge {
+  position: absolute;
+  bottom: var(--spacing-xs);
+  right: var(--spacing-xs);
 }

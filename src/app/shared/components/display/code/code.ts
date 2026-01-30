@@ -8,6 +8,8 @@ import {
   viewChild,
   afterNextRender,
   booleanAttribute,
+  computed,
+  inject,
 } from '@angular/core';
 
 /***** Imports externes *****/
@@ -51,6 +53,8 @@ import { TooltipDirective } from '../../../directives/tooltip/tooltip';
 /***** Imports de types *****/
 import type { Code as CodeType } from './code.type';
 
+import { ToastService } from '@shared/components/feedback/toast-stack/toast-stack.service';
+
 @Component({
   selector: 'app-code',
   imports: [Button, Flex, TooltipDirective],
@@ -61,24 +65,16 @@ import type { Code as CodeType } from './code.type';
   },
 })
 export class Code {
+  toastService = inject(ToastService);
+
   /******************/
   /***** INPUTS *****/
   /******************/
 
-  /** Code à afficher */
   code = input.required<string>();
-
-  /** Langage de programmation pour la coloration syntaxique */
   language = input<CodeType.Language>('typescript');
-
-  /** Afficher le bouton copier */
-  showCopy = input<boolean, any>(true, { transform: booleanAttribute });
-
-  /** Afficher le nom du langage */
-  showLanguage = input<boolean, any>(true, { transform: booleanAttribute });
-
-  /** Titre optionnel du bloc de code */
-  title = input<string>();
+  expandable = input<boolean, any>(false, { transform: booleanAttribute });
+  copyable = input<boolean, any>(false, { transform: booleanAttribute });
 
   // Référence au bloc de code
   codeElement = viewChild<ElementRef<HTMLElement>>('codeBlock');
@@ -86,6 +82,9 @@ export class Code {
   /*******************/
   /***** SIGNALS *****/
   /*******************/
+
+  // État d'expansion
+  expanded = signal(false);
 
   // État de la copie
   copied = signal(false);
@@ -97,24 +96,43 @@ export class Code {
 
     effect(() => {
       // Réappliquer la coloration si le code ou le langage change
-      this.code();
-      this.language();
+      this.expanded.set(!this.expandable());
       this.highlightCode();
     });
   }
 
+  /*********************/
+  /***** COMPUTEDS *****/
+  /**********************/
+
   // Classes de l'hôte
-  hostClasses = signal('app-code');
+  hostClasses = computed(() => {
+    return [this.expandable() ? 'expandable' : '', this.expanded() ? 'expanded' : 'collapsed'].join(
+      ' ',
+    );
+  });
+
+  /*******************/
+  /***** METHODS *****/
+  /*******************/
 
   // Copier le code dans le presse-papier
   async copyCode(): Promise<void> {
     try {
       await navigator.clipboard.writeText(this.code());
       this.copied.set(true);
+      this.toastService.success('Code copié dans le presse-papier !');
       setTimeout(() => this.copied.set(false), 2000);
     } catch (err) {
       console.error('Erreur lors de la copie:', err);
+      this.toastService.danger('Erreur lors de la copie du code.');
     }
+  }
+
+  // Basculer l'état d'expansion
+  toggleExpansion(): void {
+    if (!this.expandable()) return;
+    this.expanded.set(!this.expanded());
   }
 
   // Appliquer la coloration syntaxique
@@ -125,24 +143,5 @@ export class Code {
       element.removeAttribute('data-highlighted');
       hljs.highlightElement(element);
     }
-  }
-
-  // Obtenir le label du langage
-  getLanguageLabel(): string {
-    const labels: Record<CodeType.Language, string> = {
-      typescript: 'TypeScript',
-      javascript: 'JavaScript',
-      html: 'HTML',
-      css: 'CSS',
-      scss: 'SCSS',
-      json: 'JSON',
-      bash: 'Bash',
-      shell: 'Shell',
-      markdown: 'Markdown',
-      python: 'Python',
-      java: 'Java',
-      sql: 'SQL',
-    };
-    return labels[this.language()];
   }
 }

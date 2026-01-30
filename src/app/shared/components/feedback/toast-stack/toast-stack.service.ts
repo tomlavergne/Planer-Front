@@ -8,7 +8,7 @@ import type { Toast } from './toast/toast.type';
   providedIn: 'root',
 })
 export class ToastService {
-  private readonly DEFAULT_DURATION = 5000; // 5 secondes
+  private readonly DEFAULT_DURATION = 15000; // 5 secondes
   private readonly MAX_TOASTS = 5;
 
   // Liste des toasts actifs

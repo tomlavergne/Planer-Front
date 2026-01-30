@@ -161,7 +161,7 @@ export class DocumentationTemplate {
 
   copySelector(): void {
     navigator.clipboard.writeText(this.selector()!);
-    this.toastService.success(
+    this.toastService.secondary(
       `Le sélecteur "${this.selector()}" a été copié dans le presse papier`,
       'Selector Copied',
     );

@@ -3,13 +3,18 @@
   introduction="
   Le composant Card est utilisé pour afficher du contenu dans un conteneur visuellement distinct avec des options de style variées.
   "
+  showUsageTab
 >
-  <div overview>
+  <div usage>
     <app-flex direction="column" gap="lg" fullWidth>
       <app-text color="primary" weight="medium" size="md">Variants disponibles :</app-text>
       @for (variant of cardVariants; track $index) {
         <app-card [variant]="variant" [title]="variant" fullWidth>
-          Contenu de la carte en variant "{{ variant }}"
+          <div card-header>header</div>
+
+          <div card-content>This is a {{ variant }} card.</div>
+
+          <div card-footer>Footer</div>
         </app-card>
       }
     </app-flex>

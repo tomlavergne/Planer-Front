@@ -107,6 +107,13 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
         loadComponent: () =>
           import('../../shared/components/display/badge/doc/badge.doc').then((m) => m.BadgeDoc),
       },
+      {
+        name: 'Code',
+        path: 'code',
+        importPath: '../../shared/components/display/code/doc/code.doc',
+        loadComponent: () =>
+          import('../../shared/components/display/code/doc/code.doc').then((m) => m.CodeDoc),
+      },
     ],
   },
   {
@@ -170,6 +177,15 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
         importPath: '../../shared/components/feedback/alert/doc/alert.doc',
         loadComponent: () =>
           import('../../shared/components/feedback/alert/doc/alert.doc').then((m) => m.AlertDoc),
+      },
+      {
+        name: 'Toast',
+        path: 'toast',
+        importPath: '../../shared/components/feedback/toast-stack/toast/doc/toast.doc',
+        loadComponent: () =>
+          import('../../shared/components/feedback/toast-stack/toast/doc/toast.doc').then(
+            (m) => m.ToastDoc,
+          ),
       },
       {
         name: 'ToastStack',

@@ -1,19 +1,30 @@
-<app-flex direction="column" gap="sm" fullWidth wrap>
-  <!-- Body -->
-  <div class="code-content">
-    <pre><code #codeBlock [attr.data-language]="language()"></code></pre>
+<pre><code #codeBlock [attr.data-language]="language()"></code></pre>
 
-    <!-- @if (showCopy()) { -->
+@if (copyable()) {
+  <app-button
+    class="copy-button"
+    variant="outline"
+    size="sm"
+    [iconLeft]="copied() ? 'lucideCheck' : 'lucideCopy'"
+    [tooltip]="{
+      content: copied() ? 'Copié' : 'Copier',
+    }"
+    (clicked)="copyCode()"
+  />
+}
+
+@if (expandable()) {
+  <app-flex
+    class="shadow-container"
+    padding="lg"
+    justifyContent="center"
+    alignItems="center"
+    fullWidth
+  >
     <app-button
-      class="copy-button"
-      variant="ghost"
-      size="sm"
-      [iconLeft]="copied() ? 'lucideCheck' : 'lucideCopy'"
-      [tooltip]="{
-        content: copied() ? 'Copié' : 'Copier',
-      }"
-      (clicked)="copyCode()"
+      variant="outline"
+      [text]="!expanded() ? 'Voir le code' : 'Masquer le code'"
+      (clicked)="toggleExpansion()"
     />
-    <!-- } -->
-  </div>
-</app-flex>
+  </app-flex>
+}

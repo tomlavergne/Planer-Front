@@ -1,29 +1,74 @@
 @use '../../../styles/variables.scss';
 @use '../../../styles/mixins.scss' as *;
 
-.code-content {
+:host {
+  display: block;
   position: relative;
-  max-width: 100%;
-  overflow: hidden;
+  width: 100%;
+
+  transition: all 0.3s linear;
+  box-sizing: border-box;
+
+  &.expandable {
+    max-height: 100px;
+    overflow: hidden;
+
+    &.expanded {
+      max-height: 2000px;
+      overflow: auto;
+      padding-bottom: var(--spacing-4xl);
+    }
+  }
+
+  &:not(.expandable) {
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  .copy-button {
+    display: none;
+    position: absolute;
+    top: var(--spacing-2xs);
+    right: var(--spacing-2xs);
+  }
+
+  &:hover {
+    .copy-button {
+      display: block;
+    }
+  }
+
+  .shadow-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(to top, var(--color-background-primary), transparent);
+  }
 
   pre {
-    margin: 0;
-    max-width: 100%;
-    overflow-x: auto;
-    white-space: pre-wrap; // Permet au code de se couper sur plusieurs lignes
-    word-wrap: break-word; // Coupe les mots longs si nécessaire
-    word-break: break-word; // Force la coupure des mots même sans espaces
-
+    height: fit-content;
     code {
       font-size: var(--font-size-sm);
-      background-color: var(--color-background-secondary);
+      background-color: transparent;
       color: var(--color-text-secondary);
+      padding: var(--spacing-lg);
       display: block;
       max-width: 100%;
       overflow-wrap: break-word; // Coupe les mots longs
       word-break: break-word; // Force la coupure même dans les tableaux/listes
 
       // Vos styles personnalisés avec ::ng-deep pour percer l'encapsulation
+
+      ::ng-deep .hljs-meta {
+        color: var(--color-purple);
+      }
+
+      ::ng-deep .hljs-name {
+        color: var(--color-blue);
+      }
+
       ::ng-deep .hljs-keyword,
       ::ng-deep .hljs-selector-tag,
       ::ng-deep .hljs-literal {
@@ -32,12 +77,12 @@
 
       ::ng-deep .hljs-string,
       ::ng-deep .hljs-title {
-        color: var(--color-orange);
+        color: var(--color-yellow);
       }
 
       ::ng-deep .hljs-number,
       ::ng-deep .hljs-attr {
-        color: var(--color-purple);
+        color: var(--color-sky);
       }
 
       ::ng-deep .hljs-function {
@@ -53,19 +98,6 @@
       ::ng-deep .hljs-type {
         color: var(--color-teal);
       }
-    }
-  }
-
-  .copy-button {
-    display: none;
-    position: absolute;
-    top: var(--spacing-2xs);
-    right: var(--spacing-2xs);
-  }
-
-  &:hover {
-    .copy-button {
-      display: block;
     }
   }
 }

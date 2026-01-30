@@ -4,6 +4,7 @@
   [variant]="isActive() ? 'soft' : 'ghost'"
   [color]="isActive() ? 'primary' : 'secondary'"
   [size]="size()"
+  [tabindex]="-1"
   fullWidth
   [tooltip]="{
     content: !expanded() ? text() : '',

@@ -1,5 +1,5 @@
 /***** Imports de Angular *****/
-import { Component, input, booleanAttribute, signal } from '@angular/core';
+import { Component, input, booleanAttribute, signal, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
@@ -20,6 +20,9 @@ import type { Button as ButtonType } from '../../../../../shared/components/form
   host: {
     '[class.active]': 'isActive()',
     '(isActiveChange)': 'isActive.set($event)',
+    tabindex: '0',
+    '(keydown.enter)': 'handleKeydown($event)',
+    '(keydown.space)': 'handleKeydown($event)',
   },
   hostDirectives: [
     {
@@ -40,4 +43,9 @@ export class SidebarItem {
   expanded = input<boolean, any>(true, { transform: booleanAttribute });
 
   isActive = signal<boolean>(false);
+
+  handleKeydown(event: Event): void {
+    event.preventDefault();
+    (event.target as HTMLElement).click();
+  }
 }

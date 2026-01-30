@@ -1,6 +1,8 @@
-<app-flex direction="column" gap="sm" padding="md">
-  @for (toast of toastService.toasts(); track toast.id) {
+<app-flex direction="column" padding="md">
+  <!-- slice() crée une copie du tableau ce qui evite de modifier le signal original -->
+  @for (toast of toastService.toasts().slice().reverse(); track toast.id; let i = $index) {
     <app-toast
+      [attr.data-index]="i"
       [color]="toast.color!"
       [title]="toast.title ?? null"
       [message]="toast.message"
@@ -8,6 +10,8 @@
       [dismissible]="toast.dismissible ?? true"
       [isDismissing]="toastService.dismissingToasts().has(toast.id)"
       (dismiss)="onDismiss(toast.id)"
+      (mouseenter)="onMouseEnter()"
+      (mouseleave)="onMouseLeave()"
     />
   }
 </app-flex>

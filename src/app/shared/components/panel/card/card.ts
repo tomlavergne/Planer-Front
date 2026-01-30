@@ -18,7 +18,7 @@ export class Card {
   /***** Inputs *****/
   /******************/
 
-  variant = input<CardType.Variant>('elevated');
+  variant = input<CardType.Variant>('soft');
 
   /*********************/
   /***** Computeds *****/

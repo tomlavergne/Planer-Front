@@ -1,4 +1,9 @@
-<button [attr.type]="type()" [disabled]="disabled()" (click)="onClick($event)">
+<button
+  [attr.type]="type()"
+  [attr.tabindex]="tabindex()"
+  [disabled]="disabled()"
+  (click)="onClick($event)"
+>
   <app-flex
     class="button-content"
     direction="row"

@@ -39,6 +39,7 @@ export class Button {
   size = input<ButtonType.Size>('md');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
   fullHeight = input<boolean, any>(false, { transform: booleanAttribute });
+  tabindex = input<number>(0);
 
   /******************/
   /***** OUTPUTS *****/

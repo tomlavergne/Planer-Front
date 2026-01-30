@@ -1,5 +1,5 @@
 /***** Imports de Angular *****/
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 /***** Imports de composants *****/
 import { Toast } from './toast/toast';
@@ -13,9 +13,29 @@ import { ToastService } from './toast-stack.service';
   imports: [Toast, Flex],
   templateUrl: './toast-stack.html',
   styleUrl: './toast-stack.scss',
+  host: {
+    '[class.is-hovered]': 'isHovered()',
+  },
 })
 export class ToastStack {
   toastService = inject(ToastService);
+
+  // Signal pour tracker l'état hover
+  isHovered = signal(false);
+
+  /**
+   * Active l'état hover
+   */
+  onMouseEnter(): void {
+    this.isHovered.set(true);
+  }
+
+  /**
+   * Désactive l'état hover
+   */
+  onMouseLeave(): void {
+    this.isHovered.set(false);
+  }
 
   /**
    * Supprime un toast

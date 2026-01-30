@@ -1,0 +1,52 @@
+<app-documentation-template
+  title="Code"
+  introduction="
+    Le composant <code>app-code</code> permet d'afficher du code source avec une mise en forme adaptée et une coloration syntaxique pour une meilleure lisibilité."
+  selector="app-code"
+  [inputs]="inputsMetadata"
+  showUsageTab
+>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Basic -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Basic</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant <code>app-code</code> peut être utilisé pour afficher du code source de manière
+        lisible et formatée.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-code [code]="basicCodeExemple" language="html" />
+        </app-preview>
+      </app-card>
+    </app-flex>
+
+    <!-- Copyable -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Copyable</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant <code>app-code</code> peut être utilisé pour afficher du code source de manière
+        lisible et formatée.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-code [code]="basicCodeExemple" language="html" copyable />
+        </app-preview>
+      </app-card>
+    </app-flex>
+
+    <!-- Basic -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Basic</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant <code>app-code</code> peut être utilisé pour afficher du code source de manière
+        lisible et formatée.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-code [code]="longCodeExemple" language="html" expandable />
+        </app-preview>
+      </app-card>
+    </app-flex>
+  </app-flex>
+</app-documentation-template>

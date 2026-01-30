@@ -1,11 +1,8 @@
 /***** Imports de Angular *****/
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, booleanAttribute } from '@angular/core';
 
 /***** Imports de composants *****/
-import { Icon } from '../../../display/icon/icon';
-import { Text } from '../../../display/text/text';
-import { Button } from '../../../form/button/button';
-import { Flex } from '../../../layout/flex/flex';
+import { Icon, Text, Button, Flex } from '../../../';
 
 /***** Imports de types *****/
 import type { Toast as ToastType } from './toast.type';
@@ -24,11 +21,12 @@ export class Toast {
   /***** Inputs *****/
   /******************/
 
-  color = input.required<ToastType.Color>();
+  color = input.required<ToastType.Config['color']>();
   title = input<string | null>(null);
   message = input.required<string>();
   icon = input<ToastType.Config['icon']>(undefined);
-  dismissible = input<boolean>(true);
+  action = input<ToastType.Config['action']>(null);
+  dismissible = input<boolean, any>(false, { transform: booleanAttribute });
   isDismissing = input<boolean>(false);
 
   /*******************/

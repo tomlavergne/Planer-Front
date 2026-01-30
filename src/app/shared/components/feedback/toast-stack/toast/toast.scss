@@ -1,36 +1,15 @@
 @use '../../../../styles/variables.scss' as *;
 
 :host {
-  position: relative;
-  display: flex;
-  min-width: 320px;
-  max-width: 420px;
-  padding: 1rem;
+  padding: var(--spacing-md);
   border-radius: var(--radius-md);
   border: 1px solid;
   box-shadow: var(--shadow-lg);
-  pointer-events: all;
+  transition: all 0.2s ease;
 
-  // Animations natives CSS avec @starting-style (Angular 21+)
-  opacity: 1;
-  transform: translateX(0);
-  transition:
-    opacity 300ms ease-out,
-    transform 300ms ease-out;
-
-  // État initial pour l'animation d'entrée
   @starting-style {
     opacity: 0;
-    transform: translateX(50px);
-  }
-
-  // Animation de sortie
-  &.dismissing {
-    opacity: 0;
-    transform: translateX(100%);
-    transition:
-      opacity 300ms ease-in,
-      transform 300ms ease-in;
+    transform: translateY(-20px) !important;
   }
 
   @each $color in $colors {
@@ -40,7 +19,7 @@
         var(--color-#{$color}) 10%,
         var(--color-background-primary) 90%
       );
-      border-color: var(--color-#{$color});
+      border-color: color-mix(in srgb, var(--color-#{$color}) 30%, var(--color-background-primary));
     }
   }
 }

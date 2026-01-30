@@ -5,6 +5,7 @@ import { Component, inject } from '@angular/core';
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
 import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
 import { Flex, Text, Button } from '../../..';
+import { Toast } from '../toast/toast';
 
 /***** Import de drirectives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
@@ -17,7 +18,7 @@ import { ToastService } from '../toast-stack.service';
 
 @Component({
   selector: 'app-toast-stack.doc',
-  imports: [DocumentationTemplate, DocumentationUsage, Flex, Button],
+  imports: [DocumentationTemplate, DocumentationUsage, Flex, Button, Toast],
   templateUrl: './toast-stack.doc.html',
 })
 export class ToastStackDoc {
@@ -45,6 +46,15 @@ export class ToastStackDoc {
     this.toastService.custom('Message custom', 'Custom', {
       icon: 'lucideStar',
       color: 'purple',
+    });
+  }
+
+  callbackToast(): void {
+    this.toastService.info('Message avec action', 'Action', {
+      action: {
+        label: 'Cliquer ici',
+        callback: () => alert('Action du toast exécutée !'),
+      },
     });
   }
 

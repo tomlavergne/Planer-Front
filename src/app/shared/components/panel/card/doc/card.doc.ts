@@ -14,5 +14,5 @@ import type { Card as CardType } from '../card.type';
   templateUrl: './card.doc.html',
 })
 export class CardDoc {
-  cardVariants: CardType.Variant[] = ['soft', 'outline', 'ghost', 'elevated'];
+  cardVariants: CardType.Variant[] = ['soft', 'outline'];
 }
