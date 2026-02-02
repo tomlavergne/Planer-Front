@@ -1,5 +1,5 @@
 /***** Import de types *****/
-import type { PrimaryColor, SemanticColor } from '@shared/types';
+import type { PrimaryColor, SemanticColor, BackgroundColor, TextColor } from '@shared/types';
 
 export const primaryColors: PrimaryColor[] = [
   'red',
@@ -29,4 +29,19 @@ export const semanticColors: SemanticColor[] = [
   'warning',
   'danger',
   'info',
+];
+
+export const backgroundColor: BackgroundColor[] = [
+  'background-primary',
+  'background-secondary',
+  'background-tertiary',
+  'background-inverse',
+];
+
+export const textColor: TextColor[] = [
+  'text-primary',
+  'text-secondary',
+  'text-tertiary',
+  'text-inverse',
+  'text-disabled',
 ];

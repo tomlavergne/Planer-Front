@@ -1,8 +1,8 @@
-import type { PrimaryColor, NeutralColor } from '../../../types/ui.types';
+import type { PrimaryColor } from '../../../types/ui.types';
 
 /***** Composants de formulaire *****/
 export namespace Ripple {
-  export type Color = PrimaryColor | NeutralColor;
+  export type Color = PrimaryColor;
   export type Circle = {
     x: number;
     y: number;

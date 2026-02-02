@@ -9,6 +9,10 @@
     <!-- Theme -->
     <app-flex direction="column" gap="md">
       <app-text variant="h3" weight="medium">Thème</app-text>
+      <app-text size="sm" color="text-secondary">
+        Basculez entre les thèmes clair et sombre pour adapter l'apparence de l'application à vos
+        préférences ou aux conditions d'éclairage ambiantes.
+      </app-text>
       <app-button
         [text]="`Basculer en thème ${themeService.theme() === 'light' ? 'sombre' : 'clair'}`"
         variant="soft"
@@ -21,13 +25,17 @@
     <!-- Primary Colors -->
     <app-flex direction="column" gap="md">
       <app-text variant="h3" weight="medium">Couelurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Choisissez une couleur primaire pour personnaliser l'apparence de l'application selon vos
+        préférences.
+      </app-text>
       <app-flex gap="sm" wrap>
         @for (color of primaryColors; track color) {
           <app-button
             [text]="color.slice(0, 1).toUpperCase() + color.slice(1)"
-            [variant]="themeService.primaryColor() === color ? 'subtle' : 'soft'"
+            variant="soft"
             size="md"
-            [color]="color"
+            [color]="themeService.primaryColor() === color ? color : 'secondary'"
             (clicked)="setPrimaryColor(color)"
           />
         }

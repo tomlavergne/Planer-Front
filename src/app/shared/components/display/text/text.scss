@@ -63,26 +63,13 @@
   /***** SIZES *****/
   /*****************/
 
-  $sizes: (
-    'none',
-    '6xs',
-    '5xs',
-    '4xs',
-    '3xs',
-    '2xs',
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    '2xl',
-    '3xl',
-    '4xl'
-  );
+  $sizes: ('xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl');
 
   @each $size-name in $sizes {
     &.font-size-#{$size-name} {
       font-size: var(--font-size-#{$size-name});
+      letter-spacing: var(--letter-spacing-#{$size-name});
+      line-height: var(--line-height-#{$size-name});
     }
   }
 
@@ -90,24 +77,12 @@
   /***** WEIGHT *****/
   /******************/
 
-  &.weight-thin {
-    font-weight: var(--font-weight-thin);
-  }
+  $weights: ('thin', 'light', 'regular', 'medium', 'semibold', 'bold');
 
-  &.weight-regular {
-    font-weight: var(--font-weight-regular);
-  }
-
-  &.weight-medium {
-    font-weight: var(--font-weight-medium);
-  }
-
-  &.weight-semibold {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  &.weight-bold {
-    font-weight: var(--font-weight-bold);
+  @each $weight in $weights {
+    &.weight-#{$weight} {
+      font-weight: var(--font-weight-#{$weight});
+    }
   }
 
   /*****************/
@@ -206,19 +181,5 @@
   }
   &.decoration-overline {
     text-decoration: overline;
-  }
-
-  /***********************/
-  /***** LINE HEIGHT *****/
-  /***********************/
-
-  &.line-height-none {
-    line-height: 1;
-  }
-  &.line-height-normal {
-    line-height: normal;
-  }
-  &.line-height-short {
-    line-height: 1.5;
   }
 }

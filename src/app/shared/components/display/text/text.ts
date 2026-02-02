@@ -25,7 +25,6 @@ export class Text {
   italic = input<boolean>(false);
   underline = input<boolean>(false);
   wrap = input<boolean, any>(true, { transform: booleanAttribute });
-  lineHeight = input<TextTypes.LineHeight | null>('short');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
 
   /***** Computed *****/
@@ -39,7 +38,6 @@ export class Text {
       `italic-${this.italic()}`,
       `decoration-${this.decoration()}`,
       `underline-${this.underline()}`,
-      `line-height-${this.lineHeight()}`,
       `as-${this.as()}`,
       this.wrap() ? 'wrap' : 'no-wrap',
       this.fullWidth() ? 'full-width' : '',

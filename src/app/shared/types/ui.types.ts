@@ -24,6 +24,8 @@ export type Size =
   | 'full';
 export type IconSize = '16' | '20' | '24' | '32';
 
+export type FontWeight = 'thin' | 'light' | 'regular' | 'medium' | 'semibold' | 'bold';
+
 /***** Positions *****/
 export type Position = 'top' | 'right' | 'bottom' | 'left';
 export type AdvancedPosition =
@@ -47,7 +49,6 @@ export type Justify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenl
 export type TextAlign = 'left' | 'center' | 'right' | 'justify';
 
 /***** Typographie *****/
-export type FontWeight = 'normal' | 'medium' | 'semibold' | 'bold';
 export type TextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 
 /***** États *****/
@@ -79,10 +80,8 @@ export type PrimaryColor =
   | 'rose'
   | 'neutral';
 
-export type NeutralColor = 'gray' | 'slate' | 'zinc' | 'neutral' | 'stone';
-
 export type SemanticColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';
-// Nuances pour les textes et bordures
+
 export type TextColor =
   | 'text-primary'
   | 'text-secondary'

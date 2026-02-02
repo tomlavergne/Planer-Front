@@ -3,6 +3,7 @@ import type {
   PrimaryColor,
   SemanticColor,
   TextColor,
+  FontWeight,
 } from '../../../types/ui.types';
 
 export namespace Text {
@@ -11,8 +12,8 @@ export namespace Text {
     UISize,
     '4xs' | '3xs' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
   >;
-  export type Color = PrimaryColor | SemanticColor | TextColor | 'white';
-  export type Weight = 'thin' | 'regular' | 'medium' | 'semibold' | 'bold';
+  export type Color = PrimaryColor | SemanticColor | TextColor;
+  export type Weight = FontWeight;
   export type Align = 'left' | 'center' | 'right' | 'justify';
   export type Decoration = 'none' | 'underline' | 'line-through' | 'overline';
   export type As =

@@ -20,47 +20,67 @@
     color var(--transition-base);
 
   // Spacing
-  --spacing-4xs: 0.1rem;
-  --spacing-3xs: 0.25rem;
-  --spacing-2xs: 0.5rem;
-  --spacing-xs: 0.75rem;
-  --spacing-sm: 0.875rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.25rem;
-  --spacing-xl: 1.5rem;
-  --spacing-2xl: 2rem;
-  --spacing-3xl: 3rem;
-  --spacing-4xl: 4rem;
+  --spacing-3xs: 4px;
+  --spacing-2xs: 8px;
+  --spacing-xs: 12px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  // Radii
+  --radius-none: 0;
+  --radius-2xs: 1px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
 
   // Font Sizes
-  --font-size-4xs: 0.5rem;
-  --font-size-3xs: 0.5625rem;
-  --font-size-2xs: 0.625rem;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 35px;
+  --font-size-5xl: 60px;
+
+  // Letter Spacing
+  --letter-spacing-xs: 0.0025em;
+  --letter-spacing-sm: 0em;
+  --letter-spacing-md: 0em;
+  --letter-spacing-lg: -0.0025em;
+  --letter-spacing-xl: -0.005em;
+  --letter-spacing-2xl: -0.00625em;
+  --letter-spacing-3xl: -0.0075em;
+  --letter-spacing-4xl: -0.01em;
+  --letter-spacing-5xl: -0.025em;
+
+  // Line Heights
+  --line-height-xs: 16px;
+  --line-height-sm: 20px;
+  --line-height-md: 24px;
+  --line-height-lg: 26px;
+  --line-height-xl: 28px;
+  --line-height-2xl: 30px;
+  --line-height-3xl: 36px;
+  --line-height-4xl: 40px;
+  --line-height-5xl: 60px;
 
   // Font Weights
   --font-weight-thin: 200;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-
-  // Radii
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
-  --radius-3xl: 1.25rem;
-  --radius-4xl: 1.5rem;
-  --radius-full: 9999px;
 
   // Transitions
   --transition-fast: 150ms ease;

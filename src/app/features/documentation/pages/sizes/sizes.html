@@ -1,0 +1,144 @@
+<app-documentation-template
+  title="Sizes"
+  introduction="Découvrez les différentes tailles utilisées dans notre système de conception, y compris les tailles de texte, d'espacement et d'éléments UI."
+  showUsageTab
+>
+  <app-flex usage direction="column" gap="3xl" wrap fullWidth>
+    <!-- Spacing -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Espacements</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les espacements définissent les marges et les paddings utilisés pour créer de l'espace entre
+        les éléments de l'interface utilisateur. Les variables sont nommées en fonction de leur
+        taille, allant de 'spacing-3xs' à 'spacing-3xl'.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="2xs" padding="md" alignItems="end">
+          @for (spacing of spacings; track $index) {
+            <app-flex direction="column" gap="2xs" alignItems="center" fullWidth>
+              <div [class]="'view spacing-' + spacing"></div>
+              <app-text size="sm" color="text-secondary">{{ spacing }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+      </app-card>
+      <app-table
+        [columns]="sizeColumns"
+        [data]="spacingsData"
+        [sortable]="false"
+        [resizable]="true"
+      >
+        <ng-template columnId="name" let-row>
+          <app-badge [text]="row.name" variant="soft" color="primary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="value" let-row>
+          <app-badge [text]="row.value" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+      </app-table>
+    </app-flex>
+
+    <!-- Radii -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Arrondis</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les arrondis définissent les rayons des bordures des éléments de l'interface utilisateur.
+        Les variables sont nommées en fonction de leur taille, allant de 'radius-sm' à
+        'radius-full'.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" alignItems="center">
+          @for (radius of radii; track $index) {
+            <app-flex direction="column" gap="2xs" alignItems="center" fullWidth>
+              <div [class]="'view radius-' + radius"></div>
+              <app-text size="sm" color="text-secondary">{{ radius }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+      </app-card>
+      <app-table [columns]="sizeColumns" [data]="radiiData" [sortable]="false" [resizable]="true">
+        <ng-template columnId="name" let-row>
+          <app-badge [text]="row.name" variant="soft" color="primary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="value" let-row>
+          <app-badge [text]="row.value" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+      </app-table>
+    </app-flex>
+
+    <!-- Font sizes -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Tailles de police</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les tailles de police définissent la taille du texte utilisé dans l'interface utilisateur.
+        Les variables sont nommées en fonction de leur taille, allant de 'font-size-xs' à
+        'font-size-5xl'.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" alignItems="center">
+          @for (fontSize of fontSizes; track $index) {
+            <app-flex direction="column" gap="2xs" alignItems="center" fullWidth>
+              <app-text [size]="fontSize" color="text-primary">Aa</app-text>
+              <app-text size="sm" color="text-secondary">{{ fontSize }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+      </app-card>
+      <app-table [columns]="fontColumns" [data]="fontData" [sortable]="false" [resizable]="true">
+        <ng-template columnId="name" let-row>
+          <app-badge [text]="row.name" variant="soft" color="primary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="size" let-row>
+          <app-badge [text]="row.size" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="size" let-row>
+          <app-badge [text]="row.size" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="letterSpacing" let-row>
+          <app-badge [text]="row.letterSpacing" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="lineHeight" let-row>
+          <app-badge [text]="row.lineHeight" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+      </app-table>
+    </app-flex>
+
+    <!-- Font Weight -->
+    <app-flex usage direction="column" gap="sm">
+      <app-text size="lg" weight="semibold" color="text-primary">Largeur de police</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les largeurs de police définissent l'épaisseur du texte utilisé dans l'interface
+        utilisateur. Les variables sont nommées en fonction de leur poids, allant de 'thin' à
+        'bold'.
+      </app-text>
+      <app-card>
+        <app-flex direction="row" gap="md" padding="2xs" alignItems="center">
+          @for (fontWeight of fontWeights; track $index) {
+            <app-flex direction="column" gap="2xs" alignItems="center" fullWidth>
+              <app-text [weight]="fontWeight" color="text-primary">{{ fontWeight }}</app-text>
+            </app-flex>
+          }
+        </app-flex>
+      </app-card>
+      <app-table
+        [columns]="sizeColumns"
+        [data]="fontWeightsData"
+        [sortable]="false"
+        [resizable]="true"
+      >
+        <ng-template columnId="name" let-row>
+          <app-badge [text]="row.name" variant="soft" color="primary" size="sm" />
+        </ng-template>
+
+        <ng-template columnId="value" let-row>
+          <app-badge [text]="row.value" variant="soft" color="secondary" size="sm" />
+        </ng-template>
+      </app-table>
+    </app-flex>
+  </app-flex>
+</app-documentation-template>

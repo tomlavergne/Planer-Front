@@ -25,8 +25,8 @@ export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
       {
         name: 'Sizes',
         path: 'sizes',
-        importPath: './pages/colors/colors',
-        loadComponent: () => import('./pages/colors/colors').then((m) => m.Colors),
+        importPath: './pages/sizes/sizes',
+        loadComponent: () => import('./pages/sizes/sizes').then((s) => s.Sizes),
       },
     ],
   },

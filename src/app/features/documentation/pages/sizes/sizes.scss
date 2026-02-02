@@ -1,0 +1,22 @@
+.view {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-sm);
+  width: 100%;
+
+  $spacings: ('4xs', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl');
+
+  @each $spacing in $spacings {
+    &.spacing-#{$spacing} {
+      height: var(--spacing-#{$spacing});
+    }
+  }
+
+  $radii: ('none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'full');
+
+  @each $radius in $radii {
+    &.radius-#{$radius} {
+      height: 40px;
+      border-radius: var(--radius-#{$radius});
+    }
+  }
+}

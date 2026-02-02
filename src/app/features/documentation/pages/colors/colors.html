@@ -1,6 +1,9 @@
 <app-documentation-template
   title="Système de Couleurs"
-  introduction="Découvrez le système de couleurs dynamique inspiré de Linear, conçu pour offrir une expérience visuelle cohérente et adaptative à travers toute l'application. Basé sur trois paramètres fondamentaux, ce système permet une personnalisation facile tout en garantissant l'accessibilité et la lisibilité."
+  introduction="
+    Découvrez les différentes couleurs utilisées dans notre système de conception, comprenant les
+    couleurs primaires, sémantiques, de fond et de texte.
+  "
   showUsageTab
 >
   <app-flex usage direction="column" gap="3xl" wrap fullWidth>
@@ -52,7 +55,7 @@
       <app-card>
         <app-flex direction="row" gap="md" padding="2xs" wrap>
           @for (color of backgroundColor; track $index) {
-            <app-box [color]="color" height="100px" width="200px">
+            <app-box [color]="color" height="100px" width="250px">
               <app-text
                 size="sm"
                 [color]="color === 'background-inverse' ? 'text-inverse' : 'text-primary'"
