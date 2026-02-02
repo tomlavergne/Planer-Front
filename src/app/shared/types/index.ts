@@ -6,9 +6,6 @@
 // Types UI de base
 export * from './ui.types';
 
-// Types de thème
-export * from './theme.types';
-
 // Types de données métier
 export * from './data.types';
 

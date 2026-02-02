@@ -54,6 +54,9 @@ export type TextTransform = 'none' | 'uppercase' | 'lowercase' | 'capitalize';
 export type InputState = 'default' | 'focus' | 'error' | 'disabled' | 'readonly';
 export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
 
+/***** Theme *****/
+export type Theme = 'light' | 'dark';
+
 /***** Couleurs *****/
 
 export type PrimaryColor =

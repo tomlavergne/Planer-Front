@@ -1,11 +1,37 @@
 <app-documentation-template
   title="Thèmes"
-  introduction="Découvrez le système de couleurs dynamique inspiré de Linear, conçu pour offrir une expérience visuelle cohérente et adaptative à travers toute l'application. Basé sur trois paramètres fondamentaux, ce système permet une personnalisation facile tout en garantissant l'accessibilité et la lisibilité."
+  introduction="
+    Découvrez comment personnaliser le thème de l'application en basculant entre les modes clair et sombre, ainsi qu'en sélectionnant la couleur primaire de votre choix.
+  "
   showUsageTab
 >
   <app-flex usage direction="column" gap="2xl">
-    <!-- Paramètres de base -->
+    <!-- Theme -->
+    <app-flex direction="column" gap="md">
+      <app-text variant="h3" weight="medium">Thème</app-text>
+      <app-button
+        [text]="`Basculer en thème ${themeService.theme() === 'light' ? 'sombre' : 'clair'}`"
+        variant="soft"
+        size="md"
+        [iconLeft]="themeService.theme() === 'light' ? 'lucideMoon' : 'lucideSun'"
+        (clicked)="toggleTheme()"
+      />
+    </app-flex>
 
-    <app-button text="Basculer le theme" variant="ghost" size="md" (clicked)="toggleTheme()" />
+    <!-- Primary Colors -->
+    <app-flex direction="column" gap="md">
+      <app-text variant="h3" weight="medium">Couelurs primaires</app-text>
+      <app-flex gap="sm" wrap>
+        @for (color of primaryColors; track color) {
+          <app-button
+            [text]="color.slice(0, 1).toUpperCase() + color.slice(1)"
+            [variant]="themeService.primaryColor() === color ? 'subtle' : 'soft'"
+            size="md"
+            [color]="color"
+            (clicked)="setPrimaryColor(color)"
+          />
+        }
+      </app-flex>
+    </app-flex>
   </app-flex>
 </app-documentation-template>

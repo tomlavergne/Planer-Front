@@ -57,7 +57,6 @@ export class Button {
       `variant-${this.variant()}`,
       this.color ? `color-${this.color()}` : '',
       `size-${this.size()}`,
-      `border-radius-${this.themeService.radius()}`,
       this.fullWidth() ? 'full-width' : '',
       this.fullHeight() ? 'full-height' : '',
       this.disabled() ? 'disabled' : '',

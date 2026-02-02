@@ -12,6 +12,7 @@
     cursor: pointer;
     border: 1px solid transparent;
     border-color: transparent;
+    border-radius: var(--radius-md);
     background-color: transparent;
     white-space: nowrap; // Empêche le texte de se couper sur plusieurs lignes
   }
@@ -20,15 +21,6 @@
   &.disabled button {
     cursor: not-allowed;
     opacity: 0.5;
-  }
-
-  // Border radius variants
-  $radii: ('sm', 'md', 'lg', 'xl');
-
-  @each $radius in $radii {
-    &.border-radius-#{$radius} button {
-      border-radius: var(--radius-#{$radius});
-    }
   }
 
   // Full width

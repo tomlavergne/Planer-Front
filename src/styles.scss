@@ -1,5 +1,6 @@
 @use './app/shared/styles/animations'; // Import of global animations
 @use './app/shared/styles/mixins' as *; // Import of global mixins
+@use './app/shared/styles/variables' as *; // Import of global variables
 
 @import 'highlight.js/styles/github.css'; // Import of highlight.js for syntaxic coloration
 
@@ -124,6 +125,17 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================
+   PRIMARY COLOR VARIANTS
+   ========================================== */
+
+// Define primary color variants based on the selected primary color
+@each $color in $primaryColors {
+  [data-primary-color='#{$color}'] {
+    --color-primary: var(--color-#{$color});
+  }
 }
 
 /* ==========================================

@@ -1,20 +1,39 @@
+/***** Import Angular *****/
 import { Component, inject } from '@angular/core';
 
-import { Flex, Card, Text, Button } from '@shared/components';
+/***** Import de composants *****/
+import { Flex, Button, Text } from '@shared/components';
 import { DocumentationTemplate } from '@features/documentation/children/documentation-template/documentation-template';
 
+/***** Import de service *****/
 import { ThemeService } from '@shared/config/theme.service';
+
+/***** Import de types *****/
+import type { PrimaryColor } from '@shared/types';
+
+/***** Import de variables *****/
+import { primaryColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'app-theme',
-  imports: [Flex, DocumentationTemplate, Card, Text, Button],
+  imports: [Flex, DocumentationTemplate, Button, Text],
   templateUrl: './theme.html',
-  styleUrl: './theme.scss',
 })
 export class Theme {
   themeService = inject(ThemeService);
 
+  // Liste des couleurs primaires disponibles
+  primaryColors = primaryColors;
+
+  /*******************/
+  /***** METHODS *****/
+  /*******************/
+
   toggleTheme(): void {
     this.themeService.toggleTheme();
+  }
+
+  setPrimaryColor(color: PrimaryColor): void {
+    this.themeService.setPrimaryColor(color);
   }
 }

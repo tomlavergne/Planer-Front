@@ -44,10 +44,10 @@ export class Colors {
   semanticColors: BoxType.Color[] = [
     'primary',
     'secondary',
-    'success',
-    'danger',
-    'warning',
     'info',
+    'success',
+    'warning',
+    'danger',
   ];
 
   backgroundColor: BoxType.Color[] = [

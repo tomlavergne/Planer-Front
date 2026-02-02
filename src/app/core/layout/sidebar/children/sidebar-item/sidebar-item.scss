@@ -3,16 +3,10 @@
   width: 100%;
   border-radius: var(--radius-md);
 
-  // Style du focus outline
-  &:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-
   // Alternative: utiliser focus-visible pour n'afficher l'outline que lors de la navigation clavier
   &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: 1px solid color-mix(in srgb, var(--color-secondary), var(--color-background-primary));
+    // outline-offset: 1px;
   }
 
   // Retirer l'outline par défaut si vous utilisez focus-visible
