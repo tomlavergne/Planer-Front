@@ -4,10 +4,11 @@ import { Component } from '@angular/core';
 /***** Imports de composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
 import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
-import { Flex } from '../../../layout/flex/flex';
-import { Button } from '../button';
-import { Text } from '../../../display/text/text';
-import { Icon } from '../../../display/icon/icon';
+import { Preview } from '@features/documentation/children/preview/preview';
+import { Card, Flex, Button, Text, Icon, Code, Shape } from '@shared/components/';
+
+/***** Import de directives *****/
+import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
 
 /***** Import de types *****/
 import type { Button as ButtonType } from '../button.type';
@@ -19,7 +20,19 @@ import { primaryColors, semanticColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'Button-documentation',
-  imports: [DocumentationTemplate, Flex, Button, Icon, Text, DocumentationUsage],
+  imports: [
+    DocumentationTemplate,
+    Flex,
+    Button,
+    Icon,
+    Text,
+    Card,
+    Code,
+    Shape,
+    Preview,
+    DocumentationUsage,
+    TooltipDirective,
+  ],
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {

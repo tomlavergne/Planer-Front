@@ -7,117 +7,198 @@
   showUsageTab
 >
   <app-flex usage direction="column" gap="2xl" wrap fullWidth>
-    <!-- Contenu -->
-    <app-documentation-usage
-      title="Contenu"
-      description="Le composant Button peut contenir du texte, des icônes ou des éléments personnalisés en utilisant la projection de contenu."
-      [codeExample]="contentExempleCode"
-    >
-      <app-flex direction="row" gap="sm" alignItems="center" wrap>
-        <app-button text="Text only" size="sm" variant="solid" color="primary" />
+    <!-- Type de contenu -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Types de contenu</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button peut contenir du texte, des icônes ou des éléments personnalisés en
+        utilisant la projection de contenu.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
+            <app-button text="Text only" size="sm" variant="solid" color="primary" />
 
-        <app-button size="sm" iconLeft="lucideStar" />
+            <app-button
+              size="sm"
+              iconLeft="lucideStar"
+              color="primary"
+              [tooltip]="{
+                content: 'Icon only',
+              }"
+            />
 
-        <app-button size="sm">
-          <app-flex direction="row" alignItems="center" gap="sm">
-            <app-text size="sm" color="text-inverse" weight="medium">Custom Content</app-text>
+            <app-button text="Both" size="sm" color="primary" iconLeft="lucideStar" />
 
-            <app-icon color="text-primary" name="lucideStar" size="sm" />
+            <app-button
+              variant="ghost"
+              size="xs"
+              [tooltip]="{
+                content: 'Custom content',
+              }"
+            >
+              <app-flex alignItems="center" gap="2xs">
+                <!-- Logo Icon -->
+                <app-shape type="circle" size="sm" color="primary" />
 
-            <app-text size="sm" color="text-inverse">Custom Content</app-text>
+                <!-- Logo Text -->
+                <app-text size="lg" weight="medium" color="text-primary">Planer</app-text>
+
+                <!-- Chevron Icon -->
+                <app-icon
+                  name="lucideChevronDown"
+                  size="xs"
+                  color="text-primary"
+                  class="home-icon"
+                />
+              </app-flex>
+            </app-button>
           </app-flex>
-        </app-button>
-      </app-flex>
-    </app-documentation-usage>
+        </app-preview>
+        <app-code card-footer [code]="contentExempleCode" copyable />
+      </app-card>
+    </app-flex>
 
     <!-- Variants -->
-    <app-documentation-usage
-      title="Variants"
-      description="Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
-        d'utilisation."
-      [codeExample]="variantExempleCode"
-    >
-      <app-flex direction="row" gap="sm" wrap>
-        @for (variant of variants; track $index) {
-          <app-button
-            [text]="variant"
-            [variant]="variant"
-            color="primary"
-            size="sm"
-            borderRadius="full"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Variants</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="row" gap="sm" wrap>
+            @for (variant of variants; track $index) {
+              <app-button
+                [text]="variant"
+                [variant]="variant"
+                color="primary"
+                size="sm"
+                borderRadius="full"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="variantExempleCode" copyable />
+      </app-card>
+    </app-flex>
 
-    <!-- Couleurs -->
-    <app-documentation-usage
-      title="Couleurs"
-      description="Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
-        d'utilisation."
-    >
-      <app-flex direction="column" gap="lg" alignItems="center">
-        <app-flex direction="row" gap="sm" wrap>
-          @for (color of primaryColors; track $index) {
-            <app-button
-              [text]="color"
-              [color]="color"
-              variant="solid"
-              size="sm"
-              borderRadius="full"
-            />
-          }
-        </app-flex>
+    <!-- Couleurs sémantiques -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="column" gap="lg" wrap>
+            @for (variant of variants; track $index) {
+              <app-flex direction="column" gap="xs" wrap>
+                <app-text size="sm" weight="medium" color="text-primary">{{ variant }}</app-text>
+                <app-flex direction="row" gap="sm" wrap>
+                  @for (color of semanticColors; track $index) {
+                    <app-button
+                      [text]="color + ' ' + variant"
+                      [color]="color"
+                      [variant]="variant"
+                      color="primary"
+                      size="sm"
+                      borderRadius="full"
+                      iconLeft="lucideCircleDashed"
+                    />
+                  }
+                </app-flex>
+              </app-flex>
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="variantExempleCode" copyable />
+      </app-card>
+    </app-flex>
 
-        <app-flex direction="row" gap="sm" wrap>
-          @for (color of semanticColors; track $index) {
-            <app-button
-              [text]="color"
-              [color]="color"
-              variant="solid"
-              size="sm"
-              borderRadius="full"
-            />
-          }
-        </app-flex>
-      </app-flex>
-    </app-documentation-usage>
+    <!-- Couleurs primaires -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="column" gap="lg" wrap>
+            @for (variant of variants; track $index) {
+              <app-flex direction="column" gap="xs" wrap>
+                <app-text size="sm" weight="medium" color="text-primary">{{ variant }}</app-text>
+                <app-flex direction="row" gap="sm" wrap>
+                  @for (color of primaryColors; track $index) {
+                    <app-button
+                      [text]="color + ' ' + variant"
+                      [color]="color"
+                      [variant]="variant"
+                      color="primary"
+                      size="sm"
+                      borderRadius="full"
+                      iconLeft="lucideCircleDashed"
+                    />
+                  }
+                </app-flex>
+              </app-flex>
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="variantExempleCode" copyable />
+      </app-card>
+    </app-flex>
 
     <!-- Tailles -->
-    <app-documentation-usage
-      title="Tailles"
-      description="Le composant Button prend en charge plusieurs tailles pour s'adapter à différents contextes
-        d'utilisation."
-      [codeExample]="sizeExempleCode"
-    >
-      <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of sizes; track $index) {
-            <app-button [text]="size" [size]="size" />
-          }
-        </app-flex>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Tailles</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button prend en charge plusieurs tailles pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
+            <app-flex direction="row" gap="sm" alignItems="center" wrap>
+              @for (size of sizes; track $index) {
+                <app-button [text]="size" [size]="size" />
+              }
+            </app-flex>
 
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of sizes; track $index) {
-            <app-button [size]="size" iconLeft="lucidePlus" />
-          }
-        </app-flex>
+            <app-flex direction="row" gap="sm" alignItems="center" wrap>
+              @for (size of sizes; track $index) {
+                <app-button [size]="size" iconLeft="lucidePlus" />
+              }
+            </app-flex>
 
-        <app-flex direction="row" gap="sm" alignItems="center" wrap>
-          @for (size of sizes; track $index) {
-            <app-button [text]="'Button ' + size" [size]="size" iconLeft="lucideStar" />
-          }
-        </app-flex>
-      </app-flex>
-    </app-documentation-usage>
+            <app-flex direction="row" gap="sm" alignItems="center" wrap>
+              @for (size of sizes; track $index) {
+                <app-button [text]="'Button ' + size" [size]="size" iconLeft="lucideStar" />
+              }
+            </app-flex>
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="sizeExempleCode" copyable />
+      </app-card>
+    </app-flex>
 
     <!-- Disabled -->
-    <app-documentation-usage
-      title="Disabled"
-      description="Le composant Button peut être désactivé pour indiquer qu'il n'est pas interactif."
-      [codeExample]="disabledExempleCode"
-    >
-      <app-button text="Disabled" size="sm" color="primary" borderRadius="full" disabled />
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Disabled</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Button peut être désactivé pour indiquer qu'il n'est pas interactif.
+      </app-text>
+      <app-card>
+        <app-preview>
+          <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
+            <app-button text="Disabled" size="sm" color="primary" borderRadius="full" disabled />
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="disabledExempleCode" copyable />
+      </app-card>
+    </app-flex>
   </app-flex>
 </app-documentation-template>
