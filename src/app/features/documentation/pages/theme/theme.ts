@@ -2,7 +2,7 @@
 import { Component, inject } from '@angular/core';
 
 /***** Import de composants *****/
-import { Flex, Button, Text } from '@shared/components';
+import { Flex, Button, Text, Toggle } from '@shared/components';
 import { DocumentationTemplate } from '@features/documentation/children/documentation-template/documentation-template';
 
 /***** Import de service *****/
@@ -16,7 +16,7 @@ import { primaryColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'app-theme',
-  imports: [Flex, DocumentationTemplate, Button, Text],
+  imports: [Flex, DocumentationTemplate, Button, Text, Toggle],
   templateUrl: './theme.html',
 })
 export class Theme {

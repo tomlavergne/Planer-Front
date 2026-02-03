@@ -18,7 +18,7 @@
         des valeurs
       </app-text>
       <app-card>
-        <app-preview>
+        <app-preview limitHeight>
           <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
             @for (color of semanticColors; track $index) {
               <app-toast
@@ -34,7 +34,7 @@
             }
           </app-flex>
         </app-preview>
-        <app-code card-footer [code]="semanticColorsCodeExemple" />
+        <app-code card-footer [code]="semanticColorsCodeExemple" expandable />
       </app-card>
     </app-flex>
 
@@ -46,22 +46,24 @@
         propriété <code>color</code> du toast avec l'une des valeurs
       </app-text>
       <app-card>
-        <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
-          @for (color of primaryColors; track $index) {
-            <app-toast
-              [color]="color"
-              [title]="`${color!.charAt(0).toUpperCase() + color!.slice(1)} Toast`"
-              message="Ceci est un message de toast de couleur {{ color }}."
-              [action]="{
-                label: 'Action',
-                callback: callbackToast,
-              }"
-              icon="lucideCircleDashed"
-              dismissible
-            />
-          }
-        </app-flex>
-        <app-code card-footer [code]="semanticColorsCodeExemple" [expandable]="false" />
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (color of primaryColors; track $index) {
+              <app-toast
+                [color]="color"
+                [title]="`${color!.charAt(0).toUpperCase() + color!.slice(1)} Toast`"
+                message="Ceci est un message de toast de couleur {{ color }}."
+                [action]="{
+                  label: 'Action',
+                  callback: callbackToast,
+                }"
+                icon="lucideCircleDashed"
+                dismissible
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="semanticColorsCodeExemple" expandable />
       </app-card>
     </app-flex>
   </app-flex>

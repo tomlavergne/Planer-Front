@@ -4,93 +4,117 @@
   [inputs]="inputsMetadata"
   [models]="modelsMetadata"
   [outputs]="outputsMetadata"
-  codeExample="const hello = 'world';"
+  showUsageTab
 >
-  <!-- <app-flex direction="column" gap="2xl" wrap fullWidth>
-    <app-flex direction="column" gap="sm" fullWidth wrap>
-      <app-text size="xl" color="primary" weight="semibold">Couleurs</app-text>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Couleurs sémantiques -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
+        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
+        des valeurs
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
+            @for (color of semanticColors; track $index) {
+              <app-toggle
+                [color]="color"
+                size="md"
+                borderRadius="full"
+                [tooltip]="{
+                  content: color,
+                }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="semanticColorExempleCode" expandable />
+      </app-card>
+    </app-flex>
 
-      <app-text size="md" color="neutral" weight="regular">
-        Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
+    <!-- Couleurs primaires -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
+        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
+        des valeurs
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
+            @for (color of primaryColors; track $index) {
+              <app-toggle
+                [color]="color"
+                size="md"
+                borderRadius="full"
+                [tooltip]="{
+                  content: color,
+                }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="primaryColorExempleCode" expandable />
+      </app-card>
+    </app-flex>
+
+    <!-- Tailles -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" color="text-primary" weight="semibold">Tailles</app-text>
+
+      <app-text size="sm" color="neutral" weight="regular">
+        Le composant Toggle prend en charge plusieurs tailles pour s'adapter à différents contextes
         d'utilisation.
       </app-text>
 
-      <app-documentation-exemple language="typescript" [code]="colorExempleCode">
-        <app-flex direction="row" gap="sm" fullWidth wrap>
-          @for (color of colors; track $index) {
-            <app-toggle [color]="color" size="lg" borderRadius="full" />
-          }
-        </app-flex>
-      </app-documentation-exemple>
-    </app-flex> -->
+      <app-card>
+        <app-preview>
+          <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
+            <app-flex direction="row" gap="sm" alignItems="center" padding="sm" wrap>
+              @for (size of sizes; track $index) {
+                <app-toggle
+                  color="cyan"
+                  [size]="size"
+                  borderRadius="full"
+                  [tooltip]="{
+                    content: size,
+                  }"
+                />
+              }
+            </app-flex>
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="sizesExempleCode" expandable />
+      </app-card>
+    </app-flex>
 
-  <!-- Variants -->
-  <!-- <app-flex direction="column" gap="sm" wrap fullWidth>
-      <app-text size="xl" color="primary" weight="semibold">Variants</app-text>
+    <!-- Disabled -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" color="text-primary" weight="semibold">Disabled</app-text>
 
-      <app-text size="md" color="neutral" weight="regular">
-        Le composant Button prend en charge plusieurs couleurs pour s'adapter à différents contextes
-        d'utilisation.
+      <app-text size="sm" color="neutral" weight="regular">
+        Le composant Toggle peut être désactivé pour indiquer qu'il n'est pas interactif.
       </app-text>
 
-      <app-documentation-exemple language="typescript" [code]="variantExempleCode">
-        <app-flex direction="row" gap="sm" wrap>
-          @for (variant of variants; track $index) {
-            <Button
-              [text]="variant"
-              [variant]="variant"
-              color="primary"
-              size="sm"
-              borderRadius="full"
-            />
-          }
-        </app-flex>
-      </app-documentation-exemple>
-    </app-flex> -->
-
-  <!-- Tailles -->
-  <!-- <app-flex direction="column" gap="sm" wrap fullWidth>
-      <app-text size="xl" color="primary" weight="semibold">Tailles</app-text>
-
-      <app-text size="md" color="neutral" weight="regular">
-        Le composant Button prend en charge plusieurs tailles pour s'adapter à différents contextes
-        d'utilisation.
-      </app-text>
-
-      <app-documentation-exemple language="typescript" [code]="sizeExempleCode">
-        <app-flex direction="column" gap="sm" alignItems="center" justifyContent="center">
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of sizes; track $index) {
-              <Button [text]="size" [size]="size" />
-            }
+      <app-card>
+        <app-preview>
+          <app-flex
+            direction="column"
+            gap="sm"
+            alignItems="center"
+            justifyContent="center"
+            padding="sm"
+          >
+            <app-toggle color="cyan" size="md" borderRadius="full" disabled />
           </app-flex>
-
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of sizes; track $index) {
-              <Button [size]="size" iconLeft="lucidePlus" />
-            }
-          </app-flex>
-
-          <app-flex direction="row" gap="sm" alignItems="center" wrap>
-            @for (size of sizes; track $index) {
-              <Button [text]="size" [size]="size" iconLeft="lucidePlus" />
-            }
-          </app-flex>
-        </app-flex>
-      </app-documentation-exemple>
-    </app-flex> -->
-
-  <!-- Disabled -->
-  <!-- <app-flex direction="column" gap="sm" wrap fullWidth>
-      <app-text size="xl" color="primary" weight="semibold">Disabled</app-text>
-
-      <app-text size="md" color="neutral" weight="regular">
-        Le composant Button peut être désactivé pour indiquer qu'il n'est pas interactif.
-      </app-text>
-
-      <app-documentation-exemple language="typescript" [code]="disabledExempleCode">
-        <Button text="Disabled" size="sm" color="primary" borderRadius="full" disabled />
-      </app-documentation-exemple>
-    </app-flex> -->
-  <!-- </app-flex> -->
+        </app-preview>
+        <app-code card-footer [code]="disabledExempleCode" expandable />
+      </app-card>
+    </app-flex>
+  </app-flex>
 </app-documentation-template>

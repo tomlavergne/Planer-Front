@@ -7,15 +7,13 @@ import { Flex, Card, Text, Code } from '../../../..';
 import { Preview } from '@features/documentation/children/preview/preview';
 import { Toast } from '../toast';
 
-/***** Import de drirectives *****/
-import { TooltipDirective } from '../../../../../directives/tooltip/tooltip';
-
 /***** Import de types *****/
 import { Documentation as DocumentationType } from '../../../../../../features/documentation/documentation.type';
 import { Toast as ToastType } from '../toast.type';
 
-/***** Imports de services *****/
-import { ToastService } from '../../toast-stack.service';
+/***** Import de variables *****/
+import { semanticColors, primaryColors } from '@shared/variables/colors';
+import { SemanticColor } from '@shared/types';
 
 @Component({
   selector: 'app-toast.doc',
@@ -23,35 +21,8 @@ import { ToastService } from '../../toast-stack.service';
   templateUrl: './toast.doc.html',
 })
 export class ToastDoc {
-  semanticColors: ToastType.Config['color'][] = [
-    'primary',
-    'secondary',
-    'info',
-    'success',
-    'warning',
-    'danger',
-  ];
-
-  primaryColors: ToastType.Config['color'][] = [
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-  ];
+  semanticColors = semanticColors;
+  primaryColors = primaryColors;
 
   callbackToast(): void {}
 

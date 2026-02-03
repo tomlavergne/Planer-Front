@@ -12,11 +12,11 @@ import { Flex, Badge } from '@shared/components';
   templateUrl: './preview.html',
   styleUrl: './preview.scss',
   host: {
-    class: 'app-preview',
+    '[class]': 'hostClasses()',
   },
 })
 export class Preview {
-  limitHeight = input<boolean, null>(false, { transform: booleanAttribute });
+  limitHeight = input<boolean, any>(false, { transform: booleanAttribute });
 
   hostClasses = computed(() => [this.limitHeight() ? 'limit-height' : ''].join(' '));
 }

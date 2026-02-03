@@ -28,64 +28,54 @@ export class Alert {
   /***** Inputs *****/
   /******************/
 
-  variant = input<AlertType.Variant>('solid');
-  color = input<AlertType.Color | null>(null);
-  icon = input<Toggle.Name | null>(null);
+  color = input.required<AlertType.Config['color']>();
   title = input<string | null>(null);
-  message = input<string | null>(null);
-  button = input<{
-    text: string;
-    icon?: {
-      name: Toggle.Name;
-      position?: ButtonType.IconPosition;
-    } | null;
-    callback: () => void;
-  } | null>(null);
-  borderRadius = input<ButtonType.BorderRadius>('md');
+  message = input.required<string>();
+  icon = input<AlertType.Config['icon']>(undefined);
+  action = input<AlertType.Config['action']>(null);
   dismissible = input<boolean, any>(false, { transform: booleanAttribute });
+  isDismissing = input<boolean>(false);
 
   /*******************/
   /***** Outputs *****/
   /*******************/
 
-  dismissed = output<void>();
+  dismiss = output<void>();
 
   /*********************/
-  /***** Computeds *****/
+  /***** Computed *****/
   /*********************/
 
-  // Computed pour les classes
   hostClasses = computed(() => {
-    return [
-      `variant-${this.variant()}`,
-      this.color() ? `color-${this.color()}` : '',
-      `border-radius-${this.borderRadius()}`,
-    ].join(' ');
+    const classes = [`color-${this.color()}`];
+    if (this.isDismissing()) {
+      classes.push('dismissing');
+    }
+    return classes.join(' ');
   });
 
-  // Computed pour la couleur du contenu (icone + texte)
-  contentColor = computed((): textType.Color => {
-    if (this.variant() === 'solid') {
-      return 'primary';
-    } else {
-      return this.color() || 'blue';
+  defaultIcon = computed<AlertType.Config['icon']>(() => {
+    if (this.icon()) return this.icon();
+
+    switch (this.color()) {
+      case 'success':
+        return 'lucideCheckCircle';
+      case 'danger':
+        return 'lucideXCircle';
+      case 'warning':
+        return 'lucideAlertTriangle';
+      case 'info':
+        return 'lucideInfo';
+      default:
+        return undefined;
     }
   });
 
-  // Computed pour le variant du bouton (inverse de l'alerte)
-  buttonVariant = computed((): ButtonType.Variant => {
-    if (this.variant() === 'solid') {
-      return 'solid';
-    } else {
-      return 'ghost';
-    }
-  });
-
-  /*******************/
+  /*********************/
   /***** Methods *****/
-  /*******************/
+  /*********************/
 
   onDismiss(): void {
-    this.dismissed.emit();
+    this.dismiss.emit();
   }
 }

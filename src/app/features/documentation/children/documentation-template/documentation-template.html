@@ -3,13 +3,14 @@
   <app-flex direction="column" gap="xl" fullWidth>
     <!-- Première ligne -->
     <app-flex direction="row" gap="sm" justifyContent="between" alignItems="center" fullWidth>
-      <app-flex gap="lg" alignItems="center">
+      <app-flex gap="sm" alignItems="center">
         <app-text size="3xl" color="text-primary" weight="semibold">{{ title() }}</app-text>
 
         @if (selector()) {
           <app-button
             variant="soft"
             color="secondary"
+            size="md"
             [text]="selector()!"
             [tooltip]="{
               content: 'Copier le sélecteur',
@@ -74,7 +75,7 @@
           @for (section of apiSections; track section.title) {
             @if (section.data()) {
               <app-flex direction="column" gap="sm" fullWidth>
-                <app-text size="lg" color="secondary" weight="semibold">{{
+                <app-text size="lg" color="text-primary" weight="semibold">{{
                   section.title
                 }}</app-text>
 

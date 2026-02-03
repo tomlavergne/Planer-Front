@@ -1,38 +1,82 @@
-<app-documentation-template title="Alert">
-  <div examples>
-    <app-flex direction="column" gap="lg" fullWidth>
-      @for (variant of variants; track $index) {
-        <app-flex direction="column" gap="md" wrap>
-          <app-text color="primary" weight="medium" size="md">{{
-            variant.charAt(0).toUpperCase() + variant.slice(1)
-          }}</app-text>
-          <app-flex direction="column" gap="md" fullWidth>
-            @for (color of colors; track $index) {
+<app-documentation-template
+  title="Alert"
+  introduction="
+  Le composantest utilisé pour afficher des messages d'alerte à l'utilisateur,
+  avec des options de personnalisation telles que la couleur, le type d'alerte, les icônes et les actions."
+  selector="app-alert"
+  showUsageTab
+>
+  <app-flex usage direction="column" gap="3xl" wrap fullWidth>
+    <!-- Couleurs sémantiques -->
+    <app-flex direction="column" gap="sm" fullWidth>
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
+        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
+        des valeurs
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex
+            direction="column"
+            gap="md"
+            justifyContent="center"
+            alignItems="center"
+            fullWidth
+          >
+            @for (color of semanticColors; track $index) {
               <app-alert
-                [variant]="variant"
                 [color]="color"
-                icon="lucideCheckCircle"
-                title="Success Alert"
-                message="This is a success alert message."
-                [button]="{
-                  text: 'Take Action',
-                  icon: { name: 'lucideArrowRight', position: 'right' },
-                  callback: dismissAlert,
+                [title]="`${color!.charAt(0).toUpperCase() + color!.slice(1)} Toast`"
+                message="Ceci est un message de toast de couleur {{ color }}."
+                [action]="{
+                  label: 'Action',
+                  callback: callbackAlert,
                 }"
                 dismissible
               />
             }
           </app-flex>
-        </app-flex>
-      }
+        </app-preview>
+        <app-code card-footer [code]="codeExample" expandable />
+      </app-card>
     </app-flex>
-  </div>
-
-  <div properties>
-    <!-- Propriétés du composant accordion -->
-  </div>
-
-  <div usage>
-    <!-- Instructions d'utilisation -->
-  </div>
+    <!-- Couleurs primaires -->
+    <app-flex direction="column" gap="sm" fullWidth>
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
+        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
+        des valeurs
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex
+            direction="column"
+            gap="md"
+            justifyContent="center"
+            alignItems="center"
+            fullWidth
+          >
+            @for (color of primaryColors; track $index) {
+              <app-alert
+                [color]="color"
+                [title]="`${color!.charAt(0).toUpperCase() + color!.slice(1)} Toast`"
+                message="Ceci est un message de toast de couleur {{ color }}."
+                [action]="{
+                  label: 'Action',
+                  callback: callbackAlert,
+                }"
+                icon="lucideCircleDashed"
+                dismissible
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <app-code card-footer [code]="codeExample" expandable />
+      </app-card>
+    </app-flex>
+  </app-flex>
 </app-documentation-template>

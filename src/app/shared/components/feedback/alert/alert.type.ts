@@ -1,8 +1,19 @@
-import type { Variant as UIVariant, PrimaryColor, SemanticColor } from '../../../types/ui.types';
-import type { Icon } from '../../display/icon/icon.type';
+import type { SemanticColor, PrimaryColor } from '@shared/types/ui.types';
+import type { Icon } from '@shared/components/display/icon/icon.type';
 
 export namespace Alert {
-  export type Variant = Extract<UIVariant, 'solid' | 'soft' | 'outline'>;
-  export type Color = SemanticColor;
-  export type IconColor = Icon.Color;
+  export type Icon = Icon.Name;
+  export interface Config {
+    id: string;
+    color?: SemanticColor | PrimaryColor;
+    title?: string;
+    message: string;
+    icon?: Icon.Name;
+    duration?: number; // En millisecondes, 0 = infini
+    action?: {
+      label: string;
+      callback: () => void;
+    } | null;
+    dismissible?: boolean;
+  }
 }

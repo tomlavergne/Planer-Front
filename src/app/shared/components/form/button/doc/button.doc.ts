@@ -14,41 +14,18 @@ import type { Button as ButtonType } from '../button.type';
 import type { Icon as IconType } from '../../../display/icon/icon.type';
 import type { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
+/***** Import de variables  *****/
+import { primaryColors, semanticColors } from '@shared/variables/colors';
+
 @Component({
   selector: 'Button-documentation',
   imports: [DocumentationTemplate, Flex, Button, Icon, Text, DocumentationUsage],
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {
-  primaryColors: ButtonType.Color[] = [
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-  ];
+  primaryColors = primaryColors;
+  semanticColors = semanticColors;
 
-  semanticColors: ButtonType.Color[] = [
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-  ];
   variants: ButtonType.Variant[] = ['solid', 'soft', 'subtle', 'outline', 'ghost', 'link'];
   sizes: ButtonType.Size[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 

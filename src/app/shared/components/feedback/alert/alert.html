@@ -1,45 +1,41 @@
-<app-flex direction="row" alignItems="center" gap="md" padding="sm" fullWidth>
-  <!-- Icon -->
-  @if (icon()) {
-    <app-icon [name]="icon()!" size="sm" [color]="contentColor()!" />
-  }
-
-  <app-flex direction="column" gap="xs" fullWidth>
-    <!--  Title -->
-    @if (title()) {
-      <app-text as="h2" app-textVariant="body" size="lg" [color]="contentColor()!">{{
-        title()
-      }}</app-text>
+<app-flex gap="3xl" alignItems="center" fullWidth>
+  <app-flex gap="sm" alignItems="center" fullWidth>
+    @if (defaultIcon()) {
+      <app-icon [name]="defaultIcon()!" size="sm" [color]="color()!" />
     }
 
-    <!-- Message -->
-    <app-text as="p" app-textVariant="body" size="sm" [color]="contentColor()!">{{
-      message()
-    }}</app-text>
+    <app-flex direction="column" gap="3xs" fullWidth>
+      @if (title()) {
+        <app-text size="sm" weight="medium" [color]="color()!">
+          {{ title() }}
+        </app-text>
+      }
+
+      <app-text size="xs" [color]="color()!">
+        {{ message() }}
+      </app-text>
+    </app-flex>
   </app-flex>
 
-  <!-- Action button -->
-  @if (button()) {
-    <app-button
-      [variant]="buttonVariant()"
-      [color]="color()!"
-      size="sm"
-      [text]="button()!.text"
-      [iconLeft]="button()!.icon!.name"
-      borderRadius="full"
-      (clicked)="button()!.callback()"
-    />
-  }
+  <app-flex gap="sm" alignItems="center">
+    @if (action()) {
+      <app-button
+        [text]="action()?.label!"
+        variant="solid"
+        size="sm"
+        [color]="color()!"
+        (click)="action()!.callback()"
+      />
+    }
 
-  <!-- Dismiss button -->
-  @if (dismissible()) {
-    <app-button
-      [variant]="buttonVariant()"
-      [color]="color()!"
-      size="sm"
-      iconLeft="lucideX"
-      borderRadius="full"
-      (clicked)="onDismiss()"
-    />
-  }
+    @if (dismissible()) {
+      <app-button
+        variant="ghost"
+        size="sm"
+        iconLeft="lucideX"
+        [color]="color()!"
+        (click)="onDismiss()"
+      />
+    }
+  </app-flex>
 </app-flex>

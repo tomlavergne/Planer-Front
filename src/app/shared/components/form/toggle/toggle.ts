@@ -50,7 +50,6 @@ export class Toggle {
   // Computed pour les classes
   hostClasses = computed(() => {
     return [
-      `variant-${this.variant()}`,
       `color-${this.color()}`,
       `size-${this.size()}`,
       this.disabled() ? 'disabled' : '',

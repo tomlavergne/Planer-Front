@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { Flex, Button, Text, Toggle } from '../../../';
+import { Flex, Text, Toggle, Card, Code } from '../../../';
+import { Preview } from '@features/documentation/children/preview/preview';
 
 /***** Import de directives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
@@ -12,34 +13,26 @@ import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
 import { Toggle as ToggleType } from '../toggle.type';
 import { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
+/***** import de variables  *****/
+import { primaryColors, semanticColors } from '@shared/variables/colors';
+
 @Component({
   selector: 'app-toggle-doc',
-  imports: [DocumentationTemplate, Flex, Button, Text, Toggle, TooltipDirective],
+  imports: [DocumentationTemplate, Flex, Text, Toggle, Preview, Card, Code, TooltipDirective],
   templateUrl: './toggle.doc.html',
 })
 export class ToggleDoc {
-  colors: ToggleType.Color[] = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'teal',
-    'blue',
-    'indigo',
-    'purple',
-    'pink',
-  ];
-  variants: ToggleType.Variant[] = ['solid', 'soft'];
+  primaryColors = primaryColors;
+  semanticColors = semanticColors;
+
   sizes: ToggleType.Size[] = ['sm', 'md', 'lg', 'xl'];
 
   toggleCheckedColorsVariants = (() => {
     const combinations: Record<string, boolean> = {};
 
-    this.variants.forEach((variant) => {
-      this.colors.forEach((color) => {
-        const key = `${variant}_${color}`;
-        combinations[key] = true;
-      });
+    this.primaryColors.forEach((color) => {
+      const key = color;
+      combinations[key] = true;
     });
 
     return combinations;
@@ -48,11 +41,9 @@ export class ToggleDoc {
   toggleCheckedSizesVariants = (() => {
     const combinations: Record<string, boolean> = {};
 
-    this.variants.forEach((variant) => {
-      this.sizes.forEach((size) => {
-        const key = `${variant}_${size}`;
-        combinations[key] = true;
-      });
+    this.sizes.forEach((size) => {
+      const key = size;
+      combinations[key] = true;
     });
 
     return combinations;
@@ -108,12 +99,42 @@ export class ToggleDoc {
     },
   ];
 
-  colorExempleCode = `@for (color of [${this.colors.toString()}] track $index) {
-    <Button
-        [text]="color"
+  semanticColorExempleCode = `@for (color of semanticColors; track $index) {
+    <app-toggle
         [color]="color"
-        size="sm"
+        size="md"
         borderRadius="full"
+        [tooltip]="{
+            content: color,
+        }"
     />
 }`;
+
+  primaryColorExempleCode = `@for (color of primaryColors; track $index) {
+    <app-toggle
+        [color]="color"
+        size="md"
+        borderRadius="full"
+        [tooltip]="{
+            content: color,
+        }"
+    />
+}`;
+
+  sizesExempleCode = `@for (size of sizes; track $index) {
+    <app-toggle
+        color="primary"
+        [size]="size"
+        borderRadius="full"
+        [tooltip]="{
+            content: size,
+        }"
+    />
+}`;
+
+  disabledExempleCode = `<app-toggle
+    color="primary"
+    borderRadius="full"
+    disabled
+/>`;
 }
