@@ -1,0 +1,12 @@
+<app-flex direction="row" gap="3xs" padding="3xs">
+  @for (option of options(); track option.value) {
+    <app-button
+      [text]="option.label"
+      [iconLeft]="option.icon!"
+      [variant]="isSelected(option) ? 'solid' : 'ghost'"
+      [color]="isSelected(option) ? 'secondary' : 'secondary'"
+      [disabled]="isOptionDisabled(option)"
+      (clicked)="selectOption(option)"
+    />
+  }
+</app-flex>

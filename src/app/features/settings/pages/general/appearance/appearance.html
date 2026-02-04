@@ -1,23 +1,24 @@
 <app-setting-template
-  title="Apparance"
+  title="Préférences"
   description="
-Customisez l'apparence de votre application en choisissant entre le mode clair, sombre ou automatique. Vous pouvez également sélectionner un thème de couleur principal qui correspond à votre style préféré.
+    Personnalisez l'apparence de l'application en choisissant votre mode d'affichage préféré et en sélectionnant un thème de couleur principal qui correspond à votre style.
 "
 >
-  <app-setting-group
-    title="Préférences"
-    description="Choisissez entre le mode clair, sombre ou automatique en fonction de vos préférences."
-  >
+  <app-setting-group title="Apparance">
     <app-setting-item
       title="Mode d'affichage"
       description="Choisissez entre le mode clair, sombre ou automatique en fonction de vos préférences."
     >
-      <app-button
-        [text]="`Basculer en thème ${themeService.theme() === 'light' ? 'sombre' : 'clair'}`"
-        variant="soft"
-        size="md"
-        [iconLeft]="themeService.theme() === 'light' ? 'lucideMoon' : 'lucideSun'"
-        (clicked)="toggleTheme()"
+      <app-segmented-control
+        name="theme-mode"
+        [options]="[
+          { label: 'Clair', value: 'light', icon: 'lucideSun' },
+          { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
+          { label: 'Auto', value: 'auto', icon: 'lucideMonitor' },
+        ]"
+        [color]="'primary'"
+        [value]="themeService.theme()"
+        (valueChange)="setTheme($event)"
       />
     </app-setting-item>
 

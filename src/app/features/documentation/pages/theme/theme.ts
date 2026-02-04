@@ -29,9 +29,9 @@ export class Theme {
   /***** METHODS *****/
   /*******************/
 
-  toggleTheme(): void {
-    this.themeService.toggleTheme();
-  }
+  //   toggleTheme(): void {
+  //     this.themeService.toggleTheme();
+  //   }
 
   setPrimaryColor(color: PrimaryColor): void {
     this.themeService.setPrimaryColor(color);

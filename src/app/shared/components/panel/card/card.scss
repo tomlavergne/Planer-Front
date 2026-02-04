@@ -32,4 +32,10 @@
       display: none;
     }
   }
+
+  @each $bg in ('primary', 'secondary', 'tertiary') {
+    &.bg-#{$bg} {
+      background-color: var(--color-background-#{$bg});
+    }
+  }
 }

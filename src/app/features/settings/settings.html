@@ -1,7 +1,9 @@
 <app-flex direction="row" fullHeight fullWidth>
   <app-settings-sidebar />
 
-  <div class="setting-content">
-    <router-outlet />
-  </div>
+  <app-flex justifyContent="center" class="setting-content">
+    <div class="setting-content-inner">
+      <router-outlet />
+    </div>
+  </app-flex>
 </app-flex>

@@ -14,6 +14,7 @@ export { Separator } from './display/separator/separator';
 export { Icon } from './display/icon/icon';
 export { Text } from './display/text/text';
 export { Code } from './display/code/code';
+export { SegmentedControl } from './display/segmented-control/segmented-control';
 
 /***** Element Components *****/
 export { Shape } from './element/shape/shape';

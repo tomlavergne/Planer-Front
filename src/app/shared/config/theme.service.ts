@@ -24,7 +24,22 @@ export class ThemeService {
     this.getStoredValue(this.STORAGE_PRIMARY_COLOR_KEY, 'indigo') as PrimaryColor,
   );
 
+  // Média query pour détecter le thème système
+  private mediaQuery: MediaQueryList | null = null;
+
   constructor() {
+    // Initialiser la détection du thème système
+    if (typeof window !== 'undefined') {
+      this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      // Écouter les changements de préférence système
+      this.mediaQuery.addEventListener('change', () => {
+        if (this.theme() === 'auto') {
+          this.applyTheme();
+        }
+      });
+    }
+
     // Appliquer les attributs au démarrage
     this.applyTheme();
 
@@ -37,9 +52,7 @@ export class ThemeService {
   /**
    * Toggle entre light et dark
    */
-  toggleTheme(): void {
-    const newTheme = this.theme() === 'light' ? 'dark' : 'light';
-
+  setTheme(newTheme: Theme): void {
     this.theme.set(newTheme);
     localStorage.setItem(this.STORAGE_THEME_KEY, newTheme);
   }
@@ -53,12 +66,28 @@ export class ThemeService {
    * Applique le thème au document
    */
   private applyTheme(): void {
-    // Appliquer l'attribut data-theme
-    document.documentElement.setAttribute(this.DOCUMENT_THEME_ATTRIBUTE, this.theme());
+    const effectiveTheme = this.getEffectiveTheme();
+
+    // Appliquer l'attribut data-theme avec le thème effectif (light ou dark)
+    document.documentElement.setAttribute(this.DOCUMENT_THEME_ATTRIBUTE, effectiveTheme);
     document.documentElement.setAttribute(
       this.DOCUMENT_PRIMARY_COLOR_ATTRIBUTE,
       this.primaryColor(),
     );
+  }
+
+  /**
+   * Retourne le thème effectif (light ou dark) en tenant compte du mode auto
+   */
+  private getEffectiveTheme(): 'light' | 'dark' {
+    const currentTheme = this.theme();
+
+    if (currentTheme === 'auto') {
+      // Si le mode est auto, détecter les préférences système
+      return this.mediaQuery?.matches ? 'dark' : 'light';
+    }
+
+    return currentTheme;
   }
 
   /**

@@ -26,7 +26,13 @@
 
     <!-- Text -->
     @if (text()) {
-      <app-text [color]="contentColor()" [size]="currentConfig().fontSize" weight="thin" fullWidth>
+      <app-text
+        [color]="contentColor()"
+        [size]="currentConfig().fontSize"
+        weight="thin"
+        [wrap]="false"
+        fullWidth
+      >
         {{ text() }}
       </app-text>
     }

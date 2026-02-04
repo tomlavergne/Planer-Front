@@ -19,6 +19,7 @@ export class Card {
   /******************/
 
   variant = input<CardType.Variant>('soft');
+  backgroundColor = input<'primary' | 'secondary' | 'tertiary' | null>(null);
 
   /*********************/
   /***** Computeds *****/
@@ -26,6 +27,9 @@ export class Card {
 
   // Computed pour générer les classes dynamiquement
   hostClasses = computed(() => {
-    return [`variant-${this.variant()}`];
+    return [
+      `variant-${this.variant()}`,
+      this.backgroundColor() ? `bg-${this.backgroundColor()}` : '',
+    ];
   });
 }
