@@ -9,22 +9,26 @@
     />
 
     <app-flex direction="column" gap="lg" class="documentation-sidebar">
-      @for (section of indexConfiguration; track $index) {
-        <!-- Section -->
-        <app-flex direction="column" gap="2xs">
-          <!-- Titre Section -->
-          <app-text size="xs" weight="medium" class="section-title">{{ section.name }}</app-text>
+      @for (item of indexConfiguration; track $index) {
+        @if (item.content) {
+          <!-- Section -->
+          <app-flex direction="column" gap="2xs">
+            <!-- Titre Section -->
+            <app-text size="xs" weight="medium" class="section-title">{{ item.name }}</app-text>
 
-          <!-- Contenu de la section -->
-          <app-flex direction="row" gap="2xs">
-            <!-- Items -->
-            <app-flex direction="column" gap="3xs" fullWidth>
-              @for (item of section.content; track $index) {
-                <app-sidebar-item [text]="item.name" [path]="item.path" size="md" />
-              }
+            <!-- Contenu de la section -->
+            <app-flex direction="row" gap="xs">
+              <!-- Items -->
+              <app-flex direction="column" fullWidth>
+                @for (item of item.content; track $index) {
+                  <app-sidebar-item [text]="item.name" [path]="item.path" size="md" />
+                }
+              </app-flex>
             </app-flex>
           </app-flex>
-        </app-flex>
+        } @else {
+          <app-sidebar-item [text]="item.name" [icon]="item.icon" [path]="item.path" size="md" />
+        }
       }
     </app-flex>
   </app-flex>

@@ -3,27 +3,6 @@
   height: 100vh;
 }
 
-.documentation-container {
-  height: 100%;
-  overflow: auto;
-  padding: var(--spacing-2xl);
-}
-
-.bar {
-  height: 100%;
-  width: 1px;
-  background-color: var(--color-border);
-}
-
-.documentation-sidebar {
-  width: 200px;
-  height: 100%;
-  flex-shrink: 0;
-  overflow: auto;
-  background-color: var(--color-background-secondary);
-  border-right: 1px solid var(--color-border);
-}
-
 .documentation-content {
   flex-grow: 1;
   height: 100%;

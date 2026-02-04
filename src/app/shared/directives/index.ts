@@ -1,2 +1,2 @@
-export * from './click-outside/click-outside';
-export * from './popover/popover';
+export { TooltipDirective } from './tooltip/tooltip';
+export { PopoverDirective } from './popover/popover';

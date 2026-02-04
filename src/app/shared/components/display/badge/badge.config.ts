@@ -16,7 +16,7 @@ export const BADGE_SIZES_CONFIG: Record<
     padding: '4xs',
     gap: '3xs',
     iconSize: '2xs',
-    fontSize: '2xs',
+    fontSize: 'xs',
   },
   sm: {
     padding: '3xs',

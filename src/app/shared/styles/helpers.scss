@@ -1,0 +1,9 @@
+@function joinAll($lists...) {
+  $result: ();
+
+  @each $l in $lists {
+    $result: join($result, $l);
+  }
+
+  @return $result;
+}

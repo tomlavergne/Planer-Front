@@ -26,13 +26,9 @@
 
     <!-- Text -->
     @if (text()) {
-      <app-text
-        [color]="contentColor()"
-        [size]="currentConfig().fontSize"
-        weight="thin"
-        lineHeight="none"
-        >{{ text() }}</app-text
-      >
+      <app-text [color]="contentColor()" [size]="currentConfig().fontSize" weight="thin" fullWidth>
+        {{ text() }}
+      </app-text>
     }
 
     <!-- Right Icon -->

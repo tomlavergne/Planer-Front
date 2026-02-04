@@ -18,7 +18,7 @@
       >
         <app-flex alignItems="center" gap="2xs">
           <!-- Logo Icon -->
-          <app-shape type="circle" size="sm" color="primary" />
+          <app-shape type="circle" size="sm" color="background-inverse" />
 
           @if (expanded()) {
             <!-- Logo Text -->
@@ -87,7 +87,15 @@
       />
       <app-separator />
 
-      <app-button variant="ghost" size="xs" fullWidth>
+      <app-button
+        variant="ghost"
+        size="xs"
+        fullWidth
+        [popover]="{
+          content: rg,
+          position: 'top-left',
+        }"
+      >
         <app-flex
           direction="row"
           alignItems="center"
@@ -110,6 +118,58 @@
           }
         </app-flex>
       </app-button>
+
+      <ng-template #rg>
+        <app-flex direction="column" gap="2xs" padding="2xs" style="width: 300px">
+          <app-flex direction="row" alignItems="center" padding="3xs" gap="xs" fullWidth>
+            <app-avatar imageUrl="/img/profil.png" size="md" />
+            <app-flex direction="column" gap="3xs" fullWidth>
+              <app-flex alignItems="center" gap="2xs">
+                <app-text color="text-primary" size="sm" weight="medium" wrap>
+                  Tom Lavergne
+                </app-text>
+
+                <!-- <app-badge text="Vérifié" size="xs" color="success" /> -->
+              </app-flex>
+
+              <app-text color="text-secondary" size="xs" weight="regular" truncate wrap fullWidth>
+                tom.lavergn@gmail.com
+              </app-text>
+            </app-flex>
+
+            <app-button
+              iconLeft="lucideArrowLeftRight"
+              variant="ghost"
+              size="md"
+              [tooltip]="{
+                content: 'Changer de compte',
+              }"
+            />
+          </app-flex>
+          <app-separator />
+          <app-button text="Profil" variant="ghost" size="md" fullWidth />
+          <app-button
+            text="Changer de compte"
+            iconLeft="lucideUsers"
+            iconRight="lucideChevronRight"
+            variant="ghost"
+            size="md"
+            fullWidth
+            [popover]="{
+              content: rg,
+              position: 'right',
+            }"
+          />
+          <app-button
+            text="Déconnexion"
+            iconLeft="lucideLogOut"
+            variant="ghost"
+            size="md"
+            fullWidth
+            (clicked)="logout()"
+          />
+        </app-flex>
+      </ng-template>
     </app-flex>
   </app-flex>
 </app-sidebar>

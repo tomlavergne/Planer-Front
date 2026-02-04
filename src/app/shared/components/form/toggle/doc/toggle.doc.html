@@ -8,14 +8,15 @@
 >
   <app-flex usage direction="column" gap="2xl" wrap fullWidth>
     <!-- Couleurs sémantiques -->
-    <app-flex direction="column" gap="sm">
-      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
-      <app-text size="sm" color="text-secondary">
-        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
-        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
-        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
-        des valeurs
+    <app-flex direction="column" [gap]="documentationTemplateConfig.usage.gap">
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Couleurs sémantiques
       </app-text>
+
       <app-card>
         <app-preview limitHeight>
           <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
@@ -31,19 +32,19 @@
             }
           </app-flex>
         </app-preview>
-        <app-code card-footer [code]="semanticColorExempleCode" expandable />
       </app-card>
     </app-flex>
 
     <!-- Couleurs primaires -->
     <app-flex direction="column" gap="sm">
-      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
-      <app-text size="sm" color="text-secondary">
-        Les couleurs sémantiques permettent de transmettre le contexte du message affiché dans le
-        toast, comme le succès, l'erreur, l'avertissement ou l'information. <br />
-        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du toast avec l'une
-        des valeurs
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Couleurs primaires
       </app-text>
+
       <app-card>
         <app-preview limitHeight>
           <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
@@ -59,17 +60,17 @@
             }
           </app-flex>
         </app-preview>
-        <app-code card-footer [code]="primaryColorExempleCode" expandable />
       </app-card>
     </app-flex>
 
     <!-- Tailles -->
-    <app-flex direction="column" gap="sm">
-      <app-text size="lg" color="text-primary" weight="semibold">Tailles</app-text>
-
-      <app-text size="sm" color="neutral" weight="regular">
-        Le composant Toggle prend en charge plusieurs tailles pour s'adapter à différents contextes
-        d'utilisation.
+    <app-flex direction="column" [gap]="documentationTemplateConfig.usage.gap">
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Tailles
       </app-text>
 
       <app-card>
@@ -89,15 +90,24 @@
             </app-flex>
           </app-flex>
         </app-preview>
-        <app-code card-footer [code]="sizesExempleCode" expandable />
       </app-card>
     </app-flex>
 
     <!-- Disabled -->
-    <app-flex direction="column" gap="sm">
-      <app-text size="lg" color="text-primary" weight="semibold">Disabled</app-text>
+    <app-flex direction="column" [gap]="documentationTemplateConfig.usage.gap">
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Disabled
+      </app-text>
 
-      <app-text size="sm" color="neutral" weight="regular">
+      <app-text
+        [size]="documentationTemplateConfig.usage.description.size"
+        [weight]="documentationTemplateConfig.usage.description.weight"
+        [color]="documentationTemplateConfig.usage.description.color"
+      >
         Le composant Toggle peut être désactivé pour indiquer qu'il n'est pas interactif.
       </app-text>
 
@@ -113,7 +123,7 @@
             <app-toggle color="cyan" size="md" borderRadius="full" disabled />
           </app-flex>
         </app-preview>
-        <app-code card-footer [code]="disabledExempleCode" expandable />
+        <app-code card-footer [code]="disabledExempleCode" copyable />
       </app-card>
     </app-flex>
   </app-flex>

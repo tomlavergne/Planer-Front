@@ -1,37 +1,6 @@
 import { InputOptions } from '@angular/core';
 
 export namespace Documentation {
-  /**********************/
-  /***** NAVIGATION *****/
-  /**********************/
-
-  /**
-   * Item de documentation (composant, directive, pipe, etc.)
-   */
-  export interface Item {
-    /** Nom de l'item */
-    name: string;
-    /** Chemin d'accès à l'item */
-    path: string;
-    /** Chemin d'importation de l'item */
-    importPath: string;
-    /** Fonction de chargement dynamique du composant */
-    loadComponent: () => Promise<any>;
-  }
-
-  /**
-   * Section de documentation (regroupe plusieurs items)
-   */
-  export interface Section extends Item {
-    /** Contenu de la section */
-    content: Item[];
-  }
-
-  /**
-   * Index de documentation (regroupe plusieurs sections)
-   */
-  export type Index = Section[];
-
   /***************/
   /***** API *****/
   /***************/

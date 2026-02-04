@@ -2,9 +2,8 @@
 import { Component } from '@angular/core';
 
 /***** Imports de composants *****/
-import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
-import { Flex, Text } from '../../..';
+import { DocumentationTemplate, Preview } from '@features/documentation/';
+import { Flex, Text, Card } from '@shared/components/';
 
 /***** Import de types *****/
 import type { Flex as FlexType } from '../flex.type';
@@ -12,7 +11,7 @@ import { Documentation as DocumentationType } from '@features/documentation/docu
 
 @Component({
   selector: 'app-flex-doc',
-  imports: [DocumentationTemplate, DocumentationUsage, Flex, Text],
+  imports: [DocumentationTemplate, Flex, Text, Card, Preview],
   templateUrl: './flex.doc.html',
   styleUrl: './flex.doc.scss',
 })

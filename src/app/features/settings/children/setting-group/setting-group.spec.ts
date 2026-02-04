@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentationUsage } from './documentation-usage';
+import { SettingGroup } from './setting-group';
 
-describe('DocumentationUsage', () => {
-  let component: DocumentationUsage;
-  let fixture: ComponentFixture<DocumentationUsage>;
+describe('SettingGroup', () => {
+  let component: SettingGroup;
+  let fixture: ComponentFixture<SettingGroup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DocumentationUsage]
+      imports: [SettingGroup]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DocumentationUsage);
+    fixture = TestBed.createComponent(SettingGroup);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

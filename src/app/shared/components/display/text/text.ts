@@ -34,7 +34,7 @@ export class Text {
       `font-size-${this.size()}`,
       `weight-${this.weight()}`,
       `align-${this.textAlign()}`,
-      `truncate-${this.truncate()}`,
+      this.truncate() ? 'truncate' : '',
       `italic-${this.italic()}`,
       `decoration-${this.decoration()}`,
       `underline-${this.underline()}`,

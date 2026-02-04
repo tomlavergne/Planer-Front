@@ -278,6 +278,8 @@ export class PopoverDirective implements OnDestroy {
     const config = this.popover();
     const position = config?.position ?? 'bottom';
 
+    const offsetValue = 0;
+
     const positions: Record<PopoverType.Position, ConnectedPosition[]> = {
       // Positions simples
       top: [
@@ -286,14 +288,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
         {
           originX: 'center',
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
       ],
       bottom: [
@@ -302,14 +304,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
         {
           originX: 'center',
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
       ],
       left: [
@@ -318,14 +320,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
         {
           originX: 'end',
           originY: 'center',
           overlayX: 'start',
           overlayY: 'center',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
       ],
       right: [
@@ -334,14 +336,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'center',
           overlayX: 'start',
           overlayY: 'center',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
         {
           originX: 'start',
           originY: 'center',
           overlayX: 'end',
           overlayY: 'center',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
       ],
       // Positions avancées - TOP
@@ -351,14 +353,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
         {
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
       ],
       'top-right': [
@@ -367,14 +369,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
         {
           originX: 'end',
           originY: 'bottom',
           overlayX: 'end',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
       ],
       // Positions avancées - BOTTOM
@@ -384,14 +386,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'start',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
       ],
       'bottom-right': [
@@ -400,14 +402,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'end',
           overlayY: 'top',
-          offsetY: 8,
+          offsetY: offsetValue,
         },
         {
           originX: 'end',
           originY: 'top',
           overlayX: 'end',
           overlayY: 'bottom',
-          offsetY: -8,
+          offsetY: -offsetValue,
         },
       ],
       // Positions avancées - LEFT
@@ -417,14 +419,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'end',
           overlayY: 'top',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
         {
           originX: 'end',
           originY: 'top',
           overlayX: 'start',
           overlayY: 'top',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
       ],
       'left-bottom': [
@@ -433,14 +435,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'end',
           overlayY: 'bottom',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
         {
           originX: 'end',
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'bottom',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
       ],
       // Positions avancées - RIGHT
@@ -450,14 +452,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'start',
           overlayY: 'top',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
         {
           originX: 'start',
           originY: 'top',
           overlayX: 'end',
           overlayY: 'top',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
       ],
       'right-bottom': [
@@ -466,14 +468,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'bottom',
-          offsetX: 8,
+          offsetX: offsetValue,
         },
         {
           originX: 'start',
           originY: 'bottom',
           overlayX: 'end',
           overlayY: 'bottom',
-          offsetX: -8,
+          offsetX: -offsetValue,
         },
       ],
     };

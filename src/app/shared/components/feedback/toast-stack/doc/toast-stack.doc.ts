@@ -3,9 +3,8 @@ import { Component, inject } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
-import { Flex, Text, Button } from '../../..';
-import { Toast } from '../toast/toast';
+import { Preview } from '@features/documentation/children/preview/preview';
+import { Flex, Text, Button, Card } from '../../..';
 
 /***** Import de drirectives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
@@ -18,7 +17,7 @@ import { ToastService } from '../toast-stack.service';
 
 @Component({
   selector: 'app-toast-stack.doc',
-  imports: [DocumentationTemplate, DocumentationUsage, Flex, Button, Toast],
+  imports: [DocumentationTemplate, Preview, Text, Flex, Card, Button],
   templateUrl: './toast-stack.doc.html',
 })
 export class ToastStackDoc {

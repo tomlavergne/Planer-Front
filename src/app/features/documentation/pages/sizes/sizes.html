@@ -10,7 +10,7 @@
       <app-text size="sm" color="text-secondary">
         Les espacements définissent les marges et les paddings utilisés pour créer de l'espace entre
         les éléments de l'interface utilisateur. Les variables sont nommées en fonction de leur
-        taille, allant de 'spacing-3xs' à 'spacing-3xl'.
+        taille, allant de 'spacing-5xs' à 'spacing-3xl'.
       </app-text>
       <app-card>
         <app-flex direction="row" gap="2xs" padding="md" alignItems="end">
@@ -76,9 +76,15 @@
         'font-size-5xl'.
       </app-text>
       <app-card>
-        <app-flex direction="row" gap="md" padding="2xs" alignItems="center">
+        <app-flex direction="row" gap="md" padding="2xs" alignItems="end">
           @for (fontSize of fontSizes; track $index) {
-            <app-flex direction="column" gap="2xs" alignItems="center" fullWidth>
+            <app-flex
+              direction="column"
+              gap="2xs"
+              alignItems="center"
+              justifyContent="between"
+              fullWidth
+            >
               <app-text [size]="fontSize" color="text-primary">Aa</app-text>
               <app-text size="sm" color="text-secondary">{{ fontSize }}</app-text>
             </app-flex>

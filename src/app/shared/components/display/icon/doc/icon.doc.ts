@@ -3,8 +3,8 @@ import { Component, inject } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
-import { Flex, Grid, Text, Icon, Button } from '../../..';
+import { Flex, Grid, Text, Icon, Button, Card } from '../../..';
+import { Preview } from '@features/documentation/children/preview/preview';
 
 /***** Import de drirectives *****/
 import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
@@ -22,16 +22,7 @@ import { ToastService } from '@shared/components/feedback/toast-stack/toast-stac
 
 @Component({
   selector: 'app-icon-doc',
-  imports: [
-    DocumentationTemplate,
-    DocumentationUsage,
-    Flex,
-    Grid,
-    Text,
-    Icon,
-    Button,
-    TooltipDirective,
-  ],
+  imports: [DocumentationTemplate, Flex, Grid, Text, Icon, Button, Card, Preview, TooltipDirective],
   templateUrl: './icon.doc.html',
 })
 export class IconDoc {

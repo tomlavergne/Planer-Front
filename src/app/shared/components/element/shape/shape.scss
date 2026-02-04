@@ -1,3 +1,6 @@
+@use '../../../../shared/styles/variables.scss' as *;
+@use '../../../../shared/styles/helpers.scss' as *;
+
 :host {
   display: inline-flex;
   align-items: center;
@@ -14,35 +17,6 @@
     '2xl': 96px,
   );
 
-  // Liste des couleurs
-  $colors: (
-    'primary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'white',
-    'gray',
-    'black'
-  );
-
   // Génération des tailles
   @each $name, $size in $sizes {
     &.shape--size-#{$name} {
@@ -50,6 +24,8 @@
       height: $size;
     }
   }
+
+  $colors: joinAll($semanticColors, $primaryColors, $textColors, $backgroundColors);
 
   // Génération des couleurs
   @each $color in $colors {

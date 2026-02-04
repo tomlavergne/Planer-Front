@@ -11,10 +11,6 @@
     opacity: 0;
     transform: translateY(-20px) !important;
   }
-  &:hover {
-    box-shadow: var(--shadow-xl);
-    transform: scale(1.02);
-  }
 
   @each $color in $colors {
     &.color-#{$color} {

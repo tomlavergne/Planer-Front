@@ -8,7 +8,7 @@ import { SidebarItem } from '../../../../core/layout/sidebar/children/sidebar-it
 import { Flex, Text, Button } from '../../../../shared/components';
 
 /***** Import de types *****/
-import type { Documentation as DocumentationType } from '../../documentation.type';
+import type { Routing } from '@shared/types/routing.type';
 
 import { DOCUMENTED_COMPONENTS } from '../../documentation.config';
 
@@ -19,5 +19,5 @@ import { DOCUMENTED_COMPONENTS } from '../../documentation.config';
   styleUrl: './documentation-sidebar.scss',
 })
 export class DocumentationSidebar {
-  indexConfiguration: DocumentationType.Index = DOCUMENTED_COMPONENTS;
+  indexConfiguration: Routing.Index = DOCUMENTED_COMPONENTS;
 }

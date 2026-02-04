@@ -1,0 +1,15 @@
+<app-flex direction="row" justifyContent="between" fullWidth>
+  <app-flex direction="column" gap="2xs">
+    <app-text size="md" color="text-primary">
+      {{ title() }}
+    </app-text>
+
+    @if (description()) {
+      <app-text size="sm" color="text-secondary">
+        {{ description() }}
+      </app-text>
+    }
+  </app-flex>
+
+  <ng-content />
+</app-flex>

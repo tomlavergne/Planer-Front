@@ -43,6 +43,14 @@ export class Sizes {
 
   spacingsData: SizeTableRow[] = [
     {
+      name: '5xs',
+      value: '1px',
+    },
+    {
+      name: '4xs',
+      value: '2px',
+    },
+    {
       name: '3xs',
       value: '4px',
     },

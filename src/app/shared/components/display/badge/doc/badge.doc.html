@@ -6,109 +6,150 @@
 >
   <app-flex usage direction="column" gap="2xl" wrap fullWidth>
     <!-- Variants -->
-    <app-documentation-usage
-      title="Variants"
-      description="Le composant Badge prend en charge plusieurs variantes pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="row" gap="sm" wrap>
-        @for (variant of variants; track $index) {
-          <app-badge
-            [text]="`${variant.charAt(0).toUpperCase() + variant.slice(1)}`"
-            [variant]="variant"
-            color="primary"
-            size="sm"
-            [icon]="{ name: 'lucideCircle' }"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Variants</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Badge prend en charge plusieurs variantes pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (variant of variants; track $index) {
+              <app-badge
+                [text]="`${variant.charAt(0).toUpperCase() + variant.slice(1)}`"
+                [variant]="variant"
+                color="primary"
+                size="sm"
+                [icon]="{ name: 'lucideCircle' }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
-    <!-- Couleurs -->
-    <app-documentation-usage
-      title="Couleurs"
-      description="Le composant Badge prend en charge plusieurs couleurs pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="column" gap="lg" alignItems="center">
-        <app-flex direction="row" gap="sm" justifyContent="center" wrap>
-          @for (color of primaryColors; track $index) {
-            <app-badge
-              [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
-              variant="solid"
-              [color]="color"
-              size="sm"
-              [icon]="{ name: 'lucideCircle' }"
-            />
-          }
-        </app-flex>
+    <!-- Couleurs sémantiques -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte du badge, comme le succès,
+        l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> du badge avec l'une
+        des valeurs souhaitées.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (color of primaryColors; track $index) {
+              <app-badge
+                [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
+                variant="solid"
+                [color]="color"
+                size="sm"
+                [icon]="{ name: 'lucideCircle' }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
-        <app-flex direction="row" gap="sm" justifyContent="center" wrap>
-          @for (color of semanticColors; track $index) {
-            <app-badge
-              [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
-              variant="solid"
-              [color]="color"
-              size="sm"
-              [icon]="{ name: 'lucideCircle' }"
-            />
-          }
-        </app-flex>
-      </app-flex>
-    </app-documentation-usage>
+    <!-- Couleurs primaires -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs primaires peuvent également être utilisées pour les badges afin de s'adapter à
+        l'identité visuelle de votre application. Pour les utiliser, vous pouvez définir la
+        propriété <code>color</code> du badge avec l'une des valeurs souhaitées.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (color of semanticColors; track $index) {
+              <app-badge
+                [text]="`${color.charAt(0).toUpperCase() + color.slice(1)}`"
+                variant="solid"
+                [color]="color"
+                size="sm"
+                [icon]="{ name: 'lucideCircle' }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
     <!-- Tailles -->
-    <app-documentation-usage
-      title="Tailles"
-      description="Le composant Badge prend en charge plusieurs tailles pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="row" gap="sm" alignItems="center" wrap>
-        @for (size of sizes; track $index) {
-          <app-badge
-            [text]="`${size.charAt(0).toUpperCase() + size.slice(1)}`"
-            variant="soft"
-            color="primary"
-            [size]="size"
-            [icon]="{ name: 'lucideStar' }"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Tailles</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Badge prend en charge plusieurs tailles pour s'adapter à différents contextes
+        d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (size of sizes; track $index) {
+              <app-badge
+                [text]="`${size.charAt(0).toUpperCase() + size.slice(1)}`"
+                variant="soft"
+                color="primary"
+                [size]="size"
+                [icon]="{ name: 'lucideStar' }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
     <!-- Icones -->
-    <app-documentation-usage
-      title="Avec Icônes"
-      description="Le composant Badge peut inclure des icônes pour améliorer la reconnaissance visuelle."
-    >
-      <app-flex direction="row" gap="md" wrap alignItems="center">
-        <app-badge
-          text="Success"
-          variant="solid"
-          color="green"
-          size="sm"
-          [icon]="{ name: 'lucideCheck' }"
-        />
-        <app-badge
-          text="Warning"
-          variant="solid"
-          color="orange"
-          size="sm"
-          [icon]="{ name: 'lucideAlertTriangle' }"
-        />
-        <app-badge
-          text="Error"
-          variant="solid"
-          color="red"
-          size="sm"
-          [icon]="{ name: 'lucideX' }"
-        />
-        <app-badge text="Info" variant="soft" size="sm" [icon]="{ name: 'lucideInfo' }" />
-        <app-badge
-          text="New"
-          variant="outline"
-          color="purple"
-          size="sm"
-          [icon]="{ name: 'lucideSparkles' }"
-        />
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Icones</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Badge peut inclure des icônes pour améliorer la reconnaissance visuelle.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" wrap alignItems="center">
+            <app-badge
+              text="Success"
+              variant="solid"
+              color="green"
+              size="sm"
+              [icon]="{ name: 'lucideCheck' }"
+            />
+            <app-badge
+              text="Warning"
+              variant="solid"
+              color="orange"
+              size="sm"
+              [icon]="{ name: 'lucideAlertTriangle' }"
+            />
+            <app-badge
+              text="Error"
+              variant="solid"
+              color="red"
+              size="sm"
+              [icon]="{ name: 'lucideX' }"
+            />
+            <app-badge text="Info" variant="soft" size="sm" [icon]="{ name: 'lucideInfo' }" />
+            <app-badge
+              text="New"
+              variant="outline"
+              color="purple"
+              size="sm"
+              [icon]="{ name: 'lucideSparkles' }"
+            />
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
   </app-flex>
 </app-documentation-template>

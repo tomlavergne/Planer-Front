@@ -16,12 +16,17 @@ import { Documentation as DocumentationType } from '@features/documentation/docu
 /***** import de variables  *****/
 import { primaryColors, semanticColors } from '@shared/variables/colors';
 
+/***** Import de configuration *****/
+import { DOCUMENTATION_TEMPLATE_CONFIG } from '@features/documentation/children/documentation-template/documentation-template.config';
+
 @Component({
   selector: 'app-toggle-doc',
   imports: [DocumentationTemplate, Flex, Text, Toggle, Preview, Card, Code, TooltipDirective],
   templateUrl: './toggle.doc.html',
 })
 export class ToggleDoc {
+  documentationTemplateConfig = DOCUMENTATION_TEMPLATE_CONFIG;
+
   primaryColors = primaryColors;
   semanticColors = semanticColors;
 

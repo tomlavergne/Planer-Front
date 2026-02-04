@@ -7,60 +7,106 @@
   showLibraryTab
 >
   <app-flex usage direction="column" gap="2xl" wrap fullWidth>
-    <!-- Colors -->
-    <app-documentation-usage
-      title="Couleurs"
-      description="Le composant Icon permet de définir la couleur de l'icône à l'aide de la propriété 'color'. Vous pouvez choisir parmi une variété de couleurs prédéfinies pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
-        <app-flex direction="row" gap="md" wrap alignItems="center">
-          @for (color of primaryColors; track $index) {
-            <app-icon name="lucideStar" size="md" [color]="color" [tooltip]="{ content: color }" />
-          }
-        </app-flex>
+    <!-- Semantic Colors -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs sémantiques</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs sémantiques permettent de transmettre le contexte ou la signification de
+        l'icône, comme le succès, l'erreur, l'avertissement ou l'information. <br />
+        Pour les utiliser, vous pouvez définir la propriété <code>color</code> de l'icône avec l'une
+        des valeurs souhaitées.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" wrap alignItems="center">
+            @for (color of semanticColors; track $index) {
+              <app-icon
+                name="lucideStar"
+                size="md"
+                [color]="color"
+                [tooltip]="{ content: color }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
-        <app-flex direction="row" gap="md" wrap alignItems="center">
-          @for (color of semanticColors; track $index) {
-            <app-icon name="lucideStar" size="md" [color]="color" [tooltip]="{ content: color }" />
-          }
-        </app-flex>
-      </app-flex>
-    </app-documentation-usage>
+    <!-- Primary Colors -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Couleurs primaires</app-text>
+      <app-text size="sm" color="text-secondary">
+        Les couleurs primaires peuvent également être utilisées pour les icônes afin de s'adapter à
+        l'identité visuelle de votre application. Pour les utiliser, vous pouvez définir la
+        propriété <code>color</code> de l'icône avec l'une des valeurs souhaitées.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" wrap alignItems="center">
+            @for (color of primaryColors; track $index) {
+              <app-icon
+                name="lucideStar"
+                size="md"
+                [color]="color"
+                [tooltip]="{ content: color }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
     <!-- Sizes -->
-    <app-documentation-usage
-      title="Tailles"
-      description="Le composant Icon permet de définir la taille de l'icône à l'aide de la propriété 'size'. Vous pouvez choisir parmi plusieurs tailles prédéfinies pour s'adapter à différents contextes d'utilisation."
-    >
-      <app-flex direction="row" gap="md" wrap alignItems="center">
-        @for (size of sizes; track $index) {
-          <app-icon
-            name="lucideStar"
-            [size]="size"
-            color="secondary"
-            [tooltip]="{ content: size }"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Tailles</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Icon permet de définir la taille de l'icône à l'aide de la propriété
+        <code>size</code>. Vous pouvez choisir parmi plusieurs tailles prédéfinies pour s'adapter à
+        différents contextes d'utilisation.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" wrap alignItems="center">
+            @for (size of sizes; track $index) {
+              <app-icon
+                name="lucideStar"
+                [size]="size"
+                color="secondary"
+                [tooltip]="{ content: size }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
 
     <!-- Stroke width -->
-    <app-documentation-usage
-      title="Largeur du trait"
-      description="La propriété 'strokeWidth' du composant Icon permet de définir l'épaisseur du trait de l'icône. Vous pouvez ajuster cette valeur pour obtenir l'apparence souhaitée."
-    >
-      <app-flex direction="row" gap="md" wrap alignItems="center">
-        @for (width of strokeWidths; track $index) {
-          <app-icon
-            name="lucideStar"
-            size="lg"
-            [strokeWidth]="width"
-            color="secondary"
-            [tooltip]="{ content: width.toString() }"
-          />
-        }
-      </app-flex>
-    </app-documentation-usage>
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">strokeWidth</app-text>
+      <app-text size="sm" color="text-secondary">
+        La propriété <code>strokeWidth</code> du composant Icon permet de définir l'épaisseur du
+        trait de l'icône. Vous pouvez ajuster cette valeur pour obtenir l'apparence souhaitée.
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" wrap alignItems="center">
+            @for (width of strokeWidths; track $index) {
+              <app-icon
+                name="lucideStar"
+                size="lg"
+                [strokeWidth]="width"
+                color="secondary"
+                [tooltip]="{ content: width.toString() }"
+              />
+            }
+          </app-flex>
+        </app-preview>
+        <!-- <app-code card-footer [code]="semanticColorsCodeExemple" expandable /> -->
+      </app-card>
+    </app-flex>
   </app-flex>
 
   <app-flex library direction="column" gap="lg" wrap fullWidth>

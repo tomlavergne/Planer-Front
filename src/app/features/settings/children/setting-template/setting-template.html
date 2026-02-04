@@ -1,0 +1,16 @@
+<app-flex direction="column" gap="xl" padding="3xl" fullWidth>
+  <!-- En tête -->
+  <app-flex direction="column" gap="md" fullWidth>
+    <!-- Première ligne -->
+    <app-text size="3xl" color="text-primary" weight="semibold">{{ title() }}</app-text>
+
+    <!-- Introduction -->
+    @if (description()) {
+      <app-text size="md" color="neutral" weight="regular">{{ description() }}</app-text>
+    }
+  </app-flex>
+
+  <app-separator />
+
+  <ng-content></ng-content>
+</app-flex>

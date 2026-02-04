@@ -1,0 +1,19 @@
+<app-flex direction="column" gap="sm" fullWidth>
+  <app-flex direction="column" gap="2xs">
+    <app-text size="lg" weight="medium" color="text-primary">
+      {{ title() }}
+    </app-text>
+
+    @if (description()) {
+      <app-text size="sm" color="text-secondary">
+        {{ description() }}
+      </app-text>
+    }
+  </app-flex>
+
+  <app-card>
+    <app-flex direction="column" gap="md" padding="2xs">
+      <ng-content />
+    </app-flex>
+  </app-card>
+</app-flex>

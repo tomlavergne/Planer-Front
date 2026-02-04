@@ -1,9 +1,14 @@
+/***** Imports Anguar *****/
 import { Injectable, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
+/***** Import de configuration *****/
 import { DOCUMENTED_COMPONENTS } from './documentation.config';
-import type { Documentation as DocumentationType } from './documentation.type';
+
+/***** Import de types *****/
+import type { Routing } from '@shared/types/routing.type';
 
 export interface RouteNavigation {
   current: string | null;
@@ -26,10 +31,14 @@ export class DocumentationNavigationService {
   private getDocumentationRoutes(): string[] {
     const routes: string[] = [];
 
-    DOCUMENTED_COMPONENTS.forEach((section: DocumentationType.Section) => {
-      section.content.forEach((item: DocumentationType.Item) => {
+    DOCUMENTED_COMPONENTS.forEach((item: Routing.Item) => {
+      if (item.content) {
+        item.content.forEach((item: Routing.Item) => {
+          routes.push(item.path);
+        });
+      } else {
         routes.push(item.path);
-      });
+      }
     });
 
     return routes;

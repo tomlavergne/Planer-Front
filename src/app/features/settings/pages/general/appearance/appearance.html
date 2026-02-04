@@ -1,0 +1,43 @@
+<app-setting-template
+  title="Apparance"
+  description="
+Customisez l'apparence de votre application en choisissant entre le mode clair, sombre ou automatique. Vous pouvez également sélectionner un thème de couleur principal qui correspond à votre style préféré.
+"
+>
+  <app-setting-group
+    title="Préférences"
+    description="Choisissez entre le mode clair, sombre ou automatique en fonction de vos préférences."
+  >
+    <app-setting-item
+      title="Mode d'affichage"
+      description="Choisissez entre le mode clair, sombre ou automatique en fonction de vos préférences."
+    >
+      <app-button
+        [text]="`Basculer en thème ${themeService.theme() === 'light' ? 'sombre' : 'clair'}`"
+        variant="soft"
+        size="md"
+        [iconLeft]="themeService.theme() === 'light' ? 'lucideMoon' : 'lucideSun'"
+        (clicked)="toggleTheme()"
+      />
+    </app-setting-item>
+
+    <app-separator />
+
+    <app-setting-item
+      title="Thème de couleur principal"
+      description="Sélectionnez un thème de couleur principal pour personnaliser l'apparence de l'application."
+    >
+      <app-flex gap="sm" wrap>
+        @for (color of primaryColors; track color) {
+          <app-button
+            [text]="color.slice(0, 1).toUpperCase() + color.slice(1)"
+            variant="soft"
+            size="md"
+            [color]="themeService.primaryColor() === color ? color : 'secondary'"
+            (clicked)="setPrimaryColor(color)"
+          />
+        }
+      </app-flex>
+    </app-setting-item>
+  </app-setting-group>
+</app-setting-template>

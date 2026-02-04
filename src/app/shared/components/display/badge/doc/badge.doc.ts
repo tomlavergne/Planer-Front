@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
 /***** Imports des composants *****/
-import { Flex, Badge } from '../../..';
+import { Flex, Badge, Card, Text } from '../../..';
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
+import { Preview } from '@features/documentation/children/preview/preview';
 
 // Import de types
 import { Badge as BadgeType } from '../badge.type';
 
 @Component({
   selector: 'app-badge-doc',
-  imports: [Flex, Badge, DocumentationTemplate, DocumentationUsage],
+  imports: [Flex, Badge, DocumentationTemplate, Preview, Card, Text],
   templateUrl: './badge.doc.html',
 })
 export class BadgeDoc {

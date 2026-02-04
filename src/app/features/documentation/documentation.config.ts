@@ -1,8 +1,13 @@
 /***** Imports de types *****/
-import path from 'path';
-import { Documentation as DocumentationType } from './documentation.type';
+import type { Routing } from '@shared/types/routing.type';
 
-export const DOCUMENTED_COMPONENTS: DocumentationType.Index = [
+export const DOCUMENTED_COMPONENTS: Routing.Index = [
+  {
+    name: 'Accueil',
+    path: 'home',
+    importPath: './pages/home/home',
+    loadComponent: () => import('./pages/home/home').then((h) => h.Home),
+  },
   {
     name: 'General',
     path: 'general',
@@ -221,13 +226,20 @@ export function generateDocumentationRoutes(): any {
   const routes: any[] = [];
 
   // Aplatir toutes les sections pour créer des routes plates
-  DOCUMENTED_COMPONENTS.forEach((section: DocumentationType.Section) => {
-    section.content.forEach((item: DocumentationType.Item) => {
+  DOCUMENTED_COMPONENTS.forEach((item: Routing.Item) => {
+    if (item.content) {
+      item.content.forEach((item: Routing.Item) => {
+        routes.push({
+          path: item.path,
+          loadComponent: item.loadComponent,
+        });
+      });
+    } else {
       routes.push({
         path: item.path,
         loadComponent: item.loadComponent,
       });
-    });
+    }
   });
 
   return routes;

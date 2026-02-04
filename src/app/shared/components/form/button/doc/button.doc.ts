@@ -2,21 +2,22 @@
 import { Component } from '@angular/core';
 
 /***** Imports de composants *****/
-import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
-import { DocumentationUsage } from '@features/documentation/children/documentation-usage/documentation-usage';
-import { Preview } from '@features/documentation/children/preview/preview';
+import { Preview, DocumentationTemplate } from '@features/documentation/';
 import { Card, Flex, Button, Text, Icon, Code, Shape } from '@shared/components/';
 
 /***** Import de directives *****/
-import { TooltipDirective } from '../../../../directives/tooltip/tooltip';
+import { TooltipDirective } from '@shared/directives/';
 
 /***** Import de types *****/
 import type { Button as ButtonType } from '../button.type';
-import type { Icon as IconType } from '../../../display/icon/icon.type';
+import type { Icon as IconType } from '@shared/components/display/icon/icon.type';
 import type { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
 /***** Import de variables  *****/
 import { primaryColors, semanticColors } from '@shared/variables/colors';
+import { DOCUMENTATION_TEMPLATE_CONFIG } from '@features/documentation/children/documentation-template/documentation-template.config';
+
+/***** Import de configuration *****/
 
 @Component({
   selector: 'Button-documentation',
@@ -30,12 +31,13 @@ import { primaryColors, semanticColors } from '@shared/variables/colors';
     Code,
     Shape,
     Preview,
-    DocumentationUsage,
     TooltipDirective,
   ],
   templateUrl: './button.doc.html',
 })
 export class ButtonDoc {
+  documentationTemplateConfig = DOCUMENTATION_TEMPLATE_CONFIG;
+
   primaryColors = primaryColors;
   semanticColors = semanticColors;
 
@@ -131,32 +133,5 @@ export class ButtonDoc {
 
 </Button>`;
 
-  colorExempleCode = `@for (color of [${this.semanticColors.toString()}] track $index) {
-    <Button
-        [text]="color"
-        [color]="color"
-        size="sm"
-        borderRadius="full"
-    />
-}`;
-
-  variantExempleCode = `@for (variant of [${this.variants.toString()}]; track $index) {
-    <Button
-        [text]="variant"
-        [variant]="variant"
-        size="sm"
-        borderRadius="full"
-    />
-}`;
-
-  sizeExempleCode = `@for (size of [${this.sizes.toString()}]; track $index) {
-    <Button
-        [text]="size"
-        [variant]="variant"
-        size="sm"
-        borderRadius="full"
-    />
-}`;
-
-  disabledExempleCode = `<Button text="Disabled" size="sm" color="primary" borderRadius="full" disabled />`;
+  disabledExempleCode = `<Button text="Disabled" size="sm" color="primary" disabled />`;
 }

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { generateDocumentationRoutes } from './features/documentation/documentation.config';
+import { generateSettingRoutes } from './features/settings/settings.config';
 
 console.log(generateDocumentationRoutes());
 
@@ -28,31 +29,24 @@ export const routes: Routes = [
       },
     ],
   },
+
   {
     path: 'settings',
     loadComponent: () => import('./features/settings/settings').then((m) => m.Settings),
-    // canActivate: [authGuard],
-    children: [
-      //   {
-      //     path: '',
-      //     redirectTo: 'profile',
-      //     pathMatch: 'full',
-      //   },
-      //   {
-      //     path: 'profile',
-      //     loadComponent: () => import('./features/settings/profile/profile').then((m) => m.Profile),
-      //   },
-      //   {
-      //     path: 'theme',
-      //     loadComponent: () => import('./features/settings/theme/theme').then((m) => m.ThemeSettings),
-      //   },
-    ],
+    children: generateSettingRoutes(),
   },
   {
     path: 'documentation',
     loadComponent: () =>
       import('./features/documentation/documentation').then((m) => m.Documentation),
-    children: generateDocumentationRoutes(),
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      ...generateDocumentationRoutes(),
+    ],
   },
 
   // Authentification (publique)
