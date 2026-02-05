@@ -7,7 +7,6 @@
   [disabled]="disabled()"
   [popover]="{
     content: dropdownTemplate,
-    position: 'bottom',
     offsetY: popoverOffset(),
   }"
   (popoverOpened)="onPopoverOpened()"
@@ -15,10 +14,11 @@
 
 <!-- Dropdown -->
 <ng-template #dropdownTemplate>
-  <app-flex direction="column" padding="2xs" gap="2xs">
+  <app-flex direction="column" padding="2xs" gap="2xs" class="select-options-container">
     @for (option of options(); track option.value) {
       <app-button
         [text]="option.label"
+        size="md"
         [variant]="value() === option.value ? 'soft' : 'ghost'"
         [iconRight]="value() === option.value ? 'lucideCheck' : null"
         [disabled]="option.disabled"

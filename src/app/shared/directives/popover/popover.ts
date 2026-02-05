@@ -39,7 +39,7 @@ class PopoverContentComponent {
   template = signal<TemplateRef<any> | null>(null);
   templateContext = signal<any>({});
   showCloseButton = signal<boolean>(true);
-  position = signal<PopoverType.Position>('bottom');
+  position = signal<PopoverType.Position | 'auto'>('auto');
 
   closeRequested = output<void>();
 
@@ -245,7 +245,7 @@ export class PopoverDirective implements OnDestroy {
 
     this.componentRef.instance.title.set(config.title || null);
     this.componentRef.instance.showCloseButton.set(config.showCloseButton ?? true);
-    this.componentRef.instance.position.set(config.position ?? 'bottom');
+    this.componentRef.instance.position.set(config.position ?? 'auto');
 
     if (typeof config.content === 'string') {
       this.componentRef.instance.text.set(config.content);

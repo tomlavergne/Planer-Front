@@ -45,6 +45,7 @@ export class Select {
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
   error = input<boolean, any>(false, { transform: booleanAttribute });
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
+  maxVisibleOptions = input<number>(6);
 
   /***** Model (two-way binding) *****/
   value = model<string | null>(null);
@@ -81,18 +82,57 @@ export class Select {
       }
     }
 
-    // Attendre que le template soit rendu dans l'overlay
-    setTimeout(() => {
+    // Utiliser requestAnimationFrame pour un rendu plus fluide
+    requestAnimationFrame(() => {
       // Chercher directement dans le DOM de l'overlay CDK
       const overlayContainer = document.querySelector('.cdk-overlay-pane app-flex');
       console.log('Overlay container found:', overlayContainer);
 
-      if (overlayContainer && this.shouldMeasure()) {
-        console.log('##### Measuring option dimensions...');
-        this.measureOptionDimensions(overlayContainer as HTMLElement);
-        this.shouldMeasure.set(false); // Mesurer une seule fois
+      if (overlayContainer) {
+        // Mesurer seulement la première fois
+        if (this.shouldMeasure()) {
+          console.log('##### Measuring option dimensions...');
+          this.measureOptionDimensions(overlayContainer as HTMLElement);
+          this.shouldMeasure.set(false);
+        }
+
+        // Appliquer le scroll immédiatement
+        this.scrollToSelectedOption(overlayContainer as HTMLElement);
       }
-    }, 100);
+    });
+  }
+
+  private scrollToSelectedOption(container: HTMLElement): void {
+    const index = this.selectedIndex();
+    if (index === -1) {
+      console.log('No option selected, no scroll needed');
+      return;
+    }
+
+    const optionHeight = this.measuredOptionHeight() ?? 40;
+    const gap = this.measuredGap() ?? 8;
+
+    // Calculer la position de scroll pour que l'option sélectionnée soit en haut du conteneur visible
+    // Note: on ne compte PAS le padding car le scroll se fait à partir du contenu, pas du padding
+    const scrollPosition = index * (optionHeight + gap);
+
+    console.log('Applying scroll:', {
+      index,
+      optionHeight,
+      gap,
+      calculatedScrollPosition: scrollPosition,
+      containerHeight: container.clientHeight,
+      containerScrollHeight: container.scrollHeight,
+    });
+
+    // Appliquer le scroll
+    container.scrollTop = scrollPosition;
+
+    // Vérifier que le scroll a bien été appliqué
+    console.log('Scroll after application:', {
+      scrollTop: container.scrollTop,
+      expected: scrollPosition,
+    });
   }
 
   private measureOptionDimensions(container: HTMLElement): void {
@@ -150,33 +190,13 @@ export class Select {
 
   // Computed pour l'offset du popover basé sur l'option sélectionnée
   popoverOffset = computed(() => {
-    const index = this.selectedIndex();
-    if (index === -1) return 0; // Pas d'option sélectionnée
-
-    // Utiliser les mesures réelles si disponibles, sinon utiliser des valeurs par défaut
-    const optionHeight = this.measuredOptionHeight() ?? 40;
-    const gap = this.measuredGap() ?? 8;
-    const containerPadding = this.measuredContainerPadding() ?? 8;
+    // Le popover doit rester proche du select button
+    // On remonte juste de la hauteur du bouton pour l'aligner avec son haut
+    // Le scroll interne gérera l'alignement de l'option sélectionnée
     const selectButtonHeight = this.measuredSelectButtonHeight() ?? 40;
 
-    // Calcule l'offset pour que le HAUT de l'option sélectionnée soit aligné avec le HAUT du bouton select
-    // - Le popover est positionné à partir du BAS du bouton select (position: 'bottom')
-    // - Pour aligner les hauts, on doit remonter de:
-    //   1. La hauteur du bouton select lui-même (pour revenir au haut du bouton)
-    //   2. Le padding du conteneur
-    //   3. La hauteur de toutes les options avant celle sélectionnée
-    //   4. Les gaps entre ces options
-    // Formule: -(selectButtonHeight + containerPadding + index * (optionHeight + gap))
-    const offset = -(selectButtonHeight + containerPadding + index * (optionHeight + gap));
-    console.log('Calculated offset:', {
-      index,
-      selectButtonHeight,
-      containerPadding,
-      optionHeight,
-      gap,
-      offset,
-    });
-    return offset;
+    // Offset fixe : on remonte juste de la hauteur du bouton
+    return -selectButtonHeight;
   });
 
   // Computed pour les classes

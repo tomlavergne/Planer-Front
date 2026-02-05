@@ -3,3 +3,36 @@
   position: relative;
   width: 300px;
 }
+
+.select-options-container {
+  min-width: 150px;
+}
+
+// Styles pour le conteneur scrollable des options
+::ng-deep .select-options-container {
+  max-height: calc(var(--select-max-visible-options, 6) * 44px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // Scrollbar personnalisée
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border-primary);
+    border-radius: var(--radius-full);
+
+    &:hover {
+      background: var(--color-border-secondary);
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-primary) transparent;
+}
