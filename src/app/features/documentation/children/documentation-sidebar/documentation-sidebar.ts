@@ -1,6 +1,5 @@
 /***** Imports Angular *****/
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 /***** Import de composants *****/
 import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
@@ -14,7 +13,7 @@ import { DOCUMENTED_COMPONENTS } from '../../documentation.config';
 
 @Component({
   selector: 'app-documentation-sidebar',
-  imports: [RouterLink, Sidebar, SidebarItem, Flex, Text, Button],
+  imports: [Sidebar, SidebarItem, Flex, Text, Button],
   templateUrl: './documentation-sidebar.html',
   styleUrl: './documentation-sidebar.scss',
 })

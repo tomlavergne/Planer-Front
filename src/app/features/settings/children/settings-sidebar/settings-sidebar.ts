@@ -1,6 +1,5 @@
 /***** Imports Angular *****/
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 /***** Imorts de composants *****/
 import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
@@ -15,7 +14,7 @@ import type { Routing } from '@shared/types/routing.type';
 
 @Component({
   selector: 'app-settings-sidebar',
-  imports: [RouterLink, Sidebar, SidebarItem, Button, Flex, Text, Icon, Avatar],
+  imports: [Sidebar, SidebarItem, Button, Flex, Text, Icon, Avatar],
   templateUrl: './settings-sidebar.html',
   styleUrl: './settings-sidebar.scss',
 })

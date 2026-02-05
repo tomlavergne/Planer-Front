@@ -1,4 +1,16 @@
-<ng-content></ng-content>
+<app-flex direction="column" gap="xs" fullHeight>
+  @if (showGoBackButton()) {
+    <app-button
+      text="Retour"
+      iconLeft="lucideChevronLeft"
+      variant="ghost"
+      size="sm"
+      (clicked)="goBack()"
+    />
+  }
+
+  <ng-content> </ng-content>
+</app-flex>
 
 <!-- Resize handle -->
 @if (expandable()) {

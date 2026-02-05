@@ -14,7 +14,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 /***** Imports de composants *****/
-import { Button, Flex, Text, Separator } from '../../';
+import { Button, Flex, Text, Card, Separator } from '../../';
 
 /***** Imports de types *****/
 import { Size } from '../../../types';
@@ -25,7 +25,7 @@ import { PopoverDirective } from '@shared/directives';
 
 @Component({
   selector: 'app-select',
-  imports: [CommonModule, Button, Flex, Text, Separator, PopoverDirective],
+  imports: [CommonModule, Button, Flex, Text, Card, Separator, PopoverDirective],
   templateUrl: './select.html',
   styleUrl: './select.scss',
   host: {

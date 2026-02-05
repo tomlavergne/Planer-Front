@@ -6,6 +6,7 @@
 
   display: inline-block;
   flex-shrink: 1; // Permet au bouton de rétrécir dans un contexte flex
+  width: fit-content; // Adapte la largeur au contenu
   border-color: transparent;
 
   button {

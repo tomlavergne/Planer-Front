@@ -10,6 +10,7 @@ import {
   Icon,
   Badge,
   Text,
+  Card,
   Separator,
   Shape,
 } from '../../../../shared/components';
@@ -34,6 +35,7 @@ import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
     Separator,
     Shape,
     Badge,
+    Card,
     SidebarItem,
     TooltipDirective,
     PopoverDirective,

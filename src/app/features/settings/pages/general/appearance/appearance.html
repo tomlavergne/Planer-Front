@@ -27,15 +27,11 @@
       description="Sélectionnez la couleur principale de l'application."
     >
       <app-flex gap="sm" wrap>
-        @for (color of primaryColors; track color) {
-          <app-button
-            [text]="color.slice(0, 1).toUpperCase() + color.slice(1)"
-            variant="soft"
-            size="md"
-            [color]="themeService.primaryColor() === color ? color : 'secondary'"
-            (clicked)="setPrimaryColor(color)"
-          />
-        }
+        <app-select
+          [options]="options"
+          [value]="themeService.primaryColor()"
+          (valueChange)="setPrimaryColor($event)"
+        />
       </app-flex>
     </app-setting-item>
   </app-setting-group>

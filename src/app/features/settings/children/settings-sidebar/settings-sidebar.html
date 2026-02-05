@@ -1,13 +1,5 @@
-<app-sidebar [expanded]="true">
+<app-sidebar [expanded]="true" showGoBackButton>
   <app-flex direction="column" gap="md" fullWidth>
-    <app-button
-      text="Retour"
-      iconLeft="lucideChevronLeft"
-      variant="ghost"
-      size="sm"
-      routerLink=""
-    />
-
     <app-flex direction="column" gap="lg" class="documentation-sidebar">
       @for (item of indexConfiguration; track $index) {
         @if (item.content) {

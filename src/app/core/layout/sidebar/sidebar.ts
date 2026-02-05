@@ -5,16 +5,21 @@ import {
   input,
   model,
   computed,
+  inject,
   HostListener,
   booleanAttribute,
 } from '@angular/core';
+import { Router } from '@angular/router';
+
+/***** Imports de composants *****/
+import { Button, Flex } from '@shared/components';
 
 /***** Imports de directives *****/
 import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [TooltipDirective],
+  imports: [Button, Flex, TooltipDirective],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
   host: {
@@ -23,8 +28,14 @@ import { TooltipDirective } from '../../../shared/directives/tooltip/tooltip';
   },
 })
 export class Sidebar {
+  showGoBackButton = input<boolean, any>(false, { transform: booleanAttribute });
   expanded = model<boolean>();
   expandable = input<boolean, any>(false, { transform: booleanAttribute });
+
+  private router = inject(Router);
+  goBack(): void {
+    this.router.navigate(['']);
+  }
 
   /***************************/
   /***** RESIZING HANDLE *****/

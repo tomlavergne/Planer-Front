@@ -224,7 +224,7 @@
 
   // Alternative: utiliser focus-visible pour n'afficher l'outline que lors de la navigation clavier
   &:focus-visible {
-    outline: 1px solid color-mix(in srgb, var(--color-secondary), var(--color-background-primary));
+    outline: 2px solid var(--color-primary);
     // outline-offset: 1px;
   }
 

@@ -3,12 +3,47 @@
   introduction="Le composant Select permet à l'utilisateur de choisir une option parmi une liste déroulante d'options. Il est idéal pour les formulaires et les interfaces où l'espace est limité."
   showUsageTab
 >
-  <app-flex usage>
-    <app-select
-      placeholder="Sélectionnez une option"
-      [options]="options"
-      [groups]="groups"
-      [value]="'2'"
-    />
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Basic -->
+    <app-flex direction="column" [gap]="documentationTemplateConfig.usage.gap" fullWidth>
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Basic
+      </app-text>
+
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
+            <app-select placeholder="Sélectionnez une option" [options]="options" [value]="'2'" />
+          </app-flex>
+        </app-preview>
+      </app-card>
+    </app-flex>
+
+    <!-- Groups -->
+    <app-flex direction="column" [gap]="documentationTemplateConfig.usage.gap" fullWidth>
+      <app-text
+        [size]="documentationTemplateConfig.usage.title.size"
+        [weight]="documentationTemplateConfig.usage.title.weight"
+        [color]="documentationTemplateConfig.usage.title.color"
+      >
+        Groups
+      </app-text>
+
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="row" gap="md" alignItems="center" padding="sm" wrap>
+            <app-select
+              placeholder="Sélectionnez une option parmi les groupes"
+              [groups]="groups"
+              [value]="'2'"
+            />
+          </app-flex>
+        </app-preview>
+      </app-card>
+    </app-flex>
   </app-flex>
 </app-documentation-template>
