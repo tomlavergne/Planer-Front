@@ -29,8 +29,8 @@ export class SegmentedControl {
   options = input.required<SegmentedControlType.Option[]>();
   name = input<string>('segmented-control');
   color = input<SegmentedControlType.Color>('primary');
+  size = input<SegmentedControlType.Size>('md');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
-  type = input<SegmentedControlType.Type>('button');
 
   /***** MODEL (two-way binding) *****/
   value = model<string | null>(null);

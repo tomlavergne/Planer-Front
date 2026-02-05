@@ -1,5 +1,5 @@
 /***** Imports Angular *****/
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 /***** Imports des composants *****/
 import { DocumentationTemplate } from '../../../../../../features/documentation/children/documentation-template/documentation-template';
@@ -13,7 +13,6 @@ import { Toast as ToastType } from '../toast.type';
 
 /***** Import de variables *****/
 import { semanticColors, primaryColors } from '@shared/variables/colors';
-import { SemanticColor } from '@shared/types';
 
 @Component({
   selector: 'app-toast.doc',

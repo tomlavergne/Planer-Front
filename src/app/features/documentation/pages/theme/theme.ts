@@ -2,7 +2,7 @@
 import { Component, inject } from '@angular/core';
 
 /***** Import de composants *****/
-import { Flex, Button, Text, Toggle } from '@shared/components';
+import { Flex, Button, Text, SegmentedControl } from '@shared/components';
 import { DocumentationTemplate } from '@features/documentation/children/documentation-template/documentation-template';
 
 /***** Import de service *****/
@@ -16,7 +16,7 @@ import { primaryColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'app-theme',
-  imports: [Flex, DocumentationTemplate, Button, Text, Toggle],
+  imports: [Flex, DocumentationTemplate, Button, Text, SegmentedControl],
   templateUrl: './theme.html',
 })
 export class Theme {
@@ -29,9 +29,11 @@ export class Theme {
   /***** METHODS *****/
   /*******************/
 
-  //   toggleTheme(): void {
-  //     this.themeService.toggleTheme();
-  //   }
+  setTheme(theme: string | null): void {
+    if (theme === 'light' || theme === 'dark' || theme === 'auto') {
+      this.themeService.setTheme(theme);
+    }
+  }
 
   setPrimaryColor(color: PrimaryColor): void {
     this.themeService.setPrimaryColor(color);

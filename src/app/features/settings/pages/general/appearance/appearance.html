@@ -6,17 +6,15 @@
 >
   <app-setting-group title="Apparance">
     <app-setting-item
-      title="Mode d'affichage"
-      description="Choisissez entre le mode clair, sombre ou automatique en fonction de vos préférences."
+      title="Thème"
+      description="Choisissez votre thème préféré pour l'application. Le mode 'Auto' ajuste automatiquement le thème en fonction de vos paramètres système."
     >
       <app-segmented-control
-        name="theme-mode"
         [options]="[
           { label: 'Clair', value: 'light', icon: 'lucideSun' },
           { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
           { label: 'Auto', value: 'auto', icon: 'lucideMonitor' },
         ]"
-        [color]="'primary'"
         [value]="themeService.theme()"
         (valueChange)="setTheme($event)"
       />
@@ -25,8 +23,8 @@
     <app-separator />
 
     <app-setting-item
-      title="Thème de couleur principal"
-      description="Sélectionnez un thème de couleur principal pour personnaliser l'apparence de l'application."
+      title="Couleur principale"
+      description="Sélectionnez la couleur principale de l'application."
     >
       <app-flex gap="sm" wrap>
         @for (color of primaryColors; track color) {

@@ -1,8 +1,8 @@
-import type { Size, SemanticColor } from '../../../types';
+import type { Size as UISize, SemanticColor } from '../../../types';
 import { Icon } from '../icon/icon.type';
 
 export namespace SegmentedControl {
-  export type Type = 'button' | 'submit' | 'reset';
+  export type Size = Extract<UISize, 'sm' | 'md' | 'lg' | 'xl'>;
 
   export interface Option {
     value: string;

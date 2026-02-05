@@ -63,6 +63,7 @@ export class PopoverDirective implements OnDestroy {
     closeOnClickOutside?: boolean;
     showCloseButton?: boolean;
     disabled?: boolean;
+    offsetY?: number; // Offset vertical personnalisé
   } | null>(null);
 
   // Output
@@ -227,7 +228,10 @@ export class PopoverDirective implements OnDestroy {
     this.popoverOpened.emit();
   }
 
-  private close(): void {
+  /**
+   * Ferme le popover (méthode publique)
+   */
+  public close(): void {
     if (this.overlayRef?.hasAttached()) {
       this.overlayRef.detach();
       this.componentRef = undefined;
@@ -277,6 +281,7 @@ export class PopoverDirective implements OnDestroy {
   private getPositions(): ConnectedPosition[] {
     const config = this.popover();
     const position = config?.position ?? 'bottom';
+    const customOffsetY = config?.offsetY ?? 0;
 
     const offsetValue = 0;
 
@@ -288,14 +293,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetY: -offsetValue,
+          offsetY: -offsetValue + customOffsetY,
         },
         {
           originX: 'center',
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          offsetY: offsetValue,
+          offsetY: offsetValue + customOffsetY,
         },
       ],
       bottom: [
@@ -304,14 +309,14 @@ export class PopoverDirective implements OnDestroy {
           originY: 'bottom',
           overlayX: 'center',
           overlayY: 'top',
-          offsetY: offsetValue,
+          offsetY: offsetValue + customOffsetY,
         },
         {
           originX: 'center',
           originY: 'top',
           overlayX: 'center',
           overlayY: 'bottom',
-          offsetY: -offsetValue,
+          offsetY: -offsetValue + customOffsetY,
         },
       ],
       left: [

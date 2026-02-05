@@ -13,11 +13,14 @@
         Basculez entre les thèmes clair et sombre pour adapter l'apparence de l'application à vos
         préférences ou aux conditions d'éclairage ambiantes.
       </app-text>
-      <app-button
-        [text]="`Basculer en thème ${themeService.theme() === 'light' ? 'sombre' : 'clair'}`"
-        variant="soft"
-        size="md"
-        [iconLeft]="themeService.theme() === 'light' ? 'lucideMoon' : 'lucideSun'"
+      <app-segmented-control
+        [options]="[
+          { label: 'Clair', value: 'light', icon: 'lucideSun' },
+          { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
+          { label: 'Auto', value: 'auto', icon: 'lucideMonitor' },
+        ]"
+        [value]="themeService.theme()"
+        (valueChange)="setTheme($event)"
       />
     </app-flex>
 

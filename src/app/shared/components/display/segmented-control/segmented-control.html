@@ -3,8 +3,9 @@
     <app-button
       [text]="option.label"
       [iconLeft]="option.icon!"
+      [size]="size()"
       [variant]="isSelected(option) ? 'solid' : 'ghost'"
-      [color]="isSelected(option) ? 'secondary' : 'secondary'"
+      [color]="isSelected(option) ? 'primary' : 'secondary'"
       [disabled]="isOptionDisabled(option)"
       (clicked)="selectOption(option)"
     />

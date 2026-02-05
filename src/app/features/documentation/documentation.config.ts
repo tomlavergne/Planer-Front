@@ -121,6 +121,13 @@ export const DOCUMENTED_COMPONENTS: Routing.Index = [
           import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
       },
       {
+        name: 'Select',
+        path: 'select',
+        importPath: '../../shared/components/forms/select/doc/select.doc',
+        loadComponent: () =>
+          import('../../shared/components/form/select/doc/select.doc').then((s) => s.SelectDoc),
+      },
+      {
         name: 'ColorPicker',
         path: 'color-picker',
         importPath: '../../shared/components/form/color-picker/doc/color-picker.doc',
@@ -179,6 +186,15 @@ export const DOCUMENTED_COMPONENTS: Routing.Index = [
         importPath: '../../shared/components/display/code/doc/code.doc',
         loadComponent: () =>
           import('../../shared/components/display/code/doc/code.doc').then((m) => m.CodeDoc),
+      },
+      {
+        name: 'SegmentedControl',
+        path: 'segmented-control',
+        importPath: '../../shared/components/display/segmented-control/doc/segmented-control.doc',
+        loadComponent: () =>
+          import('../../shared/components/display/segmented-control/doc/segmented-control.doc').then(
+            (m) => m.SegmentedControlDoc,
+          ),
       },
     ],
   },

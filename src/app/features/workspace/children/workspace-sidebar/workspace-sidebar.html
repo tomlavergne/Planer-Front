@@ -29,6 +29,18 @@
           }
         </app-flex>
       </app-button>
+
+      @if (expanded()) {
+        <app-button
+          variant="ghost"
+          iconLeft="lucidePanelLeftClose"
+          [tooltip]="{
+            content: 'Réduire',
+            position: 'right',
+          }"
+          (clicked)="expanded.set(false)"
+        />
+      }
     </app-flex>
 
     <app-separator />
