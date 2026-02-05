@@ -7,4 +7,9 @@ export namespace Select {
     label: string;
     disabled?: boolean;
   }
+
+  export interface OptionGroup {
+    label: string;
+    options: Option[];
+  }
 }

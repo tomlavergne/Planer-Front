@@ -1,6 +1,7 @@
 :host {
   display: block;
   background-color: var(--color-border);
+  flex-shrink: 0;
 
   &.orientation-horizontal {
     width: 100%;

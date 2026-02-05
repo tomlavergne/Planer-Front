@@ -4,6 +4,11 @@
   showUsageTab
 >
   <app-flex usage>
-    <app-select placeholder="Sélectionnez une option" [options]="options" [value]="'2'" />
+    <app-select
+      placeholder="Sélectionnez une option"
+      [options]="options"
+      [groups]="groups"
+      [value]="'2'"
+    />
   </app-flex>
 </app-documentation-template>

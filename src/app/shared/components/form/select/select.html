@@ -14,17 +14,45 @@
 
 <!-- Dropdown -->
 <ng-template #dropdownTemplate>
-  <app-flex direction="column" padding="2xs" gap="2xs" class="select-options-container">
-    @for (option of options(); track option.value) {
-      <app-button
-        [text]="option.label"
-        size="md"
-        [variant]="value() === option.value ? 'soft' : 'ghost'"
-        [iconRight]="value() === option.value ? 'lucideCheck' : null"
-        [disabled]="option.disabled"
-        fullWidth
-        (clicked)="selectOption(option)"
-      />
+  <app-flex direction="column" class="select-options-container">
+    <app-flex direction="column" gap="3xs" padding="2xs">
+      <!-- Options directes sans groupe -->
+      @for (option of options(); track option.value) {
+        <app-button
+          [text]="option.label"
+          size="md"
+          [variant]="value() === option.value ? 'soft' : 'ghost'"
+          [iconRight]="value() === option.value ? 'lucideCheck' : null"
+          [disabled]="option.disabled"
+          fullWidth
+          (clicked)="selectOption(option)"
+        />
+      }
+    </app-flex>
+
+    <!-- Options groupées par catégorie -->
+    @for (group of groups(); track group.label; let isFirst = $first) {
+      <!-- Séparateur avant le groupe (sauf pour le premier groupe si pas d'options directes) -->
+      @if (!isFirst || options().length > 0) {
+        <app-separator />
+      }
+      <app-flex direction="column" gap="3xs" padding="2xs">
+        <!-- Label de la catégorie -->
+        <app-text class="group-label" size="xs" color="text-tertiary">{{ group.label }}</app-text>
+
+        <!-- Options du groupe -->
+        @for (option of group.options; track option.value) {
+          <app-button
+            [text]="option.label"
+            size="md"
+            [variant]="value() === option.value ? 'soft' : 'ghost'"
+            [iconRight]="value() === option.value ? 'lucideCheck' : null"
+            [disabled]="option.disabled"
+            fullWidth
+            (clicked)="selectOption(option)"
+          />
+        }
+      </app-flex>
     }
   </app-flex>
 </ng-template>

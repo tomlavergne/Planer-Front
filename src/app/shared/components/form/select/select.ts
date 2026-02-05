@@ -14,23 +14,18 @@ import {
 import { CommonModule } from '@angular/common';
 
 /***** Imports de composants *****/
-import { Button, Flex } from '../../';
+import { Button, Flex, Text, Separator } from '../../';
 
 /***** Imports de types *****/
 import { Size } from '../../../types';
+import { Select as SelectType } from './select.type';
 
 /***** Import de directive *****/
 import { PopoverDirective } from '@shared/directives';
 
-export interface SelectOption {
-  value: string;
-  label: string;
-  disabled?: boolean;
-}
-
 @Component({
   selector: 'app-select',
-  imports: [CommonModule, Button, Flex, PopoverDirective],
+  imports: [CommonModule, Button, Flex, Text, Separator, PopoverDirective],
   templateUrl: './select.html',
   styleUrl: './select.scss',
   host: {
@@ -38,8 +33,9 @@ export interface SelectOption {
   },
 })
 export class Select {
-  /***** Inputs *****/
-  options = input.required<SelectOption[]>();
+  /***** INPUTS *****/
+  options = input<SelectType.Option[]>([]);
+  groups = input<SelectType.OptionGroup[]>([]);
   placeholder = input<string>('Sélectionner');
   size = input<Size>('md');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
@@ -47,30 +43,26 @@ export class Select {
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
   maxVisibleOptions = input<number>(6);
 
-  /***** Model (two-way binding) *****/
+  /***** MODEL *****/
   value = model<string | null>(null);
 
-  /***** Outputs *****/
+  /***** OUTPUTS *****/
   valueChange = output<string | null>();
 
-  /***** ViewChild *****/
+  /***** VIEWCHILD *****/
   popoverDirective = viewChild(PopoverDirective);
   selectButton = viewChild<ElementRef>('selectButton');
 
-  /***** Signals *****/
+  /***** SIGNALS *****/
   private measuredOptionHeight = signal<number | null>(null);
   private measuredGap = signal<number>(0);
   private measuredContainerPadding = signal<number>(0);
   private measuredSelectButtonHeight = signal<number | null>(null);
   private shouldMeasure = signal<boolean>(true);
 
-  constructor() {
-    console.log('Select component initialized');
-  }
+  /***** METHODS *****/
 
   onPopoverOpened(): void {
-    console.log('##### Popover opened, attempting to measure...');
-
     // Mesurer la hauteur du bouton select
     const selectBtn = this.selectButton();
     if (selectBtn?.nativeElement) {
@@ -78,7 +70,6 @@ export class Select {
       if (button) {
         const rect = button.getBoundingClientRect();
         this.measuredSelectButtonHeight.set(rect.height);
-        console.log('Select button height:', rect.height);
       }
     }
 
@@ -86,12 +77,10 @@ export class Select {
     requestAnimationFrame(() => {
       // Chercher directement dans le DOM de l'overlay CDK
       const overlayContainer = document.querySelector('.cdk-overlay-pane app-flex');
-      console.log('Overlay container found:', overlayContainer);
 
       if (overlayContainer) {
         // Mesurer seulement la première fois
         if (this.shouldMeasure()) {
-          console.log('##### Measuring option dimensions...');
           this.measureOptionDimensions(overlayContainer as HTMLElement);
           this.shouldMeasure.set(false);
         }
@@ -104,50 +93,47 @@ export class Select {
 
   private scrollToSelectedOption(container: HTMLElement): void {
     const index = this.selectedIndex();
-    if (index === -1) {
-      console.log('No option selected, no scroll needed');
-      return;
+
+    // Déterminer l'index à focus : l'option sélectionnée ou la première option si aucune n'est sélectionnée
+    const focusIndex = index === -1 ? 0 : index;
+
+    // Appliquer le scroll seulement si une option est sélectionnée
+    if (index !== -1) {
+      // Utiliser offsetTop pour obtenir la position exacte de l'option dans le conteneur
+      const buttons = container.querySelectorAll('app-button');
+      if (buttons[index]) {
+        const targetButton = buttons[index].querySelector('button');
+        if (targetButton) {
+          // offsetTop donne la distance depuis le haut du conteneur parent (incluant le padding)
+          const offsetTop = (targetButton as HTMLElement).offsetTop;
+          // Soustraire le padding pour aligner avec le haut de la zone de contenu visible
+          const padding = this.measuredContainerPadding() ?? 0;
+          container.scrollTop = offsetTop - padding;
+        }
+      }
     }
 
-    const optionHeight = this.measuredOptionHeight() ?? 40;
-    const gap = this.measuredGap() ?? 8;
-
-    // Calculer la position de scroll pour que l'option sélectionnée soit en haut du conteneur visible
-    // Note: on ne compte PAS le padding car le scroll se fait à partir du contenu, pas du padding
-    const scrollPosition = index * (optionHeight + gap);
-
-    console.log('Applying scroll:', {
-      index,
-      optionHeight,
-      gap,
-      calculatedScrollPosition: scrollPosition,
-      containerHeight: container.clientHeight,
-      containerScrollHeight: container.scrollHeight,
-    });
-
-    // Appliquer le scroll
-    container.scrollTop = scrollPosition;
-
-    // Vérifier que le scroll a bien été appliqué
-    console.log('Scroll after application:', {
-      scrollTop: container.scrollTop,
-      expected: scrollPosition,
-    });
+    // Donner le focus à l'option (sélectionnée ou première option)
+    const buttons = container.querySelectorAll('app-button');
+    if (buttons[focusIndex]) {
+      const buttonToFocus = buttons[focusIndex].querySelector('button');
+      if (buttonToFocus) {
+        // Focus sur l'option pour la navigation clavier
+        (buttonToFocus as HTMLElement).focus();
+      }
+    }
   }
 
   private measureOptionDimensions(container: HTMLElement): void {
-    console.log('Measuring dimensions from container:', container);
     const buttons = container.querySelectorAll('app-button');
-    console.log('Found buttons:', buttons.length);
 
     if (buttons.length > 0) {
       const firstButton = buttons[0].querySelector('button');
       if (firstButton) {
         const rect = firstButton.getBoundingClientRect();
-        console.log('First button rect:', rect);
 
-        // Mesurer la hauteur du bouton
-        this.measuredOptionHeight.set(rect.height);
+        // Mesurer la hauteur du bouton et l'arrondir pour éviter les imprécisions
+        this.measuredOptionHeight.set(Math.round(rect.height));
 
         // Si on a au moins 2 options, on peut mesurer le gap précisément
         if (buttons.length > 1) {
@@ -156,8 +142,7 @@ export class Select {
             const rect2 = secondButton.getBoundingClientRect();
             // La distance entre le bas de la première option et le haut de la deuxième = le gap
             const gap = rect2.top - rect.bottom;
-            console.log('Measured gap:', gap);
-            this.measuredGap.set(gap);
+            this.measuredGap.set(Math.round(gap));
           }
         }
       }
@@ -166,26 +151,26 @@ export class Select {
     // Mesurer le padding du conteneur
     const computedStyle = window.getComputedStyle(container);
     const paddingTop = parseFloat(computedStyle.paddingTop) || 0;
-    console.log('Container padding:', paddingTop);
-    this.measuredContainerPadding.set(paddingTop);
-
-    console.log('Final measurements:', {
-      optionHeight: this.measuredOptionHeight(),
-      gap: this.measuredGap(),
-      padding: this.measuredContainerPadding(),
-    });
+    this.measuredContainerPadding.set(Math.round(paddingTop));
   }
+
+  // Computed pour aplatir toutes les options (groupées ou non)
+  allOptions = computed(() => {
+    const directOptions = this.options();
+    const groupedOptions = this.groups().flatMap((g) => g.options);
+    return [...directOptions, ...groupedOptions];
+  });
 
   // Computed pour l'option sélectionnée
   selectedOption = computed(() => {
     const val = this.value();
-    return this.options().find((opt) => opt.value === val);
+    return this.allOptions().find((opt) => opt.value === val);
   });
 
-  // Computed pour l'index de l'option sélectionnée
+  // Computed pour l'index de l'option sélectionnée (dans la liste des boutons uniquement)
   selectedIndex = computed(() => {
     const val = this.value();
-    return this.options().findIndex((opt) => opt.value === val);
+    return this.allOptions().findIndex((opt) => opt.value === val);
   });
 
   // Computed pour l'offset du popover basé sur l'option sélectionnée
@@ -209,7 +194,7 @@ export class Select {
     ].join(' ');
   });
 
-  selectOption(option: SelectOption): void {
+  selectOption(option: SelectType.Option): void {
     // Fermer le popover après la sélection
     this.popoverDirective()?.close();
     this.value.set(option.value);
