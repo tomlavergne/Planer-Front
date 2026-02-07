@@ -46,7 +46,7 @@
     <app-separator />
 
     <!-- Navigation principale -->
-    <app-flex direction="column" gap="2xs" fullWidth fullHeight>
+    <app-flex direction="column" gap="3xs" fullWidth fullHeight>
       <app-sidebar-item
         text="Accueil"
         path="/home"
@@ -80,8 +80,8 @@
       />
     </app-flex>
 
-    <!-- Footer -->
-    <app-flex direction="column" gap="2xs" fullWidth>
+    <!-- Navigation secondaire -->
+    <app-flex direction="column" gap="3xs" fullWidth>
       <app-sidebar-item
         text="Documentation"
         path="/documentation"
@@ -97,93 +97,94 @@
         size="md"
         [expanded]="expanded()"
       />
-      <app-separator />
+    </app-flex>
 
-      <app-button
-        variant="ghost"
-        size="xs"
+    <app-separator />
+
+    <app-button
+      variant="ghost"
+      size="xs"
+      fullWidth
+      [popover]="{
+        content: rg,
+        position: 'top-left',
+      }"
+    >
+      <app-flex
+        direction="row"
+        alignItems="center"
+        [justifyContent]="expanded() ? 'between' : 'center'"
+        gap="xs"
         fullWidth
-        [popover]="{
-          content: rg,
-          position: 'top-left',
-        }"
       >
-        <app-flex
-          direction="row"
-          alignItems="center"
-          [justifyContent]="expanded() ? 'between' : 'center'"
-          gap="xs"
-          fullWidth
-        >
-          <app-flex direction="row" alignItems="center" gap="2xs">
-            <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
-
-            @if (expanded()) {
-              <app-flex direction="column" gap="4xs">
-                <app-text color="text-secondary" size="sm" weight="medium"> Tom Lavergne </app-text>
-              </app-flex>
-            }
-          </app-flex>
+        <app-flex direction="row" alignItems="center" gap="2xs">
+          <app-avatar imageUrl="/img/profil.png" [size]="expanded() ? 'sm' : 'xs'" />
 
           @if (expanded()) {
-            <app-icon name="lucideChevronsUpDown" size="xs" color="text-secondary" />
+            <app-flex direction="column" gap="4xs">
+              <app-text color="text-secondary" size="sm" weight="medium"> Tom Lavergne </app-text>
+            </app-flex>
           }
         </app-flex>
-      </app-button>
 
-      <ng-template #rg>
-        <app-card>
-          <app-flex direction="column" gap="2xs" padding="2xs" style="width: 300px">
-            <app-flex direction="row" alignItems="center" padding="3xs" gap="xs" fullWidth>
-              <app-avatar imageUrl="/img/profil.png" size="md" />
-              <app-flex direction="column" gap="3xs" fullWidth>
-                <app-flex alignItems="center" gap="2xs">
-                  <app-text color="text-primary" size="sm" weight="medium" wrap>
-                    Tom Lavergne
-                  </app-text>
+        @if (expanded()) {
+          <app-icon name="lucideChevronsUpDown" size="xs" color="text-secondary" />
+        }
+      </app-flex>
+    </app-button>
 
-                  <!-- <app-badge text="Vérifié" size="xs" color="success" /> -->
-                </app-flex>
-
-                <app-text color="text-secondary" size="xs" weight="regular" truncate wrap fullWidth>
-                  tom.lavergn@gmail.com
+    <ng-template #rg>
+      <app-card variant="subtle" padding="none" fullWidth>
+        <app-flex direction="column" gap="2xs" padding="2xs" style="width: 300px">
+          <app-flex direction="row" alignItems="center" padding="3xs" gap="xs" fullWidth>
+            <app-avatar imageUrl="/img/profil.png" size="md" />
+            <app-flex direction="column" gap="3xs" fullWidth>
+              <app-flex alignItems="center" gap="2xs">
+                <app-text color="text-primary" size="sm" weight="medium" wrap>
+                  Tom Lavergne
                 </app-text>
+
+                <!-- <app-badge text="Vérifié" size="xs" color="success" /> -->
               </app-flex>
 
-              <app-button
-                iconLeft="lucideArrowLeftRight"
-                variant="ghost"
-                size="md"
-                [tooltip]="{
-                  content: 'Changer de compte',
-                }"
-              />
+              <app-text color="text-secondary" size="xs" weight="regular" truncate wrap fullWidth>
+                tom.lavergn@gmail.com
+              </app-text>
             </app-flex>
-            <app-separator />
-            <app-button text="Profil" variant="ghost" size="md" fullWidth />
+
             <app-button
-              text="Changer de compte"
-              iconLeft="lucideUsers"
-              iconRight="lucideChevronRight"
+              iconLeft="lucideArrowLeftRight"
               variant="ghost"
               size="md"
-              fullWidth
-              [popover]="{
-                content: rg,
-                position: 'right',
+              [tooltip]="{
+                content: 'Changer de compte',
               }"
             />
-            <app-button
-              text="Déconnexion"
-              iconLeft="lucideLogOut"
-              variant="ghost"
-              size="md"
-              fullWidth
-              (clicked)="logout()"
-            />
           </app-flex>
-        </app-card>
-      </ng-template>
-    </app-flex>
+          <app-separator />
+          <app-button text="Profil" variant="ghost" size="md" fullWidth />
+          <app-button
+            text="Changer de compte"
+            iconLeft="lucideUsers"
+            iconRight="lucideChevronRight"
+            variant="ghost"
+            size="md"
+            fullWidth
+            [popover]="{
+              content: rg,
+              position: 'right',
+            }"
+          />
+          <app-button
+            text="Déconnexion"
+            iconLeft="lucideLogOut"
+            variant="ghost"
+            size="md"
+            fullWidth
+            (clicked)="logout()"
+          />
+        </app-flex>
+      </app-card>
+    </ng-template>
   </app-flex>
 </app-sidebar>

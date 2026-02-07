@@ -121,6 +121,13 @@ export const DOCUMENTED_COMPONENTS: Routing.Index = [
           import('../../shared/components/form/button/doc/button.doc').then((m) => m.ButtonDoc),
       },
       {
+        name: 'Input',
+        path: 'input',
+        importPath: '../../shared/components/forms/input/doc/input.doc',
+        loadComponent: () =>
+          import('../../shared/components/form/input/doc/input.doc').then((m) => m.InputDoc),
+      },
+      {
         name: 'Select',
         path: 'select',
         importPath: '../../shared/components/forms/select/doc/select.doc',

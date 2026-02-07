@@ -24,7 +24,7 @@ export const BUTTON_SIZES_CONFIG: Record<
   },
   sm: {
     padding: '3xs',
-    gap: '3xs',
+    gap: '2xs',
     fontSize: 'xs',
     iconSize: '2xs',
   },

@@ -2,7 +2,7 @@
 import { Component, inject } from '@angular/core';
 
 /***** Import de composants *****/
-import { Flex, Button, Text, SegmentedControl } from '@shared/components';
+import { Flex, Button, Text, Select, SegmentedControl } from '@shared/components';
 import { DocumentationTemplate } from '@features/documentation/children/documentation-template/documentation-template';
 
 /***** Import de service *****/
@@ -10,24 +10,27 @@ import { ThemeService } from '@shared/config/theme.service';
 
 /***** Import de types *****/
 import type { PrimaryColor } from '@shared/types';
+import type { Select as SelectType } from '@shared/components/form/select/select.type';
 
 /***** Import de variables *****/
 import { primaryColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'app-theme',
-  imports: [Flex, DocumentationTemplate, Button, Text, SegmentedControl],
+  imports: [Flex, DocumentationTemplate, Button, Text, Select, SegmentedControl],
   templateUrl: './theme.html',
 })
 export class Theme {
   themeService = inject(ThemeService);
 
-  // Liste des couleurs primaires disponibles
-  primaryColors = primaryColors;
-
   /*******************/
   /***** METHODS *****/
   /*******************/
+
+  options: SelectType.Option[] = primaryColors.map((color) => ({
+    value: color,
+    label: color.charAt(0).toUpperCase() + color.slice(1),
+  }));
 
   setTheme(theme: string | null): void {
     if (theme === 'light' || theme === 'dark' || theme === 'auto') {
@@ -35,7 +38,9 @@ export class Theme {
     }
   }
 
-  setPrimaryColor(color: PrimaryColor): void {
-    this.themeService.setPrimaryColor(color);
+  setPrimaryColor(color: string | null): void {
+    if (color && primaryColors.includes(color as PrimaryColor)) {
+      this.themeService.setPrimaryColor(color as PrimaryColor);
+    }
   }
 }

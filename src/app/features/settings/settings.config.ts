@@ -10,20 +10,19 @@ export const SETTING_ROUTES: Routing.Index = [
       import('../../shared/components/layout/flex/doc/flex.doc').then((f) => f.FlexDoc),
     content: [
       {
-        name: 'Apparance',
-        icon: 'lucideBrush',
-        path: 'appearance',
-        importPath: './pages/general/appearance/appearance',
+        name: 'Préférences',
+        icon: 'lucideSettings2',
+        path: 'preference',
+        importPath: './pages/general/preference/preference',
         loadComponent: () =>
-          import('./pages/general/appearance/appearance').then((a) => a.Appearance),
+          import('./pages/general/preference/preference').then((p) => p.Preference),
       },
       {
         name: 'Profil',
-        icon: 'lucideUserCircle',
-        path: 'appearance',
-        importPath: './pages/general/appearance/appearance',
-        loadComponent: () =>
-          import('./pages/general/appearance/appearance').then((a) => a.Appearance),
+        icon: 'lucideUser',
+        path: 'profile',
+        importPath: './pages/general/profile/profile',
+        loadComponent: () => import('./pages/general/profile/profile').then((p) => p.Profile),
       },
     ],
   },

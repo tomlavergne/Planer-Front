@@ -33,6 +33,7 @@ export class Button {
   type = input<ButtonType.Type>('button');
   variant = input<ButtonType.Variant>('solid');
   color = input<ButtonType.Color | null>('secondary');
+  radius = input<ButtonType.BorderRadius>('md');
   disabled = input<boolean, any>(false, { transform: booleanAttribute });
   iconLeft = input<IconType.Name | null>(null);
   iconRight = input<IconType.Name | null>(null);
@@ -57,6 +58,7 @@ export class Button {
       `variant-${this.variant()}`,
       this.color ? `color-${this.color()}` : '',
       `size-${this.size()}`,
+      `radius-${this.radius()}`,
       this.fullWidth() ? 'full-width' : '',
       this.fullHeight() ? 'full-height' : '',
       this.disabled() ? 'disabled' : '',

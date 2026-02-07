@@ -16,25 +16,13 @@ import type { Select as SelectType } from '@shared/components/form/select/select
 import { primaryColors } from '@shared/variables/colors';
 
 @Component({
-  selector: 'app-appearance',
-  imports: [
-    SettingTemplate,
-    Flex,
-    Button,
-    Separator,
-    Select,
-    SegmentedControl,
-    SettingGroup,
-    SettingItem,
-  ],
-  templateUrl: './appearance.html',
-  styleUrl: './appearance.scss',
+  selector: 'app-preference',
+  imports: [SettingTemplate, Flex, Separator, Select, SegmentedControl, SettingGroup, SettingItem],
+  templateUrl: './preference.html',
+  styleUrl: './preference.scss',
 })
-export class Appearance {
+export class Preference {
   themeService = inject(ThemeService);
-
-  // Liste des couleurs primaires disponibles
-  primaryColors = primaryColors;
 
   /*******************/
   /***** METHODS *****/
@@ -52,7 +40,7 @@ export class Appearance {
   }
 
   setPrimaryColor(color: string | null): void {
-    if (color && this.primaryColors.includes(color as PrimaryColor)) {
+    if (color && primaryColors.includes(color as PrimaryColor)) {
       this.themeService.setPrimaryColor(color as PrimaryColor);
     }
   }

@@ -1,7 +1,7 @@
 <app-setting-template
-  title="Préférences"
+  title="Profil"
   description="
-    Personnalisez l'apparence de l'application en choisissant votre mode d'affichage préféré et en sélectionnant un thème de couleur principal qui correspond à votre style.
+    Gérez les informations de votre profil, telles que votre nom, votre adresse e-mail et votre mot de passe. Assurez-vous que vos informations sont à jour pour une expérience personnalisée optimale.
 "
 >
   <app-setting-group title="Apparance">
@@ -9,7 +9,7 @@
       title="Thème"
       description="Choisissez votre thème préféré pour l'application. Le mode 'Auto' ajuste automatiquement le thème en fonction de vos paramètres système."
     >
-      <app-segmented-control
+      <!-- <app-segmented-control
         [options]="[
           { label: 'Clair', value: 'light', icon: 'lucideSun' },
           { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
@@ -17,7 +17,7 @@
         ]"
         [value]="themeService.theme()"
         (valueChange)="setTheme($event)"
-      />
+      /> -->
     </app-setting-item>
 
     <app-separator />
@@ -26,13 +26,11 @@
       title="Couleur principale"
       description="Sélectionnez la couleur principale de l'application."
     >
-      <app-flex gap="sm" wrap>
-        <app-select
-          [options]="options"
-          [value]="themeService.primaryColor()"
-          (valueChange)="setPrimaryColor($event)"
-        />
-      </app-flex>
+      <!-- <app-select
+        [options]="options"
+        [value]="themeService.primaryColor()"
+        (valueChange)="setPrimaryColor($event)"
+      /> -->
     </app-setting-item>
   </app-setting-group>
 </app-setting-template>

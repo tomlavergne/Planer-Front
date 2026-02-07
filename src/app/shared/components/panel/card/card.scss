@@ -1,13 +1,29 @@
 :host {
   display: block;
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
   height: fit-content;
   background-color: var(--color-background-primary);
 
+  // Gestion des variantes de couleur pour les cartes
+  @each $bg in ('primary', 'secondary', 'tertiary') {
+    &.bg-#{$bg} {
+      background-color: var(--color-background-#{$bg});
+    }
+  }
+
+  // Gestion des variantes de padding pour les cartes
+  @each $padding in ('none', 'xs', 'sm', 'md', 'lg') {
+    &.padding-#{$padding} {
+      & .card-header,
+      & .card-body,
+      & .card-footer {
+        padding: var(--spacing-#{$padding});
+      }
+    }
+  }
+
   // Header
   .card-header {
-    padding: var(--spacing-md);
     border-bottom: 1px solid var(--color-border);
     background-color: var(--color-background-secondary);
 
@@ -18,13 +34,11 @@
 
   // Body
   .card-body {
-    padding: var(--spacing-md);
     position: relative;
   }
 
   // Footer
   .card-footer {
-    padding: var(--spacing-md);
     border-top: 1px solid var(--color-border);
     background-color: var(--color-background-secondary);
 
@@ -33,9 +47,23 @@
     }
   }
 
-  @each $bg in ('primary', 'secondary', 'tertiary') {
-    &.bg-#{$bg} {
-      background-color: var(--color-background-#{$bg});
-    }
+  // Gestion des variantes de couleur pour les cartes
+
+  &.variant-solid {
+    background-color: var(--color-background-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  &.variant-soft {
+    background-color: var(--color-background-secondary);
+  }
+
+  &.variant-subtle {
+    background-color: var(--color-background-secondary);
+    border: 1px solid var(--color-border);
+  }
+
+  &.variant-outline {
+    border: 1px solid var(--color-border);
   }
 }

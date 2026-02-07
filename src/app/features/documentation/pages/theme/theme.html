@@ -31,17 +31,11 @@
         Choisissez une couleur primaire pour personnaliser l'apparence de l'application selon vos
         préférences.
       </app-text>
-      <app-flex gap="sm" wrap>
-        @for (color of primaryColors; track color) {
-          <app-button
-            [text]="color.slice(0, 1).toUpperCase() + color.slice(1)"
-            variant="soft"
-            size="md"
-            [color]="themeService.primaryColor() === color ? color : 'secondary'"
-            (clicked)="setPrimaryColor(color)"
-          />
-        }
-      </app-flex>
+      <app-select
+        [options]="options"
+        [value]="themeService.primaryColor()"
+        (valueChange)="setPrimaryColor($event)"
+      />
     </app-flex>
   </app-flex>
 </app-documentation-template>

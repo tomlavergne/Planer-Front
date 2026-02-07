@@ -39,15 +39,13 @@
   // Surcharge des styles avec couleurs spécifiques
   // Ces styles surchargent les styles par défaut ci-dessus
 
-  $variants: ('solid', 'soft', 'subtle', 'outline', 'ghost', 'link');
-
-  @each $variant-name in $variants {
+  @each $variant-name in ('solid', 'soft', 'subtle', 'outline', 'ghost', 'link') {
     @each $color-name in $colors {
       // Calcul des couleurs dérivées
       $color: var(--color-#{$color-name});
       $color-background-soft: color-mix(in srgb, $color 10%, transparent);
       $color-background-soft-hover: color-mix(in srgb, $color 15%, transparent);
-      $color-border-ouline: color-mix(in srgb, $color 50%, transparent);
+      $color-border-ouline: color-mix(in srgb, $color 20%, transparent);
       $color-background-solid-hover: color-mix(in srgb, $color 85%, transparent);
 
       &.variant-#{$variant-name}.color-#{$color-name} button {
@@ -112,6 +110,12 @@
         @else if $variant-name == 'link' {
         }
       }
+    }
+  }
+
+  @each $radius in ('none', 'xs', 'sm', 'md', 'lg', 'xl', 'full') {
+    &.radius-#{$radius} button {
+      border-radius: var(--radius-#{$radius});
     }
   }
 }

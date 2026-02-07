@@ -19,6 +19,7 @@ export class Card {
   /******************/
 
   variant = input<CardType.Variant>('soft');
+  padding = input<CardType.Padding>('md');
   backgroundColor = input<'primary' | 'secondary' | 'tertiary' | null>(null);
 
   /*********************/
@@ -29,6 +30,7 @@ export class Card {
   hostClasses = computed(() => {
     return [
       `variant-${this.variant()}`,
+      `padding-${this.padding()}`,
       this.backgroundColor() ? `bg-${this.backgroundColor()}` : '',
     ];
   });

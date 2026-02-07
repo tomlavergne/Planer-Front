@@ -1,29 +1,44 @@
-<div class="input-wrapper">
-  @if (prefixIcon()) {
-    <div class="input-prefix">
-      <app-icon [name]="prefixIcon()!" [size]="size()" />
-    </div>
+<app-flex direction="row" alignItems="center" gap="3xs">
+  <app-flex padding="2xs" gap="xs" alignItems="center">
+    @if (icon()) {
+      <app-icon [name]="icon()!" size="xs" [color]="errorMessage() ? 'danger' : 'text-secondary'" />
+    }
+
+    <input
+      #inputElement
+      [placeholder]="placeholder()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [value]="value()"
+      (input)="onInput($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+    />
+  </app-flex>
+
+  <!-- Actions -->
+  @if (actions() !== null && actions()!.length > 0) {
+    <app-flex direction="row">
+      @for (action of actions(); track $index) {
+        <app-button
+          class="action-button"
+          [text]="action.label!"
+          [iconLeft]="action.icon!"
+          variant="ghost"
+          size="md"
+          radius="none"
+          [disabled]="action.disabled"
+          [tooltip]="
+            !action!.disabled
+              ? {
+                  content: action.tooltip || '',
+                  delay: 300,
+                }
+              : null
+          "
+          (click)="action.callback()"
+        />
+      }
+    </app-flex>
   }
-
-  <input
-    #inputElement
-    [type]="type()"
-    [placeholder]="placeholder()"
-    [disabled]="disabled()"
-    [readonly]="readonly()"
-    [value]="value()"
-    (input)="onInput($event)"
-    (focus)="onFocus()"
-    (blur)="onBlur()"
-    class="input-field"
-  />
-
-  @if (suffixIcon()) {
-    <div class="input-suffix">
-      <app-icon [name]="suffixIcon()!" [size]="size()" />
-    </div>
-  }
-
-  <ng-content select="[input-prefix]"></ng-content>
-  <ng-content select="[input-suffix]"></ng-content>
-</div>
+</app-flex>

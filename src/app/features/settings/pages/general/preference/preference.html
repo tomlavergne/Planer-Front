@@ -1,0 +1,37 @@
+<app-setting-template
+  title="Préférences"
+  description="
+    Personnalisez l'apparence de l'application en choisissant votre mode d'affichage préféré et en sélectionnant un thème de couleur principal qui correspond à votre style.
+"
+>
+  <app-setting-group title="Général"> </app-setting-group>
+  <app-setting-group title="Apparance">
+    <app-setting-item
+      title="Thème"
+      description="Choisissez votre thème préféré pour l'application. Le mode 'Auto' ajuste automatiquement le thème en fonction de vos paramètres système."
+    >
+      <app-segmented-control
+        [options]="[
+          { label: 'Clair', value: 'light', icon: 'lucideSun' },
+          { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
+          { label: 'Auto', value: 'auto', icon: 'lucideMonitor' },
+        ]"
+        [value]="themeService.theme()"
+        (valueChange)="setTheme($event)"
+      />
+    </app-setting-item>
+
+    <app-separator />
+
+    <app-setting-item
+      title="Couleur principale"
+      description="Sélectionnez la couleur principale de l'application."
+    >
+      <app-select
+        [options]="options"
+        [value]="themeService.primaryColor()"
+        (valueChange)="setPrimaryColor($event)"
+      />
+    </app-setting-item>
+  </app-setting-group>
+</app-setting-template>
