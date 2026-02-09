@@ -2,7 +2,7 @@
 import { Component, input, output, computed, booleanAttribute, model, signal } from '@angular/core';
 
 /***** Imports de composants *****/
-import { Icon } from '../../display/icon/icon';
+import { Icon } from '../../misc/icon/icon';
 
 /***** Imports de types *****/
 import { Size } from '../../../types';

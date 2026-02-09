@@ -14,6 +14,7 @@ import {
   Separator,
   Shape,
 } from '../../../../shared/components';
+import { Logo } from '@shared/components/misc/logo/logo';
 import { SidebarItem } from '../../../../core/layout/sidebar/children/sidebar-item/sidebar-item';
 
 /***** Imports de directives *****/
@@ -33,15 +34,13 @@ import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
     Icon,
     Text,
     Separator,
-    Shape,
-    Badge,
+    Logo,
     Card,
     SidebarItem,
     TooltipDirective,
     PopoverDirective,
     RouterLink,
     RouterLinkActive,
-    Badge,
   ],
   templateUrl: './workspace-sidebar.html',
   styleUrl: './workspace-sidebar.scss',

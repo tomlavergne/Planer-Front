@@ -4,7 +4,7 @@ import type {
   SemanticColor,
   TextColor,
   FontWeight,
-} from '../../../types/ui.types';
+} from '@shared/types/ui.types';
 
 export namespace Text {
   export type Variant = 'body' | 'heading' | 'caption' | 'label';

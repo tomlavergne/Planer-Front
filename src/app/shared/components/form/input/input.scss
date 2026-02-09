@@ -7,12 +7,30 @@
   cursor: text;
   transition: border-color 0.2s ease;
 
+  &.size-sm {
+    input {
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  &.size-md {
+    input {
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  &.size-lg {
+    input {
+      font-size: var(--font-size-md);
+    }
+  }
+
   input {
     // border: 1px solid red;
     border: none;
 
     outline: none;
-    width: fit-content;
+    width: 100%;
     color: var(--color-text-primary);
     font-size: var(--font-size-sm);
     background-color: transparent;
@@ -29,6 +47,15 @@
 
   &.error {
     border-color: var(--color-danger);
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  .actions {
+    flex-shrink: 0;
+    align-self: stretch;
   }
 
   .action-button {

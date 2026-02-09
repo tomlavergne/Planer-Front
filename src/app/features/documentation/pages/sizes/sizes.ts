@@ -9,7 +9,7 @@ import { DocumentationTemplate } from '../../children/documentation-template/doc
 import { spacings, fontSizes, fontWeights, radii } from '@shared/variables/sizes';
 
 /***** Import de types *****/
-import type { Text as TextType } from '@shared/components/display/text/text.type';
+import type { Text as TextType } from '@shared/components/misc/text/text.type';
 import type { Table as TableType } from '@shared/components/data/table/table.type';
 
 type SizeTableRow = {

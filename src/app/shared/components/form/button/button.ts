@@ -2,18 +2,19 @@
 import { Component, input, output, computed, booleanAttribute, inject } from '@angular/core';
 
 /***** Imports de composants *****/
-import { Icon } from '../../display/icon/icon';
-import { Text } from '../../display/text/text';
+import { Icon } from '../../misc/icon/icon';
+import { Text } from '../../misc/text/text';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
 import type { Button as ButtonType } from './button.type';
-import type { Icon as IconType } from '../../display/icon/icon.type';
-import type { Text as TextType } from '../../display/text/text.type';
+import type { Icon as IconType } from '../../misc/icon/icon.type';
+import type { Text as TextType } from '../../misc/text/text.type';
 
 /***** Import de configuration *****/
 import { BUTTON_SIZES_CONFIG } from './button.config';
 
+/***** Import de services *****/
 import { ThemeService } from '../../../config/theme.service';
 
 @Component({
@@ -40,6 +41,8 @@ export class Button {
   size = input<ButtonType.Size>('md');
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
   fullHeight = input<boolean, any>(false, { transform: booleanAttribute });
+  centerContent = input<boolean, any>(false, { transform: booleanAttribute });
+
   tabindex = input<number>(0);
 
   /******************/

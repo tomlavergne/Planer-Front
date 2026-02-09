@@ -9,7 +9,7 @@ import { Button } from '../../../../../shared/components';
 import { TooltipDirective } from '../../../../../shared/directives/tooltip/tooltip';
 
 /***** Import de types *****/
-import type { Icon as IconType } from '../../../../../shared/components/display/icon/icon.type';
+import type { Icon as IconType } from '../../../../../shared/components/misc/icon/icon.type';
 import type { Button as ButtonType } from '../../../../../shared/components/form/button/button.type';
 
 @Component({

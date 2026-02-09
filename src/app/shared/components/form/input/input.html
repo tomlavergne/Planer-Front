@@ -1,11 +1,21 @@
-<app-flex direction="row" alignItems="center" gap="3xs">
-  <app-flex padding="2xs" gap="xs" alignItems="center">
+<app-flex direction="row" alignItems="stretch" [fullWidth]="fullWidth()">
+  <app-flex
+    [padding]="currentConfig().padding"
+    [gap]="currentConfig().gap"
+    alignItems="center"
+    fullWidth
+  >
     @if (icon()) {
-      <app-icon [name]="icon()!" size="xs" [color]="errorMessage() ? 'danger' : 'text-secondary'" />
+      <app-icon
+        [name]="icon()!"
+        [size]="currentConfig().iconSize"
+        [color]="errorMessage() ? 'danger' : 'text-secondary'"
+      />
     }
 
     <input
       #inputElement
+      [type]="type()"
       [placeholder]="placeholder()"
       [disabled]="disabled()"
       [readonly]="readonly()"
@@ -18,14 +28,14 @@
 
   <!-- Actions -->
   @if (actions() !== null && actions()!.length > 0) {
-    <app-flex direction="row">
+    <app-flex direction="row" class="actions" fullHeight>
       @for (action of actions(); track $index) {
         <app-button
           class="action-button"
           [text]="action.label!"
           [iconLeft]="action.icon!"
           variant="ghost"
-          size="md"
+          [size]="currentConfig().buttonSize"
           radius="none"
           [disabled]="action.disabled"
           [tooltip]="

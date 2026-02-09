@@ -1,4 +1,4 @@
-import type { Text } from '@shared/components/display/text/text.type';
+import type { Text } from '@shared/components/misc/text/text.type';
 import type { Flex } from '@shared/components/layout/flex/flex.type';
 
 export interface DocumentationTemplateConfig {

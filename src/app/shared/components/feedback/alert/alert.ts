@@ -2,16 +2,16 @@
 import { booleanAttribute, Component, computed, input, output } from '@angular/core';
 
 /***** Imports de composants *****/
-import { Icon } from '../../display/icon/icon';
-import { Text } from '../../display/text/text';
+import { Icon } from '../../misc/icon/icon';
+import { Text } from '../../misc/text/text';
 import { Button } from '../../form/button/button';
 import { Flex } from '../../layout/flex/flex';
 
 /***** Imports de types *****/
 import type { Alert as AlertType } from './alert.type';
-import type { Icon as Toggle } from '../../display/icon/icon.type';
+import type { Icon as Toggle } from '../../misc/icon/icon.type';
 import type { Button as ButtonType } from '../../form/button/button.type';
-import type { Text as textType } from '../../display/text/text.type';
+import type { Text as textType } from '../../misc/text/text.type';
 
 @Component({
   selector: 'app-alert',

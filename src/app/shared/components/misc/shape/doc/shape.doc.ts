@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { DocumentationTemplate } from '../../../../../features/documentation/children/documentation-template/documentation-template';
 import { Flex } from '../../../layout/flex/flex';
 import { Shape } from '../shape';
-import { Text } from '../../../display/text/text';
+import { Text } from '../../../misc/text/text';
 
 /***** Import de types *****/
 import type { Shape as ShapeType } from '../shape.type';

@@ -1,0 +1,26 @@
+<app-documentation-template
+  title="Logo"
+  introduction="Le composant Logo est un élément de base utilisé pour représenter l'identité visuelle de votre application. Il peut être personnalisé pour s'adapter à différents styles et contextes d'utilisation."
+  showUsageTab
+>
+  <app-flex usage direction="column" gap="2xl" wrap fullWidth>
+    <!-- Tailles -->
+    <app-flex direction="column" gap="sm">
+      <app-text size="lg" weight="bold" color="text-primary">Tailles</app-text>
+      <app-text size="sm" color="text-secondary">
+        Le composant Logo est disponible en plusieurs tailles pour s'adapter à différents contextes
+        d'utilisation. Les tailles disponibles sont : small (sm), medium (md), large (lg) et
+        extra-large (xl).
+      </app-text>
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" gap="md" justifyContent="center" alignItems="center">
+            @for (size of sizes; track $index) {
+              <app-logo [size]="size" showText [tooltip]="{ content: size }" />
+            }
+          </app-flex>
+        </app-preview>
+      </app-card>
+    </app-flex>
+  </app-flex>
+</app-documentation-template>

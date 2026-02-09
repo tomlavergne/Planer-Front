@@ -155,51 +155,58 @@ export const DOCUMENTED_COMPONENTS: Routing.Index = [
   {
     name: 'Misc',
     path: 'misc',
-    importPath: '../../shared/components/display/text/doc/text.doc',
+    importPath: '../../shared/components/misc/text/doc/text.doc',
     loadComponent: () =>
-      import('../../shared/components/display/text/doc/text.doc').then((m) => m.TextDoc),
+      import('../../shared/components/misc/text/doc/text.doc').then((m) => m.TextDoc),
     content: [
       {
         name: 'Shape',
         path: 'shape',
-        importPath: '../../shared/components/element/shape/doc/shape.doc',
+        importPath: '../../shared/components/misc/shape/doc/shape.doc',
         loadComponent: () =>
-          import('../../shared/components/element/shape/doc/shape.doc').then((m) => m.ShapeDoc),
+          import('../../shared/components/misc/shape/doc/shape.doc').then((m) => m.ShapeDoc),
       },
       {
         name: 'Text',
         path: 'text',
-        importPath: '../../shared/components/display/text/doc/text.doc',
+        importPath: '../../shared/components/misc/text/doc/text.doc',
         loadComponent: () =>
-          import('../../shared/components/display/text/doc/text.doc').then((m) => m.TextDoc),
+          import('../../shared/components/misc/text/doc/text.doc').then((m) => m.TextDoc),
       },
       {
         name: 'Icon',
         path: 'icon',
-        importPath: '../../shared/components/display/icon/doc/icon.doc',
+        importPath: '../../shared/components/misc/icon/doc/icon.doc',
         loadComponent: () =>
-          import('../../shared/components/display/icon/doc/icon.doc').then((m) => m.IconDoc),
+          import('../../shared/components/misc/icon/doc/icon.doc').then((m) => m.IconDoc),
       },
       {
         name: 'Badge',
         path: 'badge',
-        importPath: '../../shared/components/display/badge/doc/badge.doc',
+        importPath: '../../shared/components/misc/badge/doc/badge.doc',
         loadComponent: () =>
-          import('../../shared/components/display/badge/doc/badge.doc').then((m) => m.BadgeDoc),
+          import('../../shared/components/misc/badge/doc/badge.doc').then((m) => m.BadgeDoc),
       },
       {
         name: 'Code',
         path: 'code',
-        importPath: '../../shared/components/display/code/doc/code.doc',
+        importPath: '../../shared/components/misc/code/doc/code.doc',
         loadComponent: () =>
-          import('../../shared/components/display/code/doc/code.doc').then((m) => m.CodeDoc),
+          import('../../shared/components/misc/code/doc/code.doc').then((m) => m.CodeDoc),
+      },
+      {
+        name: 'logo',
+        path: 'logo',
+        importPath: '../../shared/components/misc/logo/doc/logo.doc',
+        loadComponent: () =>
+          import('../../shared/components/misc/logo/doc/logo.doc').then((m) => m.LogoDoc),
       },
       {
         name: 'SegmentedControl',
         path: 'segmented-control',
-        importPath: '../../shared/components/display/segmented-control/doc/segmented-control.doc',
+        importPath: '../../shared/components/misc/segmented-control/doc/segmented-control.doc',
         loadComponent: () =>
-          import('../../shared/components/display/segmented-control/doc/segmented-control.doc').then(
+          import('../../shared/components/misc/segmented-control/doc/segmented-control.doc').then(
             (m) => m.SegmentedControlDoc,
           ),
       },

@@ -3,11 +3,11 @@ import { Component, input, computed, signal, booleanAttribute, effect } from '@a
 
 /***** Import de composants *****/
 import { Flex } from '../../layout/flex/flex';
-import { Icon } from '../../display/icon/icon';
-import { Text } from '../../display/text/text';
+import { Icon } from '../../misc/icon/icon';
+import { Text } from '../../misc/text/text';
 
 /***** Imports de types *****/
-import type { Icon as IconType } from '../../display/icon/icon.type';
+import type { Icon as IconType } from '../../misc/icon/icon.type';
 import type { Accordion as AccordionType } from './accordion.type';
 
 /***** Import de configuration *****/

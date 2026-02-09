@@ -1,5 +1,5 @@
 /***** Imports Angular *****/
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, computed } from '@angular/core';
 
 /***** Imports des composants *****/
 import { Flex, Card, Text, Code, Input } from '../../..';
@@ -38,4 +38,19 @@ export class InputDoc {
   callback = () => {
     console.log('Action déclenchée !');
   };
+
+  sizes: InputType.Size[] = ['sm', 'md', 'lg'];
+
+  actions = computed<InputType.Action[]>(() => [
+    {
+      icon: 'lucideMinus',
+      callback: () => this.callback(),
+      tooltip: 'Retirer un nombre',
+    },
+    {
+      icon: 'lucidePlus',
+      callback: () => this.callback(),
+      tooltip: 'Ajouter un nombre',
+    },
+  ]);
 }

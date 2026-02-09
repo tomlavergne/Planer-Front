@@ -3,12 +3,12 @@ import { Component, input, computed } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 /***** Import de types *****/
-import type { Icon as IconType } from '../icon/icon.type';
+import type { Icon as IconType } from './icon.type';
 
 @Component({
   selector: 'app-icon',
   imports: [NgIcon],
-  template: ` <ng-icon [name]="name()" [size]="IconSize()" [strokeWidth]="strokeWidth()" /> `,
+  template: `<ng-icon [name]="name()" [size]="IconSize()" [strokeWidth]="strokeWidth()" />`,
   styleUrl: './icon.scss',
   host: {
     '[class]': 'hostClasses()',

@@ -1,5 +1,5 @@
 import type { Size as UISize, Variant as UIVariant } from '../../../types/ui.types';
-import { Icon } from '@shared/components/display/icon/icon.type';
+import { Icon } from '@shared/components/misc/icon/icon.type';
 
 export namespace Input {
   export type Size = Extract<UISize, 'sm' | 'md' | 'lg'>;

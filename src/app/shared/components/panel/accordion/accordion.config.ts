@@ -1,7 +1,7 @@
 import type { Accordion } from './accordion.type';
 import type { Flex } from '../../layout/flex/flex.type';
-import type { Icon } from '../../display/icon/icon.type';
-import type { Text } from '../../display/text/text.type';
+import type { Icon } from '../../misc/icon/icon.type';
+import type { Text } from '../../misc/text/text.type';
 
 export const ACCORDION_SIZES_CONFIG: Record<
   Accordion.Size,

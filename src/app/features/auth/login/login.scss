@@ -1,0 +1,11 @@
+:host {
+  .login-content {
+    max-width: 700px;
+  }
+
+  .planer-button {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+}

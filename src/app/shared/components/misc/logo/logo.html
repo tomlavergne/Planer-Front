@@ -1,0 +1,11 @@
+<app-flex alignItems="center" [gap]="currentConfig().gap">
+  <!-- Logo Icon -->
+  <app-shape type="circle" [size]="currentConfig().shapeSize" color="background-inverse" />
+
+  @if (showText()) {
+    <!-- Logo Text -->
+    <app-text [size]="currentConfig().fontSize" weight="medium" color="text-primary"
+      >Planer</app-text
+    >
+  }
+</app-flex>

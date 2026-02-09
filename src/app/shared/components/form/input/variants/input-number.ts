@@ -1,5 +1,13 @@
 /***** Imports de Angular *****/
-import { Component, input, model, booleanAttribute, computed } from '@angular/core';
+import {
+  Component,
+  input,
+  booleanAttribute,
+  computed,
+  viewChild,
+  model,
+  output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 /***** Imports de composants *****/
@@ -7,22 +15,60 @@ import { Input } from '../input';
 
 /***** Imports de types *****/
 import { Input as InputType } from '../input.type';
-type NumberInputValue = Extract<InputType.Value, number>;
 
 @Component({
   selector: 'app-input-number',
   imports: [FormsModule, Input],
   template: `<app-input
+    #inputControl
     [(value)]="value"
-    placeholder="Entrez un nombre"
-    [actions]="showControls() ? actions() : null"
+    [(errorMessage)]="errorMessage"
+    [placeholder]="placeholder() || 'Entrez un nombre'"
+    [disabled]="disabled()"
+    [readonly]="readonly()"
+    [required]="required()"
+    [fullWidth]="fullWidth()"
+    [size]="size()"
+    [variant]="variant()"
+    [name]="name()"
+    [id]="id()"
+    [hint]="hint()"
+    [disableValidation]="disableValidation()"
     [validator]="validateValue"
+    [actions]="showControls() ? actions() : null"
+    [filter]="numberFilter"
+    (focused)="focused.emit()"
+    (blurred)="blurred.emit()"
   />`,
 })
 export class InputNumber {
+  // Inputs de configuration
+  placeholder = input<string>('');
+  disabled = input<boolean, any>(false, { transform: booleanAttribute });
+  readonly = input<boolean, any>(false, { transform: booleanAttribute });
+  required = input<boolean, any>(false, { transform: booleanAttribute });
+  fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
+  variant = input<InputType.Variant>('soft');
+  size = input<InputType.Size>('md');
+  name = input<string>('');
+  id = input<string>('');
+  hint = input<string | null>(null);
+  disableValidation = input<boolean, any>(false, { transform: booleanAttribute });
+
+  // Configuration spécifique au number
   showControls = input<boolean, any>(false, { transform: booleanAttribute });
   onlyPositive = input<boolean, any>(false, { transform: booleanAttribute });
-  value = model<NumberInputValue>(0);
+
+  // Models pour two-way binding
+  value = model<InputType.Value>('');
+  errorMessage = model<string | null>(null);
+
+  // Outputs
+  focused = output<void>();
+  blurred = output<void>();
+
+  /** Référence à l'input sous-jacent */
+  inputControl = viewChild.required<Input>('inputControl');
 
   // Filtre qui ne garde que les chiffres et le signe négatif
   numberFilter: InputType.FilterFn = (value: string) => {
@@ -37,7 +83,7 @@ export class InputNumber {
     {
       icon: 'lucideMinus',
       callback: () => this.decreaseValue(),
-      disabled: this.onlyPositive() && this.value() <= 0,
+      disabled: this.onlyPositive() && Number(this.value()) <= 0,
       tooltip: 'Retirer un nombre',
     },
     {
@@ -52,14 +98,19 @@ export class InputNumber {
   }
 
   decreaseValue() {
-    this.value.set(this.value() - 1);
+    this.value.set(Number(this.value()) - 1);
   }
 
-  validateValue: InputType.ValidatorFn = (value: NumberInputValue) => {
-    const numValue = Number(value as unknown as string);
+  validateValue: InputType.ValidatorFn = (value: InputType.Value) => {
+    const numValue = Number(value);
     if (isNaN(numValue)) {
       return 'Veuillez entrer un nombre valide';
     }
     return null;
   };
+
+  /** Donne le focus à l'input sous-jacent */
+  focus(): void {
+    this.inputControl().focus();
+  }
 }

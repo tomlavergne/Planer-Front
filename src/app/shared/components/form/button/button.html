@@ -8,7 +8,7 @@
     class="button-content"
     direction="row"
     alignItems="center"
-    justifyContent="start"
+    justifyContent="center"
     [padding]="variant() !== 'link' ? currentConfig().padding : 'none'"
     [gap]="currentConfig().gap"
   >
@@ -31,7 +31,7 @@
         [size]="currentConfig().fontSize"
         weight="thin"
         [wrap]="false"
-        fullWidth
+        [fullWidth]="!centerContent()"
       >
         {{ text() }}
       </app-text>

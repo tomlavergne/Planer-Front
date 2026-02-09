@@ -11,7 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 /***** Imports de composants *****/
-import { Icon } from '../../display/icon/icon';
+import { Icon } from '../../misc/icon/icon';
 
 /***** Imports de types *****/
 import { Size } from '../../../types/';

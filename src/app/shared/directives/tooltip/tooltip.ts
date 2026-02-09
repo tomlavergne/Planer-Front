@@ -18,7 +18,7 @@ import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
 import { ComponentPortal, TemplatePortal } from '@angular/cdk/portal';
 
 /***** Import de composants *****/
-import { Text } from '../../components/display/text/text';
+import { Text } from '../../components/misc/text/text';
 
 /***** Import de types *****/
 import { Tooltip as TooltipType } from './tooltip.type';

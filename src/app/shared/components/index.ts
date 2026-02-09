@@ -7,17 +7,16 @@ export { Grid } from './layout/grid/grid';
 export { Box } from './layout/box/box';
 export { Spacer } from './layout/spacer/spacer/spacer';
 
-/***** Display Components *****/
-export { Avatar } from './display/avatar/avatar';
-export { Badge } from './display/badge/badge';
-export { Separator } from './display/separator/separator';
-export { Icon } from './display/icon/icon';
-export { Text } from './display/text/text';
-export { Code } from './display/code/code';
-export { SegmentedControl } from './display/segmented-control/segmented-control';
-
-/***** Element Components *****/
-export { Shape } from './element/shape/shape';
+/***** Miscellaneous Components *****/
+export { Avatar } from './misc/avatar/avatar';
+export { Badge } from './misc/badge/badge';
+export { Separator } from './misc/separator/separator';
+export { Icon } from './misc/icon/icon';
+export { Text } from './misc/text/text';
+export { Code } from './misc/code/code';
+export { SegmentedControl } from './misc/segmented-control/segmented-control';
+export { Shape } from './misc/shape/shape';
+export { Logo } from './misc/logo/logo';
 
 /***** Data Components *****/
 export { Table, TableColumnTemplate } from './data/table/table';

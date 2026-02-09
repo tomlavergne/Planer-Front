@@ -1,0 +1,16 @@
+:host {
+  display: block;
+
+  .line {
+    flex-shrink: 0;
+    flex-grow: 1;
+    background-color: var(--color-border);
+  }
+  &.orientation-horizontal .line {
+    height: 1px;
+  }
+
+  &.orientation-vertical .line {
+    width: 1px;
+  }
+}

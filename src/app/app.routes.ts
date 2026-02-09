@@ -48,20 +48,18 @@ export const routes: Routes = [
       ...generateDocumentationRoutes(),
     ],
   },
-
-  // Authentification (publique)
-  //   {
-  // path: 'auth',
-  // loadComponent: () => import('./features/auth/auth-layout').then((m) => m.AuthLayout),
-  // children: [
-  //   {
-  //     path: 'login',
-  //     loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
-  //   },
-  //   {
-  //     path: 'register',
-  //     loadComponent: () => import('./features/auth/register/register').then((m) => m.Register),
-  //   },
-  // ],
-  //   },
+  {
+    path: '',
+    // loadComponent: () => import('./features/auth/auth-layout').then((m) => m.AuthLayout),
+    children: [
+      {
+        path: 'login',
+        loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
+      },
+      //   {
+      //     path: 'register',
+      //     loadComponent: () => import('./features/auth/register/register').then((m) => m.Register),
+      //   },
+    ],
+  },
 ];

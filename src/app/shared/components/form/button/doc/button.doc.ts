@@ -10,7 +10,7 @@ import { TooltipDirective } from '@shared/directives/';
 
 /***** Import de types *****/
 import type { Button as ButtonType } from '../button.type';
-import type { Icon as IconType } from '@shared/components/display/icon/icon.type';
+import type { Icon as IconType } from '@shared/components/misc/icon/icon.type';
 import type { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
 /***** Import de variables  *****/

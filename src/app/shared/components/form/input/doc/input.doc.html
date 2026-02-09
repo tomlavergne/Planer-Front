@@ -37,6 +37,24 @@
           </app-flex>
         </app-preview>
       </app-card>
+
+      <app-card>
+        <app-preview limitHeight>
+          <app-flex direction="column" fullWidth>
+            <app-flex direction="column" gap="md" alignItems="center" padding="sm" wrap fullWidth>
+              @for (size of sizes; track $index) {
+                <app-input
+                  [size]="size"
+                  icon="lucideStar"
+                  placeholder="Saisissez un nombre"
+                  [actions]="actions()"
+                  fullWidth
+                />
+              }
+            </app-flex>
+          </app-flex>
+        </app-preview>
+      </app-card>
     </app-flex>
 
     <!-- Groups -->

@@ -1,5 +1,5 @@
 /***** Import de types *****/
-import type { Icon } from '@shared/components/display/icon/icon.type';
+import type { Icon } from '@shared/components/misc/icon/icon.type';
 
 export namespace Routing {
   /**********************/

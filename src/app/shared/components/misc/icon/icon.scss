@@ -1,5 +1,11 @@
 :host {
-  display: flex;
+  display: inline-flex;
+  line-height: 0;
+
+  ng-icon {
+    display: block;
+    line-height: 0;
+  }
 
   $iconColors: (
     'red',

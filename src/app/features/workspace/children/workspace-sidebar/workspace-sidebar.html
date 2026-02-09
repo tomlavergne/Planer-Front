@@ -18,12 +18,9 @@
       >
         <app-flex alignItems="center" gap="2xs">
           <!-- Logo Icon -->
-          <app-shape type="circle" size="sm" color="background-inverse" />
+          <app-logo [showText]="expanded()" />
 
           @if (expanded()) {
-            <!-- Logo Text -->
-            <app-text size="lg" weight="medium" color="text-primary">Planer</app-text>
-
             <!-- Chevron Icon -->
             <app-icon name="lucideChevronDown" size="xs" color="text-primary" class="home-icon" />
           }

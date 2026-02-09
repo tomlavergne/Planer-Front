@@ -16,11 +16,11 @@ import {
 import { CommonModule } from '@angular/common';
 
 /***** Imports de composants *****/
-import { Icon } from '../../display/icon/icon';
+import { Icon } from '../../misc/icon/icon';
 
 /***** Imports de types *****/
 import { Table as TableType } from './table.type';
-import type { Icon as IconType } from '../../display/icon/icon.type';
+import type { Icon as IconType } from '../../misc/icon/icon.type';
 
 /***** Directive pour les templates de colonnes *****/
 @Directive({

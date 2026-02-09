@@ -1,5 +1,5 @@
 import type { Size as UISize, Variant as UIVariant } from '../../../types/ui.types';
-import type { Text } from '../../display/text/text.type';
+import type { Text } from '../../misc/text/text.type';
 
 export namespace Accordion {
   export type Variant = Extract<UIVariant, 'soft' | 'ghost'>;

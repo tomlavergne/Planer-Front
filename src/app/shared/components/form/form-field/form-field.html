@@ -1,0 +1,24 @@
+<app-flex direction="column" gap="2xs" fullWidth>
+  <app-flex direction="row" gap="2xs" alignItems="center" justifyContent="between">
+    @if (label()) {
+      <app-text [size]="size()" color="text-secondary">
+        {{ label() }}
+        @if (required()) {
+          <span style="color: var(--color-danger)">*</span>
+        }
+      </app-text>
+    }
+
+    @if (badge()) {
+      <app-badge [text]="badge()!" [size]="size()" color="primary" />
+    }
+  </app-flex>
+
+  <ng-content />
+
+  @if (errorMessage()) {
+    <app-text [size]="size()" color="danger">
+      {{ errorMessage() }}
+    </app-text>
+  }
+</app-flex>

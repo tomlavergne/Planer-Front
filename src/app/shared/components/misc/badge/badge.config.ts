@@ -1,7 +1,7 @@
 import type { Badge } from './badge.type';
 import type { Flex } from '../../layout/flex/flex.type';
-import type { Icon } from '../../display/icon/icon.type';
-import type { Text } from '../../display/text/text.type';
+import type { Icon } from '../icon/icon.type';
+import type { Text } from '../text/text.type';
 
 export const BADGE_SIZES_CONFIG: Record<
   Badge.Size,

@@ -1,6 +1,6 @@
 import type { SemanticColor, PrimaryColor } from '../../../../types/ui.types';
 
-import type { Icon } from '../../../display/icon/icon.type';
+import type { Icon } from '../../../misc/icon/icon.type';
 
 export namespace Toast {
   export type Icon = Icon.Name;

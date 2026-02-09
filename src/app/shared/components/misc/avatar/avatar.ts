@@ -5,7 +5,7 @@ import { Component, input } from '@angular/core';
 import { Icon } from '../icon/icon';
 
 /***** Imports de types *****/
-import { Size } from '../../../types/';
+import { Size } from '../../../types';
 
 @Component({
   selector: 'app-avatar',

@@ -1,0 +1,76 @@
+<app-button class="planer-button" variant="ghost">
+  <app-logo showText size="md" />
+</app-button>
+
+<app-flex direction="row" gap="lg" alignItems="center" justifyContent="center" fullHeight fullWidth>
+  <app-flex
+    class="login-content"
+    direction="column"
+    padding="3xl"
+    justifyContent="center"
+    gap="sm"
+    fullHeight
+    fullWidth
+  >
+    <!-- Go back button -->
+    <app-button variant="ghost" iconLeft="lucideArrowLeft" size="md" text="Retour" />
+
+    <app-card variant="subtle" padding="lg">
+      <app-flex class="form-content" direction="column" gap="md" fullWidth>
+        <app-text size="2xl" color="text-primary">Sign in</app-text>
+
+        <app-flex direction="column" gap="md">
+          <!-- Email field -->
+          <app-form-field label="Email" size="sm" required [errorMessage]="emailError()">
+            <app-input-email
+              [(value)]="email"
+              [(errorMessage)]="emailError"
+              placeholder="Entrez votre email"
+              size="lg"
+              fullWidth
+              required
+            />
+          </app-form-field>
+
+          <!-- Password field -->
+          <app-form-field label="Mot de passe" size="sm" required [errorMessage]="passwordError()">
+            <app-input-password
+              [(value)]="password"
+              [(errorMessage)]="passwordError"
+              placeholder="Entrez votre mot de passe"
+              size="lg"
+              fullWidth
+              required
+              [minLength]="8"
+              [customValidator]="passwordValidator"
+              [requireUppercase]="true"
+              [requireNumber]="true"
+            />
+          </app-form-field>
+
+          <!-- <app-button text="Mot de passe oublié ?" variant="link" /> -->
+
+          <app-button
+            text="Se connecter"
+            color="primary"
+            size="lg"
+            [disabled]="!isFormValid()"
+            fullWidth
+            centerContent
+            (click)="handleSubmit()"
+          />
+        </app-flex>
+
+        <app-separator text="ou" />
+
+        <app-button
+          text="Voir les autres modes de connexion"
+          iconRight="lucideArrowUpRight"
+          variant="subtle"
+          fullWidth
+          centerContent
+        />
+      </app-flex>
+    </app-card>
+  </app-flex>
+</app-flex>
