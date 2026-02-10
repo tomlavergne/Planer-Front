@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Planer Translation Schema",
+  "description": "Schéma de validation pour les fichiers de traduction de l'application Planer",
+  "type": "object",
+  "properties": {
+    "common": {
+      "type": "object",
+      "description": "Traductions communes utilisées dans toute l'application",
+      "properties": {
+        "back": {
+          "type": "string",
+          "description": "Bouton retour"
+        }
+      },
+      "required": ["back"]
+    },
+    "auth": {
+      "type": "object",
+      "description": "Module d'authentification",
+      "properties": {
+        "login": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "email": { "type": "string" },
+            "emailPlaceholder": { "type": "string" },
+            "submit": { "type": "string" },
+            "or": { "type": "string" },
+            "otherMethods": { "type": "string" }
+          },
+          "required": ["title", "email", "emailPlaceholder", "submit", "or", "otherMethods"]
+        }
+      },
+      "required": ["login"]
+    },
+    "settings": {
+      "type": "object",
+      "description": "Module de paramètres",
+      "properties": {
+        "general": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "preferences": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "description": { "type": "string" },
+                "general": {
+                  "type": "object",
+                  "properties": {
+                    "label": { "type": "string" },
+                    "language": {
+                      "type": "object",
+                      "properties": {
+                        "label": { "type": "string" },
+                        "description": { "type": "string" }
+                      },
+                      "required": ["label", "description"]
+                    }
+                  },
+                  "required": ["label", "language"]
+                },
+                "appearance": {
+                  "type": "object",
+                  "properties": {
+                    "label": { "type": "string" },
+                    "theme": {
+                      "type": "object",
+                      "properties": {
+                        "label": { "type": "string" },
+                        "description": { "type": "string" }
+                      },
+                      "required": ["label", "description"]
+                    },
+                    "primaryColor": {
+                      "type": "object",
+                      "properties": {
+                        "label": { "type": "string" },
+                        "description": { "type": "string" }
+                      },
+                      "required": ["label", "description"]
+                    }
+                  },
+                  "required": ["label", "theme", "primaryColor"]
+                }
+              },
+              "required": ["label", "description", "general", "appearance"]
+            }
+          },
+          "required": ["label", "preferences"]
+        }
+      },
+      "required": ["general"]
+    }
+  },
+  "required": ["common", "auth", "settings"],
+  "additionalProperties": true
+}

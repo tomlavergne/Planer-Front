@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:planer-front": "node dist/planer-front/server/server.mjs",
-    "generate-doc": "npx ts-node --esm scripts/generate-docs.ts 2>/dev/null"
+    "generate-doc": "npx ts-node --esm scripts/generate-docs.ts 2>/dev/null",
+    "validate:i18n": "tsc --noEmit --skipLibCheck src/assets/i18n/*.ts src/app/core/i18n/translation-schema.type.ts"
   },
   "prettier": {
     "printWidth": 100,
@@ -48,7 +49,7 @@
     "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.0",
     "@types/express": "^5.0.1",
-    "@types/node": "^20.17.19",
+    "@types/node": "^20.19.33",
     "jsdom": "^27.1.0",
     "prettier": "^3.7.4",
     "ts-morph": "^27.0.2",
