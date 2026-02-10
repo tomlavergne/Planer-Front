@@ -1,6 +1,6 @@
 /***** Imports de Angular *****/
-import { Component, model } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, model, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 /***** Imports de composants *****/
 import {
@@ -46,9 +46,14 @@ import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
   styleUrl: './workspace-sidebar.scss',
 })
 export class WorkspaceSidebar {
+  router = inject(Router);
+
   expanded = model<boolean>(true);
 
   logout(): void {
     console.log('Déconnexion');
+
+    // Redirection vers la page d'accueil après connexion
+    this.router.navigate(['/login']);
   }
 }

@@ -1,5 +1,6 @@
 /***** Imports Angular *****/
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 /***** Import de composants  *****/
 import { SettingTemplate, SettingGroup, SettingItem } from '@features/settings/';
@@ -17,27 +18,61 @@ import { primaryColors } from '@shared/variables/colors';
 
 @Component({
   selector: 'app-preference',
-  imports: [SettingTemplate, Flex, Separator, Select, SegmentedControl, SettingGroup, SettingItem],
+  imports: [
+    SettingTemplate,
+    Flex,
+    Separator,
+    Select,
+    SegmentedControl,
+    SettingGroup,
+    SettingItem,
+    TranslocoPipe,
+  ],
   templateUrl: './preference.html',
   styleUrl: './preference.scss',
 })
 export class Preference {
   themeService = inject(ThemeService);
+  translocoService = inject(TranslocoService);
+
+  currentLanguage = signal<string>(this.translocoService.getActiveLang());
 
   /*******************/
   /***** METHODS *****/
   /*******************/
 
-  options: SelectType.Option[] = primaryColors.map((color) => ({
-    value: color,
-    label: color.charAt(0).toUpperCase() + color.slice(1),
-  }));
+  languageSelectOptions: SelectType.Option[] = [
+    { value: 'fr', label: 'Français' },
+    { value: 'en', label: 'English' },
+  ];
+
+  /***** LANGUE *****/
+
+  setLanguage(locale: string | null): void {
+    if (!locale) return;
+
+    // Change la langue active de Transloco
+    this.translocoService.setActiveLang(locale);
+    this.currentLanguage.set(locale);
+
+    // Stocke la préférence pour les prochains chargements
+    localStorage.setItem('preferredLanguage', locale);
+  }
+
+  /***** THEME *****/
 
   setTheme(theme: string | null): void {
     if (theme === 'light' || theme === 'dark' || theme === 'auto') {
       this.themeService.setTheme(theme);
     }
   }
+
+  /***** COULEUR PRIMAIRE *****/
+
+  primaryColorSelectOptions: SelectType.Option[] = primaryColors.map((color) => ({
+    value: color,
+    label: color.charAt(0).toUpperCase() + color.slice(1),
+  }));
 
   setPrimaryColor(color: string | null): void {
     if (color && primaryColors.includes(color as PrimaryColor)) {

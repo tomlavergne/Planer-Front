@@ -4,11 +4,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["node"],
+    "types": [
+      "node",
+      "@angular/localize"
+    ],
     "baseUrl": "./",
     "paths": {
       "@shared/*": ["src/app/shared/*"],
-      "@features/*": ["src/app/features/*"]
+      "@features/*": ["src/app/features/*"],
+      "@core/*": ["src/app/core/*"]
     }
   },
   "include": ["src/**/*.ts"],

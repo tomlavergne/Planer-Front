@@ -27,6 +27,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
               }
             ],
             "styles": ["src/styles.scss"],
@@ -52,8 +57,7 @@
             },
             "development": {
               "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"

@@ -34,6 +34,16 @@
     color: var(--color-text-primary);
     font-size: var(--font-size-sm);
     background-color: transparent;
+
+    // Surcharge des styles d'autocompletion Chrome
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px var(--color-background-primary) inset !important;
+      -webkit-text-fill-color: var(--color-text-primary) !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
 
   &.focused {

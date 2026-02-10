@@ -1,6 +1,8 @@
 @use '../../../styles/mixins.scss' as *;
 @use '../../../styles/variables.scss' as *;
 
+$transition-duration: 0.2s;
+
 :host {
   user-select: none;
 
@@ -20,7 +22,7 @@
 
   // Disabled state
   &.disabled button {
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.5;
   }
 
@@ -54,7 +56,7 @@
         // ==========================================
         @if $variant-name == 'solid' {
           background-color: $color;
-          transition: all 0.3s ease;
+          transition: all $transition-duration ease;
 
           &:hover:not(:disabled) {
             background-color: $color-background-solid-hover;
@@ -66,7 +68,7 @@
         // ==========================================
         @else if $variant-name == 'soft' {
           background-color: $color-background-soft;
-          transition: all 0.3s ease;
+          transition: all $transition-duration ease;
 
           &:hover:not(:disabled) {
             background-color: $color-background-soft-hover;
@@ -79,7 +81,7 @@
         @else if $variant-name == 'subtle' {
           background-color: $color-background-soft;
           border-color: $color-border-ouline;
-          transition: all 0.3s ease;
+          transition: all $transition-duration ease;
 
           &:hover:not(:disabled) {
             background-color: $color-background-soft-hover;
@@ -92,7 +94,7 @@
         @else if $variant-name == 'outline' {
           border-color: $color-border-ouline;
           background-color: var(--color-background-primary);
-          transition: all 0.3s ease;
+          transition: all $transition-duration ease;
 
           &:hover:not(:disabled) {
             background-color: $color-background-soft-hover;
@@ -103,7 +105,7 @@
         // GHOST - Transparent
         // ==========================================
         @else if $variant-name == 'ghost' {
-          transition: all 0.3s ease;
+          transition: all $transition-duration ease;
 
           &:hover:not(:disabled) {
             background-color: $color-background-soft-hover;
@@ -114,7 +116,9 @@
         // LINK - Bouton style lien
         // ==========================================
         @else if $variant-name == 'link' {
-          text-decoration: underline;
+          &:hover:not(:disabled) {
+            text-decoration: underline $color;
+          }
         }
       }
     }

@@ -1,10 +1,22 @@
 <app-setting-template
-  title="Préférences"
+  [title]="'settings.general.preferences.label' | transloco"
   description="
     Personnalisez l'apparence de l'application en choisissant votre mode d'affichage préféré et en sélectionnant un thème de couleur principal qui correspond à votre style.
 "
 >
-  <app-setting-group title="Général"> </app-setting-group>
+  <app-setting-group title="Général">
+    <app-setting-item
+      title="Langue"
+      description="Sélectionnez la langue de l'interface de l'application."
+    >
+      <app-select
+        [options]="languageSelectOptions"
+        [value]="currentLanguage()"
+        (valueChange)="setLanguage($event)"
+      />
+    </app-setting-item>
+  </app-setting-group>
+
   <app-setting-group title="Apparance">
     <app-setting-item
       title="Thème"
@@ -28,7 +40,7 @@
       description="Sélectionnez la couleur principale de l'application."
     >
       <app-select
-        [options]="options"
+        [options]="primaryColorSelectOptions"
         [value]="themeService.primaryColor()"
         (valueChange)="setPrimaryColor($event)"
       />

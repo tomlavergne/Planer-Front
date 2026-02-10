@@ -1,0 +1,42 @@
+{
+  "common": {
+    "back": "Back"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign in",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "submit": "Continue",
+      "or": "or",
+      "otherMethods": "See other sign in methods"
+    }
+  },
+  "settings": {
+    "general": {
+      "label": "Général",
+      "preferences": {
+        "label": "Preferences",
+        "description": "Personnalisez votre expérience en ajustant les paramètres de langue et de thème.",
+        "general": {
+          "label": "Général",
+          "language": {
+            "label": "Langue",
+            "description": "Sélectionnez la langue de l'interface de l'application."
+          }
+        },
+        "appearance": {
+          "label": "Apparence",
+          "theme": {
+            "label": "Thème",
+            "description": "Choisissez entre le thème clair, sombre ou automatique qui s'adapte à votre système."
+          },
+          "primaryColor": {
+            "label": "Couleur principale",
+            "description": "Sélectionnez la couleur principale de l'application."
+          }
+        }
+      }
+    }
+  }
+}
