@@ -36,10 +36,35 @@ export interface TranslationSchema {
           theme: {
             label: string;
             description: string;
+            options: {
+              light: string;
+              dark: string;
+              auto: string;
+            };
           };
           primaryColor: {
             label: string;
             description: string;
+            options: {
+              red: string;
+              orange: string;
+              amber: string;
+              yellow: string;
+              lime: string;
+              green: string;
+              emerald: string;
+              teal: string;
+              cyan: string;
+              sky: string;
+              blue: string;
+              indigo: string;
+              violet: string;
+              purple: string;
+              fuchsia: string;
+              pink: string;
+              rose: string;
+              neutral: string;
+            };
           };
         };
       };
@@ -61,7 +86,7 @@ type Paths<T, Prefix extends string = ''> = T extends string | number | boolean
     ? never
     : Prefix
   : {
-      [K in keyof T]: K extends string
+      [K in keyof T]-?: K extends string
         ? T[K] extends object
           ? Paths<T[K], `${Prefix}${Prefix extends '' ? '' : '.'}${K}`>
           : `${Prefix}${Prefix extends '' ? '' : '.'}${K}`

@@ -1,7 +1,7 @@
 <!-- Trigger -->
 <app-button
   #selectButton
-  [text]="selectedOption()?.label || placeholder()"
+  [text]="selectedValueDisplayed() || selectedOption()?.label || placeholder()"
   variant="outline"
   [iconRight]="'lucideChevronDown'"
   [disabled]="disabled()"
@@ -19,15 +19,30 @@
       <app-flex direction="column" gap="3xs" padding="2xs">
         <!-- Options directes sans groupe -->
         @for (option of options(); track option.value) {
-          <app-button
-            [text]="option.label"
-            size="md"
-            [variant]="value() === option.value ? 'soft' : 'ghost'"
-            [iconRight]="value() === option.value ? 'lucideCheck' : null"
-            [disabled]="option.disabled"
-            fullWidth
-            (clicked)="selectOption(option)"
-          />
+          @if (optionTemplate) {
+            <app-button
+              size="md"
+              [variant]="value() === option.value ? 'soft' : 'ghost'"
+              [iconRight]="value() === option.value ? 'lucideCheck' : null"
+              [disabled]="option.disabled"
+              fullWidth
+              (clicked)="selectOption(option)"
+            >
+              <ng-container
+                *ngTemplateOutlet="optionTemplate.template; context: { $implicit: option }"
+              />
+            </app-button>
+          } @else {
+            <app-button
+              [text]="option.label"
+              size="md"
+              [variant]="value() === option.value ? 'soft' : 'ghost'"
+              [iconRight]="value() === option.value ? 'lucideCheck' : null"
+              [disabled]="option.disabled"
+              fullWidth
+              (clicked)="selectOption(option)"
+            />
+          }
         }
       </app-flex>
     }
@@ -45,15 +60,30 @@
 
           <!-- Options du groupe -->
           @for (option of group.options; track option.value) {
-            <app-button
-              [text]="option.label"
-              size="md"
-              [variant]="value() === option.value ? 'soft' : 'ghost'"
-              [iconRight]="value() === option.value ? 'lucideCheck' : null"
-              [disabled]="option.disabled"
-              fullWidth
-              (clicked)="selectOption(option)"
-            />
+            @if (optionTemplate) {
+              <app-button
+                size="md"
+                [variant]="value() === option.value ? 'soft' : 'ghost'"
+                [iconRight]="value() === option.value ? 'lucideCheck' : null"
+                [disabled]="option.disabled"
+                fullWidth
+                (clicked)="selectOption(option)"
+              >
+                <ng-container
+                  *ngTemplateOutlet="optionTemplate.template; context: { $implicit: option }"
+                />
+              </app-button>
+            } @else {
+              <app-button
+                [text]="option.label"
+                size="md"
+                [variant]="value() === option.value ? 'soft' : 'ghost'"
+                [iconRight]="value() === option.value ? 'lucideCheck' : null"
+                [disabled]="option.disabled"
+                fullWidth
+                (clicked)="selectOption(option)"
+              />
+            }
           }
         </app-flex>
       }

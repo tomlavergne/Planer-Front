@@ -1,13 +1,11 @@
 <app-setting-template
   [title]="'settings.general.preferences.label' | transloco"
-  description="
-    Personnalisez l'apparence de l'application en choisissant votre mode d'affichage préféré et en sélectionnant un thème de couleur principal qui correspond à votre style.
-"
+  [description]="'settings.general.preferences.description' | transloco"
 >
-  <app-setting-group title="Général">
+  <app-setting-group [title]="'settings.general.preferences.general.label' | transloco">
     <app-setting-item
-      title="Langue"
-      description="Sélectionnez la langue de l'interface de l'application."
+      [title]="'settings.general.preferences.general.language.label' | transloco"
+      [description]="'settings.general.preferences.general.language.description' | transloco"
     >
       <app-select
         [options]="languageSelectOptions"
@@ -17,16 +15,28 @@
     </app-setting-item>
   </app-setting-group>
 
-  <app-setting-group title="Apparance">
+  <app-setting-group [title]="'settings.general.preferences.appearance.label' | transloco">
     <app-setting-item
-      title="Thème"
-      description="Choisissez votre thème préféré pour l'application. Le mode 'Auto' ajuste automatiquement le thème en fonction de vos paramètres système."
+      [title]="'settings.general.preferences.appearance.theme.label' | transloco"
+      [description]="'settings.general.preferences.appearance.theme.description' | transloco"
     >
       <app-segmented-control
         [options]="[
-          { label: 'Clair', value: 'light', icon: 'lucideSun' },
-          { label: 'Sombre', value: 'dark', icon: 'lucideMoon' },
-          { label: 'Auto', value: 'auto', icon: 'lucideMonitor' },
+          {
+            label: 'settings.general.preferences.appearance.theme.options.light' | transloco,
+            value: 'light',
+            icon: 'lucideSun',
+          },
+          {
+            label: 'settings.general.preferences.appearance.theme.options.dark' | transloco,
+            value: 'dark',
+            icon: 'lucideMoon',
+          },
+          {
+            label: 'settings.general.preferences.appearance.theme.options.auto' | transloco,
+            value: 'auto',
+            icon: 'lucideMonitor',
+          },
         ]"
         [value]="themeService.theme()"
         (valueChange)="setTheme($event)"
@@ -36,14 +46,28 @@
     <app-separator />
 
     <app-setting-item
-      title="Couleur principale"
-      description="Sélectionnez la couleur principale de l'application."
+      [title]="'settings.general.preferences.appearance.primaryColor.label' | transloco"
+      [description]="'settings.general.preferences.appearance.primaryColor.description' | transloco"
     >
       <app-select
         [options]="primaryColorSelectOptions"
+        [selectedValueDisplayed]="
+          `settings.general.preferences.appearance.primaryColor.options.${themeService.primaryColor()}`
+            | transloco
+        "
         [value]="themeService.primaryColor()"
         (valueChange)="setPrimaryColor($event)"
-      />
+      >
+        <ng-template selectOption let-option>
+          <app-flex direction="row" alignItems="center" justifyContent="start" gap="2xs" fullWidth>
+            <app-box height="20px" width="30px" [color]="option.value" />
+            <app-text color="text-secondary">{{
+              `settings.general.preferences.appearance.primaryColor.options.${option.label}`
+                | transloco
+            }}</app-text>
+          </app-flex>
+        </ng-template>
+      </app-select>
     </app-setting-item>
   </app-setting-group>
 </app-setting-template>

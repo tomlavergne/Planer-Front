@@ -33,7 +33,7 @@ export { Textarea } from './form/textarea/textarea';
 export { Label } from './form/label/label';
 export { Checkbox } from './form/checkbox/checkbox';
 export { Toggle } from './form/toggle/toggle';
-export { Select } from './form/select/select';
+export { Select, SelectOptionTemplate } from './form/select/select';
 export { RadioGroup, type RadioOption } from './form/radio-group/radio-group';
 export { Slider } from './form/slider/slider';
 

@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md);
   border-radius: var(--radius-md);
 
   @each $color-name in $colors {
@@ -17,6 +16,12 @@
   @each $bg-color in $backgroundColors {
     &.color-#{$bg-color} {
       background-color: var(--color-#{$bg-color});
+    }
+  }
+
+  @each $padding in ('xs', 'sm', 'md', 'lg', 'xl') {
+    &.padding-#{$padding} {
+      padding: var(--padding-#{$padding});
     }
   }
 }

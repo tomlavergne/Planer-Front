@@ -30,10 +30,7 @@ export class Login {
   };
 
   // Validation du formulaire
-  isFormValid = computed(
-    () =>
-      !this.emailError() && !this.passwordError() && this.email() !== '' && this.password() !== '',
-  );
+  isFormValid = computed(() => !this.emailError() && this.email() !== '');
 
   /**
    * Soumet le formulaire
@@ -50,5 +47,9 @@ export class Login {
       // Redirection vers la page d'accueil après connexion
       this.router.navigate(['/']);
     }
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']);
   }
 }

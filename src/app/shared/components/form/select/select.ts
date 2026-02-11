@@ -10,6 +10,9 @@ import {
   signal,
   ElementRef,
   effect,
+  ContentChild,
+  TemplateRef,
+  Directive,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -23,6 +26,15 @@ import { Select as SelectType } from './select.type';
 /***** Import de directive *****/
 import { PopoverDirective } from '@shared/directives';
 
+/***** Directive pour le template d'option personnalisé *****/
+@Directive({
+  selector: 'ng-template[selectOption]',
+  standalone: true,
+})
+export class SelectOptionTemplate {
+  constructor(public template: TemplateRef<any>) {}
+}
+
 @Component({
   selector: 'app-select',
   imports: [CommonModule, Button, Flex, Text, Card, Separator, PopoverDirective],
@@ -33,6 +45,9 @@ import { PopoverDirective } from '@shared/directives';
   },
 })
 export class Select {
+  /***** Template personnalisé *****/
+  @ContentChild(SelectOptionTemplate) optionTemplate?: SelectOptionTemplate;
+
   /***** INPUTS *****/
   options = input<SelectType.Option[]>([]);
   groups = input<SelectType.OptionGroup[]>([]);
@@ -42,6 +57,7 @@ export class Select {
   error = input<boolean, any>(false, { transform: booleanAttribute });
   fullWidth = input<boolean, any>(false, { transform: booleanAttribute });
   maxVisibleOptions = input<number>(6);
+  selectedValueDisplayed = input<string | null>(null);
 
   /***** MODEL *****/
   value = model<string | null>(null);

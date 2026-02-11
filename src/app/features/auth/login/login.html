@@ -1,4 +1,4 @@
-<app-button class="planer-button" variant="ghost">
+<app-button class="planer-button" variant="ghost" size="md" (click)="goHome()">
   <app-logo showText size="md" />
 </app-button>
 
@@ -67,14 +67,6 @@
               <app-button text="Mot de passe oublié ?" variant="link" />
             </app-flex>
           </app-flex> -->
-
-          <!-- <app-form-field
-            label="Se souvenir de moi"
-            size="sm"
-            [errorMessage]="passwordError()"
-          >
-            <app-checkbox />
-          </app-form-field> -->
 
           <app-button
             [text]="'auth.login.submit' | transloco"

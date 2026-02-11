@@ -4,7 +4,16 @@ import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 
 /***** Import de composants  *****/
 import { SettingTemplate, SettingGroup, SettingItem } from '@features/settings/';
-import { Flex, Button, Separator, Select, SegmentedControl } from '@shared/components';
+import {
+  Flex,
+  Button,
+  Box,
+  Text,
+  Separator,
+  Select,
+  SegmentedControl,
+  SelectOptionTemplate,
+} from '@shared/components';
 
 /***** Import de service *****/
 import { ThemeService } from '@shared/config/theme.service';
@@ -21,12 +30,15 @@ import { primaryColors } from '@shared/variables/colors';
   imports: [
     SettingTemplate,
     Flex,
+    Text,
+    Box,
     Separator,
     Select,
     SegmentedControl,
     SettingGroup,
     SettingItem,
     TranslocoPipe,
+    SelectOptionTemplate,
   ],
   templateUrl: './preference.html',
   styleUrl: './preference.scss',
@@ -71,7 +83,7 @@ export class Preference {
 
   primaryColorSelectOptions: SelectType.Option[] = primaryColors.map((color) => ({
     value: color,
-    label: color.charAt(0).toUpperCase() + color.slice(1),
+    label: color,
   }));
 
   setPrimaryColor(color: string | null): void {
