@@ -1,0 +1,34 @@
+<app-card variant="subtle" padding="lg">
+  <app-flex class="form-content" direction="column" gap="md" fullWidth>
+    <app-text size="2xl" color="text-primary">{{ 'auth.login.title' | transloco }}</app-text>
+
+    <app-flex direction="column" gap="md" fullWidth>
+      <!-- Email field -->
+      <app-form-field
+        [label]="'auth.login.email' | transloco"
+        size="sm"
+        required
+        [errorMessage]="emailError()"
+      >
+        <app-input-email
+          [(value)]="email"
+          [(errorMessage)]="emailError"
+          [placeholder]="'auth.login.emailPlaceholder' | transloco"
+          size="lg"
+          fullWidth
+          required
+        />
+      </app-form-field>
+
+      <app-button
+        [text]="'auth.login.submit' | transloco"
+        color="primary"
+        size="lg"
+        [disabled]="!isFormValid()"
+        fullWidth
+        centerContent
+        (click)="handleSubmit()"
+      />
+    </app-flex>
+  </app-flex>
+</app-card>

@@ -50,7 +50,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    // loadComponent: () => import('./features/auth/auth-layout').then((m) => m.AuthLayout),
+    loadComponent: () => import('./features/auth/auth').then((m) => m.Auth),
     children: [
       {
         path: 'login',

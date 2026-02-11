@@ -1,0 +1,26 @@
+<app-flex alignItems="center" justifyContent="center" gap="2xs">
+  @for (v of values(); track $index) {
+    <app-input
+      [(value)]="values()[$index]"
+      [maxLength]="1"
+      size="xl"
+      [attr.data-index]="$index"
+      [name]="'otp-' + $index + '-' + randomId()"
+      class="otp-input"
+      [filter]="numberOnlyFilter"
+      autocomplete="one-time-code"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      type="text"
+      (valueChange)="onValueChange($index, $event)"
+      (focused)="onFocus($index)"
+      (keydown)="onKeyDown($index, $event)"
+      (paste)="onPaste($index, $event)"
+    />
+
+    @if ($index === 2) {
+      <app-icon name="lucideMinus" color="text-secondary" />
+    }
+  }
+</app-flex>

@@ -16,6 +16,9 @@ import { Input } from '../input';
 /***** Imports de types *****/
 import { Input as InputType } from '../input.type';
 
+/***** Import de methodes *****/
+import { numberFilter, integerFilter } from '../input.methods';
+
 @Component({
   selector: 'app-input-number',
   imports: [FormsModule, Input],
@@ -71,13 +74,7 @@ export class InputNumber {
   inputControl = viewChild.required<Input>('inputControl');
 
   // Filtre qui ne garde que les chiffres et le signe négatif
-  numberFilter: InputType.FilterFn = (value: string) => {
-    if (this.onlyPositive()) {
-      return value.replace(/[^0-9]/g, '');
-    } else {
-      return value.replace(/[^0-9-]/g, '');
-    }
-  };
+  numberFilter: InputType.FilterFn = this.onlyPositive() ? numberFilter : integerFilter;
 
   actions = computed<InputType.Action[]>(() => [
     {

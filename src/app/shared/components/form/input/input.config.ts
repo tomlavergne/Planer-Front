@@ -39,4 +39,11 @@ export const INPUT_SIZES_CONFIG: Record<
     iconSize: 'sm',
     buttonSize: 'lg',
   },
+  xl: {
+    padding: 'xs',
+    gap: 'xs',
+    fontSize: 'lg',
+    iconSize: 'md',
+    buttonSize: 'xl',
+  },
 };

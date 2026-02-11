@@ -2,7 +2,7 @@ import type { Size as UISize, Variant as UIVariant } from '../../../types/ui.typ
 import { Icon } from '@shared/components/misc/icon/icon.type';
 
 export namespace Input {
-  export type Size = Extract<UISize, 'sm' | 'md' | 'lg'>;
+  export type Size = Extract<UISize, 'sm' | 'md' | 'lg' | 'xl'>;
   export type Variant = 'solid' | 'soft' | 'outline';
   export type Value = string | number;
   export type Action = {

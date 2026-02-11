@@ -7,22 +7,17 @@
   cursor: text;
   transition: border-color 0.2s ease;
 
-  &.size-sm {
-    input {
-      font-size: var(--font-size-xs);
-    }
+  &.size-sm input {
+    font-size: var(--font-size-xs);
   }
-
-  &.size-md {
-    input {
-      font-size: var(--font-size-sm);
-    }
+  &.size-md input {
+    font-size: var(--font-size-sm);
   }
-
-  &.size-lg {
-    input {
-      font-size: var(--font-size-md);
-    }
+  &.size-lg input {
+    font-size: var(--font-size-md);
+  }
+  &.size-xl input {
+    font-size: var(--font-size-lg);
   }
 
   input {

@@ -52,6 +52,21 @@ export class Input extends InputBase {
   /** Force l'affichage d'une erreur (indépendant de la validation) */
   error = input<boolean, any>(false, { transform: booleanAttribute });
 
+  /** Nombre maximum de caractères autorisés (null = illimité) */
+  maxLength = input<number | null>(null);
+
+  /** Active/désactive l'autocomplétion */
+  autocomplete = input<string>('off');
+
+  /** Active/désactive l'autocorrection */
+  autocorrect = input<string>('off');
+
+  /** Active/désactive l'auto-capitalisation */
+  autocapitalize = input<string>('off');
+
+  /** Active/désactive la vérification orthographique */
+  spellcheck = input<string>('false');
+
   /***** ViewChild *****/
   inputElement = viewChild<ElementRef<HTMLInputElement>>('inputElement');
 
@@ -113,5 +128,15 @@ export class Input extends InputBase {
    */
   override focus(): void {
     this.inputElement()?.nativeElement.focus();
+  }
+
+  /**
+   * Sélectionne tout le texte de l'input
+   */
+  selectAll(): void {
+    const element = this.inputElement()?.nativeElement;
+    if (element) {
+      element.select();
+    }
   }
 }

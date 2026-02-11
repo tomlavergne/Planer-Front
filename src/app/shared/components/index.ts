@@ -36,6 +36,7 @@ export { Toggle } from './form/toggle/toggle';
 export { Select, SelectOptionTemplate } from './form/select/select';
 export { RadioGroup, type RadioOption } from './form/radio-group/radio-group';
 export { Slider } from './form/slider/slider';
+export { Otp } from './form/otp/otp';
 
 /***** Overlay Components *****/
 export { Popover } from './overlay/popover/popover';

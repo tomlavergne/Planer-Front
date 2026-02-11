@@ -19,6 +19,13 @@ export const frTranslations: TranslationSchema = {
       or: 'ou',
       otherMethods: 'Voir les autres modes de connexion',
     },
+    otp: {
+      title: 'Code de vérification',
+      description: "Un code à 6 chiffres a été envoyé à l'adresse :",
+      submit: 'Vérifier',
+      sendAgainIn: 'Renvoyer dans {{ seconds }} seconde{{ sLetter }}',
+      resend: 'Renvoyer le code',
+    },
   },
   settings: {
     general: {

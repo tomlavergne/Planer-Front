@@ -1,4 +1,9 @@
 :host {
+  .login-content {
+    width: min-content;
+    // max-width: 700px;
+  }
+
   .planer-button {
     position: absolute;
     top: var(--spacing-sm);

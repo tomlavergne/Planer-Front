@@ -19,6 +19,13 @@ export const enTranslations: TranslationSchema = {
       or: 'or',
       otherMethods: 'See other sign in methods',
     },
+    otp: {
+      title: 'Verification code',
+      description: 'A 6-digit code has been sent to email address :',
+      submit: 'Verify',
+      sendAgainIn: 'Resend in {{seconds}} second{{ sLetter }}',
+      resend: 'Resend code',
+    },
   },
   settings: {
     general: {

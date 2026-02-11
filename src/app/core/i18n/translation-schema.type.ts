@@ -17,6 +17,13 @@ export interface TranslationSchema {
       or: string;
       otherMethods: string;
     };
+    otp: {
+      title: string;
+      description: string;
+      submit: string;
+      sendAgainIn: string;
+      resend: string;
+    };
   };
   settings: {
     general: {
@@ -86,7 +93,7 @@ type Paths<T, Prefix extends string = ''> = T extends string | number | boolean
     ? never
     : Prefix
   : {
-      [K in keyof T]-?: K extends string
+      [K in keyof T]: K extends string
         ? T[K] extends object
           ? Paths<T[K], `${Prefix}${Prefix extends '' ? '' : '.'}${K}`>
           : `${Prefix}${Prefix extends '' ? '' : '.'}${K}`

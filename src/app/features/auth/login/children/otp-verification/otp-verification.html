@@ -1,0 +1,45 @@
+<app-card variant="subtle" padding="lg">
+  <app-flex class="form-content" direction="column" gap="md" fullWidth>
+    <app-text size="2xl" color="text-primary">{{ 'auth.otp.title' | transloco }}</app-text>
+
+    <app-flex direction="column" gap="2xs">
+      <app-text size="sm" color="text-secondary">
+        {{ 'auth.otp.description' | transloco }}
+      </app-text>
+
+      <app-badge [text]="email()" variant="soft" color="secondary" size="sm" />
+    </app-flex>
+
+    <app-flex direction="column" alignItems="center" gap="md" fullWidth>
+      <!-- OTP field -->
+      <app-form-field [errorMessage]="otpError()">
+        <app-flex alignItems="center" justifyContent="center" fullWidth>
+          <app-otp [(value)]="otp" [length]="6" size="lg" fullWidth required />
+        </app-flex>
+      </app-form-field>
+
+      <app-button
+        [text]="'auth.otp.submit' | transloco"
+        color="primary"
+        size="lg"
+        [disabled]="!isFormValid()"
+        fullWidth
+        centerContent
+        (click)="handleSubmit()"
+      />
+
+      <app-button
+        variant="link"
+        size="md"
+        [text]="
+          allowResend()
+            ? ('auth.otp.resend' | transloco)
+            : ('auth.otp.sendAgainIn'
+              | transloco: { seconds: resendCooldown(), sLetter: resendCooldown() > 1 ? 's' : '' })
+        "
+        [disabled]="!allowResend()"
+        (click)="handleResendOtp()"
+      />
+    </app-flex>
+  </app-flex>
+</app-card>

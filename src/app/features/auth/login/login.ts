@@ -4,52 +4,31 @@ import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 /***** Import de composants *****/
-import { Flex, Text, Card, Button, Separator } from '@shared/components';
-import { FormField } from '@shared/components/form/form-field/form-field';
-import { InputEmail } from '@shared/components/form/input/variants/input-email';
-import { Logo } from '@shared/components/misc/logo/logo';
+import { Flex, Button } from '@shared/components';
+import { EmailRequest } from './children/email-request/email-request';
+import { OtpVerification } from './children/otp-verification/otp-verification';
 
 @Component({
   selector: 'app-login',
-  imports: [Flex, Text, Card, Button, Separator, Logo, FormField, InputEmail, TranslocoPipe],
+  imports: [Flex, Button, EmailRequest, OtpVerification, TranslocoPipe],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
   router = inject(Router);
-  // Valeurs du formulaire
-  email = model<string>('');
-  password = model<string>('');
 
-  // Messages d'erreur (synchronisés automatiquement via two-way binding avec les variants)
-  emailError = model<string | null>(null);
-  passwordError = model<string | null>(null);
+  mode = signal<'login' | 'otp'>('login');
 
-  passwordValidator = () => {
-    return null; // Valide
-  };
-
-  // Validation du formulaire
-  isFormValid = computed(() => !this.emailError() && this.email() !== '');
-
-  /**
-   * Soumet le formulaire
-   */
-  handleSubmit(): void {
-    // Si valide, soumet
-    if (this.isFormValid()) {
-      console.log('Connexion avec:', {
-        email: this.email(),
-        password: this.password(),
-      });
-      // TODO: Appel API de connexion ici
-
-      // Redirection vers la page d'accueil après connexion
-      this.router.navigate(['/']);
-    }
+  requestOtp(email: string): void {
+    console.log('Demande OTP pour:', email);
+    this.mode.set('otp');
   }
 
-  goHome(): void {
-    this.router.navigate(['/']);
+  goBack(): void {
+    if (this.mode() === 'otp') {
+      this.mode.set('login');
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 }

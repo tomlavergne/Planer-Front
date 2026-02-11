@@ -1,102 +1,17 @@
-<app-button class="planer-button" variant="ghost" size="md" (click)="goHome()">
-  <app-logo showText size="md" />
-</app-button>
-
 <app-flex direction="row" gap="lg" alignItems="center" justifyContent="center" fullHeight fullWidth>
-  <app-flex
-    class="login-content"
-    direction="column"
-    padding="3xl"
-    justifyContent="center"
-    gap="sm"
-    fullHeight
-    fullWidth
-  >
+  <app-flex direction="column" padding="3xl" justifyContent="center" gap="sm" fullHeight fullWidth>
     <!-- Go back button -->
     <app-button
       variant="ghost"
       iconLeft="lucideArrowLeft"
       size="md"
       [text]="'common.back' | transloco"
+      (clicked)="goBack()"
     />
-
-    <app-card variant="subtle" padding="lg">
-      <app-flex class="form-content" direction="column" gap="md" fullWidth>
-        <app-text size="2xl" color="text-primary">{{ 'auth.login.title' | transloco }}</app-text>
-
-        <app-flex direction="column" gap="md">
-          <!-- Email field -->
-          <app-form-field
-            [label]="'auth.login.email' | transloco"
-            size="sm"
-            required
-            [errorMessage]="emailError()"
-          >
-            <app-input-email
-              [(value)]="email"
-              [(errorMessage)]="emailError"
-              [placeholder]="'auth.login.emailPlaceholder' | transloco"
-              size="lg"
-              fullWidth
-              required
-            />
-          </app-form-field>
-
-          <!-- <app-flex direction="column" gap="xs" fullWidth>
-            <app-form-field
-              label="Mot de passe"
-              size="sm"
-              required
-              [errorMessage]="passwordError()"
-            >
-              <app-input-password
-                [(value)]="password"
-                [(errorMessage)]="passwordError"
-                placeholder="Entrez votre mot de passe"
-                size="lg"
-                fullWidth
-                required
-                [minLength]="8"
-                [customValidator]="passwordValidator"
-                [requireUppercase]="true"
-                [requireNumber]="true"
-              />
-            </app-form-field>
-
-            <app-flex justifyContent="end" fullWidth>
-              <app-button text="Mot de passe oublié ?" variant="link" />
-            </app-flex>
-          </app-flex> -->
-
-          <app-button
-            [text]="'auth.login.submit' | transloco"
-            color="primary"
-            size="lg"
-            [disabled]="!isFormValid()"
-            fullWidth
-            centerContent
-            (click)="handleSubmit()"
-          />
-        </app-flex>
-
-        <app-separator [text]="'auth.login.or' | transloco" />
-
-        <app-button
-          [text]="'auth.login.otherMethods' | transloco"
-          iconRight="lucideArrowUpRight"
-          variant="subtle"
-          fullWidth
-          centerContent
-        />
-
-        <!-- <app-flex justifyContent="center" fullWidth>
-          <app-text size="sm" color="text-secondary">
-            Vous n'avez pas encore de compte ?
-
-            <app-button text="Créer un compte" variant="link" />
-          </app-text>
-        </app-flex> -->
-      </app-flex>
-    </app-card>
+    @if (mode() === 'login') {
+      <app-email-request (submit)="requestOtp($event.email)" />
+    } @else if (mode() === 'otp') {
+      <app-otp-verification />
+    }
   </app-flex>
 </app-flex>

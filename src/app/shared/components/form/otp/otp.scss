@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  width: fit-content;
+
+  ::ng-deep .otp-input {
+    width: 50px;
+    text-align: center;
+
+    input {
+      text-align: center;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
