@@ -1,3 +1,8 @@
+@use '../../../../shared/styles/variables.scss' as *;
+@use '../../../../shared/styles/helpers.scss' as *;
+
+$colors: joinAll($semanticColors, $primaryColors, $textColors, $backgroundColors);
+
 :host {
   display: inline-flex;
   line-height: 0;
@@ -7,38 +12,9 @@
     line-height: 0;
   }
 
-  $iconColors: (
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-    'text-primary',
-    'text-secondary',
-    'text-tertiary',
-    'text-inverse',
-    'text-disabled'
-  );
-  @each $color in $iconColors {
+  $colors: joinAll($semanticColors, $primaryColors, $textColors);
+
+  @each $color in $colors {
     &.color-#{$color} {
       color: var(--color-#{$color});
     }

@@ -63,7 +63,6 @@ export type Theme = 'light' | 'dark' | 'auto';
 export type PrimaryColor =
   | 'red'
   | 'orange'
-  | 'amber'
   | 'yellow'
   | 'lime'
   | 'green'
@@ -74,10 +73,8 @@ export type PrimaryColor =
   | 'blue'
   | 'indigo'
   | 'violet'
-  | 'purple'
   | 'fuchsia'
   | 'pink'
-  | 'rose'
   | 'neutral';
 
 export type SemanticColor = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'danger';

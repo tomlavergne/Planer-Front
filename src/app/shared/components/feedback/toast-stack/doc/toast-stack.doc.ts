@@ -44,7 +44,7 @@ export class ToastStackDoc {
   customToast(): void {
     this.toastService.custom('Message custom', 'Custom', {
       icon: 'lucideStar',
-      color: 'purple',
+      color: 'violet',
     });
   }
 

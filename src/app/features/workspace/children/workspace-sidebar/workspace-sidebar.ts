@@ -13,6 +13,7 @@ import {
   Card,
   Separator,
   Shape,
+  Spacer,
 } from '../../../../shared/components';
 import { Logo } from '@shared/components/misc/logo/logo';
 import { SidebarItem } from '../../../../core/layout/sidebar/children/sidebar-item/sidebar-item';
@@ -36,6 +37,7 @@ import { Sidebar } from '../../../../core/layout/sidebar/sidebar';
     Separator,
     Logo,
     Card,
+    Spacer,
     SidebarItem,
     TooltipDirective,
     PopoverDirective,

@@ -18,7 +18,7 @@
   }
 
   // Génération des variants
-  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'purple', 'pink', 'gray');
+  $colors: ('red', 'orange', 'yellow', 'green', 'teal', 'blue', 'indigo', 'violet', 'pink', 'gray');
 
   // Soft variant
   @each $color-name in $colors {

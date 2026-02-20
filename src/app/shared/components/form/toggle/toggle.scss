@@ -1,5 +1,8 @@
 @use '../../../styles/mixins.scss' as *;
 @use '../../../styles/variables.scss' as *;
+@use '../../../styles/helpers.scss' as *;
+
+$colors: joinAll($semanticColors, $primaryColors, $backgroundColors);
 
 :host {
   cursor: pointer;

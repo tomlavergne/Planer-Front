@@ -17,6 +17,9 @@ import { Icon as IconType } from '../icon.type';
 import * as lucideIcons from '@ng-icons/lucide';
 import * as phosphorIcons from '@ng-icons/phosphor-icons';
 
+/***** Import de variables *****/
+import { semanticColors, primaryColors } from '@shared/variables/colors';
+
 /***** Imports de services *****/
 import { ToastService } from '@shared/components/feedback/toast-stack/toast-stack.service';
 
@@ -40,25 +43,8 @@ export class IconDoc {
     );
   }
 
-  semanticColors: IconType.Color[] = [
-    'primary',
-    'secondary',
-    'info',
-    'success',
-    'warning',
-    'danger',
-  ];
-  primaryColors: IconType.Color[] = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'teal',
-    'blue',
-    'indigo',
-    'purple',
-    'pink',
-  ];
+  semanticColors: IconType.Color[] = semanticColors;
+  primaryColors: IconType.Color[] = primaryColors;
 
   sizes: IconType.Size[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 

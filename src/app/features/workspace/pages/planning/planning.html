@@ -1,0 +1,103 @@
+<app-flex direction="column" fullWidth fullHeight>
+  <app-flex
+    direction="row"
+    gap="md"
+    justifyContent="between"
+    alignItems="center"
+    padding="md"
+    fullWidth
+  >
+    <app-flex alignItems="center" gap="xs">
+      <app-text size="lg">Planning</app-text>
+    </app-flex>
+
+    <app-flex gap="2xs">
+      <app-button
+        variant="outline"
+        iconLeft="lucideSearch"
+        size="md"
+        [tooltip]="{
+          content: 'Rechercher',
+          position: 'bottom',
+        }"
+      />
+
+      <app-button
+        variant="outline"
+        iconLeft="lucideFilter"
+        size="md"
+        [tooltip]="{
+          content: 'Filtrer',
+          position: 'bottom',
+        }"
+      />
+
+      <app-button
+        text="Planifier"
+        variant="solid"
+        color="primary"
+        iconLeft="lucidePlus"
+        size="md"
+      />
+      <app-button
+        variant="outline"
+        iconLeft="lucideArrowLeftFromLine"
+        size="md"
+        [tooltip]="{
+          content: 'Étendre',
+          position: 'bottom',
+        }"
+      />
+    </app-flex>
+  </app-flex>
+
+  <app-flex
+    class="header"
+    direction="row"
+    gap="md"
+    justifyContent="between"
+    alignItems="center"
+    padding="xs"
+    fullWidth
+  >
+    <app-flex alignItems="center" gap="xs">
+      <app-button
+        variant="outline"
+        iconLeft="lucideChevronLeft"
+        size="md"
+        [tooltip]="{
+          content: 'Précédent',
+          delay: 500,
+        }"
+      />
+
+      <app-text size="sm">31 Janvier</app-text>
+
+      <app-button
+        variant="outline"
+        iconLeft="lucideChevronRight"
+        size="md"
+        [tooltip]="{
+          content: 'Suivant',
+          delay: 500,
+        }"
+      />
+    </app-flex>
+
+    <!-- <app-segmented-control
+      size="sm"
+      [options]="[
+        {
+          value: 'calendar',
+          icon: 'lucideCalendar',
+        },
+        {
+          value: 'list',
+          icon: 'lucideList',
+        },
+      ]"
+    /> -->
+
+    <app-select size="md" [options]="displayModeOptions"></app-select>
+  </app-flex>
+</app-flex>

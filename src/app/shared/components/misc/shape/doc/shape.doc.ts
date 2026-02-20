@@ -11,6 +11,9 @@ import { Text } from '../../../misc/text/text';
 import type { Shape as ShapeType } from '../shape.type';
 import type { Documentation as DocumentationType } from '@features/documentation/documentation.type';
 
+/***** Import de variables *****/
+import { primaryColors, semanticColors } from '@shared/variables/colors';
+
 @Component({
   selector: 'app-shape-documentation',
   imports: [DocumentationTemplate, Flex, Shape, Text],
@@ -19,31 +22,7 @@ import type { Documentation as DocumentationType } from '@features/documentation
 export class ShapeDoc {
   types: ShapeType.Type[] = ['circle', 'square', 'triangle', 'diamond', 'hexagon', 'star'];
 
-  colors: ShapeType.Color[] = [
-    'primary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-  ];
+  colors: ShapeType.Color[] = [...primaryColors, ...semanticColors];
   sizes: ShapeType.Size[] = ['2xs', 'xs', 'sm', 'md', 'lg', 'xl'];
 
   inputsMetadata: DocumentationType.InputConfig[] = [

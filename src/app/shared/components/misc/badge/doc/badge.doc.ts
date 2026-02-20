@@ -17,7 +17,6 @@ export class BadgeDoc {
   primaryColors: BadgeType.Color[] = [
     'red',
     'orange',
-    'amber',
     'yellow',
     'lime',
     'green',
@@ -28,10 +27,8 @@ export class BadgeDoc {
     'blue',
     'indigo',
     'violet',
-    'purple',
     'fuchsia',
     'pink',
-    'rose',
     'neutral',
   ];
 

@@ -9,15 +9,15 @@
   flex-grow: 0; // Prevent flex from growing the sidebar
   border-right: 1px solid var(--color-border);
   padding: var(--spacing-sm);
-  background-color: var(--color-background-primary); // For debug purposes, to be removed
-  overflow-x: hidden; // Ensure content doesn't overflow
+  background-color: var(--color-background-secondary);
+  overflow-x: hidden;
   overflow-y: auto;
 
   /*************************/
   /***** Resize Handle *****/
   /*************************/
 
-  $resizeHandleWidth: 2px;
+  $resizeHandleWidth: 3px;
 
   .resize-handle {
     position: absolute;

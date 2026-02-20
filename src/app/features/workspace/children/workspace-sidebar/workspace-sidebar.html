@@ -43,7 +43,7 @@
     <app-separator />
 
     <!-- Navigation principale -->
-    <app-flex direction="column" gap="3xs" fullWidth fullHeight>
+    <app-flex direction="column" gap="2xs" fullWidth>
       <app-sidebar-item
         text="Accueil"
         path="/home"
@@ -53,16 +53,24 @@
       />
 
       <app-sidebar-item
-        text="Calendrier"
-        path="/calendar"
+        text="Planning"
+        path="/planning"
         icon="lucideCalendar"
         size="md"
         [expanded]="expanded()"
       />
 
       <app-sidebar-item
-        text="Utilisateurs"
-        path="/users"
+        text="Activités"
+        path="/activities"
+        icon="lucideLayers"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Inscriptions"
+        path="/registrations"
         icon="lucideUsers"
         size="md"
         [expanded]="expanded()"
@@ -70,15 +78,35 @@
 
       <app-sidebar-item
         text="Ressources"
-        path="/ressources"
-        icon="lucideBox"
+        path="/resources"
+        icon="lucideBoxes"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Automatisations"
+        path="/automations"
+        icon="lucideZap"
         size="md"
         [expanded]="expanded()"
       />
     </app-flex>
 
+    <app-spacer
+      fullHeight
+      fullWidth
+      [tooltip]="{
+        content: expanded() ? 'Réduire la barre latérale' : 'Étendre la barre latérale',
+        position: 'right',
+        delay: 500,
+        followMouse: true,
+      }"
+      (clicked)="expanded.set(!expanded())"
+    />
+
     <!-- Navigation secondaire -->
-    <app-flex direction="column" gap="3xs" fullWidth>
+    <app-flex direction="column" gap="2xs" fullWidth>
       <app-sidebar-item
         text="Documentation"
         path="/documentation"
@@ -91,6 +119,14 @@
         text="Paramètres"
         path="/settings"
         icon="lucideSettings"
+        size="md"
+        [expanded]="expanded()"
+      />
+
+      <app-sidebar-item
+        text="Aide et support"
+        path="/settings"
+        icon="lucideHeadset"
         size="md"
         [expanded]="expanded()"
       />

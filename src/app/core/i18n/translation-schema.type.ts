@@ -55,7 +55,6 @@ export interface TranslationSchema {
             options: {
               red: string;
               orange: string;
-              amber: string;
               yellow: string;
               lime: string;
               green: string;
@@ -66,10 +65,8 @@ export interface TranslationSchema {
               blue: string;
               indigo: string;
               violet: string;
-              purple: string;
               fuchsia: string;
               pink: string;
-              rose: string;
               neutral: string;
             };
           };

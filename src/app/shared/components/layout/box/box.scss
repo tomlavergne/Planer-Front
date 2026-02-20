@@ -1,4 +1,6 @@
+@use '../../../styles/mixins.scss' as *;
 @use '../../../styles/variables.scss' as *;
+@use '../../../styles/helpers.scss' as *;
 
 :host {
   display: flex;
@@ -6,16 +8,12 @@
   justify-content: center;
   border-radius: var(--radius-md);
 
+  $colors: joinAll($semanticColors, $primaryColors, $backgroundColors);
+
   @each $color-name in $colors {
     // Calcul des couleurs dérivées
     &.color-#{$color-name} {
       background-color: var(--color-#{$color-name});
-    }
-  }
-
-  @each $bg-color in $backgroundColors {
-    &.color-#{$bg-color} {
-      background-color: var(--color-#{$bg-color});
     }
   }
 

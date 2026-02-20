@@ -58,7 +58,6 @@ export const enTranslations: TranslationSchema = {
             options: {
               red: 'Red',
               orange: 'Orange',
-              amber: 'Amber',
               yellow: 'Yellow',
               lime: 'Lime',
               green: 'Green',
@@ -69,10 +68,8 @@ export const enTranslations: TranslationSchema = {
               blue: 'Blue',
               indigo: 'Indigo',
               violet: 'Violet',
-              purple: 'Purple',
               fuchsia: 'Fuchsia',
               pink: 'Pink',
-              rose: 'Rose',
               neutral: 'Neutral',
             },
           },

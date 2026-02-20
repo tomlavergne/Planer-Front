@@ -1,4 +1,6 @@
 @use '../../../styles/mixins.scss' as *;
+@use '../../../styles/variables.scss' as *;
+@use '../../../styles/helpers.scss' as *;
 
 :host {
   display: inline-block;
@@ -7,45 +9,9 @@
   /***** COLORS *****/
   /*******************/
 
-  $colors: ('primary', 'success', 'warning', 'danger', 'info');
-  @each $color in $colors {
-    &.color-#{$color} {
-      color: var(--color-#{$color});
-    }
-  }
+  $colors: joinAll($semanticColors, $primaryColors, $textColors);
 
-  $textColors: (
-    'red',
-    'orange',
-    'amber',
-    'yellow',
-    'lime',
-    'green',
-    'emerald',
-    'teal',
-    'cyan',
-    'sky',
-    'blue',
-    'indigo',
-    'violet',
-    'purple',
-    'fuchsia',
-    'pink',
-    'rose',
-    'neutral',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-    'text-primary',
-    'text-secondary',
-    'text-tertiary',
-    'text-inverse',
-    'text-disabled'
-  );
-  @each $color in $textColors {
+  @each $color in $colors {
     &.color-#{$color} {
       color: var(--color-#{$color});
     }
@@ -63,9 +29,7 @@
   /***** SIZES *****/
   /*****************/
 
-  $sizes: ('xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl');
-
-  @each $size-name in $sizes {
+  @each $size-name in ('xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl') {
     &.font-size-#{$size-name} {
       font-size: var(--font-size-#{$size-name});
       letter-spacing: var(--letter-spacing-#{$size-name});
@@ -77,9 +41,7 @@
   /***** WEIGHT *****/
   /******************/
 
-  $weights: ('thin', 'light', 'regular', 'medium', 'semibold', 'bold');
-
-  @each $weight in $weights {
+  @each $weight in ('thin', 'light', 'regular', 'medium', 'semibold', 'bold') {
     &.weight-#{$weight} {
       font-weight: var(--font-weight-#{$weight});
     }
@@ -89,20 +51,10 @@
   /***** ALIGN *****/
   /*****************/
 
-  &.align-left {
-    text-align: left;
-  }
-
-  &.align-center {
-    text-align: center;
-  }
-
-  &.align-right {
-    text-align: right;
-  }
-
-  &.align-justify {
-    text-align: justify;
+  @each $align in ('left', 'center', 'right', 'justify') {
+    &.align-#{$align} {
+      text-align: #{$align};
+    }
   }
 
   /*******************/
@@ -170,16 +122,9 @@
   /***** DECORATION *****/
   /**********************/
 
-  &.decoration-none {
-    text-decoration: none;
-  }
-  &.decoration-underline {
-    text-decoration: underline;
-  }
-  &.decoration-line-through {
-    text-decoration: line-through;
-  }
-  &.decoration-overline {
-    text-decoration: overline;
+  @each $decoration in ('none', 'underline', 'line-through', 'overline') {
+    &.decoration-#{$decoration} {
+      text-decoration: #{$decoration};
+    }
   }
 }

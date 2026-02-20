@@ -6,7 +6,7 @@ export namespace SegmentedControl {
 
   export interface Option {
     value: string;
-    label: string;
+    label?: string;
     icon?: Icon.Name;
     disabled?: boolean;
   }

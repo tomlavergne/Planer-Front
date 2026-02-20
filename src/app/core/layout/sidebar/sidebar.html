@@ -1,4 +1,4 @@
-<app-flex direction="column" gap="xs" fullHeight>
+<app-flex direction="column" gap="md" fullHeight>
   @if (showGoBackButton()) {
     <app-button
       text="Retour"
@@ -9,7 +9,7 @@
     />
   }
 
-  <ng-content> </ng-content>
+  <ng-content />
 </app-flex>
 
 <!-- Resize handle -->

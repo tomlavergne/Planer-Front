@@ -1,5 +1,6 @@
 @use '../../../styles/mixins.scss' as *;
 @use '../../../styles/variables.scss' as *;
+@use '../../../styles/helpers.scss' as *;
 
 :host {
   border-radius: var(--radius-md);
@@ -14,6 +15,8 @@
   // ==========================================
 
   $variants: ('solid', 'soft', 'outline');
+
+  $colors: joinAll($semanticColors, $primaryColors);
 
   @each $variant-name in $variants {
     @each $color-name in $colors {

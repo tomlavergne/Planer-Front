@@ -1,5 +1,6 @@
 @use '../../../styles/mixins.scss' as *;
 @use '../../../styles/variables.scss' as *;
+@use '../../../styles/helpers.scss' as *;
 
 $transition-duration: 0.2s;
 
@@ -37,6 +38,8 @@ $transition-duration: 0.2s;
   &.full-height button {
     height: 100%;
   }
+
+  $colors: joinAll($semanticColors, $primaryColors);
 
   // Surcharge des styles avec couleurs spécifiques
   // Ces styles surchargent les styles par défaut ci-dessus
@@ -128,5 +131,9 @@ $transition-duration: 0.2s;
     &.radius-#{$radius} button {
       border-radius: var(--radius-#{$radius});
     }
+  }
+
+  app-text {
+    line-height: unset;
   }
 }

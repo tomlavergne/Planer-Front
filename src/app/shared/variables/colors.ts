@@ -4,7 +4,6 @@ import type { PrimaryColor, SemanticColor, BackgroundColor, TextColor } from '@s
 export const primaryColors: PrimaryColor[] = [
   'red',
   'orange',
-  'amber',
   'yellow',
   'lime',
   'green',
@@ -15,10 +14,8 @@ export const primaryColors: PrimaryColor[] = [
   'blue',
   'indigo',
   'violet',
-  'purple',
   'fuchsia',
   'pink',
-  'rose',
   'neutral',
 ];
 
